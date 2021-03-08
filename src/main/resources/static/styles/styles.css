@@ -1,3 +1,24 @@
+
+/*====== FOOTER PARTIAL ========*/
 .footerUl{
     display: flex !important;
+    justify-content: space-around !important;
+}
+.centerText{
+    text-align: center !important;
+}
+.footerContainer{
+    width: 90% !important;
+}
+#footerIconAndName{
+    display: flex !important;
+    justify-content: space-around !important;
+}
+#footerSiteName{
+    align-self: center !important;
+}
+#footerSubmitButton{
+    background: none !important;
+    border: none !important;
+    color: #fff !important;
 }
