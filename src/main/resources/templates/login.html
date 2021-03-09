@@ -2,11 +2,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/materializeHead :: styleHead('Login')"></head>
 <body>
-<nav th:replace="partials/navbar :: navbar"></nav>
+<nav th:replace="partials/navbar.html :: navbar"></nav>
 
 <h1 class="text-center">Please Log In</h1>
 
-<form class="container" th:action="@{/login}" method="post">
+<form class="container" method="post">
 
     <div class="form-group">
         <label for="username">Username</label>
@@ -21,6 +21,7 @@
     <input class="btn btn-block btn-primary" type="submit" value="Login"/>
 
 </form>
-<footer th:include="partials/footer :: footer"></footer>
+<footer th:include="partials/footer.html :: footer"></footer>
+<div th:replace="partials/materializescripts :: scripts"></div>
 </body>
 </html>
