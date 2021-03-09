@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:include="partials/materializeHead.html :: styleHead('Create Post')"></head>
+<head th:replace="partials/materializeHead.html :: styleHead('Create Post')"></head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
@@ -168,6 +168,6 @@
 
 
 
-<footer th:include="partials/footer.html :: footer"></footer>
+<footer th:replace="partials/footer.html :: footer"></footer>
 </body>
 </html>

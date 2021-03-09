@@ -1,13 +1,14 @@
 create database if not exists podLobby;
 
 use podLobby;
+drop table if exists response;
 drop table if exists user_podcast;
 drop table if exists comments;
 drop table if exists podcast_categories;
 drop table if exists categories;
 drop table if exists podcasts;
-drop table if exists user_requested;
-drop table if exists requested;
+drop table if exists user_requests;
+drop table if exists requests;
 drop table if exists followed_user;
 drop table if exists user;
 
@@ -29,7 +30,7 @@ create table if not exists podcasts(
     description varchar(255) not null,
     embed_link text not null,
     image text,
-    created_at date not null,
+    created_at datetime not null,
     listen_count int default 0,
     foreign key (user_id) references user(id)
 );
@@ -56,7 +57,7 @@ create table if not exists podcast_categories(
 create table if not exists comments(
     user_id int unsigned not null,
     podcast_id int unsigned not null,
-    comment varchar(255) not null,
+    comment text not null,
     foreign key (user_id) references user(id),
     foreign key (podcast_id) references podcasts(id)
 );
@@ -67,7 +68,7 @@ create table if not exists followed_user(
     foreign key (user_id) references user(id)
 );
 
-create table if not exists requested(
+create table if not exists requests(
     id int unsigned auto_increment primary key,
     user_id int unsigned not null,
     title varchar(255) not null,
@@ -78,11 +79,19 @@ create table if not exists requested(
     foreign key (user_id) references user(id)
 );
 
-create table if not exists user_requested(
+create table if not exists user_requests(
     user_id int unsigned not null,
     request_id int unsigned not null,
     foreign key (user_id) references user(id),
-    foreign key (request_id) references requested(id)
+    foreign key (request_id) references requests(id)
+);
+
+create table if not exists response(
+    id int unsigned not null auto_increment primary key,
+    user_id int unsigned not null,
+    request_id int unsigned not null,
+    foreign key (user_id) references user(id),
+    foreign key (request_id) references requests(id)
 );
 
 use podLobby;
@@ -98,11 +107,11 @@ insert into categories (name) VALUES ('how to');
 insert into podcast_categories (category_id, podcast_id) VALUES (1, 1);
 insert into podcast_categories (category_id, podcast_id) VALUES (2, 1);
 
-insert into requested (user_id, title, description, media_links, created_at, guest_count) VALUES (1, 'want to make this with 2 people', 'it will be about comedy', 'google.com/news', '1999-09-09', 2);
+insert into requests (user_id, title, description, media_links, created_at, guest_count) VALUES (1, 'want to make this with 2 people', 'it will be about comedy', 'google.com/news', '1999-09-09', 2);
 # ^^^ user 1 created a requested podcast post for others to see ^^^
 
-insert into user_requested (user_id, request_id) VALUES (2, 1); # user 2 wants to work on requested post # 1
-insert into user_requested (user_id, request_id) VALUES (3, 1); # user 3 wants to work on requested post # 1 as well
+insert into user_requests (user_id, request_id) VALUES (2, 1); # user 2 wants to work on requested post # 1
+insert into user_requests (user_id, request_id) VALUES (3, 1); # user 3 wants to work on requested post # 1 as well
 
 # user 2 comments on podcast id 1 this message
 insert into comments (user_id, podcast_id, comment) VALUES (2, 1, 'i like the podcast! it was very funny');
@@ -144,11 +153,11 @@ from user where id in (
 # if a user wants to view all the users who want to work with them on their specific requested post
 select username as people_requesting_to_collab
 from user where id in (
-    select user_id from  user_requested where request_id = 1
+    select user_id from  user_requests where request_id = 1
     );
 
 # a new user sees a requested post and would like to work with the poster
 insert into user (username, password, email, joined_at, profile_image, is_admin, about_me) values ('newUser', 'password', 'user@m.a', '1993-01-01', 'imageURL', 0, 'looking to discover new podcasts!');
 # would like to work with them is 'clicked' for podcast named ?
-insert into user_requested (user_id, request_id) VALUES (4, 1);
+insert into user_requests (user_id, request_id) VALUES (4, 1);
 
