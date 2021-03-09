@@ -17,7 +17,7 @@
         </div>
         <!--May need to change type below-->
         <div class="form-group">
-            <label for="title">Audio URL</label>
+            <label for="audioURL">Audio URL</label>
             <input class="form-control" type="text" id="audioURL"/>
         </div>
 
@@ -33,5 +33,7 @@
 </div>
 
 <footer th:include="partials/footer.html :: footer"></footer>
+<div th:replace="partials/materializescripts :: scripts"></div>
+
 </body>
 </html>
