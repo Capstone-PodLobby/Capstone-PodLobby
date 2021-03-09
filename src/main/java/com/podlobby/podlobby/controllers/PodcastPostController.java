@@ -12,4 +12,11 @@ public class PodcastPostController {
             return"/posts/create";
         }
 
+    //            Will need to add ID to path for specific post
+    @GetMapping("/posts/edit")
+    public String viewEditPostForm() {
+//        model.addAttribute("post", postsDao.getOne(id));
+        return "posts/edit";
+    }
+
 }
