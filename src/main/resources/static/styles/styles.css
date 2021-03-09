@@ -22,3 +22,24 @@
     border: none !important;
     color: #fff !important;
 }
+
+/*========= Styling for authorized user's home page (user-home.html) ========*/
+
+/* Style for Scrollable content*/
+.content{
+    overflow: scroll;
+    height: 350px;
+}
+
+/*Style for feed buttons on authorized user's home page*/
+.feed-buttons{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+/*Style for title on authorized user's home page*/
+.feed-title{
+    text-align: center;
+}
+/*=============================================================================*/
