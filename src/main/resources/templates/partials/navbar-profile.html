@@ -2,15 +2,15 @@
 
 <div th:fragment="profileNav" th:remove="tag">
     <ul id="dropdown1" class="dropdown-content">
-        <li><a href="/">Home</a></li>
-        <li><a href="/posts/create">Create</a></li>
+        <li><a href="/home">Home</a></li>
+        <li><a href="/podcasts/create">Create</a></li>
         <li class="divider"></li>
         <li><a href="#!">Settings</a></li>
         <li><a href="#!">Logout</a></li>
     </ul>
     <nav id="profileNav">
         <div class="nav-wrapper">
-            <a href="/" class="brand-logo">PodLobby</a>
+            <a href="/home" class="brand-logo">PodLobby</a>
             <ul>
                 <li class="hide-on-small-only profile-iframe">
                     <iframe id="profileIframe" src="https://open.spotify.com/embed-podcast/episode/2aB2swgyXqbFA06AxPlFmr" allowtransparency="true" allow="encrypted-media"></iframe>
