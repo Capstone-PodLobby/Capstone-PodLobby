@@ -3,8 +3,114 @@
 <head th:replace="partials/materializeHead :: styleHead('Home')"></head>
 
 <body>
-<h1>Welcome to PodLobby</h1>
+<nav th:replace="partials/navbar :: navbar"></nav>
 
+<h1>Welcome to PodLobby</h1>
+<main>
+
+    <div class="parallax-container">
+        <div class="parallax">
+            <img th:src="@{/img/soundlevels.jpg}">
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="row">
+            <div class="col s3">
+                <img th:src="@{/img/audio.jpg}">
+            </div>
+            <div class="col s8 right">
+                <p>Post 1</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="parallax-container">
+        <div class="parallax">
+            <img th:src="@{/img/audioWave.jpg}">
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="row">
+            <div class="col s8">
+                <p>Post 2</p>
+            </div>
+            <div class="col s3">
+                <img th:src="@{/img/audio.jpg}">
+            </div>
+        </div>
+    </div>
+
+    <div class="parallax-container">
+        <div class="parallax">
+            <img th:src="@{/img/soundlevels.jpg}">
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="row">
+            <div class="col s3">
+                <img th:src="@{/img/audio.jpg}">
+            </div>
+            <div class="col s8 right">
+                <p>Post 3</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="parallax-container">
+        <div class="parallax">
+            <img th:src="@{/img/audioWave.jpg}">
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="row">
+            <div class="col s8">
+                <p>Post 4</p>
+            </div>
+            <div class="col s3">
+                <img th:src="@{/img/audio.jpg}">
+            </div>
+        </div>
+    </div>
+
+    <div class="parallax-container">
+        <div class="parallax">
+            <img th:src="@{/img/soundlevels.jpg}">
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="row">
+            <div class="col s3">
+                <img th:src="@{/img/audio.jpg}">
+            </div>
+            <div class="col s8 right">
+                <p>Post 5</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="parallax-container">
+        <div class="parallax">
+            <img th:src="@{/img/audioWave.jpg}">
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="row">
+            <div class="col s8">
+                <p>Post 6</p>
+            </div>
+            <div class="col s3">
+                <img th:src="@{/img/audio.jpg}">
+            </div>
+        </div>
+    </div>
+
+</main>
 <footer th:replace="partials/footer :: footer"></footer>
 <div th:replace="partials/materializescripts :: scripts"></div>
 </body>
