@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head th:include="partials/materializeHead.html :: styleHead('Create Post')"></head>
+<body>
+<nav th:replace="partials/navbar :: navbar"></nav>
+
+<div class="container">
+    <h1 class="my-4">Create Post</h1>
+
+    <form>
+        <div class="form-group input-field">
+            <label for="title">Title</label>
+            <input class="form-control" type="text" id="title"/>
+        </div>
+        <div class="form-group input-field">
+            <label for="body">Description</label>
+            <textarea class="form-control" id="body"></textarea>
+        </div>
+<!--May need to change type below-->
+        <div class="form-group input-field">
+            <label for="title">Audio URL</label>
+            <input class="form-control" type="text" id="audioURL"/>
+        </div>
+
+        <input class="btn btn-block btn-primary" type="submit" value="Create Post" />
+    </form>
+
+</div>
+
+<footer th:include="partials/footer.html :: footer"></footer>
+</body>
+</html>

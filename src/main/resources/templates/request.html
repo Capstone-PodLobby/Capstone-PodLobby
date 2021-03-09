@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head th:replace="partials/materializeHead :: styleHead('Request')"></head>
+</head>
+<body>
+<nav th:replace="partials/navbar.html :: navbar"></nav>
+<form class="container" method="post">
+
+    <div class="form-group input-field">
+        <label for="title">Title</label>
+        <input class="form-control" type="text" id="title" name="title"/>
+    </div>
+    <div class="form-group input-field">
+        <label for="about">About</label>
+        <input class="form-control" type="text" id="about" name="about"/>
+    </div>
+    <div class="form-group input-field">
+        <label for="req-amount">How many people do you need?</label>
+        <input class="form-control" type="text" id="req-amount" name="req-amount"/>
+    </div>
+    <div class="form-group input-field">
+        <label for="req-details">What do you want to talk about?</label>
+        <input class="form-control" type="text" id="req-details" name="req-details"/>
+    </div>
+
+    <input class="btn btn-block btn-primary" type="submit"/>
+
+</form>
+<footer th:include="partials/footer.html :: footer"></footer>
+<div th:replace="partials/materializescripts :: scripts"></div>
+</body>
+</html>
