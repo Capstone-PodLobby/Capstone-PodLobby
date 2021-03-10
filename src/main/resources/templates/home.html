@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/materializeHead :: styleHead('Home')"></head>
+<head th:replace="partials/materializeHead :: styleHead('Home')">
+    <link rel="stylesheet" type="text/css" href="/static/styles/landing-page.css">
+</head>
 
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
-<h1>Welcome to PodLobby</h1>
+<h1>Welcome to PodLobby!</h1>
 <main>
 
     <div class="parallax-container">
@@ -34,7 +36,7 @@
     <div class="section">
         <div class="row">
             <div class="col s8">
-                <p>Post 2</p>
+                <p>Post 2 Amber</p>
             </div>
             <div class="col s3">
                 <img th:src="@{/img/audio.jpg}">

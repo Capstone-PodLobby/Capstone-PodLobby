@@ -1,0 +1,109 @@
+body {
+    background: url(static/images/podlobby-main-copy.png);
+}
+
+.bg-images-wrap {
+    width: 100%;
+    height: auto;
+    background: url(static/images/podlobby-main-copy.png) no-repeat center center/cover;
+}
+
+
+body.main-style {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.7;
+    color: white;
+    overflow: hidden;
+    background-color: #499E8D;
+}
+.background-img {
+    min-width: 100%;
+    height: auto;
+    position: absolute;
+}
+
+#heading {
+    position:absolute;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    /*font-size: 100px;*/
+    z-index: 3;
+    /*letter-spacing: 20px;*/
+
+}
+
+#animated-example {
+    background: #cd4436;
+    height: 200px;
+    margin: 20px auto;
+    width: 300px;
+    box-shadow: inset 0 0 7px rgba(0,0,0,0.7);
+}
+
+.animated {
+    animation-duration: 3s;
+    animation-fill-mode: both;
+    animation-timing-function: ease-in;
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fadeInDown {
+    animation-name: fadeInDown;
+}
+
+.navbar {
+    background: #F94144 !important;
+    border: none !important;
+    z-index: 1 !important;
+    position: relative !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    left: 0 !important;
+    right: 0 !important;
+    text-align: center !important;
+    margin-bottom: 0 !important;
+}
+
+
+
+/* Position the navbar container inside the image */
+.container {
+    position: absolute;
+    margin: 20px;
+    width: auto;
+}
+
+/* The navbar */
+.topnav {
+    overflow: hidden;
+    background-color: #333;
+}
+
+/* Navbar links */
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
