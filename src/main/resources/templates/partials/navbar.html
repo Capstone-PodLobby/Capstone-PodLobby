@@ -1,18 +1,25 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
-<div class="navbar">
-    <nav class="navbar-fixed" th:fragment="navbar">
-        <ul class="head-txt">
-            <li><a href="/">PodLobby</a></li>
-            <li><a href="/home">User Home</a></li>
-            <li><a href="/register">Register</a></li>
-            <li><a href="/login">Login</a></li>
-            <li><a href="/logout">Logout</a></li>
-            <li><a href="/request">Request</a></li>
-            <li><a href="/podcasts/create">Create</a></li>
-            <li><a href="/profile">Settings</a></li>
-            <li><a href="/profile">Profile</a></li>
-        </ul>
+<div th:fragment="navbar" th:remove="tag">
+    <ul id="dropdown1" class="dropdown-content">
+        <li><a href="/">PodLobby</a></li>
+        <li><a href="/home">User Home</a></li>
+        <li><a href="/register">Register</a></li>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/login">Logout</a></li>
+        <li><a href="/request">Request</a></li>
+        <li><a href="/podcasts/create">Create</a></li>
+        <li><a href="/profile">Settings</a></li>
+        <li><a href="/profile">Profile</a></li>
+    </ul>
+    <nav class="navbar-fixed">
+        <div class="nav-wrapper">
+            <ul class="head-txt">
+                <li class="right">
+                    <a class="dropdown-trigger" href="#!" data-target="dropdown1"><i class="material-icons right">menu</i></a>
+                </li>
+            </ul>
+        </div>
     </nav>
 </div>
 
