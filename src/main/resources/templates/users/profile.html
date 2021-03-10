@@ -4,34 +4,42 @@
 <body>
     <div th:replace="partials/navbar-profile :: profileNav"></div>
 
-    <div class="hide-on-med-and-up">
-        <ul id="slide-out" class="sidenav">
-            <li><div class="user-view">
-                    <div class="background">
-                        <img th:src="@{/img/matt-profile-background.jpg}">
-                    </div>
-                <a href="#user"><img class="circle" th:src="@{/img/matt-profile.jpg}"></a>
-                <a href="#name"><span class="white-text name">Matt Baker</span></a>
-                <a href="#email"><span class="white-text email">matt@gmail.com</span></a>
-                </div>
-            </li>
-            <li><a class="waves-effect" href="#!"><i class="material-icons">cloud</i>Followers</a></li>
-            <li><div class="divider"></div></li>
-            <li><a class="subheader">Listening to</a></li>
-            <li><iframe id="profileIframeSideNav" src="https://open.spotify.com/embed-podcast/episode/2aB2swgyXqbFA06AxPlFmr" allowtransparency="true" allow="encrypted-media"></iframe></li>
-            <li><a class="waves-effect" href="#!"><i class="material-icons">cloud</i>Discover</a></li>
-        </ul>
-        <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">account_circle</i></a>
-    </div>
+<!--    <div class="hide-on-med-and-up">-->
+<!--        <ul id="slide-out" class="sidenav">-->
+<!--            <li><div class="user-view">-->
+<!--                    <div class="background">-->
+<!--                        <img th:src="@{/img/matt-profile-background.jpg}">-->
+<!--                    </div>-->
+<!--                <a href="#user"><img class="circle" th:src="@{/img/matt-profile.jpg}"></a>-->
+<!--                <a href="#name"><span class="white-text name">Matt Baker</span></a>-->
+<!--                <a href="#email"><span class="white-text email">matt@gmail.com</span></a>-->
+<!--                </div>-->
+<!--            </li>-->
+<!--            <li><a class="subheader">Listening to</a></li>-->
+<!--            <li><iframe id="profileIframeSideNav" src="https://open.spotify.com/embed-podcast/episode/2aB2swgyXqbFA06AxPlFmr" allowtransparency="true" allow="encrypted-media"></iframe></li>-->
+<!--            <li class="divider"></li>-->
+<!--            <li><a class="subheader">PodLobby</a></li>-->
+<!--            <li><a href="/home">Home</a></li>-->
+<!--            <li><a href="/podcasts/create">Create</a></li>-->
+<!--            <li class="divider"></li>-->
+<!--            <li><a href="/profile">Settings</a></li>-->
+<!--            <li><a href="/login">Logout</a></li>-->
+<!--            <li class="divider"></li>-->
+<!--            <li><a class="waves-effect" href="/followers"><i class="material-icons">cloud</i>Followers</a></li>-->
+<!--            <li><div class="divider"></div></li>-->
+<!--            <li><a class="waves-effect" href="/modal"><i class="material-icons">cloud</i>Discover</a></li>-->
+<!--        </ul>-->
+<!--        <a href="#" data-target="slide-out" class="sidenav-trigger hide-on-med-and-up"><i class="material-icons">account_circle</i></a>-->
+<!--    </div>-->
     <main>
         <div class="row">
             <div class="col m4 hide-on-small-only profile-side">
                 <img class="circle profile-Image" th:src="@{/img/matt-profile.jpg}">
                 <div class="collection">
-                    <a href="#!" class="collection-item">Followers<span class="badge">4</span> </a>
-                    <a href="#!" class="collection-item">Discover</a>
+                    <a href="/followers" class="collection-item">Followers<span class="badge">4</span> </a>
+                    <a href="/modal" class="collection-item">Discover</a>
                 </div>
-                <p class="center-align">About you</p>
+                <p class="center-align">About you <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium assumenda consequuntur dolorum ea excepturi expedita facil cusantium assumenda consequuntur dolorum ea excepturi expedita facil cusantium assumenda consequuntur dolorum ea excepturi expedita facil!</span></p>
             </div>
 
             <div class="col s12 m8 content-side">

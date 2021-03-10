@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/materializeHead :: styleHead('Register')"></head>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 
 <body>
@@ -9,6 +10,27 @@
     <main>
         <div class="container">
             <h1>Create an Account</h1>
+
+<!--                <div th:if="${!param.isEmpty()}">
+        <div>
+            <div th:if="${param.username}">
+                Username already exists or is blank.
+            </div>
+            <div th:if="${param.email}">
+                Email already exists or is blank.
+            </div>
+            <div th:if="${param.password}">
+                Password does not match or is blank.
+            </div>
+            <div th:if="${param.about}">
+                Please add a little information about you.
+            </div>
+            <div th:if="${param.captcha}">
+                Please verify you are not a robot.
+            </div>
+        </div>
+    </div>-->
+
             <div class="row">
                 <form class="col s12">
                     <div class="row">
@@ -44,6 +66,7 @@
 
                     </div>
 
+                    <div class="g-recaptcha" th:data-sitekey="${@environment.getProperty('recaptcha.testing.site.key')}"></div>
 
 
                     <button class="btn waves-effect waves-light" type="submit" name="action">Sign Up
@@ -58,8 +81,8 @@
                 </div>
             </div>
         </div>
+        <a id="menu" class="waves-effect waves-light btn btn-floating" ><i class="material-icons">menu</i></a>
     </main>
-    <a id="menu" class="waves-effect waves-light btn btn-floating" ><i class="material-icons">menu</i></a>
 
     <div th:replace="partials/footer.html :: footer"></div>
     <div th:replace="partials/materializescripts :: scripts"></div>
