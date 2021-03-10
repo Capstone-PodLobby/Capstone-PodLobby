@@ -10,9 +10,9 @@ public class PodcastPostController {
     /////////////////
     //    DISPLAY  //
     /////////////////
-    @GetMapping("/posts/create")
-        public String showPostCreate(){
-            return"/posts/create";
+    @GetMapping("/podcasts/create")
+        public String showPodcastCreate(){
+            return"/podcasts/create";
         }
 
 
@@ -20,19 +20,19 @@ public class PodcastPostController {
     //EDIT   OPTION//
     /////////////////
     //Will need to add ID to path for specific post
-    @GetMapping("/posts/edit")
-    public String viewEditPostForm() {
+    @GetMapping("/podcasts/edit")
+    public String viewEditPodcastForm() {
 //        model.addAttribute("post", postsDao.getOne(id));
-        return "posts/edit";
+        return "podcasts/edit";
     }
 
     /////////////////
     //DELETE OPTION//
     /////////////////
 //    @PostMapping("/posts/{id}/delete")
-//    public String deletePost(@PathVariable long id){
-//        System.out.println("Deleting post...");
-//        postsDao.deleteById(id);
+//    public String deletePodcast(@PathVariable long id){
+//        System.out.println("Deleting podcast...");
+//        podcastDao.deleteById(id);
 //        return "redirect:/posts";
 //    }
 

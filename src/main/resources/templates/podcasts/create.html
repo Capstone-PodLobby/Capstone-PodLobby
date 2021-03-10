@@ -1,11 +1,11 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="partials/materializeHead :: styleHead('Create Post')"></head>
+    <head th:replace="partials/materializeHead :: styleHead('Create Podcast')"></head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 <main>
     <div class="container">
-        <h1 class="my-4">Create Post</h1>
+        <h1 class="my-4">Create Podcast</h1>
 
         <form>
             <div class="form-group input-field">
@@ -20,6 +20,18 @@
             <div class="form-group input-field">
                 <label for="audioURL">Embed URL</label>
                 <input class="form-control" type="text" id="audioURL"/>
+            </div>
+
+            <div class="input-field">
+                <select multiple id="categories" name="categories">
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value="1">Comedy</option>
+                    <option value="2">Finance</option>
+                    <option value="3">Tech</option>
+                    <option value="3">Horror</option>
+                    <option value="3">News</option>
+                </select>
+                <label>Categories</label>
             </div>
 
             <input class="btn btn-block btn-primary" type="submit" value="Create Post" />
