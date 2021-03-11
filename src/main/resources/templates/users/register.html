@@ -11,7 +11,7 @@
         <div class="container">
             <h1>Create an Account</h1>
 
-<!--                <div th:if="${!param.isEmpty()}">
+    <div th:if="${!param.isEmpty()}">
         <div>
             <div th:if="${param.username}">
                 Username already exists or is blank.
@@ -29,38 +29,38 @@
                 Please verify you are not a robot.
             </div>
         </div>
-    </div>-->
+    </div>
 
             <div class="row">
-                <form class="col s12">
+                <form class="col s12" th:action="@{/register}" th:method="POST" th:object="${user}">
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="username" type="text" class="validate" />
+                            <input id="username" type="text" class="validate" th:field="*{username}"/>
                             <label for="username">Username</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="password" type="password" class="validate">
+                            <input id="password" type="password" class="validate" th:field="*{password}">
                             <label for="password">Password</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="confirmPass" type="password" class="validate">
+                            <input id="confirmPass" type="password" class="validate" name="confirm-password">
                             <label for="confirmPass">Confirm Password</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="email" type="email" class="validate">
+                            <input id="email" type="email" class="validate" th:field="*{email}">
                             <label for="email">Email</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12" style="display: flex">
                             <label for="body">About Me</label>
-                            <textarea class="materialize-textarea" id="body"></textarea>
+                            <textarea class="materialize-textarea" id="body" th:field="*{aboutMe}"></textarea>
                             <a class="waves-effect waves-light btn" onclick="$('.tap-target').tapTarget('open')"><i class="fas fa-question"></i></a>
                         </div>
 
