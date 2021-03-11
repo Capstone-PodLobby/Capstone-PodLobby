@@ -4,89 +4,31 @@
     <div id="modalMain">
         <div id="modalHeader">
             <p id="question">What do you like to listen to?</p>
-            <button id="doThisLater">Do this Later X</button>
+            <a href="/profile"><button id="doThisLater">Do this Later X</button></a>
         </div>
         <div id="modalContent" class="row">
-<!--            <div th:each="i : ${#numbers.sequence(0, categories.length)}" th:classappend="${i % 2 == 1 ? 'offset-l1' : ''}"> -->
-                <!--WILL ADD ^^ LATER TO GET THE OFFSET I AM LOOKING FOR-->
+            <div th:each="i : ${#numbers.sequence(0, categoryList.size() - 1)}">
 
-            <div class="col s12 m8 offset-m2 l5 offset-l1">
-                <div class="card-panel grey lighten-5 z-depth-1">
-                    <div class="row valign-wrapper">
-                        <div class="col s2">
-                            <img th:src="@{/img/audio.jpg}" alt="" class="circle responsive-img">
-                        </div>
-                        <div class="col s10">
-              <span class="black-text">
-                Comedy
-              </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col s12 m8 offset-m2 l5">
-                <div class="card-panel grey lighten-5 z-depth-1">
-                    <div class="row valign-wrapper">
-                        <div class="col s2">
-                            <img th:src="@{/img/audio.jpg}" alt="" class="circle responsive-img">
-                        </div>
-                        <div class="col s10">
-              <span class="black-text">
-                Tech
-              </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col s12 m8 offset-m2 l5">
-                <div class="card-panel grey lighten-5 z-depth-1">
-                    <div class="row valign-wrapper">
-                        <div class="col s2">
-                            <img th:src="@{/img/audio.jpg}" alt="" class="circle responsive-img">
-                        </div>
-                        <div class="col s10">
-              <span class="black-text">
-                News
-              </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col s12 m8 offset-m2 l5">
-                <div class="card-panel grey lighten-5 z-depth-1">
-                    <div class="row valign-wrapper">
-                        <div class="col s2">
-                            <img th:src="@{/img/audio.jpg}" alt="" class="circle responsive-img">
-                        </div>
-                        <div class="col s10">
-              <span class="black-text">
-                Horror
-              </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col s12 m8 offset-m2 l5">
-                <div class="card-panel grey lighten-5 z-depth-1">
-                    <div class="row valign-wrapper">
-                        <div class="col s2">
-                            <img th:src="@{/img/audio.jpg}" alt="" class="circle responsive-img">
-                        </div>
-                        <div class="col s10">
-              <span class="black-text">
-                Finance
-              </span>
+                <div class="col s12 m8 offset-m2 l5"  th:classappend="${i % 2 == 0 ? 'offset-l1' : ''}">
+                    <div class="card-panel z-depth-1 categoryItem">
+                        <div class="row valign-wrapper">
+                            <div class="col s2">
+                                <img th:src="@{/img/audio.jpg}" alt="" class="circle responsive-img">
+                            </div>
+                            <div class="col s10">
+                                <h2 class="black-text" th:text="${categoryList.get(i).name}"></h2>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
         <div id="modalSubmit">
-            <button id="submitCategories" class="right">Submit</button>
+            <form onsubmit="handleRecommendations()">
+                <button id="submitCategories" class="right">Submit</button>
+            </form>
         </div>
     </div>
+
 </div>
