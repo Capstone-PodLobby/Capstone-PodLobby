@@ -40,31 +40,37 @@
                 <textarea class="materialize-textarea" id="body" th:field="*{description}"></textarea>
             </div>
 
-            <div class="form-group input-field">
+            <div class="form-group input-field" style="display: flex">
                 <label for="audioURL">Embed URL</label>
                 <input class="form-control" type="text" id="audioURL" th:field="*{embedLink}"/>
+                <a class="waves-effect waves-light btn" onclick="$('.tap-target').tapTarget('open')"><i class="fas fa-question"></i></a>
             </div>
 
             <div class="form-group input-field">
                 <label for="imageURL">Image URL (optional)</label>
                 <input class="form-control" type="text" id="imageURL" th:field="*{image}"/>
             </div>
-
             <div class="input-field">
                 <select multiple id="categories" name="categories" th:field="*{categories}">
-                    <option value="" disabled selected>Choose your categories</option>
-                    <option value="comedy">Comedy</option>
-                    <option value="finance">Finance</option>
-                    <option value="tech">Tech</option>
-                    <option value="horror">Horror</option>
-                    <option value="news">News</option>
-                    <option value="diy">DIY</option>
+                    <option value="" selected disabled>Select Categories</option>
+                    <option th:each="i : ${#numbers.sequence(0, categoryList.size() - 1)}" th:value="${i}" th:text="${categoryList.get(i).name}"></option>
                 </select>
                 <label>Categories</label>
             </div>
+
             <input type="hidden" th:field="*{id}"/>
             <input class="btn btn-block btn-primary" type="submit" value="Create Post" />
         </form>
+
+        <div class="tap-target" data-target="menu">
+            <div class="tap-target-content">
+                <h5>Embed URL</h5>
+                <p>This can be found under the share option while viewing your podcast -> copy embed link! (add an image maybe a gif later)</p>
+            </div>
+        </div>
+
+        <a id="menu" class="waves-effect waves-light btn btn-floating" ><i class="material-icons">menu</i></a>
+
 
     </div>
 </main>

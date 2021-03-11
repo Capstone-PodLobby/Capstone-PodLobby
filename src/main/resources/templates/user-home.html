@@ -5,7 +5,7 @@
 
 <body>
     <div th:replace="partials/navbar :: navbar"></div>
-
+<main>
 <!-- Authorized user's Home Page -->
     <div class="row">
 
@@ -45,7 +45,7 @@
                     <a href="/feeds/filtered" class="waves-effect waves-light btn-large">FOLLOWERS</a>
                 </div>
                 <div class="col s12 m3">
-                    <a href="/feeds/global" class="waves-effect waves-light btn-large">REQUESTS</a>
+                    <a href="/feeds/requests" class="waves-effect waves-light btn-large">REQUESTS</a>
                 </div>
 
             </div>
@@ -134,7 +134,7 @@
             </div>
         </div>
     </div>
-
+</main>
 
     <footer th:replace="partials/footer :: footer"></footer>
     <div th:replace="partials/materializescripts :: scripts"></div>

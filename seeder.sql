@@ -1,14 +1,16 @@
-create database if not exists podLobby;
+create database if not exists podLobby_db;
 
-use podLobby;
-drop table if exists responses;
-drop table if exists comments;
-drop table if exists podcast_categories;
-drop table if exists categories;
-drop table if exists podcasts;
-drop table if exists requests;
-drop table if exists followed_users;
-drop table if exists users;
+use podLobby_db;
+
+# drop table if exists responses;
+# drop table if exists comments;
+# drop table if exists podcast_categories;
+# drop table if exists categories;
+# drop table if exists podcasts;
+# drop table if exists requests;
+# drop table if exists followed_users;
+# drop table if exists users;
+
 
 insert into users (about_me, email, is_admin, joined_at, password, profile_image, username) VALUES ('I enjoy coding and working on cars, hoping to find podcasts about technology', 'matt@podLobby.com', 1, '2020-01-10', 'password123', 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80', 'mdbaker19');
 
@@ -36,4 +38,19 @@ insert into followed_users (user_id, follow_id) VALUES (1, 2);
 
 select * from users where id in (
     select follow_id from followed_users where user_id = 1
+
     );
+
+select * from categories;
+
+select * from podcasts;
+
+select name from categories where id in (
+    select category_id from podcast_categories where podcast_id = 2
+    );
+
+select *
+from requests;
+
+
+
