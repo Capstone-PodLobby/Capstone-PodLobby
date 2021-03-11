@@ -1,0 +1,52 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="profileNav" th:remove="tag">
+    <ul id="dropdown1" class="dropdown-content hide-on-small-only">
+        <li><a href="/home">Home</a></li>
+        <li><a href="/podcasts/create">Create</a></li>
+        <li class="divider"></li>
+        <li><a href="/profile">Settings</a></li>
+        <li><a href="/login">Logout</a></li>
+    </ul>
+
+    <ul id="slide-out" class="sidenav hide-on-med-and-up">
+        <li>
+            <div class="user-view">
+                <div class="background">
+                    <img th:src="@{/img/matt-profile-background.jpg}">
+                </div>
+                <a href="#user"><img class="circle" th:src="@{/img/matt-profile.jpg}"></a>
+                <a href="#name"><span class="white-text name">Matt Baker</span></a>
+                <a href="#email"><span class="white-text email">matt@gmail.com</span></a>
+            </div>
+        </li>
+        <li><a class="subheader">Listening to</a></li>
+        <li><iframe id="profileIframeSideNav" src="https://open.spotify.com/embed-podcast/episode/2aB2swgyXqbFA06AxPlFmr" allowtransparency="true" allow="encrypted-media"></iframe></li>
+        <li class="divider"></li>
+        <li><a class="subheader">PodLobby</a></li>
+        <li><a href="/home">Home</a></li>
+        <li><a href="/podcasts/create">Create</a></li>
+        <li class="divider"></li>
+        <li><a href="/profile">Settings</a></li>
+        <li><a href="/login">Logout</a></li>
+        <li class="divider"></li>
+        <li><a class="waves-effect" href="/followers"><i class="material-icons">cloud</i>Followers</a></li>
+        <li><div class="divider"></div></li>
+        <li><a class="waves-effect" href="/modal"><i class="material-icons">cloud</i>Discover</a></li>
+    </ul>
+
+    <nav id="profileNav">
+        <div class="nav-wrapper">
+            <a href="/home" class="brand-logo">PodLobby</a>
+            <ul>
+                <li class="profile-iframe hide-on-small-only">
+                    <iframe id="profileIframe" src="https://open.spotify.com/embed-podcast/episode/2aB2swgyXqbFA06AxPlFmr" allowtransparency="true" allow="encrypted-media"></iframe>
+                </li>
+                <li class="right">
+                    <a class="dropdown-trigger hide-on-small-only" href="#!" data-target="dropdown1"><i class="material-icons right">menu</i></a>
+                    <a href="#" data-target="slide-out" class="sidenav-trigger hide-on-med-and-up"><i class="material-icons">account_circle</i></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>

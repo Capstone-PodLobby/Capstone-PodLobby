@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pod Lobby</title>
+    <link rel="stylesheet" th:href="@{/styles/landing-page.css}" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+
+<body>
+
+<!--landing page navbar-->
+
+    <div class="nav-style main-nav topnav">
+        <ul class="animated-three fadeIn">
+            <li class="list-opt hidden-link "><a href="/">PodLobby</a></li>
+            <li class="list-opt hidden-link"><a href="/home">User Home</a></li>
+            <li class="list-opt visible-link"><a href="/register">Register</a></li>
+            <li class="list-opt visible-link"><a href="/login">Login</a></li>
+            <li class="list-opt hidden-link" ><a href="/login">Logout</a></li>
+            <li class="list-opt hidden-link"><a href="/request">Request</a></li>
+            <li class="list-opt hidden-link"><a href="/podcasts/create">Create</a></li>
+            <li class="list-opt hidden-link"><a href="/profile">Settings</a></li>
+            <li class="list-opt hidden-link"><a href="/profile">Profile!</a></li>
+        </ul>
+    </div>
+
+
+<!--Podlobby centered logo-->
+
+    <div class="logo-align">
+        <img id="heading" class="animated-two fadeInLeft big-logo" th:src="@{/images/logo_transparent_copy_one.png}" th:width="*{600}">
+    </div>
+
+
+<!--background image -->
+
+    <div>
+        <img id="animated-example heading" class="animated fadeInDown background-img background-img" th:src="@{/images/podlobby-main-copy-two.png}">
+    </div>
+
+
+<!--background image for mobile screens-->
+
+    <div>
+        <img  class="mobile-bg" th:src="@{/images/the-mobile-bg-copy_one.png}" >
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

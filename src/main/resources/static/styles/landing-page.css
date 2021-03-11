@@ -1,0 +1,281 @@
+/* Hide mobile background image */
+.mobile-bg{
+    display: none;
+}
+
+body {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 1.7;
+    color: white;
+    overflow: hidden;
+    background-color: #499E8D;
+    margin: 0;
+}
+
+/* Fits the background image to the size of the screen */
+.background-img {
+    min-width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+/* Centers the main title  (poblobby) */
+#heading {
+    position:absolute;
+    top: 10%;
+    left:30%;
+    transform: translate(-50%,-50%);
+    /*font-size: 100px;*/
+    z-index: 3;
+}
+
+
+/* Animation for background ease-in */
+#animated-example {
+    background: #cd4436;
+    height: 200px;
+    margin: 20px auto;
+    width: 300px;
+    box-shadow: inset 0 0 7px rgba(0,0,0,0.7);
+}
+
+.animated {
+    animation-duration: 3s;
+    animation-fill-mode: both;
+    animation-timing-function: ease-in;
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fadeInDown {
+    animation-name: fadeInDown;
+}
+
+/*========================================*/
+
+
+/* Positioning of the landing page navbar */
+.main-nav{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    left: 34%;
+}
+
+.list-opt {
+    display: inline;
+}
+
+.topnav {
+    overflow: hidden;
+    background-color: transparent;
+    opacity: 80%;
+    position: absolute;
+    margin-top: 15px;
+    width: auto;
+    z-index: 1;
+}
+/*===================================*/
+
+
+/*======= Navbar links design =======*/
+.topnav a {
+    float: left;
+    color: aliceblue;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.topnav a:hover {
+    background-color: aliceblue;
+    color: #1f1f1f;
+    box-shadow: 10px 13px 0px -3px rgba(87,196,167,0.99);
+
+}
+
+ul {
+    padding: 0;
+    margin-top: 15px;
+    height: 100px
+}
+
+/*========================================*/
+
+
+/*== Animation for main tile (podlobby) ==*/
+#animated-example-two {
+    background: #cd4436;
+    height: 200px;
+    margin: 20px auto;
+    width: 300px;
+    box-shadow: inset 0 0 7px rgba(0,0,0,0.7);
+}
+
+.animated-two {
+    animation-duration: 4s;
+    animation-fill-mode: both;
+    animation-timing-function: ease-in;
+}
+
+@keyframes fadeInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+.fadeInLeft {
+    animation-name: fadeInLeft;
+}
+
+/*===========================================*/
+
+
+/*======= Animation for navbar fade-in =======*/
+.animated-three {
+    animation-duration: 4s;
+    animation-fill-mode: both;
+}
+
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+.fadeIn {
+    animation-name: fadeIn;
+}
+
+/*=========================================*/
+
+
+
+/*============= Media Queries for landing page ================== */
+
+/* Xl 4k screen*/
+@media screen and (min-width:2560px) {
+
+    #heading {
+        top: 20%;
+        left: 40%;
+    }
+}
+
+/*Small Screens and Laptops*/
+@media screen and (min-width:1024px) and (max-width:1320px) {
+    .main-nav {
+        left: 15%;
+    }
+}
+
+/*Tablets*/
+@media screen and (min-width:481px) and (max-width:1023px) {
+    .hidden-link {
+        display: none;
+    }
+
+    .background-img {
+        display: none;
+    }
+
+    .mobile-bg {
+        display: revert;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        min-width: 100%;
+        height: 110%;
+        position: absolute;
+        right: 0%;
+    }
+
+    *{
+        animation: none !important;
+    }
+
+    #heading {
+        top: 50%;
+        left: 50%;
+    }
+
+    .topnav {
+        margin-top: 0;
+        z-index: 9999 !important;
+    }
+
+    .topnav a {
+        margin-right: 50px;
+    }
+
+}
+
+/*Mobile Phones */
+@media screen and (min-width:320px) and (max-width:480px) {
+    .list-opt {
+        display: inline;
+    }
+
+    .hidden-link {
+        display: none;
+    }
+
+    .background-img {
+        display: none;
+    }
+
+    .main-nav {
+        left: 13%;
+        top: 40%;
+    }
+
+    .topnav a {
+        background-color: aliceblue;
+        color: #1f1f1f;
+        box-shadow: 10px 13px 0px -3px rgba(87,196,167,0.99);
+        float: none;
+        margin-left: 15px;
+    }
+
+    .big-logo {
+        height: 300px;
+        width: 300px;
+        left: 100%
+    }
+
+    #heading {
+        left: 50%;
+    }
+
+    * {
+        animation: none !important;
+    }
+
+    .mobile-bg {
+        display: revert;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        min-width: 100%;
+        height: 110%;
+        position: absolute;
+        right: 0%;
+    }
+
+
+}

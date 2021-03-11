@@ -1,0 +1,99 @@
+/*Style to allow for sticky footer on pages*/
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+main {
+    flex: 1 0 auto;
+}
+
+/* Profile page */
+.profile-side{
+    background-color: dimgray;
+    color: aliceblue;
+    min-height: 100vh !important;
+}
+.content-side{
+    background-color: #027a02;
+    max-height: 100vh;
+    overflow: scroll;
+}
+.profileContentItem{
+    max-height: 350px;
+    max-width: 900px;
+}
+.profile-iframe{
+    margin-left: 1vw;
+    width: 87vw;
+}
+.profile-Image{
+    width: 80%;
+    height: auto;
+}
+#profileNav{
+    height: 140px;
+}
+#profileIframe{
+    width: 100%;
+    height: 138px;
+    border: none;
+}
+#profileIframeSideNav{
+    width: 100%;
+    height: 150px;
+    border: none;
+}
+
+/*====== FOOTER PARTIAL ========*/
+.footerUl{
+    display: flex !important;
+    justify-content: space-around !important;
+}
+.centerText{
+    text-align: center !important;
+}
+.footerContainer{
+    width: 90% !important;
+}
+#footerIconAndName{
+    display: flex !important;
+    justify-content: space-around !important;
+}
+#footerSiteName{
+    align-self: center !important;
+}
+#footerSubmitButton{
+    background: none !important;
+    border: none !important;
+    color: #fff !important;
+}
+
+/*========= Styling for authorized user's home page (user-home.html) ========*/
+
+/* Style for Scrollable content*/
+.content{
+    overflow: scroll;
+    height: 350px;
+}
+
+/*Style for feed buttons on authorized user's home page*/
+.feed-buttons{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+/*Style for title on authorized user's home page*/
+.feed-title{
+    text-align: center;
+}
+/*=============================================================================*/
+
+@media screen and (min-width: 992px){
+    .profile-iframe{
+        margin-left: 15vw;
+        width: 78vw;
+    }
+}
+
