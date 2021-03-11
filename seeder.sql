@@ -1,14 +1,16 @@
-create database if not exists podLobby;
+create database if not exists podLobby_db;
 
-use podLobby;
-drop table if exists responses;
-drop table if exists comments;
-drop table if exists podcast_categories;
-drop table if exists categories;
-drop table if exists podcasts;
-drop table if exists requests;
-drop table if exists followed_users;
-drop table if exists users;
+use podLobby_db;
+
+# drop table if exists responses;
+# drop table if exists comments;
+# drop table if exists podcast_categories;
+# drop table if exists categories;
+# drop table if exists podcasts;
+# drop table if exists requests;
+# drop table if exists followed_users;
+# drop table if exists users;
+
 
 insert into users (about_me, email, is_admin, joined_at, password, profile_image, username) VALUES ('I enjoy coding and working on cars, hoping to find podcasts about technology', 'matt@podLobby.com', 1, '2020-01-10', 'password123', 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80', 'mdbaker19');
 
@@ -36,6 +38,7 @@ insert into followed_users (user_id, follow_id) VALUES (1, 2);
 
 select * from users where id in (
     select follow_id from followed_users where user_id = 1
+
     );
 
 # Added test users to database to verify that
@@ -52,4 +55,20 @@ insert into podcasts (id, created_at, description, embed_link, image, title, use
 VALUES (1, '2021-01-01', 'this is a test podcast', '<iframe src="https://anchor.fm/amber799/embed" height="102px" width="400px" frameborder="0" scrolling="no"></iframe>','https://images.unsplash.com/photo-1567596388756-f6d710c8fc07?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80,1', 'test', 1);
 
 select * from podcasts;
+
+
+    
+
+select * from categories;
+
+select * from podcasts;
+
+select name from categories where id in (
+    select category_id from podcast_categories where podcast_id = 2
+    );
+
+select *
+from requests;
+
+
 
