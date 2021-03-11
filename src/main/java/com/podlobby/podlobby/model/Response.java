@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
+//Does this need the s?
 @Table (name = "responses")
 public class Response {
 
