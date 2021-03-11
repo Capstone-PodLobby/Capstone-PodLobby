@@ -37,3 +37,19 @@ insert into followed_users (user_id, follow_id) VALUES (1, 2);
 select * from users where id in (
     select follow_id from followed_users where user_id = 1
     );
+
+# Added test users to database to verify that
+insert into users (id, about_me, email, is_admin, joined_At, password, profile_image, username)
+VALUES (1, 'Here is some random info about me', 'abby@email.com', 0, '2021-01-01', 'password','https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png', 'abby'),
+       (2, 'Here is some random info about me', 'brandon@email.com', 0, '2021-01-01', 'password','https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png', 'brandon'),
+       (3, 'Here is some random info about me', 'chis@email.com', 0, '2021-01-03', 'password','https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png', 'chris'),
+       (4, 'Here is some random info about me', 'drew@email.com', 0, '2021-02-01', 'password','https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png', 'drew'),
+       (5, 'Here is some random info about me', 'emily@email.com', 0, '2021-02-01', 'password','https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png', 'emily');
+
+select * from users;
+
+insert into podcasts (id, created_at, description, embed_link, image, title, user_id )
+VALUES (1, '2021-01-01', 'this is a test podcast', '<iframe src="https://anchor.fm/amber799/embed" height="102px" width="400px" frameborder="0" scrolling="no"></iframe>','https://images.unsplash.com/photo-1567596388756-f6d710c8fc07?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80,1', 'test', 1);
+
+select * from podcasts;
+
