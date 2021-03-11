@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/materializeHead :: styleHead('Posts needing guests')"></head>
+<body>
+
+<div th:replace="partials/navbar :: navbar"></div>
+
+<!-- Authorized user's Home Page -->
+<div class="row">
+
+    <!-- User's profile information -->
+    <div class="col s12 m3">
+        <div class="card">
+            <div class="card-image">
+                <img src="images/sample-1.jpg">
+                <span class="card-title">User Name</span>
+            </div>
+            <div class="card-content">
+                <h5>About Me</h5>
+                <p>I am a very simple card. I am good at containing small bits of information.
+                    I am convenient because I require little markup to use effectively.</p>
+            </div>
+            <div class="card-action">
+                <a href="#">This is a link</a>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="col s12 m9">
+        <!-- Title-->
+        <div class="feed-title">
+            <h2>FEED</h2>
+        </div>
+
+        <!--Feed Buttons-->
+        <div class="feed-buttons">
+
+            <div class="col s12 m3">
+                <a href="/feeds/global" class="waves-effect waves-light btn-large">GLOBAL</a>
+            </div>
+            <div class="col s12 m3">
+                <a href="/feeds/filtered" class="waves-effect waves-light btn-large">FOLLOWERS</a>
+            </div>
+            <div class="col s12 m3">
+                <a href="/feeds/requests" class="waves-effect waves-light btn-large">REQUESTS</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+    <div class="row">
+        <div th:each="request : ${requestList}" class="col s12 m6">
+            <div class="card horizontal">
+                <div class="card-stacked">
+                    <div class="card-content">
+                        <p th:text="${request.title}"></p>
+                        <p th:text="${request.description}"></p>
+                    </div>
+                    <div class="card-action">
+                        <p>Looking for : <span th:text="${request.guestCount}"></span> guests | <span th:text="${request.createdAt}"></span> </p>
+                        <button th:if="${request.isActive == 1}"><a href="/profile?requestView" class="btn-floating btn-large cyan pulse"></a><i class="material-icons">edit</i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<footer th:replace="partials/footer :: footer"></footer>
+<div th:replace="partials/materializescripts :: scripts"></div>
+
+</body>
+</html>

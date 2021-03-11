@@ -1,6 +1,6 @@
-create database if not exists podLobby;
+create database if not exists podLobby_db;
 
-use podLobby;
+use podLobby_db;
 drop table if exists responses;
 drop table if exists comments;
 drop table if exists podcast_categories;
@@ -37,3 +37,14 @@ insert into followed_users (user_id, follow_id) VALUES (1, 2);
 select * from users where id in (
     select follow_id from followed_users where user_id = 1
     );
+
+select * from categories;
+
+select * from podcasts;
+
+select name from categories where id in (
+    select category_id from podcast_categories where podcast_id = 2
+    );
+
+select *
+from requests;
