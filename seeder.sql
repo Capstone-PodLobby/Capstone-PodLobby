@@ -11,6 +11,7 @@ use podLobby_db;
 # drop table if exists followed_users;
 # drop table if exists users;
 
+insert into users (about_me, email, is_admin, joined_at, password, profile_image, username) VALUES ('I enjoy coding and working on cars, hoping to find podcasts about technology', 'matt@podLobby.com', 1, '2020-01-10', 'test', 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80', 'test');
 
 insert into users (about_me, email, is_admin, joined_at, password, profile_image, username) VALUES ('I enjoy coding and working on cars, hoping to find podcasts about technology', 'matt@podLobby.com', 1, '2020-01-10', 'password123', 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80', 'mdbaker19');
 

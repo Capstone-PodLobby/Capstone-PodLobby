@@ -4,24 +4,27 @@
 <body>
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 <main>
-    <form class="container" method="post">
+    <form th:action="@{/request}" th:method="POST" th:object="${request}">
 
         <div class="form-group input-field">
             <label for="title">Title</label>
-            <input class="form-control" type="text" id="title" name="title"/>
+            <input id="title" name="title" type="text" th:value="*{title}"/>
         </div>
+
         <div class="form-group input-field">
-            <label for="about">About</label>
-            <input class="form-control" type="text" id="about" name="about"/>
+            <label for="title">Description</label>
+            <input id="description" name="description" type="text" th:value="*{description}"/>
         </div>
+
         <div class="form-group input-field">
             <label for="req-amount">How many people do you need?</label>
-            <input class="form-control" type="text" id="req-amount" name="req-amount"/>
+            <input id="req-amount" name="req-amount" type="text" th:value="*{guestCount}"/>
         </div>
-        <div class="form-group input-field">
-            <label for="req-details">What do you want to talk about?</label>
-            <input class="form-control" type="text" id="req-details" name="req-details"/>
-        </div>
+<!--???WHAT TO DO WITH IS_ACTIVE COLUMN???-->
+<!--        <div class="form-group input-field">-->
+<!--            <label for="req-active">Activate</label>-->
+<!--            <input id="req-active" name="req-amount" type="checkbox" th:value="*{isActive}"/>-->
+<!--        </div>-->
 
         <input class="btn btn-block btn-primary" type="submit"/>
 
