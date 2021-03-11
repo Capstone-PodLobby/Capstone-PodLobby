@@ -12,10 +12,5 @@ public class LoginController {
         return "login";
     }
 
-    @GetMapping("/modal")
-    public String showModal(){
-        return "testViewModal";
-    }
-
 
 }

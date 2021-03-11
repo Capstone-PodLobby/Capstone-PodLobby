@@ -7,7 +7,6 @@ import com.podlobby.podlobby.repositories.PodcastRepository;
 import com.podlobby.podlobby.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;

@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/materializeHead :: styleHead('Create Podcast')"></head>
-
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
@@ -12,8 +11,47 @@
     </main>
     <footer th:replace="partials/footer.html :: footer"></footer>
     <div th:replace="partials/materializescripts :: scripts"></div>
-<script>
+    <script>
 
-</script>
+        let recommendationsArr = [];
+
+        $(".categoryItem").on("click", function () {
+            let category = $(this)[0].innerText;
+            if($(this)[0].classList.contains("clicked")){
+                removeEle(recommendationsArr, category);
+                $(this)[0].classList.remove("clicked");
+            } else {
+                $(this)[0].classList.add("clicked");
+                recommendationsArr.push(category);
+            }
+            console.log(recommendationsArr);
+        });
+
+        function handleRecommendations(){
+            let search = {
+                "list" : recommendationsArr
+            }
+            $.ajax({
+                url: `/modal`,
+                type: "POST",
+                dataType: 'json',
+                data: search,
+                success: function(result){
+                    console.log(result);
+                }
+            });
+        }
+
+        function removeEle(arr, string){
+            for(let i = arr.length - 1; i >= 0; i--){
+                if(arr[i] === string) {
+                    arr.splice(i, 1);
+                    break;
+                }
+            }
+            return arr;
+        }
+
+    </script>
 </body>
 </html>
