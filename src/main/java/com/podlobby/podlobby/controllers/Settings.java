@@ -1,15 +1,15 @@
 package com.podlobby.podlobby.controllers;
 
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class UserController {
+public class Settings {
 
-    @GetMapping("/profile")
-    public String profilePage(){
-//        get the current user
-        return "users/profile";
+    @GetMapping("/settings")
+    public String settings(){
+        return "users/settings";
     }
 
 }

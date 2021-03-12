@@ -2,6 +2,8 @@ package com.podlobby.podlobby.controllers;
 
 import com.podlobby.podlobby.model.User;
 import com.podlobby.podlobby.repositories.UserRepository;
+import com.podlobby.podlobby.services.UserService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,15 +17,31 @@ import java.sql.Timestamp;
 
 @Controller
 public class RegisterController {
-    private final UserRepository userDao;
 
-    public RegisterController(UserRepository userDao) {
+    private final UserRepository userDao;
+    private final PasswordEncoder encoder;
+    private final UserService userService;
+
+    public RegisterController(UserRepository userDao, PasswordEncoder encoder, UserService userService) {
         this.userDao = userDao;
+        this.encoder = encoder;
+        this.userService = userService;
     }
 
     //    Display registration page   //
     @GetMapping("/register")
     public String showRegisterForm(Model model){
+
+        // if a user is currently logged in
+        User user = null;
+        try {
+            user = userService.getLoggedInUser();
+        } catch (Exception ignored){}
+
+        if(user != null){
+            return "redirect:/profile";
+        }
+
         model.addAttribute("user", new User());
         return "users/register";
     }
@@ -46,7 +64,8 @@ public class RegisterController {
         System.out.println("================");
         System.out.println(confirmPassword);
         user.setJoinedAt(new Timestamp(new Date().getTime()));
+        user.setPassword(encoder.encode(user.getPassword()));
         userDao.save(user);
-        return "redirect:/login";
+        return "recommendationsModal";
 }
 }
