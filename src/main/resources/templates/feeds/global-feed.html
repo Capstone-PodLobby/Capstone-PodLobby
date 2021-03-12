@@ -66,7 +66,10 @@
         <div class="col s12 m4 l4">
             <div class="card horizontal" style="box-shadow: none !important; background: none !important;">
                 <div class="card-stacked">
-                    <div class="card-action"  th:utext="${podcast.embedLink}" scrollable="yes"></div>
+                    <div class="card-action">
+                        <iframe th:src="${podcast.getEmbedLink()}"></iframe>
+                    </div>
+<!--                    <div class="card-action"  th:utext="${podcast.embedLink}" scrollable="yes"></div>-->
                     <div class="card-action">
                         <a href="#">This is a link</a>
                     </div>
