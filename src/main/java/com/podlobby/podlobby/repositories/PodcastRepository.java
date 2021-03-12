@@ -14,5 +14,7 @@ public interface PodcastRepository extends JpaRepository<Podcast, Long> {
     @Query(nativeQuery = true, value = "select * from podcasts where id in (select podcast_id from podcast_categories where category_id = ?1)")
     List<Podcast> findAllByCategoryId(long id);
 
+    @Query(nativeQuery = true, value = "select * from podcasts where user_id = ?1")
+    List<Podcast> findAllByUserId(long id);
 
 }
