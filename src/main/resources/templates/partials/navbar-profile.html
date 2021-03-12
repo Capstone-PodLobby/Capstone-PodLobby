@@ -6,7 +6,11 @@
         <li><a href="/podcasts/create">Create</a></li>
         <li class="divider"></li>
         <li><a href="/profile">Settings</a></li>
-        <li><a href="/login">Logout</a></li>
+        <li>
+            <form class="logoutForm" th:action="@{/logout}" method="POST">
+                <button class="logoutFormButton">Logout</button>
+            </form>
+        </li>
     </ul>
 
     <ul id="slide-out" class="sidenav hide-on-med-and-up">

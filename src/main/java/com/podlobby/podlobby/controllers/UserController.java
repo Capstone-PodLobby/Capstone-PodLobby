@@ -8,6 +8,7 @@ public class UserController {
 
     @GetMapping("/profile")
     public String profilePage(){
+//        get the current user
         return "users/profile";
     }
 
