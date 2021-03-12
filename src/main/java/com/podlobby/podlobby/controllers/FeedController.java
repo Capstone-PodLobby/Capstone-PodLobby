@@ -43,7 +43,7 @@ public class FeedController {
         List<Podcast> allPodcast = podcastDao.findAll();
         List<Podcast> selectPodcast = new ArrayList<>();
 //        for(Podcast podcast : allPodcast) {
-//            if(podcast.getId() ==)
+//            if(podcast.getId() == followDao)
 //        }
         return"/feeds/filtered-feed";
     }
