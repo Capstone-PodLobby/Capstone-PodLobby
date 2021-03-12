@@ -65,19 +65,6 @@ VALUES ('2021-01-01', 'this is a test podcast', '<iframe src="https://anchor.fm/
        ('2021-01-01', 'this is a test podcast', '<iframe src="https://anchor.fm/amber799/embed" height="102px" width="400px" frameborder="0" scrolling="no"></iframe>','https://images.unsplash.com/photo-1567596388756-f6d710c8fc07?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80,1', 'test', 2);
 
 
-
-
-
-
-select * from podcasts;
-
-delete from podcasts where id = 7;
-
-
-
-
-    
-
 select * from categories;
 
 select * from podcasts;
@@ -89,5 +76,18 @@ select name from categories where id in (
 select *
 from requests;
 
+insert into podcast_categories (podcast_id, category_id) VALUES (1,1);
+insert into podcast_categories (podcast_id, category_id) VALUES (2,2);
+insert into podcast_categories (podcast_id, category_id) VALUES (3,3);
+insert into podcast_categories (podcast_id, category_id) VALUES (4,4);
+insert into podcast_categories (podcast_id, category_id) VALUES (5,5);
+insert into podcast_categories (podcast_id, category_id) VALUES (6,6);
+insert into podcast_categories (podcast_id, category_id) VALUES (7,1);
+
+
+select * from podcasts where id in (
+    select category_id from podcast_categories where category_id =4
+
+    )
 
 
