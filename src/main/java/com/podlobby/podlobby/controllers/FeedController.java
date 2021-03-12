@@ -38,14 +38,14 @@ public class FeedController {
     }
 
 
-    public String parseEmbedLink(Podcast podcast){
-
-            String embedLink = podcast.getEmbedLink().substring(13,);
-
-        // take the current Embed link that is passed in and manipulate it and return it
-        //String parsedVersion =  currentEmbedLink.substring() or something
-        //return parsedVersion;
-    }
+//    public String parseEmbedLink(Podcast podcast){
+//
+//            String embedLink = podcast.getEmbedLink().substring(13,);
+//
+//        // take the current Embed link that is passed in and manipulate it and return it
+//        //String parsedVersion =  currentEmbedLink.substring() or something
+//        //return parsedVersion;
+//    }
 
 
 
