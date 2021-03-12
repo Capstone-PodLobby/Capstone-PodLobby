@@ -52,9 +52,27 @@ VALUES (1, 'Here is some random info about me', 'abby@email.com', 0, '2021-01-01
 select * from users;
 
 insert into podcasts (id, created_at, description, embed_link, image, title, user_id )
-VALUES (1, '2021-01-01', 'this is a test podcast', '<iframe src="https://anchor.fm/amber799/embed" height="102px" width="400px" frameborder="0" scrolling="no"></iframe>','https://images.unsplash.com/photo-1567596388756-f6d710c8fc07?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80,1', 'test', 1);
+VALUES (7, '2021-01-01', 'this is a test podcast', '<iframe src="https://anchor.fm/amber799/embed" height="102px" width="400px" frameborder="0" scrolling="no"></iframe>','https://images.unsplash.com/photo-1567596388756-f6d710c8fc07?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80,1', 'test', 1);
+
+# insert into podcasts (id, created_at, description, embed_link, image, title, user_id )
+# VALUES (2, '2021-01-01', 'this is another test podcast', 'https://anchor.fm/amber799/embed','https://images.unsplash.com/photo-1567596388756-f6d710c8fc07?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80,1', 'test', 2);
+#
+# insert into podcasts (id, created_at, description, embed_link, image, title, user_id )
+# VALUES (3, '2021-01-01', 'this is another test podcast', 'https://open.spotify.com/embed-podcast/episode/411YbQlCaeJzrKx3rbnCXv', 'https://images.unsplash.com/photo-1567596388756-f6d710c8fc07?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80,1', 'test2',3);
+
+
+insert into podcasts (id, created_at, description, embed_link, image, title, user_id)
+VALUES (1, '2021-01-01', 'this is another test podcast','https://anchor.fm/amber799/embed', 'https://images.unsplash.com/photo-1567596388756-f6d710c8fc07?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80,1','Another Test Podcast', 1 ),
+       (3, '2021-01-01', 'this is another test podcast','https://anchor.fm/amber799/embed', 'https://images.unsplash.com/photo-1567596388756-f6d710c8fc07?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80,1','Another Test Podcast', 3 ),
+       (4, '2021-01-01', 'this is another test podcast','https://anchor.fm/amber799/embed', 'https://images.unsplash.com/photo-1567596388756-f6d710c8fc07?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80,1','Another Test Podcast', 4 ),
+#        (5, '2021-01-01', 'this is another test podcast','https://open.spotify.com/show/3TFuu4Eb7jGgR8cwGrQifa?si=426cc193bce644cf', 'https://images.unsplash.com/photo-1567596388756-f6d710c8fc07?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80,1','Another Test Podcast', 5 ),
+       (6, '2021-01-01', 'this is another test podcast','https://open.spotify.com/embed-podcast/show/3TFuu4Eb7jGgR8cwGrQifa', 'https://images.unsplash.com/photo-1567596388756-f6d710c8fc07?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80,1','Another Test Podcast', 1 );
 
 select * from podcasts;
+
+delete from podcasts where id = 5;
+
+
 
 
     
