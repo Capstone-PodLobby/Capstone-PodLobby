@@ -2,6 +2,8 @@ package com.podlobby.podlobby.controllers;
 
 import com.podlobby.podlobby.model.Podcast;
 import com.podlobby.podlobby.model.User;
+import com.podlobby.podlobby.repositories.CategoryRepository;
+import com.podlobby.podlobby.repositories.FollowRepository;
 import com.podlobby.podlobby.repositories.PodcastRepository;
 import com.podlobby.podlobby.repositories.UserRepository;
 import com.podlobby.podlobby.services.UserService;
@@ -20,10 +22,12 @@ public class FeedController {
     private final PodcastRepository podcastDao;
     private final UserRepository usersDao;
     private final IframeParser iframeParser = new IframeParser();
+    private final FollowRepository followDao;
 
-    public FeedController(PodcastRepository podcastDao, UserRepository usersDao, UserService userService){
+    public FeedController(PodcastRepository podcastDao, UserRepository usersDao, FollowRepository followDao, UserService userService){
         this.podcastDao = podcastDao;
         this.usersDao = usersDao;
+        this.followDao = followDao;
         this.userService = userService;
     }
 
@@ -45,6 +49,11 @@ public class FeedController {
     public String showFilteredFeed(Model model){
         User user = userService.getLoggedInUser();
         model.addAttribute("user", user);
+        List<Podcast> allPodcast = podcastDao.findAll();
+        List<Podcast> selectPodcast = new ArrayList<>();
+//        for(Podcast podcast : allPodcast) {
+//            if(podcast.getId() == followDao)
+//        }
         return"/feeds/filtered-feed";
     }
 

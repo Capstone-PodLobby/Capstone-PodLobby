@@ -21,6 +21,7 @@ public class RequestController {
     public RequestController(RequestRepository requestDao, UserService userService){
         this.requestDao = requestDao;
         this.userService = userService;
+
     }
 
 
@@ -44,10 +45,11 @@ public class RequestController {
         return "feeds/requests-feed";
     }
 
-    @GetMapping("/requests-responses")
+    @GetMapping("/user-requests")
     public String showRequestsAndResponses(Model model, User user){
+        user = userService.getLoggedInUser();
         model.addAttribute("requestList", requestDao.findByUser(user));
-        return "requests-responses";
+        return "user-requests";
     }
 
 
