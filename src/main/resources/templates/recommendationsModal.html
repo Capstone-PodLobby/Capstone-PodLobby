@@ -30,23 +30,28 @@
         });
 
         function handleRecommendations(e){
-            let search = {
-                "list" : recommendationsArr
-            }
+            let form = document.getElementById("categoryForm");
             let param = "";
             for(let i = 0; i < recommendationsArr.length; i++){
-                param+=recommendationsArr[i] + "%";
+                param+=recommendationsArr[i] + ",";
+                form.insertAdjacentHTML("afterbegin", renderInput(recommendationsArr[i]));
             }
-            $.ajax({
-                url: "/recommendations/" + param,
-                type: "POST",
-                dataType: 'json',
-                contentType: 'application/json;charset=utf-8',
-                data: JSON.stringify(search),
-                success: function(result){
-                    console.log(result);
-                }
-            });
+
+            // $("#categoryForm").submit();
+            // $.ajax({
+            //     url: "/recommendations",
+            //     type: "GET",
+            //     dataType: 'json',
+            //     contentType: 'application/json;charset=utf-8',
+            //     data: JSON.stringify(recommendationsArr),
+            //     success: function(result){
+            //         console.log(result);
+            //     }
+            // });
+        }
+
+        function renderInput(string){
+            return `<input type="hidden" name="category" value="${string}">`;
         }
 
         function removeEle(arr, string){

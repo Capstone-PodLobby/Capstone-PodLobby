@@ -5,7 +5,7 @@
     <img class="circle profile-Image" th:src="@{/img/matt-profile.jpg}">
     <div class="collection">
         <a href="/followers" class="collection-item">Followers<span class="badge">4</span> </a>
-        <a href="/recommendations" class="collection-item">Discover</a>
+        <a href="/getCategories" class="collection-item">Discover</a>
     </div>
     <p th:if="${!param.isEmpty()}"><button>Would you like to work with me?</button></p>
     <!--    ^^^^^ THIS IS WHERE YOU CAN CLICK TO SEND A RESPONSE TO THE USER THAT CREATED THE REQUEST  -->
