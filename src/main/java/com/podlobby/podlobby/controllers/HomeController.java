@@ -13,10 +13,5 @@ public class HomeController {
         return"home";
     }
 
-//    Display the home page (authenticated) //
-    @GetMapping("/home")
-    public String showUserHomePage(){
-        return "user-home";
-    }
 }
 

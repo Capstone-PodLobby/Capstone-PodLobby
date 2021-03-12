@@ -10,9 +10,8 @@
             <div class="background">
                 <img th:src="@{/img/matt-profile-background.jpg}">
             </div>
-            <a href="#user"><img class="circle" th:src="@{/img/gonzalo_ovalle_headshot.jpg}"></a>
-            <a href="#name"><span class="white-text name">Gonzalo Ovalle</span></a>
-            <a href="#email"><span class="white-text email">gonzalo@gmail.com</span></a>
+            <a href="#user"><img class="circle" th:src="${follower.profileImage}"></a>
+            <a href="#name"><span class="white-text name" th:text="${follower.username}"></span></a>
         </div>
         </li>
         <li><a class="waves-effect" href="#!"><i class="material-icons">cloud</i>Follow</a></li>
@@ -26,8 +25,9 @@
 <main>
     <div class="row">
         <div class="col m4 hide-on-small-only profile-side">
-            <img class="circle profile-Image" th:src="@{/img/gonzalo_ovalle_headshot.jpg}">
+            <img class="circle profile-Image" th:src="${follower.profileImage}">
             <div class="collection">
+                <a href="#!" class="collection-item" th:text="${follower.username}"></a>
                 <a href="#!" class="collection-item">Follow</a>
                 <a href="#!" class="collection-item">Request</a>
             </div>
@@ -38,90 +38,23 @@
             <!--    In the content area can click on a specific podcast ( id ) and it will move to the nav bar to be played -->
             <div id="profileContentArea">
 
-                <div class="col s12 profileContentItem">
+                <div class="col s12 profileContentItem" th:each="podcast : ${followerPodcasts}">
                     <div class="card horizontal">
                         <div class="card-image">
-                            <img th:src="@{/img/audio.jpg}">
+                            <img th:src="${podcast.image}">
                         </div>
                         <div class="card-stacked">
                             <div class="card-content">
-                                <p>I am a very simple card. I am good at containing small bits of information.</p>
+                                <iframe th:src="${podcast.embedLink}"></iframe>
                             </div>
                             <div class="card-action">
-                                <a href="#">Pause</a>
-                                <a href="#">Play</a>
+                                <a href="#">Listen</a>
+                                <div th:replace="partials/commentsModal :: commentModal"></div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col s12 profileContentItem">
-                    <div class="card horizontal">
-                        <div class="card-image">
-                            <img th:src="@{/img/audio.jpg}">
-                        </div>
-                        <div class="card-stacked">
-                            <div class="card-content">
-                                <p>I am a very simple card. I am good at containing small bits of information.</p>
-                            </div>
-                            <div class="card-action">
-                                <a href="#">Pause</a>
-                                <a href="#">Play</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col s12 profileContentItem">
-                    <div class="card horizontal">
-                        <div class="card-image">
-                            <img th:src="@{/img/audio.jpg}">
-                        </div>
-                        <div class="card-stacked">
-                            <div class="card-content">
-                                <p>I am a very simple card. I am good at containing small bits of information.</p>
-                            </div>
-                            <div class="card-action">
-                                <a href="#">Pause</a>
-                                <a href="#">Play</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col s12 profileContentItem">
-                    <div class="card horizontal">
-                        <div class="card-image">
-                            <img th:src="@{/img/audio.jpg}">
-                        </div>
-                        <div class="card-stacked">
-                            <div class="card-content">
-                                <p>I am a very simple card. I am good at containing small bits of information.</p>
-                            </div>
-                            <div class="card-action">
-                                <a href="#">Pause</a>
-                                <a href="#">Play</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col s12 profileContentItem">
-                    <div class="card horizontal">
-                        <div class="card-image">
-                            <img th:src="@{/img/audio.jpg}">
-                        </div>
-                        <div class="card-stacked">
-                            <div class="card-content">
-                                <p>I am a very simple card. I am good at containing small bits of information.</p>
-                            </div>
-                            <div class="card-action">
-                                <a href="#">Pause</a>
-                                <a href="#">Play</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
