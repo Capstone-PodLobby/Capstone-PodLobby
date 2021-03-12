@@ -40,7 +40,11 @@ public class RequestController {
         return "feeds/requests-feed";
     }
 
-
+    @GetMapping("/requests-responses")
+    public String showRequestsAndResponses(Model model, User user){
+        model.addAttribute("requestList", requestDao.findByUser(user));
+        return "requests-responses";
+    }
 
 
 }
