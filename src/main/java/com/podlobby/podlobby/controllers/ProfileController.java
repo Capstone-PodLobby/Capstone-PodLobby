@@ -5,8 +5,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class ProfileController {
+
     @GetMapping("/user-profile")
     public String profilePage(){
+//        get the current user
         return "othersProfile";
     }
+
 }

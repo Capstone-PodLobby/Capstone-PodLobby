@@ -42,3 +42,7 @@
 #submitCategories{
     margin-right: 2%;
 }
+.clicked{
+    background-color: #363535 !important;
+    opacity: .2;
+}
