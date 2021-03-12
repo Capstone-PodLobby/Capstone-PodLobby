@@ -12,7 +12,17 @@
                     <a href="/followers" class="collection-item">Followers<span class="badge">4</span> </a>
                     <a href="/modal" class="collection-item">Discover</a>
                 </div>
-                <p th:if="${!param.isEmpty()}"><button>Would you like to work with me?</button></p>
+                <p th:if="${!param.isEmpty()}"><button id="myBtn">Would you like to work with me?</button></p>
+                <!-- The Modal -->
+                <div id="myModal" class="modal">
+
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <p>Are you interested in working on my podcast with me?</p>
+                    </div>
+
+                </div>
                 <p class="center-align">About you <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium assumenda consequuntur dolorum ea excepturi expedita facil cusantium assumenda consequuntur dolorum ea excepturi expedita facil cusantium assumenda consequuntur dolorum ea excepturi expedita facil!</span></p>
             </div>
 
@@ -116,7 +126,7 @@
 
     <footer th:replace="partials/footer :: footer"></footer>
     <div th:replace="partials/materializescripts :: scripts"></div>
-
+    <div th:replace="partials/requestModal :: scripts"></div>
 </body>
 
 </html>
