@@ -19,17 +19,12 @@ public class FeedController {
         this.usersDao = usersDao;
     }
 
-
     @GetMapping("/feeds/global")
     public String showGlobalFeed(Model model){
         List<Podcast> podcasts = podcastDao.findAll();
-//        loop through podcasts and parse out the iframe
-//        might need to create a new list and add podcast to a new list
         model.addAttribute("podcasts", podcasts);
         return"/feeds/global-feed";
     }
-
-
 
 
     @GetMapping("/feeds/filtered")
@@ -38,19 +33,5 @@ public class FeedController {
     }
 
 
-//    public String parseEmbedLink(Podcast podcast){
-//
-//            String embedLink = podcast.getEmbedLink().substring(13,);
-//
-//        // take the current Embed link that is passed in and manipulate it and return it
-//        //String parsedVersion =  currentEmbedLink.substring() or something
-//        //return parsedVersion;
-//    }
-
-
-
-    public static void main(String[] args){
-
-    }
 
 }
