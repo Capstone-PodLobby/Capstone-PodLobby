@@ -3,6 +3,7 @@ package com.podlobby.podlobby.controllers;
 import com.podlobby.podlobby.model.Request;
 import com.podlobby.podlobby.model.User;
 import com.podlobby.podlobby.repositories.RequestRepository;
+import com.podlobby.podlobby.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,10 +15,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 public class RequestController {
 
     private final RequestRepository requestDao;
+    private final UserService userService;
 
 
-    public RequestController(RequestRepository requestDao){
+    public RequestController(RequestRepository requestDao, UserService userService){
         this.requestDao = requestDao;
+        this.userService = userService;
 
     }
 
@@ -40,10 +43,11 @@ public class RequestController {
         return "feeds/requests-feed";
     }
 
-    @GetMapping("/requests-responses")
+    @GetMapping("/user-requests")
     public String showRequestsAndResponses(Model model, User user){
+        user = userService.getLoggedInUser();
         model.addAttribute("requestList", requestDao.findByUser(user));
-        return "requests-responses";
+        return "user-requests";
     }
 
 
