@@ -13,40 +13,16 @@
         <p><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, at atque beatae commodi consequatur consequuntur, eveniet exercitationem impedit iure laudantium magnam necessitatibus nesciunt nobis officia quidem recusandae repudiandae sed voluptatibus?</span><span>Adipisci ex excepturi illo ipsa ipsum maxime, minus, nemo obcaecati recusandae reiciendis sequi ullam velit vero voluptate voluptatibus. Amet eius expedita mollitia! Delectus error libero odio praesentium quia quibusdam reiciendis?</span><span>Aliquid amet, cumque distinctio eaque eligendi esse expedita hic incidunt itaque maiores modi mollitia nesciunt quis quo repudiandae rerum vel vero? Aliquid debitis deleniti quia similique voluptatibus? Inventore nulla, vel.</span><span>Ad animi atque delectus exercitationem incidunt ipsam quas voluptatibus. Assumenda dolore eveniet ipsam, nulla quas quo reprehenderit ullam voluptates! Asperiores, error, quia. Aut, fuga magni nostrum quisquam quo reprehenderit soluta.</span></p>
     </div>
 
-    <div class="col s12 m12 l3">
-    <span>Unfollow</span>
-    <div class="row">
-        <div class="col s12 m7">
-            <div class="card">
-                <div class="card-image">
-                    <img src="../images/dog-logo copy.jpg">
-                </div>
-                <div class="card-content">
-                    <ul>
-                        <li># of posts:</li>
-                        <li class="divider"></li>
-                        <li>Looking for guest(s):</li>
-                        <li class="divider"></li>
-                        <li># of active requests:</li>
-                    </ul>
-                </div>
-                <div class="card-action">
-                    <a href="#">View Profile</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-
-    <div class="col s12 m12 l3">
-        <span>Unfollow</span>
+    <div class="col s12 m12 l3" th:each="follower : ${followList}">
+        <button>Unfollow</button>
         <div class="row">
             <div class="col s12 m7">
                 <div class="card">
                     <div class="card-image">
-                        <img src="../images/dog-logo copy.jpg">
+                        <img th:src="${follower.profileImage}">
                     </div>
                     <div class="card-content">
+                        <h3 th:text="${follower.username}"></h3>
                         <ul>
                             <li># of posts:</li>
                             <li class="divider"></li>
@@ -56,38 +32,63 @@
                         </ul>
                     </div>
                     <div class="card-action">
-                        <a href="#">View Profile</a>
+                        <a th:href="@{/followers/follwer.id}">View Profile</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="col s12 m12 l3">
-        <span>Unfollow</span>
-        <div class="row">
-            <div class="col s12 m7">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="../images/dog-logo copy.jpg">
-                    </div>
-                    <div class="card-content">
-                        <ul>
-                            <li># of posts:</li>
-                            <li class="divider"></li>
-                            <li>Looking for guest(s):</li>
-                            <li class="divider"></li>
-                            <li># of active requests:</li>
-                        </ul>
-                    </div>
-                    <div class="card-action">
-                        <a href="#">View Profile</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!--    <div class="col s12 m12 l3">-->
+<!--        <span>Unfollow</span>-->
+<!--        <div class="row">-->
+<!--            <div class="col s12 m7">-->
+<!--                <div class="card">-->
+<!--                    <div class="card-image">-->
+<!--                        <img src="../images/dog-logo copy.jpg">-->
+<!--                    </div>-->
+<!--                    <div class="card-content">-->
+<!--                        <ul>-->
+<!--                            <li># of posts:</li>-->
+<!--                            <li class="divider"></li>-->
+<!--                            <li>Looking for guest(s):</li>-->
+<!--                            <li class="divider"></li>-->
+<!--                            <li># of active requests:</li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                    <div class="card-action">-->
+<!--                        <a href="#">View Profile</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="col s12 m12 l3">-->
+<!--        <span>Unfollow</span>-->
+<!--        <div class="row">-->
+<!--            <div class="col s12 m7">-->
+<!--                <div class="card">-->
+<!--                    <div class="card-image">-->
+<!--                        <img src="../images/dog-logo copy.jpg">-->
+<!--                    </div>-->
+<!--                    <div class="card-content">-->
+<!--                        <ul>-->
+<!--                            <li># of posts:</li>-->
+<!--                            <li class="divider"></li>-->
+<!--                            <li>Looking for guest(s):</li>-->
+<!--                            <li class="divider"></li>-->
+<!--                            <li># of active requests:</li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                    <div class="card-action">-->
+<!--                        <a href="#">View Profile</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
     </div>
-</div>
 
 </div>
 

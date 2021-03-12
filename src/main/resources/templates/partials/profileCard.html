@@ -1,0 +1,13 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!--This will contain info from the currently logged in user-->
+<div class="col m4 hide-on-small-only profile-side">
+    <img class="circle profile-Image" th:src="@{/img/matt-profile.jpg}">
+    <div class="collection">
+        <a href="/followers" class="collection-item">Followers<span class="badge">4</span> </a>
+        <a href="/recommendations" class="collection-item">Discover</a>
+    </div>
+    <p th:if="${!param.isEmpty()}"><button>Would you like to work with me?</button></p>
+    <!--    ^^^^^ THIS IS WHERE YOU CAN CLICK TO SEND A RESPONSE TO THE USER THAT CREATED THE REQUEST  -->
+    <p class="center-align">About you <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium assumenda consequuntur dolorum ea excepturi expedita facil cusantium assumenda consequuntur dolorum ea excepturi expedita facil cusantium assumenda consequuntur dolorum ea excepturi expedita facil!</span></p>
+</div>
