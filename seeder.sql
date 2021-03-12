@@ -19,6 +19,7 @@ insert into users (about_me, email, is_admin, joined_at, password, profile_image
 
 
 insert into podcasts (created_at, description, embed_link, image, title, user_id) VALUES ('2020-01-11', 'We will talk about working on side projects and how to come up with ideas', '<iframe src="https://anchor.fm/matthew-baker3/embed/episodes/Creating-a-side-project-es8rqk" height="102px" width="400px" frameborder="0" scrolling="no"></iframe>', 'https://q3p9g6n2.rocketcdn.me/wp-content/ml-loads/2017/02/microphone-podcast-radio-ss-1920.jpg', 'Creating a side Project', 1);
+insert into podcasts (created_at, description, embed_link, image, title, user_id) VALUES ('2020-01-11', 'We will talk about working on side projects and how to come up with ideas', '<iframe src="https://anchor.fm/matthew-baker3/embed/episodes/Creating-a-side-project-es8rqk" height="102px" width="400px" frameborder="0" scrolling="no"></iframe>', 'https://q3p9g6n2.rocketcdn.me/wp-content/ml-loads/2017/02/microphone-podcast-radio-ss-1920.jpg', 'Creating a side Project version 2', 1);
 
 insert into categories (id, name) VALUES (1, 'tech');
 insert into categories (id, name) VALUES (2, 'comedy');
@@ -28,6 +29,7 @@ insert into categories (id, name) VALUES (5, 'finance');
 insert into categories (id, name) VALUES (6, 'diy');
 
 insert into podcast_categories (podcast_id, category_id) VALUES (1, 1);
+insert into podcast_categories (podcast_id, category_id) VALUES (2, 1);
 
 insert into requests (created_at, description, guest_count, is_active, title, user_id) VALUES ('2020-02-09', 'I would like to make an episode about life and I am looking for any kind of advice you may be able to offer', 2, 1, 'Life today', 1);
 

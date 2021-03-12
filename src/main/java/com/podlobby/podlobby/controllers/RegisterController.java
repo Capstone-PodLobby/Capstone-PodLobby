@@ -61,11 +61,10 @@ public class RegisterController {
             model.addAttribute("mismatch", 0);
             return "redirect:/register?password";
         }
-        System.out.println("================");
-        System.out.println(confirmPassword);
+
         user.setJoinedAt(new Timestamp(new Date().getTime()));
         user.setPassword(encoder.encode(user.getPassword()));
         userDao.save(user);
-        return "recommendationsModal";
+        return "redirect:/getCategories";
 }
 }
