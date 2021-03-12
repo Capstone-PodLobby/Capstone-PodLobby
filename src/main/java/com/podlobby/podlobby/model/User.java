@@ -63,6 +63,23 @@ public class User {
 
     public User(){ }
 
+    public User(User copy) {
+        this.id = copy.id;
+        this.username = copy.username;
+        this.password = copy.password;
+        this.email = copy.email;
+        this.joinedAt = copy.joinedAt;
+        this.profileImage = copy.profileImage;
+        this.isAdmin = copy.isAdmin;
+        this.aboutMe = copy.aboutMe;
+        this.podcasts = copy.podcasts;
+        this.comments = copy.comments;
+        this.requests = copy.requests;
+        this.responseList = copy.responseList;
+        this.users = copy.users;
+        this.followers = copy.followers;
+    }
+
     public User(long id, String username, String password, String email, Timestamp joinedAt, String profileImage, int isAdmin, String aboutMe, List<Podcast> podcasts, List<Comment> comments, List<Request> requests, List<Response> responseList, List<User> users, List<User> followers) {
         this.id = id;
         this.username = username;

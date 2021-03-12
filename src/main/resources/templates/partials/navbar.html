@@ -3,14 +3,17 @@
 <div th:fragment="navbar" th:remove="tag">
     <ul id="dropdown1" class="dropdown-content">
         <li><a href="/">PodLobby</a></li>
-        <li><a href="/home">User Home</a></li>
-        <li><a href="/register">Register</a></li>
-        <li><a href="/login">Login</a></li>
-        <li><a href="/login">Logout</a></li>
-        <li><a href="/request">Request</a></li>
-        <li><a href="/podcasts/create">Create</a></li>
-        <li><a href="/profile">Settings</a></li>
-        <li><a href="/profile">Profile</a></li>
+        <li sec:authorize="isAuthenticated()"><a href="/feeds/global">User Home</a></li>
+        <li sec:authorize="isAnonymous()"><a href="/login">Login</a></li>
+        <li sec:authorize="isAuthenticated()">
+            <form class="logoutForm" th:action="@{/logout}" method="POST">
+                <button class="logoutFormButton">Logout</button>
+            </form>
+        </li>
+        <li sec:authorize="isAuthenticated()"><a href="/podcasts/create">Create</a></li>
+        <li sec:authorize="isAuthenticated()"><a href="/profile">Settings</a></li>
+        <li sec:authorize="isAuthenticated()"><a href="/request">Request</a></li>
+        <li sec:authorize="isAuthenticated()"><a href="/profile">Profile</a></li>
     </ul>
     <nav class="navbar-fixed">
         <div class="nav-wrapper">

@@ -6,7 +6,18 @@
 <main>
     <h1 class="text-center">Please Log In</h1>
 
-    <form class="container" method="post">
+    <div th:if="${!param.isEmpty()}">
+        <div>
+            <div th:if="${param.logout}">
+                You have been logged out.
+            </div>
+            <div th:if="${param.error}">
+                Username or password does not exist.
+            </div>
+        </div>
+    </div>
+
+    <form class="container" method="post" th:action="@{/login}">
 
         <div class="form-group input-field">
             <input class="form-control" type="text" id="username" name="username"/>
@@ -16,11 +27,11 @@
             <input class="form-control" type="password" id="password" name="password"/>
             <label for="password">Password</label>
         </div>
-        <input class="btn btn-block btn-primary" type="submit" value="Register"/>
-        <input class="btn btn-block btn-primary" type="submit" value="Login with Github"/>
-        <input class="btn btn-block btn-primary" type="submit" value="Login"/>
+        <input class="btn waves-effect" type="submit" value="Login"/>
 
     </form>
+    <a href="/register"><button class="btn waves-effect">Login with GitHub (in progress)</button></a>
+    <a href="/register"><button class="btn waves-effect">Register</button></a>
 </main>
 <footer th:replace="partials/footer.html :: footer"></footer>
 <div th:replace="partials/materializescripts :: scripts"></div>

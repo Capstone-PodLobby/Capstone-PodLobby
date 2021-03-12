@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head th:replace="partials/materializeHead :: styleHead('Request')"></head>
 <body>
-<nav th:replace="partials/navbar.html :: navbar"></nav>
+<nav th:replace="partials/navbar-profile :: profileNav"></nav>
 <main>
     <form th:action="@{/request}" th:method="POST" th:object="${request}">
 
@@ -12,7 +12,7 @@
         </div>
 
         <div class="form-group input-field">
-            <label for="title">Description</label>
+            <label for="description">Description</label>
             <input id="description" name="description" type="text" th:value="*{description}"/>
         </div>
 

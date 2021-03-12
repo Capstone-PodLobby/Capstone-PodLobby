@@ -25,7 +25,7 @@
         </div>
 
         <div id="modalSubmit">
-            <form onsubmit="handleRecommendations()">
+            <form onsubmit="handleRecommendations()" th:method="GET" id="categoryForm" th:action="@{/recommendations}">
                 <button id="submitCategories" class="right">Submit</button>
             </form>
         </div>

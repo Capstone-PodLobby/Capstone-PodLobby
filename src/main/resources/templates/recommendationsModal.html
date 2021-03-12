@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/materializeHead :: styleHead('Create Podcast')"></head>
 <body>
-<nav th:replace="partials/navbar :: navbar"></nav>
+<nav th:replace="partials/navbar-profile :: profileNav"></nav>
 
     <main id="mainPadding">
 
@@ -18,28 +18,40 @@
         $(".categoryItem").on("click", function () {
             let category = $(this)[0].innerText;
             if($(this)[0].classList.contains("clicked")){
+                $(this).children().children()[0].innerHTML = `<img src="/img/audio.jpg" alt="" class="circle responsive-img">`;
                 removeEle(recommendationsArr, category);
                 $(this)[0].classList.remove("clicked");
             } else {
+                $(this).children().children()[0].innerHTML = `<img src="/img/audioWave.jpg" alt="" class="circle responsive-img">`;
                 $(this)[0].classList.add("clicked");
                 recommendationsArr.push(category);
             }
             console.log(recommendationsArr);
         });
 
-        function handleRecommendations(){
-            let search = {
-                "list" : recommendationsArr
+        function handleRecommendations(e){
+            let form = document.getElementById("categoryForm");
+            let param = "";
+            for(let i = 0; i < recommendationsArr.length; i++){
+                param+=recommendationsArr[i] + ",";
+                form.insertAdjacentHTML("afterbegin", renderInput(recommendationsArr[i]));
             }
-            $.ajax({
-                url: `/modal`,
-                type: "POST",
-                dataType: 'json',
-                data: search,
-                success: function(result){
-                    console.log(result);
-                }
-            });
+
+            // $("#categoryForm").submit();
+            // $.ajax({
+            //     url: "/recommendations",
+            //     type: "GET",
+            //     dataType: 'json',
+            //     contentType: 'application/json;charset=utf-8',
+            //     data: JSON.stringify(recommendationsArr),
+            //     success: function(result){
+            //         console.log(result);
+            //     }
+            // });
+        }
+
+        function renderInput(string){
+            return `<input type="hidden" name="category" value="${string}">`;
         }
 
         function removeEle(arr, string){

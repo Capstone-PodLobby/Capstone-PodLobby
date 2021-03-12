@@ -15,15 +15,18 @@
 
     <div class="nav-style main-nav topnav">
         <ul class="animated-three fadeIn">
-            <li class="list-opt hidden-link "><a href="/">PodLobby</a></li>
-            <li class="list-opt hidden-link"><a href="/home">User Home</a></li>
-            <li class="list-opt visible-link"><a href="/register">Register</a></li>
-            <li class="list-opt visible-link"><a href="/login">Login</a></li>
-            <li class="list-opt hidden-link" ><a href="/login">Logout</a></li>
-            <li class="list-opt hidden-link"><a href="/request">Request</a></li>
-            <li class="list-opt hidden-link"><a href="/podcasts/create">Create</a></li>
-            <li class="list-opt hidden-link"><a href="/profile">Settings</a></li>
-            <li class="list-opt hidden-link"><a href="/profile">Profile!</a></li>
+            <li class="list-opt hidden-link"><a href="/">PodLobby</a></li>
+            <li class="list-opt hidden-link" sec:authorize="isAuthenticated()"><a href="/home">User Home</a></li>
+            <li class="list-opt hidden-link" sec:authorize="isAnonymous()"><a href="/login">Login</a></li>
+            <li class="list-opt hidden-link" sec:authorize="isAuthenticated()">
+                <form class="logoutForm" th:action="@{/logout}" method="POST">
+                    <button class="logoutFormButton">Logout</button>
+                </form>
+            </li>
+            <li class="list-opt hidden-link" sec:authorize="isAuthenticated()"><a href="/request">Request</a></li>
+            <li class="list-opt hidden-link" sec:authorize="isAuthenticated()"><a href="/podcasts/create">Create</a></li>
+            <li class="list-opt hidden-link" sec:authorize="isAuthenticated()"><a href="/profile">Settings</a></li>
+            <li class="list-opt hidden-link" sec:authorize="isAuthenticated()"><a href="/profile">Profile</a></li>
         </ul>
     </div>
 
