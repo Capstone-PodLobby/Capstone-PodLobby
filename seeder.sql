@@ -53,9 +53,24 @@ VALUES (1, 'Here is some random info about me', 'abby@email.com', 0, '2021-01-01
 select * from users;
 
 insert into podcasts (id, created_at, description, embed_link, image, title, user_id )
-VALUES (1, '2021-01-01', 'this is a test podcast', '<iframe src="https://anchor.fm/amber799/embed" height="102px" width="400px" frameborder="0" scrolling="no"></iframe>','https://images.unsplash.com/photo-1567596388756-f6d710c8fc07?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80,1', 'test', 1);
+VALUES (1, '2021-01-01', 'this is a test podcast', '<iframe src="https://anchor.fm/amber799/embed" height="102px" width="400px" frameborder="0" scrolling="no"></iframe>','https://images.unsplash.com/photo-1567596388756-f6d710c8fc07?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80,1', 'test', 1),
+       (2, '2021-01-01', 'this is a test podcast', '<iframe src="https://anchor.fm/amber799/embed" height="102px" width="400px" frameborder="0" scrolling="no"></iframe>','https://images.unsplash.com/photo-1567596388756-f6d710c8fc07?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80,1', 'test', 2),
+       (3, '2021-01-01', 'this is a test podcast', '<iframe src="https://open.spotify.com/embed-podcast/show/3TFuu4Eb7jGgR8cwGrQifa" width="100%" height="232" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>','https://images.unsplash.com/photo-1567596388756-f6d710c8fc07?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80,1', 'test', 3),
+       (4, '2021-01-01', 'this is a test podcast', '<iframe src="https://anchor.fm/amber799/embed" height="102px" width="400px" frameborder="0" scrolling="no"></iframe>','https://images.unsplash.com/photo-1567596388756-f6d710c8fc07?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80,1', 'test', 4),
+       (5, '2021-01-01', 'this is a test podcast', '<iframe src="https://open.spotify.com/embed-podcast/show/3TFuu4Eb7jGgR8cwGrQifa" width="100%" height="232" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>','https://images.unsplash.com/photo-1567596388756-f6d710c8fc07?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80,1', 'test', 5),
+       (6, '2021-01-01', 'this is a test podcast', '<iframe src="https://anchor.fm/amber799/embed" height="102px" width="400px" frameborder="0" scrolling="no"></iframe>','https://images.unsplash.com/photo-1567596388756-f6d710c8fc07?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80,1', 'test', 1),
+       (7, '2021-01-01', 'this is a test podcast', '<iframe src="https://anchor.fm/amber799/embed" height="102px" width="400px" frameborder="0" scrolling="no"></iframe>','https://images.unsplash.com/photo-1567596388756-f6d710c8fc07?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80,1', 'test', 2);
+
+
+
+
+
 
 select * from podcasts;
+
+delete from podcasts where id = 7;
+
+
 
 
     
