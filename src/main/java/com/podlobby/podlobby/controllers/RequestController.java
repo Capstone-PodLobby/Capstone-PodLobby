@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import java.sql.Timestamp;
+import java.util.Date;
+
 
 @Controller
 public class RequestController {
@@ -28,11 +31,17 @@ public class RequestController {
     @GetMapping("/request")
     public String showRequestForm(Model model){
         model.addAttribute("request", new Request());
+        User user = userService.getLoggedInUser();
+        model.addAttribute("user", user);
         return "request";
     }
 
     @PostMapping("/request")
     public String createRequest(@ModelAttribute Request request){
+        User user = userService.getLoggedInUser();
+        request.setCreatedAt(new Timestamp(new Date().getTime()));
+        request.setIsActive(1);
+        request.setUser(user);
         requestDao.save(request);
         return "redirect:/profile";
     }

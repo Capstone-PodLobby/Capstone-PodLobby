@@ -4,23 +4,12 @@
 <body>
 <div th:replace="partials/navbar-profile :: profileNav"></div>
 
-<div class="hide-on-med-and-up">
-    <ul id="slide-out" class="sidenav">
-        <li><div class="user-view">
-            <div class="background">
-                <img th:src="@{/img/matt-profile-background.jpg}">
-            </div>
-            <a href="#user"><img class="circle" th:src="${follower.profileImage}"></a>
-            <a href="#name"><span class="white-text name" th:text="${follower.username}"></span></a>
+<div th:if="${!param.isEmpty()}">
+    <div>
+        <div th:if="${param.followed}">
+            You have followed <span th:text="${follower.username}"></span>.
         </div>
-        </li>
-        <li><a class="waves-effect" href="#!"><i class="material-icons">cloud</i>Follow</a></li>
-        <li><div class="divider"></div></li>
-        <li><a class="subheader">Listening to</a></li>
-        <li><iframe id="profileIframeSideNav" src="https://open.spotify.com/embed-podcast/episode/2aB2swgyXqbFA06AxPlFmr" allowtransparency="true" allow="encrypted-media"></iframe></li>
-        <li><a class="waves-effect" href="#!"><i class="material-icons">cloud</i>Request</a></li>
-    </ul>
-    <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">account_circle</i></a>
+    </div>
 </div>
 <main>
     <div class="row">
@@ -28,8 +17,8 @@
             <img class="circle profile-Image" th:src="${follower.profileImage}">
             <div class="collection">
                 <a href="#!" class="collection-item" th:text="${follower.username}"></a>
-                <a href="#!" class="collection-item">Follow</a>
-                <a href="#!" class="collection-item">Request</a>
+                <a th:if="${!isFollowing}" th:href="@{/followUser/{id}(id=${follower.id})}" class="collection-item">Follow</a>
+                <a href="#!" class="collection-item">View active requests</a>
             </div>
         </div>
 

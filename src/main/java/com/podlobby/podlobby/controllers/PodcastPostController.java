@@ -93,11 +93,6 @@ public class PodcastPostController {
 
         podcast.setCategories(categoryList);
 
-//        System.out.println(podcast.getTitle());
-//        System.out.println(podcast.getDescription());
-//        System.out.println(podcast.getEmbedLink());
-//        System.out.println(podcast.getImage());
-
         for(Category c : podcast.getCategories()) {
             System.out.println(c.getName() + " was added to " + podcast.getTitle());
         }

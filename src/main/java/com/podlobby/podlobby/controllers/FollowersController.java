@@ -7,6 +7,7 @@ import com.podlobby.podlobby.repositories.PodcastRepository;
 import com.podlobby.podlobby.repositories.UserRepository;
 import com.podlobby.podlobby.services.UserService;
 import com.podlobby.podlobby.util.IframeParser;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,16 +34,18 @@ public class FollowersController {
         this.userService = userService;
     }
 
-    //Will need to ad ID for specific followers on page
+
+    // seeing all of your followers
     @GetMapping("/followers")
     public String showFollowers(Model model){
         model.addAttribute("followList", followDao.findAllByUserId(1L));
         User user = userService.getLoggedInUser();
         model.addAttribute("user", user);
-        return"followers";
+        return "followers";
     }
 
 
+    // viewing the page of the follower
     @GetMapping("/followers/{id}")
     public String viewFollowersProfile(Model model, @PathVariable(name = "id") long id){
         User follower = userDao.findById(id).get();
@@ -58,6 +61,41 @@ public class FollowersController {
         }
         model.addAttribute("followerPodcasts", createdPodcasts);
         return "othersProfile";
+    }
+
+
+    // unfollow a user by id
+    @GetMapping("/unfollow/{id}")
+    public String unfollowUser(Model model, @PathVariable(name = "id") long id){
+        User unfollow = userDao.findById(id).get();
+        User currUser = userService.getLoggedInUser();
+        model.addAttribute("user", currUser);
+
+        List<User> currentFollowList = followDao.findAllByUserId(currUser.getId());// get all followers for currently logged in user
+
+        currentFollowList.remove(unfollow);
+
+        currUser.setUsers(currentFollowList);
+        followDao.save(currUser);
+
+        model.addAttribute("unfollowedUser", unfollow);
+        return "redirect:/followers?unfollow";
+    }
+
+    // following the user whose page you are on
+    @GetMapping("/followUser/{id}")
+    public String followAUser(Model model, @PathVariable(name = "id") long id){
+        // add this user to the current user's follow list
+        User user = userService.getLoggedInUser();
+        User userToFollow = userDao.findById(id).get();
+
+        List<User> currentFollowList = followDao.findAllByUserId(user.getId());// get all followers for currently logged in user
+
+        currentFollowList.add(userToFollow);
+
+        user.setUsers(currentFollowList);
+        followDao.save(user);
+        return "redirect:/otherProfile/" + id + "?followed";
     }
 
 }

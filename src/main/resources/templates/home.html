@@ -16,7 +16,7 @@
     <div class="nav-style main-nav topnav">
         <ul class="animated-three fadeIn">
             <li class="list-opt hidden-link"><a href="/">PodLobby</a></li>
-            <li class="list-opt hidden-link" sec:authorize="isAuthenticated()"><a href="/home">User Home</a></li>
+            <li class="list-opt hidden-link" sec:authorize="isAuthenticated()"><a href="/feeds/global">User Home</a></li>
             <li class="list-opt hidden-link" sec:authorize="isAnonymous()"><a href="/login">Login</a></li>
             <li class="list-opt hidden-link" sec:authorize="isAuthenticated()">
                 <form class="logoutForm" th:action="@{/logout}" method="POST">

@@ -2,8 +2,10 @@ package com.podlobby.podlobby.controllers;
 
 
 import com.podlobby.podlobby.model.Podcast;
+import com.podlobby.podlobby.model.User;
 import com.podlobby.podlobby.repositories.CategoryRepository;
 import com.podlobby.podlobby.repositories.PodcastRepository;
+import com.podlobby.podlobby.services.UserService;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,22 +20,24 @@ public class RecommendationController {
 
     private final CategoryRepository categoryDao;
     private final PodcastRepository podcastDao;
+    private final UserService userService;
 
 
-    public RecommendationController(CategoryRepository categoryDao, PodcastRepository podcastDao){
+    public RecommendationController(CategoryRepository categoryDao, PodcastRepository podcastDao, UserService userService){
         this.categoryDao = categoryDao;
         this.podcastDao = podcastDao;
+        this.userService = userService;
     }
 
     @GetMapping("/getCategories")
     public String showModal(Model model){
         model.addAttribute("categoryList", categoryDao.findAll());
+        User user = userService.getLoggedInUser();
+        model.addAttribute("user", user);
         return "recommendationsModal";
     }
 
-//    @RequestMapping(value = "/recommendations}", method = RequestMethod.GET)
-//    @ResponseBody
-//    @PostMapping("/modal/{categoryValues}")
+
     @GetMapping("/recommendations")
     public String getCategoryRecommendations(@RequestParam (name = "category") List<String> categoryList, Model model){
         System.out.println(categoryList);

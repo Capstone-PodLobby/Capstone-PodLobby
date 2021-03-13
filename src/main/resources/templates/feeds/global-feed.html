@@ -18,23 +18,8 @@
 
 <div class="row" >
 
-    <!-- User's profile information -->
-    <div class="col s12 m3">
-        <div class="card">
-            <div class="card-image">
-                <img src="images/sample-1.jpg">
-                <span class="card-title">User Name</span>
-            </div>
-            <div class="card-content">
-                <h5>About Me</h5>
-                <p>I am a very simple card. I am good at containing small bits of information.
-                    I am convenient because I require little markup to use effectively.</p>
-            </div>
-            <div class="card-action">
-                <a href="#">This is a link</a>
-            </div>
-        </div>
-    </div>
+    <div th:replace="partials/fixedProfileCard :: fixedProfileCard"></div>
+
 
 
 
@@ -70,9 +55,8 @@
                     <div class="card-action">
                         <iframe th:src="${podcast.getEmbedLink()}"></iframe>
                     </div>
-<!--                    <div class="card-action"  th:utext="${podcast.embedLink}" scrollable="yes"></div>-->
                     <div class="card-action">
-                        <a href="#">This is a link</a>
+                        <a th:href="@{/otherProfile/{id}(id=${podcast.user.id})}" th:text="${podcast.user.username}"></a>
                     </div>
                 </div>
             </div>
