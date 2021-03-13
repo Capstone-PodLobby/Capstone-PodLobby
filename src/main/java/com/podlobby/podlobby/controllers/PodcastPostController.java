@@ -7,6 +7,7 @@ import com.podlobby.podlobby.repositories.CategoryRepository;
 import com.podlobby.podlobby.repositories.PodcastRepository;
 import com.podlobby.podlobby.repositories.UserRepository;
 import com.podlobby.podlobby.services.UserService;
+import com.podlobby.podlobby.util.IframeParser;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -69,14 +70,18 @@ public class PodcastPostController {
         User user = userService.getLoggedInUser();
         model.addAttribute("user", user);
 
-        if(podcast.getTitle().isEmpty()) {
+        IframeParser iframeParser = new IframeParser();
+
+        if (podcast.getTitle().isEmpty()) {
             return "redirect:/podcasts/create?title";
-        } else if(podcast.getDescription().isEmpty()) {
+        } else if (podcast.getDescription().isEmpty()) {
             return "redirect:/podcasts/create?description";
-        } else if(podcast.getEmbedLink().isEmpty()) {
+        } else if (podcast.getEmbedLink().isEmpty()) {
             return "redirect:/podcasts/create?embed";
-        } else if(podcast.getCategories().isEmpty()) {
+        } else if (podcast.getCategories().isEmpty()) {
             return "redirect:/podcasts/create?categories";
+        } else if (iframeParser.parseIframe(podcast.getEmbedLink()).equalsIgnoreCase("nosrc")){
+            return "redirect:/podcasts/create?embedIssue";
         }
 
         if(podcast.getImage().isEmpty()){

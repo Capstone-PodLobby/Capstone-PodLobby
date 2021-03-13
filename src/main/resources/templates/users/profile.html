@@ -4,6 +4,14 @@
 <body>
     <div th:replace="partials/navbar-profile :: profileNav"></div>
 
+    <div th:if="${!param.isEmpty()}">
+        <div>
+            <div th:if="${param.messageSent}">
+                Our team has been notified. We will get back to you soon
+            </div>
+        </div>
+    </div>
+
     <main>
         <div class="row">
             <div class="col m4 hide-on-small-only profile-side">

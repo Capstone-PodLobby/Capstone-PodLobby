@@ -5,6 +5,7 @@
 <nav th:replace="partials/navbar-profile :: profileNav"></nav>
 
 <div class="container">
+
     <div th:if="${!param.isEmpty()}">
         <div>
             <div th:if="${param.unfollow}">
@@ -12,6 +13,7 @@
             </div>
         </div>
     </div>
+
     <h1 class="my-4">Followers Page</h1>
 
     <div class="row">
