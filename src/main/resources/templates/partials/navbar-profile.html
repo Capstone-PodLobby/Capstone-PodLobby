@@ -20,7 +20,7 @@
         <li>
             <div class="user-view">
                 <div class="background">
-                    <img th:src="@{/img/matt-profile-background.jpg}">
+                    <img th:src="${user.backgroundImage}">
                 </div>
                 <a href="#user"><img class="circle" th:src="${user.getProfileImage}"></a>
                 <a href="#name"><span class="white-text name" th:text="${user.username}"></span></a>

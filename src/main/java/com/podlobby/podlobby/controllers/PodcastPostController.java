@@ -4,6 +4,7 @@ import com.podlobby.podlobby.model.Category;
 import com.podlobby.podlobby.model.Podcast;
 import com.podlobby.podlobby.model.User;
 import com.podlobby.podlobby.repositories.CategoryRepository;
+import com.podlobby.podlobby.repositories.CommentRepository;
 import com.podlobby.podlobby.repositories.PodcastRepository;
 import com.podlobby.podlobby.repositories.UserRepository;
 import com.podlobby.podlobby.services.UserService;
@@ -23,13 +24,15 @@ public class PodcastPostController {
     private final CategoryRepository categoryDao;
     private final PodcastRepository podcastDao;
     private final UserRepository userDao;
+    private final CommentRepository commentDao;
     private final UserService userService;
 
-    public PodcastPostController(CategoryRepository categoryDao, UserService userService, PodcastRepository podcastDao, UserRepository userDao){
+    public PodcastPostController(CategoryRepository categoryDao, CommentRepository commentDao, UserService userService, PodcastRepository podcastDao, UserRepository userDao){
         this.categoryDao = categoryDao;
         this.podcastDao = podcastDao;
         this.userDao = userDao;
         this.userService = userService;
+        this.commentDao = commentDao;
     }
 
     /////////////////
@@ -38,9 +41,8 @@ public class PodcastPostController {
     //Will need to add ID to path for specific post
     @GetMapping("/podcasts/edit")
     public String viewEditPodcastForm(Model model) {
-        User user = userService.getLoggedInUser();
-        model.addAttribute("user", user);
-//        model.addAttribute("post", postsDao.getOne(id));
+        model.addAttribute("user", userService.getLoggedInUser());
+//        model.addAttribute("podcast", podcastDao.getOne(id));
         return "podcasts/edit";
     }
 
@@ -48,6 +50,14 @@ public class PodcastPostController {
     public String editPodcast(Model model, @PathVariable(name = "id") long id){
 
         return "users/profile";
+    }
+
+    @GetMapping("/podcast/delete/{id}")
+    public String deletePodcast(Model model, @PathVariable(name = "id") long id){
+        // cascade all is in the podcast model but podcast delete errors out. comments and podcast category id needs to be removed first
+        podcastDao.delete(podcastDao.getOne(id));
+        model.addAttribute("user", userService.getLoggedInUser());
+        return "redirect:/profile?deleted";
     }
 
 
@@ -98,12 +108,9 @@ public class PodcastPostController {
 
         podcast.setCategories(categoryList);
 
-        for(Category c : podcast.getCategories()) {
-            System.out.println(c.getName() + " was added to " + podcast.getTitle());
-        }
 
         podcast.setCreatedAt(new Timestamp(new Date().getTime()));
-        podcast.setUser(userDao.getOne(1L)); // ----- GET LOGGED IN USER
+        podcast.setUser(userDao.getOne(user.getId())); // ----- GET LOGGED IN USER
         podcastDao.save(podcast);
         return "redirect:/profile";
     }

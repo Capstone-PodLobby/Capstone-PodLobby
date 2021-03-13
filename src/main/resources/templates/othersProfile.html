@@ -19,6 +19,7 @@
                 <a href="#!" class="collection-item" th:text="${follower.username}"></a>
                 <a th:if="${!isFollowing}" th:href="@{/followUser/{id}(id=${follower.id})}" class="collection-item">Follow</a>
                 <a href="#!" class="collection-item">View active requests</a>
+                <p class="center-align" th:text="${follower.aboutMe}"></p>
             </div>
         </div>
 
@@ -27,18 +28,33 @@
             <!--    In the content area can click on a specific podcast ( id ) and it will move to the nav bar to be played -->
             <div id="profileContentArea">
 
-                <div class="col s12 profileContentItem" th:each="podcast : ${followerPodcasts}">
+                <div class="col s12 profileContentItem" th:each="i : ${#numbers.sequence(0, followerPodcasts.size() - 1)}">
                     <div class="card horizontal">
                         <div class="card-image">
-                            <img th:src="${podcast.image}">
+                            <img th:src="${followerPodcasts.get(i).image}">
                         </div>
                         <div class="card-stacked">
                             <div class="card-content">
-                                <iframe th:src="${podcast.embedLink}"></iframe>
+                                <iframe th:src="${followerPodcasts.get(i).embedLink}"></iframe>
                             </div>
                             <div class="card-action">
-                                <a href="#">Listen</a>
-                                <div th:replace="partials/commentsModal :: commentModal"></div>
+                                <a th:href="@{/listen/{id}(id=${followerPodcasts.get(i).id})}">Listen</a>
+
+                                <a class="waves-effect waves-light btn modal-trigger deleteButton" th:href="@{#_modal{num}(num=${i})}">Comments</a>
+
+                                <div th:id="'_modal' + ${i}" class="modal">
+                                    <div class="modal-content">
+                                        <div class="commentArea" th:each="comment : ${followerPodcasts.get(i).comments}">
+                                            <p th:text="${comment.comment}"></p>
+                                            <p>Posted at : <span th:text="${comment.createdAt}"></span></p>
+                                            <p>Posted by : <span th:text="${userController.getOne(comment.user.id).username}"></span></p>
+                                            <a th:href="@{/comment/delete/{id}(id=${comment.id})}" th:if="${comment.user.id == user.id}"><button class="btn wave-effect">Delete Comment</button> </a>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button class="btn wave-effect">Add comment<i class="material-icons">chat</i> </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

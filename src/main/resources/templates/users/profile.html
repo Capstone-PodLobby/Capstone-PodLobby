@@ -15,6 +15,16 @@
                 Your information has been updated
             </div>
         </div>
+        <div>
+            <div th:if="${param.deleted}">
+                Your podcast has been successfully deleted
+            </div>
+        </div>
+        <div>
+            <div th:if="${param.comment}">
+                Your comment has been successfully deleted
+            </div>
+        </div>
     </div>
 
     <main>
@@ -22,11 +32,11 @@
             <div class="col m4 hide-on-small-only profile-side">
                 <img class="circle profile-Image" th:src="${user.profileImage}">
                 <div class="collection">
-                    <p class="collection-item white-text" th:text="${user.username}"></p>
-                    <a href="/followers" class="collection-item">Followers<span class="badge" th:text="${followerCount}"></span> </a>
-                    <a href="/getCategories" class="collection-item">Discover</a>
-                    <a href="/user-requests" class="collection-item">Requests</a>
-                    <a href="/user-responses" class="collection-item">Responses</a>
+                    <p class="collection-item teal-text text-darken-4" th:text="${user.username}"></p>
+                    <a href="/followers" class="collection-item teal-text text-darken-4">Following<span class="badge" th:text="${followerCount}"></span> </a>
+                    <a href="/getCategories" class="collection-item teal-text text-darken-4">Discover</a>
+                    <a href="/user-requests" class="collection-item teal-text text-darken-4">Requests</a>
+                    <a href="/user-responses" class="collection-item teal-text text-darken-4">Responses</a>
                     <a th:if="${param.requestView}"><button id="myBtn">Would you like to work with me?</button></a>
                 </div>
                 <!-- The Modal -->
@@ -47,17 +57,17 @@
     <!--    In the content area can click on a specific podcast ( id ) and it will move to the nav bar to be played -->
                 <div id="profileContentArea">
 
-                    <div class="col s12 profileContentItem" th:each="podcast : ${userPodcasts}">
+                    <div class="col s12 profileContentItem" th:each="i : ${#numbers.sequence(0, userPodcasts.size() - 1)}">
                         <div class="card horizontal">
                             <div class="card-image">
-                                <img th:src="${podcast.image}">
+                                <img th:src="${userPodcasts.get(i).image}">
                             </div>
                             <div class="card-stacked">
                                 <div class="card-content">
-                                    <iframe th:src="${podcast.embedLink}"></iframe>
+                                    <iframe th:src="${userPodcasts.get(i).embedLink}"></iframe>
                                 </div>
                                 <div class="card-action">
-                                    <a href="#">Listen</a>
+                                    <a th:href="@{/listen/{id}(id=${userPodcasts.get(i).id})}">Listen</a>
                                     <a href="#">Edit</a>
                                     <div th:replace="partials/deleteModal :: deleteModal"></div>
                                     <div th:replace="partials/commentsModal :: commentModal"></div>

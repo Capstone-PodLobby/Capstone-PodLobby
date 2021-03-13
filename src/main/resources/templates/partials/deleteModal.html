@@ -1,12 +1,12 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <div th:fragment="deleteModal" th:remove="tag">
-    <a th:if="${user.id == podcast.user.id}" class="waves-effect waves-light btn modal-trigger deleteButton" href="#modal1">Delete</a>
+    <a th:if="${user.id == userPodcasts.get(i).user.id}" class="waves-effect waves-light btn modal-trigger deleteButton" th:href="@{#modal{num}(num=${i})}">Delete</a>
 
-    <div id="modal1" class="modal">
+    <div th:id="'modal' + ${i}" class="modal">
         <div class="modal-content">
             <h4>Are You Sure you want to delete this podcast?</h4>
         </div>
-        <a th:href="@{/podcast/delete/{id}(id=${podcast.id})}" class="modal-close waves-effect waves-green btn-flat">Delete</a>
+        <a th:href="@{/podcast/delete/{id}(id=${userPodcasts.get(i).id})}" class="modal-close waves-effect waves-green btn-flat">Delete</a>
     </div>
 </div>

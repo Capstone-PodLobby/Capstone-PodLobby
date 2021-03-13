@@ -39,7 +39,7 @@ public class Settings {
 
 
     @PostMapping("/settings")
-    public String changeInfo(Model model, @ModelAttribute User user, @RequestParam(name = "confirm-password", required = false) String confirmPassword, @RequestParam(name = "profileImage", required = false) String profileImage){
+    public String changeInfo(Model model, @ModelAttribute User user, @RequestParam(name = "confirm-password", required = false) String confirmPassword, @RequestParam(name = "profileImage", required = false) String profileImage, @RequestParam(name = "backgroundImage", required = false) String backgroundImage){
         User currentUser = userService.getLoggedInUser();
 
         System.out.println("--------------");
@@ -54,6 +54,11 @@ public class Settings {
         if (!profileImage.isEmpty()) {
             currentUser.setProfileImage(profileImage);
         }
+
+        if (!backgroundImage.isEmpty()) {
+            currentUser.setBackgroundImage(backgroundImage);
+        }
+
         if (!user.getPassword().isEmpty()) {
             if (!user.getPassword().equals(confirmPassword)) {
                 return "redirect:/settings?passwords";

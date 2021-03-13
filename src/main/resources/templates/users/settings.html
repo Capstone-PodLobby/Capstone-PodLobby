@@ -65,6 +65,13 @@
                 </div>
             </div>
             <div class="row">
+                <div class="input-field col s12" style="display: flex">
+                    <input id="backgroundImage" type="text" class="validate" name="backgroundImage">
+                    <label for="backgroundImage">Edit Background Image</label>
+                    <button class="btn wave-effect" id="backgroundUploader">Upload</button>
+                </div>
+            </div>
+            <div class="row">
                 <div class="input-field col s12">
                     <label for="body">Edit About Me</label>
                     <textarea class="materialize-textarea" id="body" th:field="*{aboutMe}"></textarea>
@@ -86,10 +93,13 @@
 <script>
 
     const client = filestack.init(fileStackToken);
+
+
     const options = {
         maxFiles: 1,
         onUploadDone: uploadFile
     };
+
 
     const uploadBtn = document.getElementById("fileUploader");
     uploadBtn.addEventListener("click", (e) => {
@@ -101,13 +111,32 @@
     function uploadFile(result){
         const fileData = result.filesUploaded;
         const fileString = fileData[0].url;
-        console.log($("#profileImage"));
         let imageInput = document.getElementById("profileImage");
         imageInput.val = fileString;
-        imageInput.innerText = fileString;
-        $("#profileImage").text(fileString);
-        $("#profileImage").innerText = fileString;
-        console.log($("#profileImage"));
+    }
+
+
+
+
+
+
+    const optionsBackground = {
+        maxFiles: 1,
+        onUploadDone: uploadFileBackground
+    };
+
+    const uploadBtnBack = document.getElementById("backgroundUploader");
+    uploadBtnBack.addEventListener("click", (e) => {
+        e.preventDefault();
+        console.log("clicked uploader for background image");
+        client.picker(optionsBackground).open();
+    });
+
+    function uploadFileBackground(result){
+        const fileData = result.filesUploaded;
+        const fileString = fileData[0].url;
+        let imageInput = document.getElementById("backgroundImage");
+        imageInput.val = fileString;
     }
 
 </script>

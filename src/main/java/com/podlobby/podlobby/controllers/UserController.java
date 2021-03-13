@@ -2,6 +2,7 @@ package com.podlobby.podlobby.controllers;
 
 import com.podlobby.podlobby.model.Podcast;
 import com.podlobby.podlobby.model.User;
+import com.podlobby.podlobby.repositories.CommentRepository;
 import com.podlobby.podlobby.repositories.FollowRepository;
 import com.podlobby.podlobby.repositories.PodcastRepository;
 import com.podlobby.podlobby.repositories.UserRepository;
@@ -21,13 +22,15 @@ public class UserController {
     private final FollowRepository followDao;
     private final UserRepository userDao;
     private final PodcastRepository podcastDao;
+    private final CommentRepository commentDao;
     private final IframeParser iframeParser = new IframeParser();
 
-    public UserController(UserService userService, FollowRepository followDao, UserRepository userDao, PodcastRepository podcastDao){
+    public UserController(UserService userService, FollowRepository followDao, UserRepository userDao, PodcastRepository podcastDao, CommentRepository commentDao){
         this.userService = userService;
         this.followDao = followDao;
         this.userDao = userDao;
         this.podcastDao = podcastDao;
+        this.commentDao = commentDao;
     }
 
     @GetMapping("/profile")
@@ -41,6 +44,7 @@ public class UserController {
             p.setEmbedLink(parsedEmbedLink);
         }
         model.addAttribute("user", user);
+        model.addAttribute("userController", userDao);
         model.addAttribute("followerCount", followerCount);
         model.addAttribute("userPodcasts", createdPodcasts);
         return "users/profile";
@@ -82,6 +86,8 @@ public class UserController {
         }
 
         model.addAttribute("isFollowing", alreadyFollowing);
+        model.addAttribute("userController", userDao);
+
         return "othersProfile";
     }
 }

@@ -7,28 +7,23 @@
     <h1 class="my-4">Edit Podcast</h1>
 
     <form>
-        <div class="form-group">
+
+        <div class="input-field">
             <label for="title">Title</label>
             <input class="validate" type="text" id="title"/>
         </div>
-        <div class="form-group">
+        <div class="input-field">
             <label for="body">Description</label>
             <textarea class="validate" id="body"></textarea>
         </div>
-        <!--May need to change type below-->
-        <div class="form-group">
-            <label for="audioURL">Audio URL</label>
-            <input class="validate" type="text" id="audioURL"/>
+        <div class="input-field">
+            <label for="embedUrl">Embed URL</label>
+            <input class="validate" type="text" id="embedUrl"/>
         </div>
 
         <input class="btn" type="submit" value="Edit Post" />
-        <!--    DELETE OPTION-->
 
-        <!--    <form th:action="@{|/posts/${post.id}/delete|}" th:method="POST">-->
-        <input class="btn" type="submit" value="Delete Post" />
-        <!--    </form>-->
     </form>
-
 
 </div>
 
