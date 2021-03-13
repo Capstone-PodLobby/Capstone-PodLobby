@@ -3,10 +3,16 @@ package com.podlobby.podlobby.controllers;
 
 import com.podlobby.podlobby.model.Podcast;
 import com.podlobby.podlobby.model.User;
+import com.podlobby.podlobby.repositories.UserRepository;
 import com.podlobby.podlobby.services.UserService;
+import org.springframework.security.core.parameters.P;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 
@@ -14,9 +20,14 @@ import java.util.ArrayList;
 public class Settings {
 
     private final UserService userService;
+    private final UserRepository userDao;
+    private final PasswordEncoder encoder;
 
-    public Settings(UserService userService){
+
+    public Settings(UserService userService, UserRepository userDao, PasswordEncoder encoder){
         this.userService = userService;
+        this.userDao = userDao;
+        this.encoder = encoder;
     }
 
     @GetMapping("/settings")
@@ -26,4 +37,37 @@ public class Settings {
         return "users/settings";
     }
 
+
+    @PostMapping("/settings")
+    public String changeInfo(Model model, @ModelAttribute User user, @RequestParam(name = "confirm-password", required = false) String confirmPassword, @RequestParam(name = "profileImage", required = false) String profileImage){
+        User currentUser = userService.getLoggedInUser();
+
+        System.out.println("--------------");
+        System.out.println(profileImage);
+        System.out.println("--------------");
+
+        if (userDao.findByUsername(user.getUsername()) != null && !currentUser.getUsername().equals(user.getUsername())) {
+            return "redirect:/settings?username";
+        } else {
+            currentUser.setUsername(user.getUsername());
+        }
+        if (!profileImage.isEmpty()) {
+            currentUser.setProfileImage(profileImage);
+        }
+        if (!user.getPassword().isEmpty()) {
+            if (!user.getPassword().equals(confirmPassword)) {
+                return "redirect:/settings?passwords";
+            }
+            currentUser.setPassword(encoder.encode(user.getPassword()));
+        }
+
+        if(user.getAboutMe().isEmpty()) {
+            return "redirect:/settings?aboutMe";
+        }
+        currentUser.setAboutMe(user.getAboutMe());
+
+        userDao.save(currentUser);
+        model.addAttribute("user", currentUser);
+        return "redirect:/profile?settings";
+    }
 }

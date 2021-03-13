@@ -6,7 +6,7 @@
         <li><a href="/">PodLobby</a></li>
         <li><a href="/podcasts/create">Create</a></li>
         <li class="divider"></li>
-        <li><a href="/profile">Settings</a></li>
+        <li><a href="/settings">Settings</a></li>
         <li>
             <form class="logoutForm" th:action="@{/logout}" method="POST">
                 <button class="logoutFormButton">Logout</button>
@@ -34,7 +34,11 @@
         <li><a href="/podcasts/create">Create</a></li>
         <li class="divider"></li>
         <li><a href="/settings">Settings</a></li>
-        <li><a href="/login">Logout</a></li>
+        <li>
+            <form class="logoutForm" th:action="@{/logout}" method="POST">
+                <button class="logoutFormButton">Logout</button>
+            </form>
+        </li>
         <li class="divider"></li>
         <li><a class="waves-effect" href="/followers"><i class="material-icons">cloud</i>Followers<span class="badge" th:text="${followerCount}"></span></a></li>
         <li><div class="divider"></div></li>

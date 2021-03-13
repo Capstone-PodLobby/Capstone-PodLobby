@@ -9,23 +9,23 @@
     <form>
         <div class="form-group">
             <label for="title">Title</label>
-            <input class="form-control" type="text" id="title"/>
+            <input class="validate" type="text" id="title"/>
         </div>
         <div class="form-group">
             <label for="body">Description</label>
-            <textarea class="form-control" id="body"></textarea>
+            <textarea class="validate" id="body"></textarea>
         </div>
         <!--May need to change type below-->
         <div class="form-group">
             <label for="audioURL">Audio URL</label>
-            <input class="form-control" type="text" id="audioURL"/>
+            <input class="validate" type="text" id="audioURL"/>
         </div>
 
-        <input class="btn btn-block btn-primary" type="submit" value="Edit Post" />
+        <input class="btn" type="submit" value="Edit Post" />
         <!--    DELETE OPTION-->
 
         <!--    <form th:action="@{|/posts/${post.id}/delete|}" th:method="POST">-->
-        <input class="btn btn-danger" type="submit" value="Delete Post" />
+        <input class="btn" type="submit" value="Delete Post" />
         <!--    </form>-->
     </form>
 

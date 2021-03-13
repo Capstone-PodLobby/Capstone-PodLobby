@@ -105,7 +105,7 @@ public class PodcastPostController {
         podcast.setCreatedAt(new Timestamp(new Date().getTime()));
         podcast.setUser(userDao.getOne(1L)); // ----- GET LOGGED IN USER
         podcastDao.save(podcast);
-        return "users/profile";
+        return "redirect:/profile";
     }
 
 

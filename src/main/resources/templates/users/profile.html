@@ -10,6 +10,11 @@
                 Our team has been notified. We will get back to you soon
             </div>
         </div>
+        <div>
+            <div th:if="${param.settings}">
+                Your information has been updated
+            </div>
+        </div>
     </div>
 
     <main>
@@ -17,12 +22,13 @@
             <div class="col m4 hide-on-small-only profile-side">
                 <img class="circle profile-Image" th:src="${user.profileImage}">
                 <div class="collection">
+                    <p class="collection-item white-text" th:text="${user.username}"></p>
                     <a href="/followers" class="collection-item">Followers<span class="badge" th:text="${followerCount}"></span> </a>
                     <a href="/getCategories" class="collection-item">Discover</a>
                     <a href="/user-requests" class="collection-item">Requests</a>
                     <a href="/user-responses" class="collection-item">Responses</a>
+                    <a th:if="${param.requestView}"><button id="myBtn">Would you like to work with me?</button></a>
                 </div>
-                <p th:if="${!param.isEmpty()}"><button id="myBtn">Would you like to work with me?</button></p>
                 <!-- The Modal -->
                 <div id="myModal" class="modal">
 

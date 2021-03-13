@@ -5,9 +5,111 @@
 <div th:replace="partials/navbar-profile :: profileNav"></div>
 
 
-<h1>Settings</h1>
+<main>
 
+    <div class="row container">
+
+        <div class="col s12">
+            <h1>Edit the info you would like to change</h1>
+        </div>
+
+
+        <div th:if="${!param.isEmpty()}">
+            <div>
+                <div th:if="${param.username}">
+                    Username can not be the same as another user
+                </div>
+            </div>
+            <div>
+                <div th:if="${param.passwords}">
+                    Passwords do not match
+                </div>
+            </div>
+            <div>
+                <div th:if="${param.aboutMe}">
+                    Please keep something about you on your profile
+                </div>
+            </div>
+        </div>
+
+        <form class="col s12" th:action="@{/settings}" th:method="POST" th:object="${user}">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="username" type="text" class="validate" th:field="*{username}"/>
+                    <label for="username">Edit UserName</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="password" type="password" class="validate" th:field="*{password}">
+                    <label for="password">Edit Password</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="confirmPass" type="password" class="validate" name="confirm-password">
+                    <label for="confirmPass">Confirm Edit Password</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="email" type="email" class="validate" th:field="*{email}">
+                    <label for="email">Edit Email</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12" style="display: flex">
+                    <input id="profileImage" type="text" class="validate" name="profileImage">
+                    <label for="profileImage">Edit Profile Image</label>
+                    <button class="btn wave-effect" id="fileUploader">Upload</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="body">Edit About Me</label>
+                    <textarea class="materialize-textarea" id="body" th:field="*{aboutMe}"></textarea>
+                </div>
+
+            </div>
+
+            <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                <i class="material-icons right">send</i>
+            </button>
+        </form>
+    </div>
+
+</main>
 <footer th:replace="partials/footer :: footer"></footer>
 <div th:replace="partials/materializescripts :: scripts"></div>
+<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+<script th:src="@{/js/keys.js}"></script>
+<script>
+
+    const client = filestack.init(fileStackToken);
+    const options = {
+        maxFiles: 1,
+        onUploadDone: uploadFile
+    };
+
+    const uploadBtn = document.getElementById("fileUploader");
+    uploadBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        console.log("clicked uploader");
+        client.picker(options).open();
+    });
+
+    function uploadFile(result){
+        const fileData = result.filesUploaded;
+        const fileString = fileData[0].url;
+        console.log($("#profileImage"));
+        let imageInput = document.getElementById("profileImage");
+        imageInput.val = fileString;
+        imageInput.innerText = fileString;
+        $("#profileImage").text(fileString);
+        $("#profileImage").innerText = fileString;
+        console.log($("#profileImage"));
+    }
+
+</script>
 </body>
 </html>
