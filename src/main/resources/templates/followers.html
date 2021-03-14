@@ -4,6 +4,7 @@
 <body>
 <nav th:replace="partials/navbar-profile :: profileNav"></nav>
 
+<main>
 <div class="container">
 
     <div th:if="${!param.isEmpty()}">
@@ -51,6 +52,7 @@
     </div>
 
 </div>
+</main>
 
 <footer th:replace="partials/footer.html :: footer"></footer>
 <div th:replace="partials/materializescripts :: scripts"></div>

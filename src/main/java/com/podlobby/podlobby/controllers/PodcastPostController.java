@@ -41,7 +41,6 @@ public class PodcastPostController {
     //Will need to add ID to path for specific post
     @GetMapping("/podcasts/edit")
     public String viewEditPodcastForm(Model model) {
-        model.addAttribute("user", userService.getLoggedInUser());
 //        model.addAttribute("podcast", podcastDao.getOne(id));
         return "podcasts/edit";
     }
@@ -56,7 +55,6 @@ public class PodcastPostController {
     public String deletePodcast(Model model, @PathVariable(name = "id") long id){
         // cascade all is in the podcast model but podcast delete errors out. comments and podcast category id needs to be removed first
         podcastDao.delete(podcastDao.getOne(id));
-        model.addAttribute("user", userService.getLoggedInUser());
         return "redirect:/profile?deleted";
     }
 
@@ -66,8 +64,6 @@ public class PodcastPostController {
     /////////////////
     @GetMapping("/podcasts/create")
     public String showPodcastCreate(Model model){
-        User user = userService.getLoggedInUser();
-        model.addAttribute("user", user);
         model.addAttribute("podcast", new Podcast());
         model.addAttribute("categoryList", categoryDao.findAll());
         return"/podcasts/create";
@@ -77,10 +73,8 @@ public class PodcastPostController {
 
     @PostMapping("/podcasts/create")
     public String createPodcast(Model model, @ModelAttribute Podcast podcast, @RequestParam(name = "categories", required = false) String categories) {
-        User user = userService.getLoggedInUser();
-        model.addAttribute("user", user);
 
-        IframeParser iframeParser = new IframeParser();
+        IframeParser iframeParser = new IframeParser(); // to parse it on creation
 
         if (podcast.getTitle().isEmpty()) {
             return "redirect:/podcasts/create?title";
@@ -94,10 +88,11 @@ public class PodcastPostController {
             return "redirect:/podcasts/create?embedIssue";
         }
 
-        if(podcast.getImage().isEmpty()){
+        if(podcast.getImage().isEmpty()){ // set the default image if one is not provided
             podcast.setImage("https://images.unsplash.com/photo-1567596388756-f6d710c8fc07?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80,1");
         }
 
+        // give the categories to the podcast
         List<Category> categoryList = new ArrayList<>();
         String[] catList = categories.split(",");
 
@@ -110,7 +105,8 @@ public class PodcastPostController {
 
 
         podcast.setCreatedAt(new Timestamp(new Date().getTime()));
-        podcast.setUser(userDao.getOne(user.getId())); // ----- GET LOGGED IN USER
+        podcast.setUser(userDao.getOne(userService.getLoggedInUser().getId())); // ----- GET LOGGED IN USER -> session ?
+        podcast.setEmbedLink(iframeParser.parseIframe(podcast.getEmbedLink())); // parse it before it is stored in the database
         podcastDao.save(podcast);
         return "redirect:/profile";
     }

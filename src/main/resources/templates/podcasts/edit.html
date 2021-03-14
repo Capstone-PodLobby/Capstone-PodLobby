@@ -1,33 +1,37 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:include="partials/materializeHead.html :: styleHead('Create Post')"></head>
+<head th:replace="partials/materializeHead.html :: styleHead('Edit Podcast')"></head>
 <body>
 <nav th:replace="partials/navbar-profile :: profileNav"></nav>
-<div class="container">
-    <h1 class="my-4">Edit Podcast</h1>
+<main>
 
-    <form>
+    <div class="container">
+        <h1 class="my-4">Edit Podcast</h1>
 
-        <div class="input-field">
-            <label for="title">Title</label>
-            <input class="validate" type="text" id="title"/>
-        </div>
-        <div class="input-field">
-            <label for="body">Description</label>
-            <textarea class="validate" id="body"></textarea>
-        </div>
-        <div class="input-field">
-            <label for="embedUrl">Embed URL</label>
-            <input class="validate" type="text" id="embedUrl"/>
-        </div>
+        <form>
 
-        <input class="btn" type="submit" value="Edit Post" />
+            <div class="input-field">
+                <label for="title">Title</label>
+                <input class="validate" type="text" id="title"/>
+            </div>
+            <div class="input-field">
+                <label for="body">Description</label>
+                <textarea class="materialize-textarea" id="body"></textarea>
+            </div>
+            <div class="input-field">
+                <label for="embedUrl">Embed URL</label>
+                <input class="validate" type="text" id="embedUrl"/>
+            </div>
 
-    </form>
+            <input class="btn" type="submit" value="Edit Post" />
 
-</div>
+        </form>
 
-<footer th:include="partials/footer.html :: footer"></footer>
+    </div>
+
+</main>
+
+<footer th:replace="partials/footer.html :: footer"></footer>
 <div th:replace="partials/materializescripts :: scripts"></div>
 
 </body>

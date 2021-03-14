@@ -20,14 +20,14 @@
         <li>
             <div class="user-view">
                 <div class="background">
-                    <img th:src="${user.backgroundImage}">
+                    <img th:src="${session.user.backgroundImage}">
                 </div>
-                <a href="#user"><img class="circle" th:src="${user.getProfileImage}"></a>
-                <a href="#name"><span class="white-text name" th:text="${user.username}"></span></a>
+                <a href="#user"><img class="circle" th:src="${session.user.getProfileImage}"></a>
+                <a href="#name"><span class="white-text name" th:text="${session.user.username}"></span></a>
             </div>
         </li>
         <li><a class="subheader">Listening to</a></li>
-        <li><iframe id="profileIframeSideNav" src="https://open.spotify.com/embed-podcast/episode/2aB2swgyXqbFA06AxPlFmr" allowtransparency="true" allow="encrypted-media"></iframe></li>
+        <li th:if="${session.listeningTo != null}"><iframe id="profileIframeSideNav" th:src="${session.listeningTo}" allowtransparency="true" allow="encrypted-media"></iframe></li>
         <li class="divider"></li>
         <li><a class="subheader" href="/">PodLobby</a></li>
         <li><a href="/feeds/global">Home</a></li>
@@ -49,9 +49,10 @@
         <div class="nav-wrapper">
             <a href="/" class="brand-logo">PodLobby</a>
             <ul>
-                <li class="profile-iframe hide-on-small-only">
-                    <iframe id="profileIframe" src="https://open.spotify.com/embed-podcast/episode/2aB2swgyXqbFA06AxPlFmr" allowtransparency="true" allow="encrypted-media"></iframe>
+                <li th:if="${session.listeningTo != null}" class="profile-iframe hide-on-small-only">
+                    <iframe id="profileIframe" th:src="${session.listeningTo}" allowtransparency="true" allow="encrypted-media"></iframe>
                 </li>
+
                 <li class="right">
                     <a class="dropdown-trigger hide-on-small-only" href="#!" data-target="dropdown1"><i class="material-icons right">menu</i></a>
                     <a href="#" data-target="slide-out" class="sidenav-trigger hide-on-med-and-up"><i class="material-icons">account_circle</i></a>

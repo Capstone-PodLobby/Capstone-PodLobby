@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class ListenToController {
 
@@ -21,12 +23,16 @@ public class ListenToController {
     }
 
     @GetMapping("/listen/{id}")
-    public String listenToAPodcast(@PathVariable(name = "id") long id, Model model){
+    public String listenToAPodcast(@PathVariable(name = "id") long id, Model model, HttpSession session){
         Podcast wantToListenTo = podcastDao.getOne(id);
-        // need to stay on the page that you are currently on just add this specific podcast to the navbar to be played
-        // will error out right now until ^^ is added
+        System.out.println("++++++++++++++++");
+        System.out.println(wantToListenTo.getTitle());
+        System.out.println(wantToListenTo.getEmbedLink());
+        System.out.println("++++++++++++++++");
         model.addAttribute("user", userService.getLoggedInUser());
-        return "users/profile";
+        session.setAttribute("listeningTo", wantToListenTo.getEmbedLink());
+        return "redirect:/profile?myPodcasts"; // current page you are on
+        // ^^ this is temporary
     }
 
 }

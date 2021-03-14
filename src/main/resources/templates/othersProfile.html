@@ -48,11 +48,18 @@
                                             <p th:text="${comment.comment}"></p>
                                             <p>Posted at : <span th:text="${comment.createdAt}"></span></p>
                                             <p>Posted by : <span th:text="${userController.getOne(comment.user.id).username}"></span></p>
-                                            <a th:href="@{/comment/delete/{id}(id=${comment.id})}" th:if="${comment.user.id == user.id}"><button class="btn wave-effect">Delete Comment</button> </a>
+                                            <img style="max-width: 25%;" class="circle responsive-image" th:src="${userController.getOne(comment.user.id).profileImage}"/>
+                                            <a th:href="@{/comment/delete/{id}(id=${comment.id})}" th:if="${comment.user.id == session.user.id}"><button class="btn wave-effect">Delete Comment</button> </a>
                                         </div>
                                     </div>
                                     <div>
-                                        <button class="btn wave-effect">Add comment<i class="material-icons">chat</i> </button>
+                                        <form th:action="@{/comment/create/{title}(title=${followerPodcasts.get(i).title})}" th:method="POST" class="container">
+                                            <div class="input-field">
+                                                <label for="comment">Comment</label>
+                                                <input name="comment" type="text" id="comment" class="validate"/>
+                                                <button class="btn wave-effect">Add comment<i class="material-icons">chat</i> </button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

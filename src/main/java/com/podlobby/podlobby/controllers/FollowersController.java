@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -24,8 +25,6 @@ public class FollowersController {
     private final UserRepository userDao;
     private final PodcastRepository podcastDao;
 
-    private final IframeParser iframeParser = new IframeParser();
-
 
     public FollowersController(FollowRepository followDao, UserRepository userDao, PodcastRepository podcastDao, UserService userService){
         this.followDao = followDao;
@@ -35,7 +34,7 @@ public class FollowersController {
     }
 
 
-    // seeing all of your followers
+    // seeing all of the users you follow
     @GetMapping("/followers")
     public String showFollowers(Model model){
         User user = userService.getLoggedInUser();
@@ -45,7 +44,7 @@ public class FollowersController {
     }
 
 
-    // viewing the page of the follower
+    // viewing the page of the user you follow
     @GetMapping("/followers/{id}")
     public String viewFollowersProfile(Model model, @PathVariable(name = "id") long id){
         User follower = userDao.findById(id).get();
@@ -55,10 +54,6 @@ public class FollowersController {
         model.addAttribute("user", currUser);
 
         List<Podcast> createdPodcasts = podcastDao.findAllByUserId(id);
-        for(Podcast p : createdPodcasts){
-            String parsedEmbedLink = iframeParser.parseIframe(p.getEmbedLink());
-            p.setEmbedLink(parsedEmbedLink);
-        }
         model.addAttribute("followerPodcasts", createdPodcasts);
         model.addAttribute("userController", userDao);
         model.addAttribute("isFollowing", true); // viewing a followers page -> you are following them
@@ -68,12 +63,11 @@ public class FollowersController {
 
     // unfollow a user by id
     @GetMapping("/unfollow/{id}")
-    public String unfollowUser(Model model, @PathVariable(name = "id") long id){
+    public String unfollowUser(Model model, HttpSession session, @PathVariable(name = "id") long id){
 
         User unfollow = userDao.getOne(id);
 
-        User currUser = userService.getLoggedInUser();
-        model.addAttribute("user", currUser);
+        User currUser = (User) session.getAttribute("user");
 
         List<User> currentFollowList = followDao.findAllByUserId(currUser.getId());// get all followers for currently logged in user
 
@@ -87,9 +81,9 @@ public class FollowersController {
 
     // following the user whose page you are on
     @GetMapping("/followUser/{id}")
-    public String followAUser(Model model, @PathVariable(name = "id") long id){
+    public String followAUser(Model model, HttpSession session, @PathVariable(name = "id") long id){
         // add this user to the current user's follow list
-        User user = userService.getLoggedInUser();
+        User user = (User) session.getAttribute("user");
         User userToFollow = userDao.getOne(id);
 
         List<User> currentFollowList = followDao.findAllByUserId(user.getId());// get all followers for currently logged in user

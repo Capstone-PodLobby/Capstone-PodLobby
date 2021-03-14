@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
 @Controller
@@ -39,12 +40,8 @@ public class Settings {
 
 
     @PostMapping("/settings")
-    public String changeInfo(Model model, @ModelAttribute User user, @RequestParam(name = "confirm-password", required = false) String confirmPassword, @RequestParam(name = "profileImage", required = false) String profileImage, @RequestParam(name = "backgroundImage", required = false) String backgroundImage){
-        User currentUser = userService.getLoggedInUser();
-
-        System.out.println("--------------");
-        System.out.println(profileImage);
-        System.out.println("--------------");
+    public String changeInfo(HttpSession session, @ModelAttribute User user, @RequestParam(name = "confirm-password", required = false) String confirmPassword, @RequestParam(name = "profileImage", required = false) String profileImage, @RequestParam(name = "backgroundImage", required = false) String backgroundImage){
+        User currentUser = (User) session.getAttribute("user");
 
         if (userDao.findByUsername(user.getUsername()) != null && !currentUser.getUsername().equals(user.getUsername())) {
             return "redirect:/settings?username";
@@ -72,7 +69,7 @@ public class Settings {
         currentUser.setAboutMe(user.getAboutMe());
 
         userDao.save(currentUser);
-        model.addAttribute("user", currentUser);
+        session.setAttribute("user", currentUser);
         return "redirect:/profile?settings";
     }
 }

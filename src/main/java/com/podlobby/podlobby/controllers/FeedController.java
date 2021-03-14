@@ -21,7 +21,6 @@ public class FeedController {
     private final UserService userService;
     private final PodcastRepository podcastDao;
     private final UserRepository usersDao;
-    private final IframeParser iframeParser = new IframeParser();
     private final FollowRepository followDao;
 
     public FeedController(PodcastRepository podcastDao, UserRepository usersDao, FollowRepository followDao, UserService userService){
@@ -34,21 +33,13 @@ public class FeedController {
     @GetMapping("/feeds/global")
     public String showGlobalFeed(Model model){
         List<Podcast> podcasts = podcastDao.findAll();
-        for(Podcast p : podcasts){
-            String parsedEmbed = iframeParser.parseIframe(p.getEmbedLink());
-            p.setEmbedLink(parsedEmbed);
-        }
         model.addAttribute("podcasts", podcasts);
-        User user = userService.getLoggedInUser();
-        model.addAttribute("user", user);
         return"/feeds/global-feed";
     }
 
 
     @GetMapping("/feeds/filtered")
     public String showFilteredFeed(Model model){
-        User user = userService.getLoggedInUser();
-        model.addAttribute("user", user);
         List<Podcast> allPodcast = podcastDao.findAll();
         List<Podcast> selectPodcast = new ArrayList<>();
 //        for(Podcast podcast : allPodcast) {

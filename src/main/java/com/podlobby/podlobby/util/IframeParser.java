@@ -11,11 +11,11 @@ public class IframeParser {
     public String parseIframe(String embed){
         String[] arr = embed.split(" ");
         List <String> list = new ArrayList<>(Arrays.asList(arr));
-        int idx = 0;
+        int idx = -1;
         for(int i = 0; i < list.size(); i++){
             if(list.get(i).startsWith("src")) idx = i;
         }
-        if(idx == 0){
+        if(idx == -1){
             return "noSRC";
         }
         return list.get(idx).substring(5, list.get(idx).length() - 1);

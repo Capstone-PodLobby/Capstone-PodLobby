@@ -20,7 +20,7 @@
             </div>
             <div>
                 <div th:if="${param.embedIssue}">
-                    Embed Link seems to be missing the src attribute, please check.
+                    Embed Link seems to be missing the src attribute, please check "src="http:...".
                 </div>
             </div>
             <div>
@@ -51,9 +51,10 @@
                 <a class="waves-effect waves-light btn" onclick="$('.tap-target').tapTarget('open')"><i class="fas fa-question"></i></a>
             </div>
 
-            <div class="input-field">
+            <div class="input-field" style="display: flex">
                 <label for="imageURL">Image URL (optional)</label>
                 <input class="validate" type="text" id="imageURL" th:field="*{image}"/>
+                <button class="btn wave-effect" id="podcastImage">Upload</button>
             </div>
             <div class="input-field">
                 <select multiple id="categories" name="categories" th:field="*{categories}">
@@ -69,20 +70,47 @@
 
         <div class="tap-target" data-target="menu">
             <div class="tap-target-content">
-                <h5>Embed URL</h5>
-                <p>This can be found under the share option while viewing your podcast -> copy embed link!</p>
+                <h5>Embed URL Location</h5>
+                <p>This can be found under the share option while viewing your podcast on Spotify and Anchor fm -> copy embed link!</p>
                 <img class="circle responsive-img" th:src="@{/gif/embedLinkAnchor.gif}" alt="anchor gif">
-            <!--     ^^ NOT WORKING RIGHT NOW           -->
+                <img class="circle responsive-img" th:src="@{/img/spotifyEmbedLink.png}" alt="spotify embed">
+
             </div>
         </div>
 
         <a id="menu" class="waves-effect waves-light btn btn-floating" ><i class="material-icons">menu</i></a>
 
-
     </div>
 </main>
+
 <footer th:replace="partials/footer.html :: footer"></footer>
 <div th:replace="partials/materializescripts :: scripts"></div>
 
+<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+<script th:src="@{/js/keys.js}"></script>
+<script>
+
+    const client = filestack.init(fileStackToken);
+
+    const options = {
+        maxFiles: 1,
+        onUploadDone: uploadFile
+    };
+
+    const uploadBtn = document.getElementById("podcastImage");
+    uploadBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        console.log("clicked uploader");
+        client.picker(options).open();
+    });
+
+    function uploadFile(result){
+        const fileData = result.filesUploaded;
+        const fileString = fileData[0].url;
+        let imageInput = document.getElementById("profileImage");
+        imageInput.val = fileString;
+    }
+
+</script>
 </body>
 </html>

@@ -47,7 +47,7 @@ public class RegisterController {
     }
 
     @PostMapping("/register")
-    public String registered(Model model, @ModelAttribute User user, @RequestParam(name = "confirm-password", required = false) String confirmPassword){
+    public String registered(Model model, @ModelAttribute User user, @RequestParam(name = "confirm-password", required = false) String confirmPassword, @RequestParam(name = "g-recaptcha-response") String captcha){
         if(userDao.findByUsername(user.getUsername()) != null) {
             model.addAttribute("username", user.getUsername());
             return "redirect:/register?username";
@@ -60,6 +60,8 @@ public class RegisterController {
         } else if(!confirmPassword.equals(user.getPassword())) {
             model.addAttribute("mismatch", 0);
             return "redirect:/register?password";
+        } else if(captcha.isEmpty()){
+            return "redirect:/register?captcha";
         }
 
         user.setJoinedAt(new Timestamp(new Date().getTime()));

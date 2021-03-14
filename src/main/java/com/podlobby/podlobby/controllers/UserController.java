@@ -13,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -23,7 +25,6 @@ public class UserController {
     private final UserRepository userDao;
     private final PodcastRepository podcastDao;
     private final CommentRepository commentDao;
-    private final IframeParser iframeParser = new IframeParser();
 
     public UserController(UserService userService, FollowRepository followDao, UserRepository userDao, PodcastRepository podcastDao, CommentRepository commentDao){
         this.userService = userService;
@@ -34,19 +35,16 @@ public class UserController {
     }
 
     @GetMapping("/profile")
-    public String profilePage(Model model){
+    public String profilePage(Model model, HttpSession session, HttpServletRequest request){
 //        get the current user
         User user = userService.getLoggedInUser();
         int followerCount = followDao.findAllByUserId(user.getId()).size();
         List<Podcast> createdPodcasts = user.getPodcasts();
-        for(Podcast p : createdPodcasts){
-            String parsedEmbedLink = iframeParser.parseIframe(p.getEmbedLink());
-            p.setEmbedLink(parsedEmbedLink);
-        }
-        model.addAttribute("user", user);
-        model.addAttribute("userController", userDao);
-        model.addAttribute("followerCount", followerCount);
-        model.addAttribute("userPodcasts", createdPodcasts);
+
+        session.setAttribute("user", user);
+        model.addAttribute("userController", userDao); // used in comment modal
+        model.addAttribute("followerCount", followerCount); // make this a session attribute ? will it update on each page ( needs to be tested )
+        model.addAttribute("userPodcasts", createdPodcasts); // ^^ same
         return "users/profile";
     }
 
@@ -68,10 +66,7 @@ public class UserController {
         model.addAttribute("follower", follower);
 
         List<Podcast> createdPodcasts = podcastDao.findAllByUserId(id);
-        for(Podcast p : createdPodcasts){
-            String parsedEmbedLink = iframeParser.parseIframe(p.getEmbedLink());
-            p.setEmbedLink(parsedEmbedLink);
-        }
+
         model.addAttribute("followerPodcasts", createdPodcasts);
 
         // check if this person is someone i am already following
@@ -90,4 +85,5 @@ public class UserController {
 
         return "othersProfile";
     }
+
 }
