@@ -6,13 +6,10 @@ import com.podlobby.podlobby.repositories.FollowRepository;
 import com.podlobby.podlobby.repositories.PodcastRepository;
 import com.podlobby.podlobby.repositories.UserRepository;
 import com.podlobby.podlobby.services.UserService;
-import com.podlobby.podlobby.util.IframeParser;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -40,7 +37,7 @@ public class FollowersController {
         User user = userService.getLoggedInUser();
         model.addAttribute("followList", followDao.findAllByUserId(user.getId()));
         model.addAttribute("user", user);
-        return "followers";
+        return "users/followers";
     }
 
 
@@ -57,7 +54,7 @@ public class FollowersController {
         model.addAttribute("followerPodcasts", createdPodcasts);
         model.addAttribute("userController", userDao);
         model.addAttribute("isFollowing", true); // viewing a followers page -> you are following them
-        return "othersProfile";
+        return "users/othersProfile";
     }
 
 

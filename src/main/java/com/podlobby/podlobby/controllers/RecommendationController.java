@@ -8,17 +8,13 @@ import com.podlobby.podlobby.repositories.FollowRepository;
 import com.podlobby.podlobby.repositories.PodcastRepository;
 import com.podlobby.podlobby.repositories.UserRepository;
 import com.podlobby.podlobby.services.UserService;
-import com.podlobby.podlobby.util.IframeParser;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 @Controller
@@ -42,7 +38,7 @@ public class RecommendationController {
     public String showModal(Model model, HttpSession session){
         model.addAttribute("categoryList", categoryDao.findAll());
         session.setAttribute("user", userService.getLoggedInUser()); // needs to be set if you are taken here upon registration
-        return "recommendationsModal";
+        return "users/recommendationsModal";
     }
 
 

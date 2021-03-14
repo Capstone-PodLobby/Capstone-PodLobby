@@ -1,9 +1,7 @@
 package com.podlobby.podlobby.controllers;
 
 import com.podlobby.podlobby.model.User;
-import com.podlobby.podlobby.services.UserDetailsLoader;
 import com.podlobby.podlobby.services.UserService;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -31,7 +29,7 @@ public class LoginController {
         if(user != null){
             return "redirect:/profile";
         }
-        return "login";
+        return "users/login";
     }
 
 

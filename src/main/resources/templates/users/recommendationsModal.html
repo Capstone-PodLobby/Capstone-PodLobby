@@ -26,11 +26,11 @@
         $(".categoryItem").on("click", function () {
             let category = $(this)[0].innerText;
             if($(this)[0].classList.contains("clicked")){
-                $(this).children().children()[0].innerHTML = `<img src="/img/audio.jpg" alt="" class="circle responsive-img">`;
+                $(this).children().children()[0].innerHTML = `<img src="/images/audio.jpg" alt="" class="circle responsive-img">`;
                 removeEle(recommendationsArr, category);
                 $(this)[0].classList.remove("clicked");
             } else {
-                $(this).children().children()[0].innerHTML = `<img src="/img/audioWave.jpg" alt="" class="circle responsive-img">`;
+                $(this).children().children()[0].innerHTML = `<img src="/images/audioWave.jpg" alt="" class="circle responsive-img">`;
                 $(this)[0].classList.add("clicked");
                 recommendationsArr.push(category);
             }

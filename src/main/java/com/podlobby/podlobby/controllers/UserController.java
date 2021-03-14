@@ -7,7 +7,6 @@ import com.podlobby.podlobby.repositories.FollowRepository;
 import com.podlobby.podlobby.repositories.PodcastRepository;
 import com.podlobby.podlobby.repositories.UserRepository;
 import com.podlobby.podlobby.services.UserService;
-import com.podlobby.podlobby.util.IframeParser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -83,7 +82,7 @@ public class UserController {
         model.addAttribute("isFollowing", alreadyFollowing);
         model.addAttribute("userController", userDao);
 
-        return "othersProfile";
+        return "users/othersProfile";
     }
 
 }

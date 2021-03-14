@@ -33,7 +33,7 @@ public class RequestController {
         model.addAttribute("request", new Request());
         User user = userService.getLoggedInUser();
         model.addAttribute("user", user);
-        return "request";
+        return "requests/request";
     }
 
     @PostMapping("/request")
@@ -58,7 +58,7 @@ public class RequestController {
     public String showRequestsAndResponses(Model model, User user){
         user = userService.getLoggedInUser();
         model.addAttribute("requestList", requestDao.findByUser(user));
-        return "user-requests";
+        return "requests/user-requests";
     }
 
 
