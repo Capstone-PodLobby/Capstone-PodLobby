@@ -4,17 +4,43 @@
 <body>
     <div th:replace="partials/navbar-profile :: profileNav"></div>
 
+    <div th:if="${!param.isEmpty()}">
+        <div>
+            <div th:if="${param.messageSent}">
+                Our team has been notified. We will get back to you soon
+            </div>
+        </div>
+        <div>
+            <div th:if="${param.settings}">
+                Your information has been updated
+            </div>
+        </div>
+        <div>
+            <div th:if="${param.deleted}">
+                Your podcast has been successfully deleted
+            </div>
+        </div>
+        <div>
+            <div th:if="${param.comment}">
+                Your comment has been successfully deleted
+            </div>
+        </div>
+    </div>
+
     <main>
         <div class="row">
             <div class="col m4 hide-on-small-only profile-side">
-                <img class="circle profile-Image" th:src="${user.profileImage}">
+                <img class="circle profile-Image" th:src="${session.user.profileImage}">
                 <div class="collection">
-                    <a href="/followers" class="collection-item">Followers<span class="badge" th:text="${followerCount}"></span> </a>
-                    <a href="/getCategories" class="collection-item">Discover</a>
-                    <a href="/user-requests" class="collection-item">Requests</a>
-                    <a href="/user-responses" class="collection-item">Responses</a>
+                    <p class="collection-item teal-text text-darken-4" th:text="${session.user.username}"></p>
+                    <a href="/following" class="collection-item teal-text text-darken-4">Following<span class="badge" th:text="${followingCount}"></span> </a>
+                    <a href="/getCategories" class="collection-item teal-text text-darken-4">Discover</a>
+                    <a href="/user-requests" class="collection-item teal-text text-darken-4">Requests</a>
+                    <a href="/user-responses" class="collection-item teal-text text-darken-4">Responses</a>
+                    <a href="?recommendations" class="collection-item teal-text text-darken-4">Recommendations</a>
+                    <a href="?myPodcasts" class="collection-item teal-text text-darken-4">My Podcasts</a>
+                    <a th:if="${param.requestView}"><button id="myBtn">Would you like to work with me?</button></a>
                 </div>
-                <p th:if="${!param.isEmpty()}"><button id="myBtn">Would you like to work with me?</button></p>
                 <!-- The Modal -->
                 <div id="myModal" class="modal">
 
@@ -26,30 +52,71 @@
 
                 </div>
                 <!--    ^^^^^ THIS IS WHERE YOU CAN CLICK TO SEND A RESPONSE TO THE USER THAT CREATED THE REQUEST  -->
-                <p class="center-align">About you <span th:text="${user.aboutMe}"></span></p>
+                <p class="center-align" th:text="${session.user.aboutMe}"></p>
             </div>
 
-            <div class="col s12 m8 content-side">
+            <div class="col s12 m8 content-side" th:if="${!param.isEmpty()}">
     <!--    In the content area can click on a specific podcast ( id ) and it will move to the nav bar to be played -->
-                <div id="profileContentArea">
+                <div>
+                    <div id="profileContentArea" th:if="${param.myPodcasts} OR ${param.settings} OR ${param.messageSent}">
 
-                    <div class="col s12 profileContentItem" th:each="podcast : ${userPodcasts}">
-                        <div class="card horizontal">
-                            <div class="card-image">
-                                <img th:src="${podcast.image}">
-                            </div>
-                            <div class="card-stacked">
-                                <div class="card-content">
-                                    <iframe th:src="${podcast.embedLink}"></iframe>
-                                </div>
-                                <div class="card-action">
-                                    <a href="#">Listen</a>
-                                    <a href="#">Edit</a>
-                                    <div th:replace="partials/deleteModal :: deleteModal"></div>
-                                    <div th:replace="partials/commentsModal :: commentModal"></div>
+                        <div th:if="${userPodcasts.size() > 0}">
+                            <div class="col s12 profileContentItem" th:each="i : ${#numbers.sequence(0, userPodcasts.size() - 1)}">
+                                <div class="card horizontal">
+                                    <div class="card-image">
+                                        <img th:src="${userPodcasts.get(i).image}">
+                                    </div>
+                                    <div class="card-stacked">
+                                        <div class="card-content">
+                                            <iframe th:src="${userPodcasts.get(i).embedLink}"></iframe>
+                                        </div>
+                                        <div class="card-action">
+                                            <form th:action="@{/listen/{id}(id=${userPodcasts.get(i).id})}" method="get">
+                                                <input type="hidden" name="currentUrl" id="currentUrl" th:value="${currentUrl} + '?myPodcasts'">
+                                                <button class="btn">Listen</button>
+                                            </form>
+                                            <a href="/podcasts/edit">Edit</a>
+                                            <div th:replace="partials/deleteModal :: deleteModal"></div>
+                                            <div th:replace="partials/commentsModal :: commentModal"></div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
+                    </div>
+
+
+                    <div>
+                        <div id="profileContentAreaRecommendations" th:if="${param.recommendations}">
+
+
+                            <h1 th:if="${session.recommendations == null}">Check out the discover option</h1>
+
+                            <div th:if="${session.recommendations != null}" class="col s12 profileContentItem" th:each="recommendation : ${session.recommendations}">
+                                <div class="card horizontal">
+                                    <div class="card-image">
+                                        <img th:src="${recommendation.image}">
+                                    </div>
+                                    <div class="card-stacked">
+                                        <div class="card-content">
+                                            <iframe th:src="${recommendation.embedLink}"></iframe>
+                                        </div>
+                                        <div class="card-action">
+<!--                                            <div th:each="category : ${recommendation.categories}">-->
+<!--                                                <p th:text="${category.name}"></p>-->
+<!--                                            </div>-->
+                                            <form th:action="@{/listen/{id}(id=${recommendation.id})}" method="get">
+                                                <input type="hidden" name="currentUrl" th:value="${currentUrl} + '?recommendations'">
+                                                <button class="btn">Listen</button>
+                                            </form>
+                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
                     </div>
 
                 </div>

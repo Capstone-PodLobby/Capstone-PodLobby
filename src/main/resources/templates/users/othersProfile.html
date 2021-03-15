@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/materializeHead :: styleHead('User Profile')"></head>
+<body>
+<div th:replace="partials/navbar-profile :: profileNav"></div>
+
+<div th:if="${!param.isEmpty()}">
+    <div>
+        <div th:if="${param.followed}">
+            You have followed <span th:text="${following.username}"></span>.
+        </div>
+    </div>
+</div>
+<main>
+    <div class="row">
+        <div class="col m4 hide-on-small-only profile-side">
+            <img class="circle profile-Image" th:src="${following.profileImage}">
+            <div class="collection">
+                <a href="#!" class="collection-item" th:text="${following.username}"></a>
+                <a th:if="${!isFollowing}" th:href="@{/followUser/{id}(id=${following.id})}" class="collection-item">Follow</a>
+                <a th:if="${isFollowing}" th:href="@{/unfollow/{id}(id=${following.id})}" class="collection-item">UnFollow</a>
+                <a href="#!" class="collection-item">View active requests</a>
+                <p class="center-align" th:text="${following.aboutMe}"></p>
+            </div>
+        </div>
+
+        <div class="col s12 m8 content-side">
+            <p class="center-align">Activity</p>
+            <!--    In the content area can click on a specific podcast ( id ) and it will move to the nav bar to be played -->
+            <div id="profileContentArea">
+
+                <div class="col s12 profileContentItem" th:each="i : ${#numbers.sequence(0, followingPodcasts.size() - 1)}">
+                    <div class="card horizontal">
+                        <div class="card-image">
+                            <img th:src="${followingPodcasts.get(i).image}">
+                        </div>
+                        <div class="card-stacked">
+                            <div class="card-content">
+                                <iframe th:src="${followingPodcasts.get(i).embedLink}"></iframe>
+                            </div>
+                            <div class="card-action">
+                                <form th:action="@{/listen/{id}(id=${followingPodcasts.get(i).id})}" method="get">
+                                    <input type="hidden" name="currentUrl" id="currentUrl" th:value="${currentUrl}">
+                                    <button class="btn">Listen</button>
+                                </form>
+<!--                                <a th:href="@{/listen/{id}(id=${followingPodcasts.get(i).id})}">Listen</a>-->
+
+                                <a class="waves-effect waves-light btn modal-trigger deleteButton" th:href="@{#_modal{num}(num=${i})}">Comments</a>
+
+                                <div th:id="'_modal' + ${i}" class="modal">
+                                    <div class="modal-content">
+                                        <div class="commentArea" th:each="comment : ${followingPodcasts.get(i).comments}">
+                                            <p th:text="${comment.comment}"></p>
+                                            <p>Posted at : <span th:text="${comment.createdAt}"></span></p>
+                                            <p>Posted by : <span th:text="${userController.getOne(comment.user.id).username}"></span></p>
+                                            <img style="max-width: 25%;" class="circle responsive-image" th:src="${userController.getOne(comment.user.id).profileImage}"/>
+                                            <form th:action="@{/comment/delete/{id}(id=${comment.id})}" th:method="GET" th:if="${comment.user.id == session.user.id}">
+                                                <input type="hidden" name="currentUrl" id="URL" th:value="${currentUrl}">
+                                                <button class="btn wave-effect">Delete Comment</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <form th:action="@{/comment/create/{title}(title=${followingPodcasts.get(i).title})}" th:method="POST" class="container">
+                                            <div class="input-field">
+                                                <label for="comment">Comment</label>
+                                                <input name="comment" type="text" id="comment" class="validate"/>
+                                            </div>
+                                            <input type="hidden" name="currentUrl" id="currentUrl" th:value="${currentUrl}">
+                                            <button class="btn wave-effect">Add comment<i class="material-icons">chat</i> </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer th:replace="partials/footer :: footer"></footer>
+<div th:replace="partials/materializescripts :: scripts"></div>
+
+</body>
+
+</html>

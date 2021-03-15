@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import javax.servlet.http.HttpServletRequest;
+import java.sql.Timestamp;
+import java.util.Date;
+
 
 @Controller
 public class RequestController {
@@ -26,30 +30,40 @@ public class RequestController {
 
 
     @GetMapping("/request")
-    public String showRequestForm(Model model){
+    public String showRequestForm(Model model, HttpServletRequest request){
         model.addAttribute("request", new Request());
-        return "request";
+        User user = userService.getLoggedInUser();
+        model.addAttribute("user", user);
+        model.addAttribute("currentUrl", request.getRequestURI());
+        return "requests/request";
     }
 
     @PostMapping("/request")
-    public String createRequest(@ModelAttribute Request request){
+    public String createRequest(@ModelAttribute Request request, Model model, HttpServletRequest servletRequest){
+        User user = userService.getLoggedInUser();
+        request.setCreatedAt(new Timestamp(new Date().getTime()));
+        request.setIsActive(1);
+        request.setUser(user);
         requestDao.save(request);
+        model.addAttribute("currentUrl", servletRequest.getRequestURI());
         return "redirect:/profile";
     }
 
     @GetMapping("/feeds/requests")
-    public String showRequestPosts(Model model){
+    public String showRequestPosts(Model model, HttpServletRequest request){
         model.addAttribute("requestList", requestDao.findAll());
         User user = userService.getLoggedInUser();
         model.addAttribute("user", user);
+        model.addAttribute("currentUrl", request.getRequestURI());
         return "feeds/requests-feed";
     }
 
     @GetMapping("/user-requests")
-    public String showRequestsAndResponses(Model model, User user){
+    public String showRequestsAndResponses(Model model, User user, HttpServletRequest request){
         user = userService.getLoggedInUser();
         model.addAttribute("requestList", requestDao.findByUser(user));
-        return "user-requests";
+        model.addAttribute("currentUrl", request.getRequestURI());
+        return "requests/user-requests";
     }
 
 

@@ -14,24 +14,27 @@
             <div th:if="${param.error}">
                 Username or password does not exist.
             </div>
+            <div th:if="${param.messageSent}">
+                Our team has been notified. We will get back to you soon
+            </div>
         </div>
     </div>
 
     <form class="container" method="post" th:action="@{/login}">
 
-        <div class="form-group input-field">
-            <input class="form-control" type="text" id="username" name="username"/>
+        <div class="input-field">
+            <input class="validate" type="text" id="username" name="username"/>
             <label for="username">Username</label>
         </div>
-        <div class="form-group input-field">
-            <input class="form-control" type="password" id="password" name="password"/>
+        <div class="input-field">
+            <input class="validate" type="password" id="password" name="password"/>
             <label for="password">Password</label>
         </div>
-        <input class="btn waves-effect" type="submit" value="Login"/>
+        <button class="btn waves-effect">Login</button>
 
     </form>
     <a href="/register"><button class="btn waves-effect">Login with GitHub (in progress)</button></a>
-    <a href="/register"><button class="btn waves-effect">Register</button></a>
+    <a class="white-text" href="/register"><button class="btn waves-effect">Register</button></a>
 </main>
 <footer th:replace="partials/footer.html :: footer"></footer>
 <div th:replace="partials/materializescripts :: scripts"></div>

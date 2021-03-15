@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/materializeHead.html :: styleHead('Create Post')"></head>
+<head th:replace="partials/materializeHead.html :: styleHead('Podcasts by your following')"></head>
 <body>
 <nav th:replace="partials/navbar-profile :: profileNav"></nav>
 <main>
@@ -9,27 +9,12 @@
 
 <div class="row" >
 
-    <!-- User's profile information -->
-    <div class="col s12 m3">
-        <div class="card">
-            <div class="card-image">
-                <img src="images/sample-1.jpg">
-                <span class="card-title">User Name</span>
-            </div>
-            <div class="card-content">
-                <h5>About Me</h5>
-                <p>I am a very simple card. I am good at containing small bits of information.
-                    I am convenient because I require little markup to use effectively.</p>
-            </div>
-            <div class="card-action">
-                <a href="#">This is a link</a>
-            </div>
-        </div>
-    </div>
+    <div th:replace="partials/fixedProfileCard :: fixedProfileCard"></div>
 
 
 
-    <div class="col s12 m9">
+
+    <div class="col s12 m8">
         <!-- Title-->
         <div class="feed-title">
             <h2>FEED</h2>
@@ -38,13 +23,13 @@
         <!--Feed Buttons-->
         <div class="feed-buttons">
 
-            <div class="col s12 m3">
+            <div class="col s12 m4">
                 <a href="/feeds/global" class="waves-effect waves-light btn-large">GLOBAL</a>
             </div>
-            <div class="col s12 m3">
+            <div class="col s12 m4">
                 <a href="/feeds/filtered" class="waves-effect waves-light btn-large">FOLLOWERS</a>
             </div>
-            <div class="col s12 m3">
+            <div class="col s12 m4">
                 <a href="/feeds/requests" class="waves-effect waves-light btn-large">REQUESTS</a>
             </div>
 

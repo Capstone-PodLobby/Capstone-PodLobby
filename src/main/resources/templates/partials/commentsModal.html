@@ -1,13 +1,30 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <div th:fragment="commentModal" th:remove="tag">
-    <a class="waves-effect waves-light btn modal-trigger deleteButton" href="#modal2">Comments</a>
+    <a class="waves-effect waves-light btn modal-trigger deleteButton" th:href="@{#_modal{num}(num=${i})}">Comments</a>
 
-    <div id="modal2" class="modal">
+    <div th:id="'_modal' + ${i}" class="modal">
         <div class="modal-content">
-            <div class="commentArea" th:each="comment : ${podcast.comments}">
+            <div class="commentArea" th:each="comment : ${userPodcasts.get(i).comments}">
                 <p th:text="${comment.comment}"></p>
+                <p>Posted at : <span th:text="${comment.createdAt}"></span></p>
+                <p>Posted by : <span th:text="${userController.getOne(comment.user.id).username}"></span></p>
+                <img style="max-width: 25%;" class="circle responsive-image" th:src="${userController.getOne(comment.user.id).profileImage}"/>
+                <form th:action="@{/comment/delete/{id}(id=${comment.id})}" th:method="GET" th:if="${comment.user.id == session.user.id}">
+                    <input type="hidden" name="currentUrl" id="URL" th:value="${currentUrl}">
+                    <button class="btn wave-effect">Delete Comment</button>
+                </form>
             </div>
+        </div>
+        <div>
+            <form th:action="@{/comment/create/{title}(title=${userPodcasts.get(i).title})}" th:method="POST" class="container">
+                <div class="input-field">
+                    <label for="comment">Comment</label>
+                    <input name="comment" type="text" id="comment" class="validate"/>
+                </div>
+                <input type="hidden" name="currentUrl" id="currentUrl" th:value="${currentUrl}">
+                <button class="btn wave-effect">Add comment<i class="material-icons">chat</i> </button>
+            </form>
         </div>
     </div>
 </div>

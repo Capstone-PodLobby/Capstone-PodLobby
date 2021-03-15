@@ -88,6 +88,15 @@ main {
 .feed-title{
     text-align: center;
 }
+
+
+/*style for tap target on create podcast*/
+.tap-target-content{
+    inset: 78px 0 0 350px !important;
+}
+.embedImg{
+    border-radius: 30% !important;
+}
 /*=============================================================================*/
 
 @media screen and (min-width: 992px){

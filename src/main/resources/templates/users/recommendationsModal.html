@@ -1,10 +1,18 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/materializeHead :: styleHead('Create Podcast')"></head>
+<head th:replace="partials/materializeHead :: styleHead('Podcast Recommendations')"></head>
 <body>
 <nav th:replace="partials/navbar-profile :: profileNav"></nav>
 
     <main id="mainPadding">
+
+        <div th:if="${!param.isEmpty()}">
+            <div>
+                <div th:if="${param.default}">
+                    Please make a selection or choose to do this later.
+                </div>
+            </div>
+        </div>
 
         <div th:include="partials/categoryModal :: catModal"></div>
 
@@ -18,23 +26,25 @@
         $(".categoryItem").on("click", function () {
             let category = $(this)[0].innerText;
             if($(this)[0].classList.contains("clicked")){
-                $(this).children().children()[0].innerHTML = `<img src="/img/audio.jpg" alt="" class="circle responsive-img">`;
+                $(this).children().children()[0].innerHTML = `<img src="/images/audio.jpg" alt="" class="circle responsive-img">`;
                 removeEle(recommendationsArr, category);
                 $(this)[0].classList.remove("clicked");
             } else {
-                $(this).children().children()[0].innerHTML = `<img src="/img/audioWave.jpg" alt="" class="circle responsive-img">`;
+                $(this).children().children()[0].innerHTML = `<img src="/images/audioWave.jpg" alt="" class="circle responsive-img">`;
                 $(this)[0].classList.add("clicked");
                 recommendationsArr.push(category);
             }
-            console.log(recommendationsArr);
+            // console.log(recommendationsArr);
         });
 
-        function handleRecommendations(e){
+        function handleRecommendations(){
             let form = document.getElementById("categoryForm");
-            let param = "";
-            for(let i = 0; i < recommendationsArr.length; i++){
-                param+=recommendationsArr[i] + ",";
-                form.insertAdjacentHTML("afterbegin", renderInput(recommendationsArr[i]));
+            if(recommendationsArr.length > 0) {
+                for (let i = 0; i < recommendationsArr.length; i++) {
+                    form.insertAdjacentHTML("afterbegin", renderInput(recommendationsArr[i]));
+                }
+            } else {
+                form.insertAdjacentHTML("afterbegin", renderInput("default"));
             }
 
             // $("#categoryForm").submit();
@@ -58,10 +68,9 @@
             for(let i = arr.length - 1; i >= 0; i--){
                 if(arr[i] === string) {
                     arr.splice(i, 1);
-                    break;
+                    return arr;
                 }
             }
-            return arr;
         }
 
     </script>
