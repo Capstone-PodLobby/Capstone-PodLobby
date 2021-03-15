@@ -33,6 +33,8 @@ public class UserController {
         this.commentDao = commentDao;
     }
 
+
+//    @PathVariable long id,
     @GetMapping("/profile")
     public String profilePage(Model model, HttpSession session, HttpServletRequest request){
 //        get the current user
@@ -42,6 +44,10 @@ public class UserController {
 
         session.setAttribute("user", user);
         model.addAttribute("userController", userDao); // used in comment modal
+
+//        model.addAttribute("podcast",podcastDao.getOne(id));
+
+
         model.addAttribute("followingCount", followingCount); // make this a session attribute ? will it update on each page ( needs to be tested )
         model.addAttribute("userPodcasts", createdPodcasts); // ^^ same
         model.addAttribute("currentUrl", request.getRequestURI());
