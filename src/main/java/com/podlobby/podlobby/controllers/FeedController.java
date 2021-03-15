@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +22,6 @@ public class FeedController {
     private final UserService userService;
     private final PodcastRepository podcastDao;
     private final UserRepository usersDao;
-    private final IframeParser iframeParser = new IframeParser();
     private final FollowRepository followDao;
 
     public FeedController(PodcastRepository podcastDao, UserRepository usersDao, FollowRepository followDao, UserService userService){
@@ -32,23 +32,17 @@ public class FeedController {
     }
 
     @GetMapping("/feeds/global")
-    public String showGlobalFeed(Model model){
+    public String showGlobalFeed(Model model, HttpServletRequest request){
         List<Podcast> podcasts = podcastDao.findAll();
-        for(Podcast p : podcasts){
-            String parsedEmbed = iframeParser.parseIframe(p.getEmbedLink());
-            p.setEmbedLink(parsedEmbed);
-        }
         model.addAttribute("podcasts", podcasts);
-        User user = userService.getLoggedInUser();
-        model.addAttribute("user", user);
+        model.addAttribute("currentUrl", request.getRequestURI());
         return"/feeds/global-feed";
     }
 
 
     @GetMapping("/feeds/filtered")
-    public String showFilteredFeed(Model model){
-        User user = userService.getLoggedInUser();
-        model.addAttribute("user", user);
+    public String showFilteredFeed(Model model, HttpServletRequest request){
+        model.addAttribute("currentUrl", request.getRequestURI());
         List<Podcast> allPodcast = podcastDao.findAll();
         List<Podcast> selectPodcast = new ArrayList<>();
 //        for(Podcast podcast : allPodcast) {

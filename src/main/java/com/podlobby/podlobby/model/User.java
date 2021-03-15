@@ -31,6 +31,9 @@ public class User {
     @Column(columnDefinition = "TEXT")
     private String profileImage;
 
+    @Column(columnDefinition = "TEXT")
+    private String backgroundImage;
+
     @Column(columnDefinition = "TINYINT")
     private int isAdmin;
 
@@ -70,6 +73,7 @@ public class User {
         this.email = copy.email;
         this.joinedAt = copy.joinedAt;
         this.profileImage = copy.profileImage;
+        this.backgroundImage = copy.backgroundImage;
         this.isAdmin = copy.isAdmin;
         this.aboutMe = copy.aboutMe;
         this.podcasts = copy.podcasts;
@@ -80,13 +84,14 @@ public class User {
         this.followers = copy.followers;
     }
 
-    public User(long id, String username, String password, String email, Timestamp joinedAt, String profileImage, int isAdmin, String aboutMe, List<Podcast> podcasts, List<Comment> comments, List<Request> requests, List<Response> responseList, List<User> users, List<User> followers) {
+    public User(long id, String backgroundImage, String username, String password, String email, Timestamp joinedAt, String profileImage, int isAdmin, String aboutMe, List<Podcast> podcasts, List<Comment> comments, List<Request> requests, List<Response> responseList, List<User> users, List<User> followers) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
         this.joinedAt = joinedAt;
         this.profileImage = profileImage;
+        this.backgroundImage = backgroundImage;
         this.isAdmin = isAdmin;
         this.aboutMe = aboutMe;
         this.podcasts = podcasts;
@@ -97,12 +102,13 @@ public class User {
         this.followers = followers;
     }
 
-    public User(String username, String password, String email, Timestamp joinedAt, String profileImage, int isAdmin, String aboutMe, List<Podcast> podcasts, List<Comment> comments, List<Request> requests, List<Response> responseList, List<User> users, List<User> followers) {
+    public User(String username, String backgroundImage, String password, String email, Timestamp joinedAt, String profileImage, int isAdmin, String aboutMe, List<Podcast> podcasts, List<Comment> comments, List<Request> requests, List<Response> responseList, List<User> users, List<User> followers) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.joinedAt = joinedAt;
         this.profileImage = profileImage;
+        this.backgroundImage = backgroundImage;
         this.isAdmin = isAdmin;
         this.aboutMe = aboutMe;
         this.podcasts = podcasts;
@@ -223,5 +229,13 @@ public class User {
 
     public void setFollowers(List<User> followers) {
         this.followers = followers;
+    }
+
+    public String getBackgroundImage() {
+        return backgroundImage;
+    }
+
+    public void setBackgroundImage(String backgroundImage) {
+        this.backgroundImage = backgroundImage;
     }
 }

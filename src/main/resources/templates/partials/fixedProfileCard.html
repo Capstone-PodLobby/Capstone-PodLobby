@@ -1,0 +1,20 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
+<!-- User's profile information -->
+<div class="col s12 m4" th:fragment="fixedProfileCard">
+    <div class="card">
+        <div class="card-image">
+            <img th:src="${session.user.profileImage}">
+            <span class="card-title" th:text="${session.user.username}"></span>
+        </div>
+        <div class="card-content">
+            <h5>About Me</h5>
+            <p th:text="${session.user.aboutMe}"></p>
+        </div>
+        <div class="card-action">
+            <a href="/following" class="collection-item">Following</a>
+            <a href="/getCategories" class="collection-item">Discover</a>
+        </div>
+    </div>
+</div>

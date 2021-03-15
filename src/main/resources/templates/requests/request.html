@@ -4,29 +4,24 @@
 <body>
 <nav th:replace="partials/navbar-profile :: profileNav"></nav>
 <main>
-    <form th:action="@{/request}" th:method="POST" th:object="${request}">
+    <form th:action="@{/request}" th:method="POST" th:object="${request}" class="container">
 
-        <div class="form-group input-field">
+        <div class="input-field">
             <label for="title">Title</label>
             <input id="title" name="title" type="text" th:value="*{title}"/>
         </div>
 
-        <div class="form-group input-field">
+        <div class="input-field">
             <label for="description">Description</label>
             <input id="description" name="description" type="text" th:value="*{description}"/>
         </div>
 
-        <div class="form-group input-field">
+        <div class="input-field">
             <label for="req-amount">How many people do you need?</label>
-            <input id="req-amount" name="req-amount" type="text" th:value="*{guestCount}"/>
+            <input id="req-amount" name="req-amount" type="number" th:value="*{guestCount}"/>
         </div>
-<!--???WHAT TO DO WITH IS_ACTIVE COLUMN???-->
-<!--        <div class="form-group input-field">-->
-<!--            <label for="req-active">Activate</label>-->
-<!--            <input id="req-active" name="req-amount" type="checkbox" th:value="*{isActive}"/>-->
-<!--        </div>-->
 
-        <input class="btn btn-block btn-primary" type="submit"/>
+        <input class="btn" type="submit"/>
 
     </form>
 </main>

@@ -18,12 +18,13 @@
             </div>
 
             <div class="col l5 s12">
-                <form> <!--th:action="@{/sendMessage}" method="post"-->
+                <form th:action="@{/sendMessage}" method="post">
                     <h5 class="white-text">Contact Us</h5>
                     <div class="input-field col s6">
-                        <input id="messageUs" type="text" class="validate">
+                        <textarea class="materialize-textarea" id="messageUs" name="messageUs"></textarea>
                         <label for="messageUs">Message</label>
                     </div>
+                    <input type="hidden" name="currentUrl" id="currentUrl" th:value="${currentUrl}">
                     <button class="waves-effect waves-light" type="submit" name="action" id="footerSubmitButton">
                         <i class="material-icons right">send</i>
                     </button>

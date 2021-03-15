@@ -1,38 +1,37 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:include="partials/materializeHead.html :: styleHead('Create Post')"></head>
+<head th:replace="partials/materializeHead.html :: styleHead('Edit Podcast')"></head>
 <body>
 <nav th:replace="partials/navbar-profile :: profileNav"></nav>
-<div class="container">
-    <h1 class="my-4">Edit Podcast</h1>
+<main>
 
-    <form>
-        <div class="form-group">
-            <label for="title">Title</label>
-            <input class="form-control" type="text" id="title"/>
-        </div>
-        <div class="form-group">
-            <label for="body">Description</label>
-            <textarea class="form-control" id="body"></textarea>
-        </div>
-        <!--May need to change type below-->
-        <div class="form-group">
-            <label for="audioURL">Audio URL</label>
-            <input class="form-control" type="text" id="audioURL"/>
-        </div>
+    <div class="container">
+        <h1 class="my-4">Edit Podcast</h1>
 
-        <input class="btn btn-block btn-primary" type="submit" value="Edit Post" />
-        <!--    DELETE OPTION-->
+        <form>
 
-        <!--    <form th:action="@{|/posts/${post.id}/delete|}" th:method="POST">-->
-        <input class="btn btn-danger" type="submit" value="Delete Post" />
-        <!--    </form>-->
-    </form>
+            <div class="input-field">
+                <label for="title">Title</label>
+                <input class="validate" type="text" id="title"/>
+            </div>
+            <div class="input-field">
+                <label for="body">Description</label>
+                <textarea class="materialize-textarea" id="body"></textarea>
+            </div>
+            <div class="input-field">
+                <label for="embedUrl">Embed URL</label>
+                <input class="validate" type="text" id="embedUrl"/>
+            </div>
 
+            <input class="btn" type="submit" value="Edit Post" />
 
-</div>
+        </form>
 
-<footer th:include="partials/footer.html :: footer"></footer>
+    </div>
+
+</main>
+
+<footer th:replace="partials/footer.html :: footer"></footer>
 <div th:replace="partials/materializescripts :: scripts"></div>
 
 </body>

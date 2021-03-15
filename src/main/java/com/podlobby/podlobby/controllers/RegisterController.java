@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 import java.sql.Timestamp;
 
@@ -30,7 +31,7 @@ public class RegisterController {
 
     //    Display registration page   //
     @GetMapping("/register")
-    public String showRegisterForm(Model model){
+    public String showRegisterForm(Model model, HttpServletRequest request){
 
         // if a user is currently logged in
         User user = null;
@@ -39,6 +40,7 @@ public class RegisterController {
         } catch (Exception ignored){}
 
         if(user != null){
+            model.addAttribute("currentUrl", request.getRequestURI());
             return "redirect:/profile";
         }
 
@@ -47,7 +49,7 @@ public class RegisterController {
     }
 
     @PostMapping("/register")
-    public String registered(Model model, @ModelAttribute User user, @RequestParam(name = "confirm-password", required = false) String confirmPassword){
+    public String registered(Model model, @ModelAttribute User user, @RequestParam(name = "confirm-password", required = false) String confirmPassword, @RequestParam(name = "g-recaptcha-response") String captcha){
         if(userDao.findByUsername(user.getUsername()) != null) {
             model.addAttribute("username", user.getUsername());
             return "redirect:/register?username";
@@ -60,11 +62,16 @@ public class RegisterController {
         } else if(!confirmPassword.equals(user.getPassword())) {
             model.addAttribute("mismatch", 0);
             return "redirect:/register?password";
+        } else if(captcha.isEmpty()){
+            return "redirect:/register?captcha";
         }
 
         user.setJoinedAt(new Timestamp(new Date().getTime()));
         user.setPassword(encoder.encode(user.getPassword()));
+        user.setBackgroundImage("https://images.unsplash.com/photo-1567596388756-f6d710c8fc07?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80,1");
+
         userDao.save(user);
         return "redirect:/getCategories";
-}
+    }
+
 }
