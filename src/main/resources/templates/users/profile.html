@@ -75,7 +75,7 @@
                                                 <input type="hidden" name="currentUrl" id="currentUrl" th:value="${currentUrl} + '?myPodcasts'">
                                                 <button class="btn">Listen</button>
                                             </form>
-                                            <a href="/podcasts/edit">Edit</a>
+                                            <a th:href="@{/podcasts/{id}/edit(id=${userPodcasts.get(i).id})}">Edit</a>
                                             <div th:replace="partials/deleteModal :: deleteModal"></div>
                                             <div th:replace="partials/commentsModal :: commentModal"></div>
                                         </div>

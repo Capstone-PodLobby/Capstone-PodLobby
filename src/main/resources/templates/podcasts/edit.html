@@ -1,34 +1,79 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/materializeHead.html :: styleHead('Edit Podcast')"></head>
+<head th:replace="partials/materializeHead :: styleHead('Edit Podcast')"></head>
 <body>
 <nav th:replace="partials/navbar-profile :: profileNav"></nav>
 <main>
-
     <div class="container">
         <h1 class="my-4">Edit Podcast</h1>
 
-        <form>
+        <div th:if="${!param.isEmpty()}">
+            <div>
+                <div th:if="${param.title}">
+                    Title can not be blank.
+                </div>
+            </div>
+            <div>
+                <div th:if="${param.embed}">
+                    Embed Link can not be missing.
+                </div>
+            </div>
+            <div>
+                <div th:if="${param.embedIssue}">
+                    Embed Link seems to be missing the src attribute, please check "src="http:...".
+                </div>
+            </div>
+            <div>
+                <div th:if="${param.description}">
+                    Description can not be blank.
+                </div>
+            </div>
+            <div>
+                <div th:if="${param.categories}">
+                    Categories can not be missing.
+                </div>
+            </div>
+        </div>
 
+        <form th:action="@{/podcasts/{id}/edit(id=${podcast.id})}" th:method="POST" th:object="${podcast}">
             <div class="input-field">
                 <label for="title">Title</label>
-                <input class="validate" type="text" id="title"/>
+                <input class="validate" type="text" id="title" th:field="*{title}"/>
             </div>
             <div class="input-field">
                 <label for="body">Description</label>
-                <textarea class="materialize-textarea" id="body"></textarea>
+                <textarea class="materialize-textarea" id="body" th:field="*{description}"></textarea>
             </div>
-            <div class="input-field">
+
+            <div class="input-field" style="display: flex">
                 <label for="embedUrl">Embed URL</label>
-                <input class="validate" type="text" id="embedUrl"/>
+                <input class="validate" type="text" id="embedUrl" th:field="*{embedLink}"/>
+                <a class="waves-effect waves-light btn" onclick="$('.tap-target').tapTarget('open')"><i class="fas fa-question"></i></a>
             </div>
 
-            <input class="btn" type="submit" value="Edit Post" />
+            <div class="input-field" style="display: flex">
+                <label for="imageURL">Image URL (optional)</label>
+                <input class="validate" type="text" id="imageURL" th:field="*{image}"/>
+                <button class="btn wave-effect" id="podcastImage">Upload</button>
+            </div>
 
+            <input type="hidden" th:field="*{id}"/>
+            <input class="btn" type="submit" value="Update Post" />
         </form>
 
-    </div>
+        <div class="tap-target" data-target="menu">
+            <div class="tap-target-content">
+                <h5>Embed URL Location</h5>
+                <p>This can be found under the share option while viewing your podcast on Spotify and Anchor fm -> copy embed link!</p>
+                <img class="embedImg responsive-img" th:src="@{/gif/embedLinkAnchor.gif}" alt="anchor gif">
+                <img class="embedImg responsive-img" th:src="@{/images/spotifyEmbedLink.png}" alt="spotify embed">
 
+            </div>
+        </div>
+
+        <a id="menu" class="waves-effect waves-light btn btn-floating" ><i class="material-icons">menu</i></a>
+
+    </div>
 </main>
 
 <footer th:replace="partials/footer.html :: footer"></footer>

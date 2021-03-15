@@ -9,6 +9,7 @@ import com.podlobby.podlobby.repositories.PodcastRepository;
 import com.podlobby.podlobby.repositories.UserRepository;
 import com.podlobby.podlobby.services.UserService;
 import com.podlobby.podlobby.util.IframeParser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,19 +41,37 @@ public class PodcastPostController {
     /////////////////
     //EDIT   OPTION//
     /////////////////
-    //Will need to add ID to path for specific post
-    @GetMapping("/podcasts/edit")
-    public String viewEditPodcastForm(Model model, HttpServletRequest request) {
-//        model.addAttribute("podcast", podcastDao.getOne(id));
-        model.addAttribute("currentUrl", request.getRequestURI());
-        return "podcasts/edit";
+
+    @GetMapping("/podcasts/{id}")
+    public String podcastsView(Model model, @PathVariable long id) {
+        Podcast podcast = podcastDao.getOne(id);
+        model.addAttribute("podcast", podcast);
+        return "podcasts/show";
     }
 
-    @PostMapping("/podcast/{id}/edit")
-    public String editPodcast(Model model, @PathVariable(name = "id") long id, HttpServletRequest request){
-        model.addAttribute("currentUrl", request.getRequestURI());
-        return "users/profile";
+
+    @GetMapping("/podcasts/{id}/edit")
+    public String viewEditPodcastForm(@PathVariable long id, Model model){
+        User currUser = userService.getLoggedInUser();
+        model.addAttribute("podcast",podcastDao.getOne(id));
+        return"podcasts/edit";
     }
+
+
+    @PostMapping("/podcasts/{id}/edit")
+    public String editPodcast(@PathVariable long id, @ModelAttribute Podcast podcast) {
+        User currUser = userService.getLoggedInUser();
+        System.out.println(" +++++++++++++++++++++++++++++++ Current user is: " + currUser);
+        if(currUser == podcast.getUser()){
+            podcast.setCreatedAt(new Timestamp(new Date().getTime()));
+            podcast.setUser(userDao.getOne(userService.getLoggedInUser().getId())); // ----- GET LOGGED IN USER -> session ?
+            podcastDao.save(podcast);
+        } else {
+            return "redirect:/profile";
+        }
+        return "redirect:/profile";
+    }
+
 
     @GetMapping("/podcast/delete/{id}")
     public String deletePodcast(Model model, @PathVariable(name = "id") long id, HttpServletRequest request, @RequestParam(name = "currentUrl") String currentUrl){
