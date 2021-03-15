@@ -100,15 +100,13 @@
     const uploadBtn = document.getElementById("podcastImage");
     uploadBtn.addEventListener("click", (e) => {
         e.preventDefault();
-        console.log("clicked uploader");
         client.picker(options).open();
     });
 
     function uploadFile(result){
         const fileData = result.filesUploaded;
         const fileString = fileData[0].url;
-        let imageInput = document.getElementById("profileImage");
-        imageInput.val = fileString;
+        document.getElementById("imageURL").value = fileString;
     }
 
 </script>
