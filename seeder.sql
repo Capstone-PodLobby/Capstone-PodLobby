@@ -1,5 +1,6 @@
-
-use podLobby;
+# drop database  podLobby;
+create database if not exists podLobby_db;
+use podLobby_db;
 
 
 
