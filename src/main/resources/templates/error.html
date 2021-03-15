@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/materializeHead :: styleHead(Error)"></head>
+<body>
+
+    <nav sec:authorize="isAnonymous()" th:replace="partials/navbar :: navbar"></nav>
+    <nav sec:authorize="isAuthenticated()" th:replace="partials/navbar-profile :: profileNav"></nav>
+
+    <th:block th:switch="${error}">
+        <h1 th:text="${error}"></h1>
+        <div th:case="'Not Found'">
+            <h2>Page not found</h2>
+        </div>
+        <div th:case="'Forbidden'">
+            <h2>You don't have permission to view this page. If you feel as tho you should be able to view this page, feel free to contact us below</h2>
+        </div>
+    </th:block>
+
+    <footer th:replace="partials/footer :: footer"></footer>
+    <div th:replace="partials/materializescripts :: scripts"></div>
+
+</body>
+</html>
