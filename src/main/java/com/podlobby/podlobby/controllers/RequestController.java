@@ -41,6 +41,9 @@ public class RequestController {
     @PostMapping("/request")
     public String createRequest(@ModelAttribute Request request, Model model, HttpServletRequest servletRequest){
         User user = userService.getLoggedInUser();
+        if(request.getGuestCount() == 0) {
+            return "redirect:/request?guestCount";
+        }
         request.setCreatedAt(new Timestamp(new Date().getTime()));
         request.setIsActive(1);
         request.setUser(user);
