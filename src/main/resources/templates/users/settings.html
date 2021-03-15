@@ -104,15 +104,15 @@
     const uploadBtn = document.getElementById("fileUploader");
     uploadBtn.addEventListener("click", (e) => {
         e.preventDefault();
-        console.log("clicked uploader");
         client.picker(options).open();
     });
 
     function uploadFile(result){
         const fileData = result.filesUploaded;
         const fileString = fileData[0].url;
-        let imageInput = document.getElementById("profileImage");
-        imageInput.val = fileString;
+        console.log(fileString);
+        document.getElementById("profileImage").value = fileString;
+
     }
 
 
@@ -128,15 +128,13 @@
     const uploadBtnBack = document.getElementById("backgroundUploader");
     uploadBtnBack.addEventListener("click", (e) => {
         e.preventDefault();
-        console.log("clicked uploader for background image");
         client.picker(optionsBackground).open();
     });
 
     function uploadFileBackground(result){
         const fileData = result.filesUploaded;
         const fileString = fileData[0].url;
-        let imageInput = document.getElementById("backgroundImage");
-        imageInput.val = fileString;
+        document.getElementById("backgroundImage").value = fileString;
     }
 
 </script>
