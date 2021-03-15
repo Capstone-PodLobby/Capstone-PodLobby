@@ -8,11 +8,10 @@
     <div class="container">
         <h1 class="my-4">Edit Podcast</h1>
 
-        <form>
-
-            <div class="input-field">
+        <form th:action="@{/podcasts/{id}/edit(id=${podcast.id})}" th:method="POST" th:object="${model}">
+            <div class="form-group">
                 <label for="title">Title</label>
-                <input class="validate" type="text" id="title"/>
+                <input class="form-control" type="text" id="title" th:field="*{title}" th:value="${podcast.title}" th:placeholder="#{post.title}"/>
             </div>
             <div class="input-field">
                 <label for="body">Description</label>
@@ -26,6 +25,23 @@
             <input class="btn" type="submit" value="Edit Post" />
 
         </form>
+
+<!--        <form th:action="@{/podcasts/{id}/edit(id=${podcasts.id})}" th:method="POST" th:object="${podcasts}">-->
+<!--            <div class="form-group">-->
+<!--                <label for="title">Title</label>-->
+<!--                <input class="form-control" type="text" id="title" th:field="*{title}" th:value="${post.title}" th:placeholder="#{post.title}"/>-->
+<!--            </div>-->
+<!--            <div class="form-group">-->
+<!--                <label for="body">Body</label>-->
+<!--                <textarea class="form-control" id="body" th:field="*{body}" th:text="${post.body}" th:placeholder="#{post.body}"></textarea>-->
+<!--            </div>-->
+
+<!--            <input class="btn btn-primary" type="submit" value="Edit Post" />-->
+<!--        </form>-->
+
+<!--        <form th:action="@{|/posts/${post.id}/delete|}" th:method="POST">-->
+<!--            <input class="btn btn-danger" type="submit" value="Delete Post" />-->
+<!--        </form>-->
 
     </div>
 

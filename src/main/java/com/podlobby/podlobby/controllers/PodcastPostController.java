@@ -41,18 +41,47 @@ public class PodcastPostController {
     //EDIT   OPTION//
     /////////////////
     //Will need to add ID to path for specific post
-    @GetMapping("/podcasts/edit")
-    public String viewEditPodcastForm(Model model, HttpServletRequest request) {
+//    @GetMapping("/podcasts/edit")
+//    public String viewEditPodcastForm(Model model, HttpServletRequest request) {
+////        model.addAttribute("podcast", podcastDao.getOne(id));
+//        model.addAttribute("currentUrl", request.getRequestURI());
+//        return "podcasts/edit";
+//    }
+
+//    @PostMapping("/podcast/{id}/edit")
+//    public String editPodcast(Model model, @PathVariable(name = "id") long id, HttpServletRequest request){
+//        model.addAttribute("currentUrl", request.getRequestURI());
+//        return "users/profile";
+//    }
+
+    @GetMapping("/podcasts/{id}")
+    public String podcastsView(Model model, @PathVariable long id) {
+        Podcast podcast = podcastDao.getOne(id);
+        model.addAttribute("podcast", podcast);
+        return "podcasts/show";
+    }
+
+    @GetMapping("/podcasts/{id}/edit")
+    public String viewEditPodcastForm(@PathVariable(name = "id") long id, @ModelAttribute Model model) {
 //        model.addAttribute("podcast", podcastDao.getOne(id));
-        model.addAttribute("currentUrl", request.getRequestURI());
+//        model.addAttribute("currentUrl", request.getRequestURI());
+        model.addAttribute("title", podcastDao.getTitle(id));
+        model.addAttribute("id", podcastDao.getOne(id));
         return "podcasts/edit";
     }
 
-    @PostMapping("/podcast/{id}/edit")
-    public String editPodcast(Model model, @PathVariable(name = "id") long id, HttpServletRequest request){
-        model.addAttribute("currentUrl", request.getRequestURI());
-        return "users/profile";
+
+    @PostMapping("/podcasts/{id}/edit")
+    public String editPodcast(@PathVariable long id, @ModelAttribute Podcast podcast) {
+        User user = userDao.findAll().get(0);
+        podcast.setUser(user);
+        podcastDao.save(podcast);
+        return "redirect:/posts";
     }
+
+
+
+
 
     @GetMapping("/podcast/delete/{id}")
     public String deletePodcast(Model model, @PathVariable(name = "id") long id, HttpServletRequest request, @RequestParam(name = "currentUrl") String currentUrl){
