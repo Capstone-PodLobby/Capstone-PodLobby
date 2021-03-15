@@ -9,6 +9,7 @@ import com.podlobby.podlobby.repositories.PodcastRepository;
 import com.podlobby.podlobby.repositories.UserRepository;
 import com.podlobby.podlobby.services.UserService;
 import com.podlobby.podlobby.util.IframeParser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -61,22 +62,29 @@ public class PodcastPostController {
         return "podcasts/show";
     }
 
+
     @GetMapping("/podcasts/{id}/edit")
-    public String viewEditPodcastForm(@PathVariable(name = "id") long id, @ModelAttribute Model model) {
+    public String viewEditPodcastForm(@PathVariable long id, Model model){
+        model.addAttribute("podcast",podcastDao.getOne(id));
+        return"podcasts/edit";
+    }
+
+//    @GetMapping("/podcasts/{id}/edit")
+//    public String viewEditPodcastForm(@PathVariable(name = "id") long id, @ModelAttribute Model model) {
 //        model.addAttribute("podcast", podcastDao.getOne(id));
 //        model.addAttribute("currentUrl", request.getRequestURI());
-        model.addAttribute("title", podcastDao.getTitle(id));
-        model.addAttribute("id", podcastDao.getOne(id));
-        return "podcasts/edit";
-    }
+//
+//        model.addAttribute("id", podcastDao.getOne(id));
+//        return "podcasts/edit";
+//    }
 
 
     @PostMapping("/podcasts/{id}/edit")
     public String editPodcast(@PathVariable long id, @ModelAttribute Podcast podcast) {
-        User user = userDao.findAll().get(0);
-        podcast.setUser(user);
+        podcast.setCreatedAt(new Timestamp(new Date().getTime()));
+        podcast.setUser(userDao.getOne(userService.getLoggedInUser().getId())); // ----- GET LOGGED IN USER -> session ?
         podcastDao.save(podcast);
-        return "redirect:/posts";
+        return "redirect:/profile";
     }
 
 
