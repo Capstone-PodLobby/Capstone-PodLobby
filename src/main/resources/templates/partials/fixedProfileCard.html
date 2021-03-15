@@ -2,7 +2,7 @@
 
 
 <!-- User's profile information -->
-<div class="col s12 m3" th:fragment="fixedProfileCard">
+<div class="col s12 m4" th:fragment="fixedProfileCard">
     <div class="card">
         <div class="card-image">
             <img th:src="${session.user.profileImage}">
@@ -13,7 +13,7 @@
             <p th:text="${session.user.aboutMe}"></p>
         </div>
         <div class="card-action">
-            <a href="/followers" class="collection-item">Following</a>
+            <a href="/following" class="collection-item">Following</a>
             <a href="/getCategories" class="collection-item">Discover</a>
         </div>
     </div>

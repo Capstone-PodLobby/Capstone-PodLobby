@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,15 +32,17 @@ public class FeedController {
     }
 
     @GetMapping("/feeds/global")
-    public String showGlobalFeed(Model model){
+    public String showGlobalFeed(Model model, HttpServletRequest request){
         List<Podcast> podcasts = podcastDao.findAll();
         model.addAttribute("podcasts", podcasts);
+        model.addAttribute("currentUrl", request.getRequestURI());
         return"/feeds/global-feed";
     }
 
 
     @GetMapping("/feeds/filtered")
-    public String showFilteredFeed(Model model){
+    public String showFilteredFeed(Model model, HttpServletRequest request){
+        model.addAttribute("currentUrl", request.getRequestURI());
         List<Podcast> allPodcast = podcastDao.findAll();
         List<Podcast> selectPodcast = new ArrayList<>();
 //        for(Podcast podcast : allPodcast) {

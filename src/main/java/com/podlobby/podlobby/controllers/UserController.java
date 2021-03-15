@@ -37,13 +37,14 @@ public class UserController {
     public String profilePage(Model model, HttpSession session, HttpServletRequest request){
 //        get the current user
         User user = userService.getLoggedInUser();
-        int followerCount = followDao.findAllByUserId(user.getId()).size();
+        int followingCount = followDao.findAllByUserId(user.getId()).size();
         List<Podcast> createdPodcasts = user.getPodcasts();
 
         session.setAttribute("user", user);
         model.addAttribute("userController", userDao); // used in comment modal
-        model.addAttribute("followerCount", followerCount); // make this a session attribute ? will it update on each page ( needs to be tested )
+        model.addAttribute("followingCount", followingCount); // make this a session attribute ? will it update on each page ( needs to be tested )
         model.addAttribute("userPodcasts", createdPodcasts); // ^^ same
+        model.addAttribute("currentUrl", request.getRequestURI());
         return "users/profile";
     }
 
@@ -51,8 +52,9 @@ public class UserController {
 
     //clicking on a podcast to see the creator's profile page
     @GetMapping("/otherProfile/{id}")
-    public String viewFollowersProfile(Model model, @PathVariable(name = "id") long id){
+    public String viewFollowersProfile(Model model, HttpServletRequest request, @PathVariable(name = "id") long id){
 
+        model.addAttribute("currentUrl", request.getRequestURI());
         User currUser = userService.getLoggedInUser();
         long currUserId = currUser.getId();
         // this is your podcast
@@ -61,12 +63,12 @@ public class UserController {
         }
 
         model.addAttribute("user", currUser);
-        User follower = userDao.findById(id).get();
-        model.addAttribute("follower", follower);
+        User following = userDao.findById(id).get();
+        model.addAttribute("following", following);
 
         List<Podcast> createdPodcasts = podcastDao.findAllByUserId(id);
 
-        model.addAttribute("followerPodcasts", createdPodcasts);
+        model.addAttribute("followingPodcasts", createdPodcasts);
 
         // check if this person is someone i am already following
         List<User> followedUsers = followDao.findAllByUserId(currUserId);

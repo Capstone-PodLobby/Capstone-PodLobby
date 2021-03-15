@@ -14,6 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
 import java.util.*;
 
@@ -40,21 +42,23 @@ public class PodcastPostController {
     /////////////////
     //Will need to add ID to path for specific post
     @GetMapping("/podcasts/edit")
-    public String viewEditPodcastForm(Model model) {
+    public String viewEditPodcastForm(Model model, HttpServletRequest request) {
 //        model.addAttribute("podcast", podcastDao.getOne(id));
+        model.addAttribute("currentUrl", request.getRequestURI());
         return "podcasts/edit";
     }
 
     @PostMapping("/podcast/{id}/edit")
-    public String editPodcast(Model model, @PathVariable(name = "id") long id){
-
+    public String editPodcast(Model model, @PathVariable(name = "id") long id, HttpServletRequest request){
+        model.addAttribute("currentUrl", request.getRequestURI());
         return "users/profile";
     }
 
     @GetMapping("/podcast/delete/{id}")
-    public String deletePodcast(Model model, @PathVariable(name = "id") long id){
+    public String deletePodcast(Model model, @PathVariable(name = "id") long id, HttpServletRequest request, @RequestParam(name = "currentUrl") String currentUrl){
         // cascade all is in the podcast model but podcast delete errors out. comments and podcast category id needs to be removed first
         podcastDao.delete(podcastDao.getOne(id));
+        model.addAttribute("currentUrl", request.getRequestURI());
         return "redirect:/profile?deleted";
     }
 
@@ -63,16 +67,17 @@ public class PodcastPostController {
     //    DISPLAY  //
     /////////////////
     @GetMapping("/podcasts/create")
-    public String showPodcastCreate(Model model){
+    public String showPodcastCreate(Model model, HttpServletRequest request){
         model.addAttribute("podcast", new Podcast());
         model.addAttribute("categoryList", categoryDao.findAll());
+        model.addAttribute("currentUrl", request.getRequestURI());
         return"/podcasts/create";
     }
 
 
 
     @PostMapping("/podcasts/create")
-    public String createPodcast(Model model, @ModelAttribute Podcast podcast, @RequestParam(name = "categories", required = false) String categories) {
+    public String createPodcast(Model model, @ModelAttribute Podcast podcast, @RequestParam(name = "categories", required = false) String categories, HttpServletRequest request) {
 
         IframeParser iframeParser = new IframeParser(); // to parse it on creation
 
@@ -108,6 +113,7 @@ public class PodcastPostController {
         podcast.setUser(userDao.getOne(userService.getLoggedInUser().getId())); // ----- GET LOGGED IN USER -> session ?
         podcast.setEmbedLink(iframeParser.parseIframe(podcast.getEmbedLink())); // parse it before it is stored in the database
         podcastDao.save(podcast);
+        model.addAttribute("currentUrl", request.getRequestURI());
         return "redirect:/profile";
     }
 

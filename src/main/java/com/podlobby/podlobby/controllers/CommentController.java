@@ -27,13 +27,13 @@ public class CommentController {
     }
 
     @GetMapping("/comment/delete/{id}")
-    public String deleteComment(Model model, @PathVariable(name = "id") long id){
+    public String deleteComment(Model model, @PathVariable(name = "id") long id, @RequestParam(name = "currentUrl") String currentUrl){
         commentDao.delete(commentDao.getOne(id));
-        return "redirect:/profile?comment";
+        return "redirect:" + currentUrl +"?comment";
     }
 
     @PostMapping("/comment/create/{title}")
-    public String createComment(@RequestParam (name = "comment") String commentContent, @PathVariable(name = "title") String title, HttpServletRequest request){
+    public String createComment(@RequestParam (name = "comment") String commentContent, @PathVariable(name = "title") String title, HttpServletRequest request, @RequestParam(name = "currentUrl") String currentUrl){
 
         Podcast p = podcastDao.getByTitle(title);
         Comment comment = new Comment();
@@ -42,11 +42,7 @@ public class CommentController {
         comment.setUser(userService.getLoggedInUser());
         comment.setPodcast(p);
         commentDao.save(comment);
-        return "redirect:/profile"; // would like to grab the current page you are on
+        return "redirect:" + currentUrl + "?commentAdded";
     }
 
-    public static void getURL(HttpServletRequest request){
-        String fullURI = request.getRequestURI();
-        System.out.println(fullURI);
-    }
 }

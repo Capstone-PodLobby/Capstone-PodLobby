@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,18 +36,19 @@ public class RecommendationController {
     }
 
     @GetMapping("/getCategories")
-    public String showModal(Model model, HttpSession session){
+    public String showModal(Model model, HttpSession session, HttpServletRequest request){
         model.addAttribute("categoryList", categoryDao.findAll());
         session.setAttribute("user", userService.getLoggedInUser()); // needs to be set if you are taken here upon registration
+        model.addAttribute("currentUrl", request.getRequestURI());
         return "users/recommendationsModal";
     }
 
 
     @GetMapping("/recommendations")
-    public String getCategoryRecommendations(@RequestParam (name = "category") List<String> categoryList, Model model, HttpSession session){
+    public String getCategoryRecommendations(@RequestParam (name = "category") List<String> categoryList, Model model, HttpSession session, HttpServletRequest request){
         User user = (User) session.getAttribute("user");
-        int followerCount = followDao.findAllByUserId(user.getId()).size();
-        model.addAttribute("followerCount", followerCount); // set this on the session ?
+        int followingCount = followDao.findAllByUserId(user.getId()).size();
+        model.addAttribute("followingCount", followingCount); // set this on the session ?
 
         // if nothing was chosen
         if(categoryList.contains("default")) {
@@ -68,7 +70,8 @@ public class RecommendationController {
             }
         }
 
-        model.addAttribute("recommendations", podcastRecommendations);
+        session.setAttribute("recommendations", podcastRecommendations);
+        model.addAttribute("currentUrl", request.getRequestURI());
         return "redirect:/profile?recommendations"; // to show the recommended podcasts in the profile page first
     }
 

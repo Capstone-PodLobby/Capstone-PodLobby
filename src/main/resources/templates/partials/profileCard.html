@@ -4,7 +4,7 @@
 <div class="col m4 hide-on-small-only profile-side">
     <img class="circle profile-Image" th:src="@{session.user.profileImage}">
     <div class="collection">
-        <a href="/followers" class="collection-item">Followers<span class="badge" th:text="${followerCount}"></span> </a>
+        <a href="/following" class="collection-item">Followers<span class="badge" th:text="${followingCount}"></span> </a>
         <a href="/getCategories" class="collection-item">Discover</a>
     </div>
     <p th:if="${!param.isEmpty()}"><button>Would you like to work with me?</button></p>

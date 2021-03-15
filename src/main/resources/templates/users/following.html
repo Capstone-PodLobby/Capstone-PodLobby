@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:include="partials/materializeHead.html :: styleHead('Create Post')"></head>
+<head th:include="partials/materializeHead.html :: styleHead('Who you follow')"></head>
 <body>
 <nav th:replace="partials/navbar-profile :: profileNav"></nav>
 
@@ -13,36 +13,36 @@
         </div>
     </div>
 
-    <h1 class="my-4">Followers Page</h1>
+    <h1 class="my-4">Following Page</h1>
 
     <div class="row">
 
         <div th:replace="partials/fixedProfileCard :: fixedProfileCard"></div>
 
 
-        <div class="col s10 m6 l4" th:each="follower : ${followList}">
-            <a th:href="@{/unfollow/{id}(id=${follower.id})}"><button class="btn wave-effect">Unfollow</button></a>
+        <div class="col s10 m6 l4" th:each="following : ${followingList}">
+            <a th:href="@{/unfollow/{id}(id=${following.id})}"><button class="btn wave-effect">Unfollow</button></a>
             <div class="row">
                 <div class="col s12">
                     <div class="card">
                         <div class="card-image">
-                            <img th:src="${follower.profileImage}">
+                            <img th:src="${following.profileImage}">
                         </div>
                         <div class="card-content">
-                            <h3 th:text="${follower.username}"></h3>
+                            <h3 th:text="${following.username}"></h3>
                             <ul>
-                                <li># of posts: <span th:text="${follower.podcasts.size()}"></span> </li>
+                                <li># of posts: <span th:text="${following.podcasts.size()}"></span> </li>
                                 <li class="divider"></li>
-                                <li th:switch="${follower.requests.size() > 0}">Looking for guest(s):
+                                <li th:switch="${following.requests.size() > 0}">Looking for guest(s):
                                     <span th:case="${true}">Yes</span>
                                     <span th:case="${false}">No</span>
                                 </li>
                                 <li class="divider"></li>
-                                <li># of active requests: <span th:text="${follower.requests.size()}"></span> </li>
+                                <li># of active requests: <span th:text="${following.requests.size()}"></span> </li>
                             </ul>
                         </div>
                         <div class="card-action">
-                            <a th:href="@{/followers/{id}(id=${follower.id})}">View Profile</a>
+                            <a th:href="@{/following/{id}(id=${following.id})}">View Profile</a>
                         </div>
                     </div>
                 </div>

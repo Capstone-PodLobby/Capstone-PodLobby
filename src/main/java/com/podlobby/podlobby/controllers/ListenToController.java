@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 
@@ -23,16 +24,11 @@ public class ListenToController {
     }
 
     @GetMapping("/listen/{id}")
-    public String listenToAPodcast(@PathVariable(name = "id") long id, Model model, HttpSession session){
+    public String listenToAPodcast(@PathVariable(name = "id") long id, Model model, HttpSession session, @RequestParam(name = "currentUrl") String currentUrl){
         Podcast wantToListenTo = podcastDao.getOne(id);
-        System.out.println("++++++++++++++++");
-        System.out.println(wantToListenTo.getTitle());
-        System.out.println(wantToListenTo.getEmbedLink());
-        System.out.println("++++++++++++++++");
         model.addAttribute("user", userService.getLoggedInUser());
         session.setAttribute("listeningTo", wantToListenTo.getEmbedLink());
-        return "redirect:/profile?myPodcasts"; // current page you are on
-        // ^^ this is temporary
+        return "redirect:" + currentUrl; // current page you are on
     }
 
 }

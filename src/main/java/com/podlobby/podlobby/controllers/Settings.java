@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
@@ -32,15 +33,16 @@ public class Settings {
     }
 
     @GetMapping("/settings")
-    public String settings(Model model){
+    public String settings(Model model, HttpServletRequest request){
         User user = userService.getLoggedInUser();
         model.addAttribute("user", user);
+        model.addAttribute("currentUrl", request.getRequestURI());
         return "users/settings";
     }
 
 
     @PostMapping("/settings")
-    public String changeInfo(HttpSession session, @ModelAttribute User user, @RequestParam(name = "confirm-password", required = false) String confirmPassword, @RequestParam(name = "profileImage", required = false) String profileImage, @RequestParam(name = "backgroundImage", required = false) String backgroundImage){
+    public String changeInfo(HttpSession session, HttpServletRequest request, Model model, @ModelAttribute User user, @RequestParam(name = "confirm-password", required = false) String confirmPassword, @RequestParam(name = "profileImage", required = false) String profileImage, @RequestParam(name = "backgroundImage", required = false) String backgroundImage){
         User currentUser = (User) session.getAttribute("user");
 
         if (userDao.findByUsername(user.getUsername()) != null && !currentUser.getUsername().equals(user.getUsername())) {
@@ -70,6 +72,7 @@ public class Settings {
 
         userDao.save(currentUser);
         session.setAttribute("user", currentUser);
+        model.addAttribute("currentUrl", request.getRequestURI());
         return "redirect:/profile?settings";
     }
 }

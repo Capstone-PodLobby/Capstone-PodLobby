@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -32,26 +33,29 @@ public class FollowersController {
 
 
     // seeing all of the users you follow
-    @GetMapping("/followers")
-    public String showFollowers(Model model){
+    @GetMapping("/following")
+    public String showFollowers(Model model, HttpServletRequest request){
         User user = userService.getLoggedInUser();
-        model.addAttribute("followList", followDao.findAllByUserId(user.getId()));
+        model.addAttribute("currentUrl", request.getRequestURI());
+        model.addAttribute("followingList", followDao.findAllByUserId(user.getId()));
         model.addAttribute("user", user);
-        return "users/followers";
+        return "users/following";
     }
 
 
     // viewing the page of the user you follow
-    @GetMapping("/followers/{id}")
-    public String viewFollowersProfile(Model model, @PathVariable(name = "id") long id){
-        User follower = userDao.findById(id).get();
-        model.addAttribute("follower", follower);
+    @GetMapping("/following/{id}")
+    public String viewFollowersProfile(Model model, @PathVariable(name = "id") long id, HttpServletRequest request){
+        User following = userDao.findById(id).get();
+        model.addAttribute("following", following);
 
         User currUser = userService.getLoggedInUser();
         model.addAttribute("user", currUser);
 
+        model.addAttribute("currentUrl", request.getRequestURI());
+
         List<Podcast> createdPodcasts = podcastDao.findAllByUserId(id);
-        model.addAttribute("followerPodcasts", createdPodcasts);
+        model.addAttribute("followingPodcasts", createdPodcasts);
         model.addAttribute("userController", userDao);
         model.addAttribute("isFollowing", true); // viewing a followers page -> you are following them
         return "users/othersProfile";
@@ -60,7 +64,7 @@ public class FollowersController {
 
     // unfollow a user by id
     @GetMapping("/unfollow/{id}")
-    public String unfollowUser(Model model, HttpSession session, @PathVariable(name = "id") long id){
+    public String unfollowUser(Model model, HttpServletRequest request, HttpSession session, @PathVariable(name = "id") long id){
 
         User unfollow = userDao.getOne(id);
 
@@ -72,13 +76,13 @@ public class FollowersController {
 
         currUser.setUsers(currentFollowList);
         followDao.save(currUser);
-
-        return "redirect:/followers?unfollowed=" + unfollow.getUsername();
+        model.addAttribute("currentUrl", request.getRequestURI());
+        return "redirect:/following?unfollowed=" + unfollow.getUsername();
     }
 
     // following the user whose page you are on
     @GetMapping("/followUser/{id}")
-    public String followAUser(Model model, HttpSession session, @PathVariable(name = "id") long id){
+    public String followAUser(Model model, HttpServletRequest request, HttpSession session, @PathVariable(name = "id") long id){
         // add this user to the current user's follow list
         User user = (User) session.getAttribute("user");
         User userToFollow = userDao.getOne(id);
@@ -91,6 +95,7 @@ public class FollowersController {
         followDao.save(user);
         model.addAttribute("userController", userDao);
         model.addAttribute("isFollowing", true); // viewing a followers page that you just followed
+        model.addAttribute("currentUrl", request.getRequestURI());
         return "redirect:/otherProfile/" + id + "?followed";
     }
 

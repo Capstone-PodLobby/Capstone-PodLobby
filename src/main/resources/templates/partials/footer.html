@@ -24,6 +24,7 @@
                         <textarea class="materialize-textarea" id="messageUs" name="messageUs"></textarea>
                         <label for="messageUs">Message</label>
                     </div>
+                    <input type="hidden" name="currentUrl" id="currentUrl" th:value="${currentUrl}">
                     <button class="waves-effect waves-light" type="submit" name="action" id="footerSubmitButton">
                         <i class="material-icons right">send</i>
                     </button>

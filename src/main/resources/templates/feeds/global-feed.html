@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/materializeHead.html :: styleHead('Create Post')">
+<head th:replace="partials/materializeHead.html :: styleHead('All Podcasts')">
     <link rel="stylesheet" th:src="@{../static/styles/feeds.css}" type="text/css">
 </head>
 <style>
@@ -16,14 +16,14 @@
 
 
 
-<div class="row" >
+<div class="row">
 
     <div th:replace="partials/fixedProfileCard :: fixedProfileCard"></div>
 
 
 
 
-    <div class="col s12 m9">
+    <div class="col s12 m8">
         <!-- Title-->
         <div class="feed-title">
             <h2>FEED</h2>
@@ -32,13 +32,13 @@
         <!--Feed Buttons-->
         <div class="feed-buttons">
 
-            <div class="col s12 m3">
+            <div class="col s12 l4">
                 <a href="/feeds/global" class="waves-effect waves-light btn-large">GLOBAL</a>
             </div>
-            <div class="col s12 m3">
+            <div class="col s12 l4">
                 <a href="/feeds/filtered" class="waves-effect waves-light btn-large">FOLLOWERS</a>
             </div>
-            <div class="col s12 m3">
+            <div class="col s12 l4">
                 <a href="/feeds/requests" class="waves-effect waves-light btn-large">REQUESTS</a>
             </div>
 
@@ -48,20 +48,18 @@
 
 <!-- Podcast Global Feed -->
  <div class="row">
-     <div th:each="podcast : ${podcasts}">
-        <div class="col s12 m4 l4">
-            <div class="card horizontal" style="box-shadow: none !important; background: none !important;">
-                <div class="card-stacked">
-                    <div class="card-action">
-                        <iframe th:src="${podcast.getEmbedLink()}"></iframe>
-                    </div>
-                    <div class="card-action">
-                        <a th:href="@{/otherProfile/{id}(id=${podcast.user.id})}" th:text="${podcast.user.username}"></a>
-                    </div>
+    <div class="col s12 m6 l4" th:each="podcast : ${podcasts}">
+        <div class="card horizontal" style="box-shadow: none !important; background: none !important;">
+            <div class="card-stacked">
+                <div class="card-action">
+                    <iframe th:src="${podcast.getEmbedLink()}"></iframe>
+                </div>
+                <div class="card-action">
+                    <a th:href="@{/otherProfile/{id}(id=${podcast.user.id})}" th:text="${podcast.user.username}"></a>
                 </div>
             </div>
         </div>
-     </div>
+    </div>
  </div>
 
 

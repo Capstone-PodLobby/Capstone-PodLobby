@@ -105,3 +105,5 @@ select * from podcasts where id in (
     );
 
 select * from comments;
+# delete from comments where id = 8;
+select * from followed_users where user_id = 1;

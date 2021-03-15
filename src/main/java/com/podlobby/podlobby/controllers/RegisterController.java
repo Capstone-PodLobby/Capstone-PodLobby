@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 import java.sql.Timestamp;
 
@@ -30,7 +31,7 @@ public class RegisterController {
 
     //    Display registration page   //
     @GetMapping("/register")
-    public String showRegisterForm(Model model){
+    public String showRegisterForm(Model model, HttpServletRequest request){
 
         // if a user is currently logged in
         User user = null;
@@ -39,6 +40,7 @@ public class RegisterController {
         } catch (Exception ignored){}
 
         if(user != null){
+            model.addAttribute("currentUrl", request.getRequestURI());
             return "redirect:/profile";
         }
 

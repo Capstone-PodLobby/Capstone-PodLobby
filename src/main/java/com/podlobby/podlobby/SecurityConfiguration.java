@@ -40,7 +40,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         // what urls you can visit
         http.formLogin()
                 .loginPage("/login")//define the log in page ( spring security will handle post request to /login )
-                .defaultSuccessUrl("/profile") // define where you go after successful login
+                .defaultSuccessUrl("/profile?myPodcasts") // define where you go after successful login
                 .permitAll()//all people can visit the login page
 
                 .and()
