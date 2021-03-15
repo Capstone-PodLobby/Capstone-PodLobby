@@ -66,7 +66,7 @@ public class RequestController {
     }
 
     @GetMapping("/user-requests")
-    public String showRequestsAndResponses(Model model, User user, HttpServletRequest request){
+    public String showRequests(Model model, User user, HttpServletRequest request){
         user = userService.getLoggedInUser();
         model.addAttribute("requestList", requestDao.findByUser(user));
         model.addAttribute("currentUrl", request.getRequestURI());
