@@ -32,3 +32,4 @@
 # select * from users where id in (
 #     select follow_id from followed_users where user_id = 1
 #     );
+
