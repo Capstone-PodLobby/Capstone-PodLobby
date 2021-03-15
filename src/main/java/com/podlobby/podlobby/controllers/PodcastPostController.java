@@ -71,7 +71,7 @@ public class PodcastPostController {
         model.addAttribute("podcast", new Podcast());
         model.addAttribute("categoryList", categoryDao.findAll());
         model.addAttribute("currentUrl", request.getRequestURI());
-        return"/podcasts/create";
+        return"podcasts/create";
     }
 
 

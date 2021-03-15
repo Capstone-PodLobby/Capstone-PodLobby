@@ -1,6 +1,7 @@
-create database if not exists podLobby_db;
 
-use podLobby_db;
+use podLobby;
+
+
 
 # drop table if exists responses;
 # drop table if exists comments;

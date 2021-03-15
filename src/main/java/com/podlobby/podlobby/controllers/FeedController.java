@@ -36,7 +36,7 @@ public class FeedController {
         List<Podcast> podcasts = podcastDao.findAll();
         model.addAttribute("podcasts", podcasts);
         model.addAttribute("currentUrl", request.getRequestURI());
-        return"/feeds/global-feed";
+        return"feeds/global-feed";
     }
 
 
@@ -48,7 +48,7 @@ public class FeedController {
 //        for(Podcast podcast : allPodcast) {
 //            if(podcast.getId() == followDao)
 //        }
-        return"/feeds/filtered-feed";
+        return"feeds/filtered-feed";
     }
 
 

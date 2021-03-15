@@ -18,7 +18,7 @@
 
 <div class="row">
 
-    <div th:replace="partials/fixedProfileCard :: fixedProfileCard"></div>
+    <div sec:authorize="isAuthenticated()" th:replace="partials/fixedProfileCard :: fixedProfileCard"></div>
 
 
 
