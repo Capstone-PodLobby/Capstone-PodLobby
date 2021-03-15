@@ -41,19 +41,6 @@ public class PodcastPostController {
     /////////////////
     //EDIT   OPTION//
     /////////////////
-    //Will need to add ID to path for specific post
-//    @GetMapping("/podcasts/edit")
-//    public String viewEditPodcastForm(Model model, HttpServletRequest request) {
-////        model.addAttribute("podcast", podcastDao.getOne(id));
-//        model.addAttribute("currentUrl", request.getRequestURI());
-//        return "podcasts/edit";
-//    }
-
-//    @PostMapping("/podcast/{id}/edit")
-//    public String editPodcast(Model model, @PathVariable(name = "id") long id, HttpServletRequest request){
-//        model.addAttribute("currentUrl", request.getRequestURI());
-//        return "users/profile";
-//    }
 
     @GetMapping("/podcasts/{id}")
     public String podcastsView(Model model, @PathVariable long id) {
@@ -69,15 +56,6 @@ public class PodcastPostController {
         return"podcasts/edit";
     }
 
-//    @GetMapping("/podcasts/{id}/edit")
-//    public String viewEditPodcastForm(@PathVariable(name = "id") long id, @ModelAttribute Model model) {
-//        model.addAttribute("podcast", podcastDao.getOne(id));
-//        model.addAttribute("currentUrl", request.getRequestURI());
-//
-//        model.addAttribute("id", podcastDao.getOne(id));
-//        return "podcasts/edit";
-//    }
-
 
     @PostMapping("/podcasts/{id}/edit")
     public String editPodcast(@PathVariable long id, @ModelAttribute Podcast podcast) {
@@ -86,9 +64,6 @@ public class PodcastPostController {
         podcastDao.save(podcast);
         return "redirect:/profile";
     }
-
-
-
 
 
     @GetMapping("/podcast/delete/{id}")

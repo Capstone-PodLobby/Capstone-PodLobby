@@ -1,20 +1,18 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<!--ISSUE WITH LOADING BACKGROUND IMAGE-->
 <head th:replace="partials/materializeHead.html :: styleHead('Edit Podcast')"></head>
 <body>
 <nav th:replace="partials/navbar-profile :: profileNav"></nav>
 
 <div class="container">
-<!--    <h1 class="my-4">Here is a single post !</h1>-->
+
 
     <h3 th:text="${podcast.title}"></h3>
     <p th:text="'Posted by ' + ${podcast.user.username}" />
 
 
     <p th:text="${podcast.description}"></p>
-<!--    <div th:replace="partials/scripts :: assets"></div>-->
-<!--    <a th:href="@{|/podcasts/${podcast.id}/edit|}">Edit Post</a>-->
+
 
 </div>
 </body>

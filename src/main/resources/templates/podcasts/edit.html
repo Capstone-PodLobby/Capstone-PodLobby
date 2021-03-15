@@ -56,13 +56,6 @@
                 <input class="validate" type="text" id="imageURL" th:field="*{image}"/>
                 <button class="btn wave-effect" id="podcastImage">Upload</button>
             </div>
-<!--            <div class="input-field">-->
-<!--                <select multiple id="categories" name="categories" th:field="*{categories}">-->
-<!--                    <option value="" selected disabled>Select Categories</option>-->
-<!--                    <option th:each="i : ${#numbers.sequence(0, categoryList.size() - 1)}" th:value="${i}" th:text="${categoryList.get(i).name}"></option>-->
-<!--                </select>-->
-<!--                <label>Categories</label>-->
-<!--            </div>-->
 
             <input type="hidden" th:field="*{id}"/>
             <input class="btn" type="submit" value="Update Post" />
@@ -86,31 +79,5 @@
 <footer th:replace="partials/footer.html :: footer"></footer>
 <div th:replace="partials/materializescripts :: scripts"></div>
 
-<!--<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>-->
-<!--<script th:src="@{/js/keys.js}"></script>-->
-<!--<script>-->
-
-<!--    const client = filestack.init(fileStackToken);-->
-
-<!--    const options = {-->
-<!--        maxFiles: 1,-->
-<!--        onUploadDone: uploadFile-->
-<!--    };-->
-
-<!--    const uploadBtn = document.getElementById("podcastImage");-->
-<!--    uploadBtn.addEventListener("click", (e) => {-->
-<!--        e.preventDefault();-->
-<!--        console.log("clicked uploader");-->
-<!--        client.picker(options).open();-->
-<!--    });-->
-
-<!--    function uploadFile(result){-->
-<!--        const fileData = result.filesUploaded;-->
-<!--        const fileString = fileData[0].url;-->
-<!--        let imageInput = document.getElementById("profileImage");-->
-<!--        imageInput.val = fileString;-->
-<!--    }-->
-
-<!--</script>-->
 </body>
 </html>
