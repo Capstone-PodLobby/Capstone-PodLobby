@@ -54,6 +54,7 @@ public class PodcastPostController {
     public String viewEditPodcastForm(@PathVariable long id, Model model){
         User currUser = userService.getLoggedInUser();
         model.addAttribute("podcast",podcastDao.getOne(id));
+        //Add conditional to only display if it is users podcast
         return"podcasts/edit";
     }
 
@@ -61,14 +62,23 @@ public class PodcastPostController {
     @PostMapping("/podcasts/{id}/edit")
     public String editPodcast(@PathVariable long id, @ModelAttribute Podcast podcast) {
         User currUser = userService.getLoggedInUser();
-        System.out.println(" +++++++++++++++++++++++++++++++ Current user is: " + currUser);
-        if(currUser == podcast.getUser()){
-            podcast.setCreatedAt(new Timestamp(new Date().getTime()));
-            podcast.setUser(userDao.getOne(userService.getLoggedInUser().getId())); // ----- GET LOGGED IN USER -> session ?
-            podcastDao.save(podcast);
-        } else {
-            return "redirect:/profile";
-        }
+        long currUserName = userService.getLoggedInUser().getId();
+        Podcast tryingToEdit = podcastDao.getOne(id);
+        long findingInfo = tryingToEdit.getUser().getId();
+//        System.out.println(" +++++++++++++++++++++++++++++++ Current user is: " + currUser);
+//        System.out.println("Podcast title is: " + podcast.getTitle());
+//        System.out.println(podcast.getId());
+//        System.out.println(currUser.getId());
+//        System.out.println(podcast.getUser().getId());
+        System.out.println("Current user: " + currUserName);
+        System.out.println(" User ID for what I'm trying to edit: " + findingInfo);
+
+//        System.out.println("User who posted is: " + podcast.getId());
+//        System.out.println("Current user is: " + currUser);
+//        System.out.println("Current username is: " + currUserName);
+//        podcast.setCreatedAt(new Timestamp(new Date().getTime()));
+//        podcast.setUser(userDao.getOne(userService.getLoggedInUser().getId())); // ----- GET LOGGED IN USER -> session ?
+//        podcastDao.save(podcast);
         return "redirect:/profile";
     }
 
