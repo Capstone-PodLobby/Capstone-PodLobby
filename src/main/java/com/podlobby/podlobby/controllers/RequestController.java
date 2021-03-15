@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Timestamp;
@@ -39,9 +40,12 @@ public class RequestController {
     }
 
     @PostMapping("/request")
-    public String createRequest(@ModelAttribute Request request, Model model, HttpServletRequest servletRequest){
+    public String createRequest(@ModelAttribute Request request, @RequestParam(name = "req-amount") int amount, Model model, HttpServletRequest servletRequest){
         User user = userService.getLoggedInUser();
-        if(request.getGuestCount() == 0) {
+        System.out.println(amount);
+        System.out.println(request.getGuestCount());
+        request.setGuestCount(amount);
+        if(request.getGuestCount() <= 0) {
             return "redirect:/request?guestCount";
         }
         request.setCreatedAt(new Timestamp(new Date().getTime()));
