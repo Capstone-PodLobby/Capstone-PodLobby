@@ -3,7 +3,9 @@ package com.podlobby.podlobby.controllers;
 import com.podlobby.podlobby.model.Request;
 import com.podlobby.podlobby.model.User;
 import com.podlobby.podlobby.repositories.RequestRepository;
+import com.podlobby.podlobby.services.TLSEmail;
 import com.podlobby.podlobby.services.UserService;
+import com.podlobby.podlobby.util.Methods;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,8 +14,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.lang.reflect.Method;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 
 @Controller
@@ -21,11 +25,13 @@ public class RequestController {
 
     private final RequestRepository requestDao;
     private final UserService userService;
+    private final TLSEmail tlsEmail;
 
 
-    public RequestController(RequestRepository requestDao, UserService userService){
+    public RequestController(RequestRepository requestDao, UserService userService, TLSEmail tlsEmail){
         this.requestDao = requestDao;
         this.userService = userService;
+        this.tlsEmail = tlsEmail;
 
     }
 
@@ -53,6 +59,12 @@ public class RequestController {
         request.setUser(user);
         requestDao.save(request);
         model.addAttribute("currentUrl", servletRequest.getRequestURI());
+
+        List<Request> requestList = requestDao.findByUser(user);
+
+        String message = "Thank you " + user.getUsername() + " for adding your " + Methods.numberSuffix(requestList.size()) + " request it can be found on your profile!";
+        tlsEmail.sendEmail(user.getEmail(), user.getUsername(), "Your request has been added", message, false);
+
         return "redirect:/profile";
     }
 
@@ -66,8 +78,8 @@ public class RequestController {
     }
 
     @GetMapping("/user-requests")
-    public String showRequestsAndResponses(Model model, User user, HttpServletRequest request){
-        user = userService.getLoggedInUser();
+    public String showRequestsAndResponses(Model model, HttpServletRequest request){
+        User user = userService.getLoggedInUser();
         model.addAttribute("requestList", requestDao.findByUser(user));
         model.addAttribute("currentUrl", request.getRequestURI());
         return "requests/user-requests";

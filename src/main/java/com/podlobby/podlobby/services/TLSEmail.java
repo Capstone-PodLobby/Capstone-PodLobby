@@ -23,7 +23,7 @@ public class TLSEmail {
     public String password; // correct password for gmail id
 
     public void sendEmail(
-            final String toEmail, String userName, String subject, String content, boolean forgotPassword) throws ServletException, IOException  // can be any email id
+            final String toEmail, String userName, String subject, String content, boolean forgotPassword)  // can be any email id
     {
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com"); //SMTP Host
@@ -42,7 +42,8 @@ public class TLSEmail {
 
         if(forgotPassword) {
             String randomPassword = Password.randomGen();
-            EmailUtil.sendEmail(session, toEmail, "Forgot Password", "Hello " + userName + " your temporary password is " + randomPassword + " please go to http://podlobby/newPassword");
+            EmailUtil.sendEmail(session, toEmail, "Forgot Password", "Hello " + userName + " your temporary password is " + randomPassword + " please go to http://localhost:8080/reset");
+//            EmailUtil.sendEmail(session, toEmail, "Forgot Password", "Hello " + userName + " your temporary password is " + randomPassword + " please go to https://podlobby/reset");
         } else {
             EmailUtil.sendEmail(session, toEmail, subject, content);
         }

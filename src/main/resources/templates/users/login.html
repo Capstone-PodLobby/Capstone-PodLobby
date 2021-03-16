@@ -12,10 +12,16 @@
                 You have been logged out.
             </div>
             <div th:if="${param.error}">
-                Username or password does not exist.
+                Username or password does not exist, you may need to activate your account.
             </div>
             <div th:if="${param.messageSent}">
                 Our team has been notified. We will get back to you soon
+            </div>
+            <div th:if="${param.activated}">
+                Your account has been activated
+            </div>
+            <div th:if="${param.activationIssue}">
+                There was an issue activating your account
             </div>
         </div>
     </div>
@@ -33,7 +39,7 @@
         <button class="btn waves-effect">Login</button>
 
     </form>
-    <a href="/register"><button class="btn waves-effect">Login with GitHub (in progress)</button></a>
+    <a href="/forgotPassword"><button class="btn waves-effect">Forgot Password</button></a>
     <a class="white-text" href="/register"><button class="btn waves-effect">Register</button></a>
 </main>
 <footer th:replace="partials/footer.html :: footer"></footer>
