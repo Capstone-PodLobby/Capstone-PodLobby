@@ -58,24 +58,24 @@ public class PodcastPostController {
 
     @GetMapping("/podcasts/{id}/edit")
     public String viewEditPodcastForm(@PathVariable long id, Model model){
-        User currUser = userService.getLoggedInUser();
+        long currUserName = userService.getLoggedInUser().getId();
+        Podcast tryingToEdit = podcastDao.getOne(id);
+        long findingInfo = tryingToEdit.getUser().getId();
         model.addAttribute("podcast",podcastDao.getOne(id));
-        return"podcasts/edit";
+
+        if (currUserName == findingInfo) {
+            return "podcasts/edit";
+        } else {return "redirect:/profile?edit";}
     }
 
 
     @PostMapping("/podcasts/{id}/edit")
     public String editPodcast(@PathVariable long id, @ModelAttribute Podcast podcast) {
-        User currUser = userService.getLoggedInUser();
-        System.out.println(" +++++++++++++++++++++++++++++++ Current user is: " + currUser);
-        if(currUser == podcast.getUser()){
-            podcast.setCreatedAt(new Timestamp(new Date().getTime()));
-            podcast.setUser(userDao.getOne(userService.getLoggedInUser().getId())); // ----- GET LOGGED IN USER -> session ?
-            podcastDao.save(podcast);
-        } else {
-            return "redirect:/profile";
-        }
-        return "redirect:/profile";
+
+        podcast.setCreatedAt(new Timestamp(new Date().getTime()));
+        podcast.setUser(userDao.getOne(userService.getLoggedInUser().getId()));
+        podcastDao.save(podcast);
+        return "redirect:/profile?edited";
     }
 
 
