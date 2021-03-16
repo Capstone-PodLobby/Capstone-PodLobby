@@ -72,7 +72,7 @@
                                         <div class="card-action">
                                             <form th:action="@{/listen/{id}(id=${userPodcasts.get(i).id})}" method="get">
                                                 <input type="hidden" name="currentUrl" id="currentUrl" th:value="${currentUrl} + '?myPodcasts'">
-                                                <button class="btn">Listen</button>
+                                                <button class="btn"><a>Listen</a></button>
                                             </form>
                                             <a th:href="@{/podcasts/{id}/edit(id=${userPodcasts.get(i).id})}">Edit</a>
                                             <div th:replace="partials/deleteModal :: deleteModal"></div>
