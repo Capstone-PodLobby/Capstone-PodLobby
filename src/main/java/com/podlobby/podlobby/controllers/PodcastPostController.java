@@ -7,15 +7,20 @@ import com.podlobby.podlobby.repositories.CategoryRepository;
 import com.podlobby.podlobby.repositories.CommentRepository;
 import com.podlobby.podlobby.repositories.PodcastRepository;
 import com.podlobby.podlobby.repositories.UserRepository;
+import com.podlobby.podlobby.services.TLSEmail;
 import com.podlobby.podlobby.services.UserService;
 import com.podlobby.podlobby.util.IframeParser;
+import com.podlobby.podlobby.util.Methods;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.*;
 
@@ -28,31 +33,54 @@ public class PodcastPostController {
     private final UserRepository userDao;
     private final CommentRepository commentDao;
     private final UserService userService;
+    private final TLSEmail tlsEmail;
 
-    public PodcastPostController(CategoryRepository categoryDao, CommentRepository commentDao, UserService userService, PodcastRepository podcastDao, UserRepository userDao){
+    public PodcastPostController(CategoryRepository categoryDao, CommentRepository commentDao, UserService userService, PodcastRepository podcastDao, UserRepository userDao, TLSEmail tlsEmail){
         this.categoryDao = categoryDao;
         this.podcastDao = podcastDao;
         this.userDao = userDao;
         this.userService = userService;
         this.commentDao = commentDao;
+        this.tlsEmail = tlsEmail;
     }
 
     /////////////////
     //EDIT   OPTION//
     /////////////////
-    //Will need to add ID to path for specific post
-    @GetMapping("/podcasts/edit")
-    public String viewEditPodcastForm(Model model, HttpServletRequest request) {
-//        model.addAttribute("podcast", podcastDao.getOne(id));
-        model.addAttribute("currentUrl", request.getRequestURI());
-        return "podcasts/edit";
+
+    @GetMapping("/podcasts/{id}")
+    public String podcastsView(Model model, @PathVariable long id) {
+        Podcast podcast = podcastDao.getOne(id);
+        model.addAttribute("podcast", podcast);
+        return "podcasts/show";
     }
 
-    @PostMapping("/podcast/{id}/edit")
-    public String editPodcast(Model model, @PathVariable(name = "id") long id, HttpServletRequest request){
-        model.addAttribute("currentUrl", request.getRequestURI());
-        return "users/profile";
+
+    @GetMapping("/podcasts/{id}/edit")
+    public String viewEditPodcastForm(@PathVariable long id, Model model){
+        long currUserName = userService.getLoggedInUser().getId();
+
+        int currUserNameIsAdmin = userService.getLoggedInUser().getIsAdmin();
+
+        Podcast tryingToEdit = podcastDao.getOne(id);
+        long findingInfo = tryingToEdit.getUser().getId();
+        model.addAttribute("podcast",podcastDao.getOne(id));
+
+        if (currUserName == findingInfo || currUserNameIsAdmin == 1) {
+            return "podcasts/edit";
+        } else {return "redirect:/profile?edit";}
     }
+
+
+    @PostMapping("/podcasts/{id}/edit")
+    public String editPodcast(@PathVariable long id, @ModelAttribute Podcast podcast) {
+
+        podcast.setCreatedAt(new Timestamp(new Date().getTime()));
+        podcast.setUser(userDao.getOne(userService.getLoggedInUser().getId()));
+        podcastDao.save(podcast);
+        return "redirect:/profile?edited";
+    }
+
 
     @GetMapping("/podcast/delete/{id}")
     public String deletePodcast(Model model, @PathVariable(name = "id") long id, HttpServletRequest request, @RequestParam(name = "currentUrl") String currentUrl){
@@ -77,7 +105,7 @@ public class PodcastPostController {
 
 
     @PostMapping("/podcasts/create")
-    public String createPodcast(Model model, @ModelAttribute Podcast podcast, @RequestParam(name = "categories", required = false) String categories, HttpServletRequest request) {
+    public String createPodcast(Model model, @ModelAttribute Podcast podcast, @RequestParam(name = "categories", required = false) String categories, HttpServletRequest request) throws ServletException, IOException {
 
         IframeParser iframeParser = new IframeParser(); // to parse it on creation
 
@@ -108,11 +136,17 @@ public class PodcastPostController {
 
         podcast.setCategories(categoryList);
 
+        User currUser = userService.getLoggedInUser();
 
         podcast.setCreatedAt(new Timestamp(new Date().getTime()));
-        podcast.setUser(userDao.getOne(userService.getLoggedInUser().getId())); // ----- GET LOGGED IN USER -> session ?
+        podcast.setUser(userDao.getOne(currUser.getId())); // ----- GET LOGGED IN USER -> session ?
         podcast.setEmbedLink(iframeParser.parseIframe(podcast.getEmbedLink())); // parse it before it is stored in the database
         podcastDao.save(podcast);
+
+        List<Podcast> userList = podcastDao.findAllByUserId(currUser.getId());
+        String message = "Thank you " + currUser.getUsername() + " for adding your " + Methods.numberSuffix(userList.size()) + " podcast it can be found on your profile!";
+        tlsEmail.sendEmail(currUser.getEmail(), currUser.getUsername(), "Your podcasts has been added", message, false);
+
         model.addAttribute("currentUrl", request.getRequestURI());
         return "redirect:/profile";
     }

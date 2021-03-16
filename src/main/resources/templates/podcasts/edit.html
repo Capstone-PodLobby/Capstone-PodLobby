@@ -1,34 +1,83 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/materializeHead.html :: styleHead('Edit Podcast')"></head>
+<head th:replace="partials/materializeHead :: styleHead('Edit Podcast')"></head>
 <body>
 <nav th:replace="partials/navbar-profile :: profileNav"></nav>
 <main>
-
     <div class="container">
         <h1 class="my-4">Edit Podcast</h1>
 
-        <form>
-
-            <div class="input-field">
-                <label for="title">Title</label>
-                <input class="validate" type="text" id="title"/>
+        <div th:if="${!param.isEmpty()}">
+            <div>
+                <div th:if="${param.title}">
+                    <i class="material-icons">error</i>Title can not be blank.
+                </div>
             </div>
-            <div class="input-field">
-                <label for="body">Description</label>
-                <textarea class="materialize-textarea" id="body"></textarea>
+            <div>
+                <div th:if="${param.embed}">
+                    <i class="material-icons">error</i>Embed Link can not be missing.
+                </div>
             </div>
-            <div class="input-field">
-                <label for="embedUrl">Embed URL</label>
-                <input class="validate" type="text" id="embedUrl"/>
+            <div>
+                <div th:if="${param.embedIssue}">
+                    <i class="material-icons">error</i>Embed Link seems to be missing the src attribute, please check "src="http:...".
+                </div>
+            </div>
+            <div>
+                <div th:if="${param.description}">
+                    <i class="material-icons">error</i>Description can not be blank.
+                </div>
+            </div>
+            <div>
+                <div th:if="${param.categories}">
+                    <i class="material-icons">error</i>Categories can not be missing.
+                </div>
+            </div>
+        </div>
+
+        <form th:action="@{/podcasts/{id}/edit(id=${podcast.id})}" th:method="POST" th:object="${podcast}">
+            <div class="input-field" style="display: flex">
+                <i class="material-icons">label_outline</i>
+                <label class="labelIcon" for="title">Title</label>
+                <input class="validate" type="text" id="title" th:field="*{title}"/>
+            </div>
+            <div class="input-field" style="display: flex">
+                <i class="material-icons">border_color</i>
+                <label class="labelIcon" for="body">Description</label>
+                <textarea class="materialize-textarea" id="body" th:field="*{description}"></textarea>
             </div>
 
-            <input class="btn" type="submit" value="Edit Post" />
+            <div class="input-field" style="display: flex">
+                <i class="material-icons">library_music</i>
+                <label class="labelIcon" for="embedUrl">Embed URL</label>
+                <input class="validate" type="text" id="embedUrl" th:field="*{embedLink}"/>
+                <a class="waves-effect waves-light" onclick="$('.tap-target').tapTarget('open')"><i class="material-icons">live_help</i></a>
+            </div>
 
+            <div class="input-field" style="display: flex">
+                <i class="material-icons">insert_photo</i>
+                <label class="labelIcon" for="imageURL">Image URL (optional)</label>
+                <input class="validate" type="text" id="imageURL" th:field="*{image}"/>
+                <button class="btn wave-effect" id="podcastImage">Upload</button>
+            </div>
+
+            <input type="hidden" th:field="*{id}"/>
+            <input class="btn" type="submit" value="Update Post" />
         </form>
 
-    </div>
+        <div class="tap-target" data-target="menu">
+            <div class="tap-target-content">
+                <h5>Embed URL Location</h5>
+                <p>This can be found under the share option while viewing your podcast on Spotify and Anchor fm -> copy embed link!</p>
+                <img class="embedImg responsive-img" th:src="@{/gif/embedLinkAnchor.gif}" alt="anchor gif">
+                <img class="embedImg responsive-img" th:src="@{/images/spotifyEmbedLink.png}" alt="spotify embed">
 
+            </div>
+        </div>
+
+        <a id="menu" class="waves-effect waves-light btn btn-floating" ><i class="material-icons">menu</i></a>
+
+    </div>
 </main>
 
 <footer th:replace="partials/footer.html :: footer"></footer>
