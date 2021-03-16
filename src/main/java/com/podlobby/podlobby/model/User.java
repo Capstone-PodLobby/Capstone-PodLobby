@@ -40,6 +40,9 @@ public class User {
     @Column(columnDefinition = "TEXT")
     private String aboutMe;
 
+    @Column(columnDefinition = "TINYINT")
+    private int isAuthenticated;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Podcast> podcasts;
 
@@ -82,9 +85,10 @@ public class User {
         this.responseList = copy.responseList;
         this.users = copy.users;
         this.followers = copy.followers;
+        this.isAuthenticated = copy.isAuthenticated;
     }
 
-    public User(long id, String backgroundImage, String username, String password, String email, Timestamp joinedAt, String profileImage, int isAdmin, String aboutMe, List<Podcast> podcasts, List<Comment> comments, List<Request> requests, List<Response> responseList, List<User> users, List<User> followers) {
+    public User(long id, String backgroundImage, String username, String password, String email, Timestamp joinedAt, String profileImage, int isAuthenticated, int isAdmin, String aboutMe, List<Podcast> podcasts, List<Comment> comments, List<Request> requests, List<Response> responseList, List<User> users, List<User> followers) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -100,9 +104,10 @@ public class User {
         this.responseList = responseList;
         this.users = users;
         this.followers = followers;
+        this.isAuthenticated = isAuthenticated;
     }
 
-    public User(String username, String backgroundImage, String password, String email, Timestamp joinedAt, String profileImage, int isAdmin, String aboutMe, List<Podcast> podcasts, List<Comment> comments, List<Request> requests, List<Response> responseList, List<User> users, List<User> followers) {
+    public User(String username, String backgroundImage, String password, String email, Timestamp joinedAt, String profileImage, int isAdmin, int isAuthenticated, String aboutMe, List<Podcast> podcasts, List<Comment> comments, List<Request> requests, List<Response> responseList, List<User> users, List<User> followers) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -117,6 +122,7 @@ public class User {
         this.responseList = responseList;
         this.users = users;
         this.followers = followers;
+        this.isAuthenticated = isAuthenticated;
     }
 
     public long getId() {
@@ -237,5 +243,13 @@ public class User {
 
     public void setBackgroundImage(String backgroundImage) {
         this.backgroundImage = backgroundImage;
+    }
+
+    public int getIsAuthenticated() {
+        return isAuthenticated;
+    }
+
+    public void setIsAuthenticated(int isAuthenticated) {
+        this.isAuthenticated = isAuthenticated;
     }
 }

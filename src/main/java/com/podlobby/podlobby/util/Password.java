@@ -12,6 +12,7 @@ public class Password {
 
 
     private static List<String> createdPasswords = new ArrayList<>();
+    private static List<String> registerCode = new ArrayList<>();
 
     public static String randomGen(){
         StringBuilder out = new StringBuilder();
@@ -25,6 +26,16 @@ public class Password {
             out.append(RandomStringUtils.randomAlphanumeric(1));
         }
         createdPasswords.add(out.toString());
+        return out.toString();
+    }
+
+    public static String randomRegisterCode(){
+        StringBuilder out = new StringBuilder();
+        while(out.length() < 8){
+            out.append(RandomStringUtils.randomAlphabetic(1));
+            out.append(RandomStringUtils.randomAlphanumeric(1));
+        }
+        registerCode.add(out.toString());
         return out.toString();
     }
 
@@ -53,4 +64,7 @@ public class Password {
         return createdPasswords;
     }
 
+    public static List<String> getRegisterCode() {
+        return registerCode;
+    }
 }
