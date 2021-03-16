@@ -5,7 +5,7 @@
 
     <nav sec:authorize="isAnonymous()" th:replace="partials/navbar :: navbar"></nav>
     <nav sec:authorize="isAuthenticated()" th:replace="partials/navbar-profile :: profileNav"></nav>
-
+<main>
     <th:block th:switch="${error}">
         <h1 th:text="${error}"></h1>
         <div th:case="'Not Found'">
@@ -15,7 +15,7 @@
             <h2>You don't have permission to view this page. If you feel as tho you should be able to view this page, feel free to contact us below</h2>
         </div>
     </th:block>
-
+</main>
     <footer th:replace="partials/footer :: footer"></footer>
     <div th:replace="partials/materializescripts :: scripts"></div>
 

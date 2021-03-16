@@ -9,38 +9,40 @@
     <div th:if="${!param.isEmpty()}">
         <div>
             <div th:if="${param.logout}">
-                You have been logged out.
+                <i class="material-icons">error</i>You have been logged out.
             </div>
             <div th:if="${param.error}">
-                Username or password does not exist, you may need to activate your account.
+                <i class="material-icons">error</i>Username or password does not exist, you may need to activate your account.
             </div>
             <div th:if="${param.messageSent}">
-                Our team has been notified. We will get back to you soon
+                <i class="material-icons">error</i>Our team has been notified. We will get back to you soon
             </div>
             <div th:if="${param.activated}">
-                Your account has been activated
+                <i class="material-icons">error</i>Your account has been activated
             </div>
             <div th:if="${param.activationIssue}">
-                There was an issue activating your account
+                <i class="material-icons">error</i>There was an issue activating your account
             </div>
         </div>
     </div>
 
     <form class="container" method="post" th:action="@{/login}">
 
-        <div class="input-field">
+        <div class="input-field" style="display:flex;">
+            <i class="material-icons">account_circle</i>
             <input class="validate" type="text" id="username" name="username"/>
-            <label for="username">Username</label>
+            <label class="labelIcon" for="username">Username</label>
         </div>
-        <div class="input-field">
+        <div class="input-field" style="display: flex;">
+            <i class="material-icons">lock</i>
             <input class="validate" type="password" id="password" name="password"/>
-            <label for="password">Password</label>
+            <label class="labelIcon" for="password">Password</label>
         </div>
-        <button class="btn waves-effect">Login</button>
+        <button class="btn waves-effect"><a>Login</a></button>
 
     </form>
-    <a href="/forgotPassword"><button class="btn waves-effect">Forgot Password</button></a>
-    <a class="white-text" href="/register"><button class="btn waves-effect">Register</button></a>
+    <button class="btn waves-effect"><a href="/forgotPassword">Forgot Password</a></button>
+    <button class="btn waves-effect"><a class="white-text" href="/register">Register</a></button>
 </main>
 <footer th:replace="partials/footer.html :: footer"></footer>
 <div th:replace="partials/materializescripts :: scripts"></div>

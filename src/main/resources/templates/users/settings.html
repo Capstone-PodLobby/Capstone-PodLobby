@@ -17,70 +17,77 @@
         <div th:if="${!param.isEmpty()}">
             <div>
                 <div th:if="${param.username}">
-                    Username can not be the same as another user
+                    <i class="material-icons">error</i>Username can not be the same as another user
                 </div>
             </div>
             <div>
                 <div th:if="${param.passwords}">
-                    Passwords do not match
+                    <i class="material-icons">error</i>Passwords do not match
                 </div>
             </div>
             <div>
                 <div th:if="${param.aboutMe}">
-                    Please keep something about you on your profile
+                    <i class="material-icons">error</i>Please keep something about you on your profile
                 </div>
             </div>
         </div>
 
         <form class="col s12" th:action="@{/settings}" th:method="POST" th:object="${user}">
             <div class="row">
-                <div class="input-field col s12">
+                <div class="input-field col s12" style="display: flex">
+                    <i class="material-icons">account_circle</i>
                     <input id="username" type="text" class="validate" th:field="*{username}"/>
-                    <label for="username">Edit UserName</label>
+                    <label class="labelIcon" for="username">Edit UserName</label>
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col s12">
+                <div class="input-field col s12" style="display: flex">
+                    <i class="material-icons">lock</i>
                     <input id="password" type="password" class="validate" th:field="*{password}">
-                    <label for="password">Edit Password</label>
+                    <label class="labelIcon" for="password">Edit Password</label>
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col s12">
+                <div class="input-field col s12" style="display: flex">
+                    <i class="material-icons">lock</i>
                     <input id="confirmPass" type="password" class="validate" name="confirm-password">
-                    <label for="confirmPass">Confirm Edit Password</label>
+                    <label class="labelIcon" for="confirmPass">Confirm Edit Password</label>
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col s12">
+                <div class="input-field col s12" style="display: flex">
+                    <i class="material-icons">email</i>
                     <input id="email" type="email" class="validate" th:field="*{email}">
-                    <label for="email">Edit Email</label>
+                    <label class="labelIcon" for="email">Edit Email</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12" style="display: flex">
+                    <i class="material-icons">insert_photo</i>
                     <input id="profileImage" type="text" class="validate" name="profileImage">
-                    <label for="profileImage">Edit Profile Image</label>
-                    <button class="btn wave-effect" id="fileUploader">Upload</button>
+                    <label class="labelIcon" for="profileImage">Edit Profile Image</label>
+                    <button class="btn wave-effect" id="fileUploader"><a><i class="material-icons">cloud_download</i></a></button>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12" style="display: flex">
+                    <i class="material-icons">insert_photo</i>
                     <input id="backgroundImage" type="text" class="validate" name="backgroundImage">
-                    <label for="backgroundImage">Edit Background Image</label>
-                    <button class="btn wave-effect" id="backgroundUploader">Upload</button>
+                    <label class="labelIcon" for="backgroundImage">Edit Background Image</label>
+                    <button class="btn wave-effect" id="backgroundUploader"><a><i class="material-icons">cloud_download</i></a></button>
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col s12">
-                    <label for="body">Edit About Me</label>
+                <div class="input-field col s12" style="display:flex;">
+                    <i class="material-icons">edit</i>
+                    <label class="labelIcon" for="body">Edit About Me</label>
                     <textarea class="materialize-textarea" id="body" th:field="*{aboutMe}"></textarea>
                 </div>
 
             </div>
 
-            <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-                <i class="material-icons right">send</i>
+            <button class="btn waves-effect waves-light" type="submit" name="action"><a>Submit
+                <i class="material-icons right">send</i></a>
             </button>
         </form>
     </div>

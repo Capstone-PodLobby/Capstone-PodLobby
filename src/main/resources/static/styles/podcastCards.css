@@ -1,0 +1,4 @@
+/*For global / filtered feed display ( may need to make this a specific class to not change other cards )*/
+.card-action{
+    border-top: none !important;
+}

@@ -14,19 +14,19 @@
     <div th:if="${!param.isEmpty()}">
         <div>
             <div th:if="${param.username}">
-                Username already exists or is blank.
+                <i class="material-icons">error</i>Username already exists or is blank.
             </div>
             <div th:if="${param.email}">
-                Email already exists or is blank.
+                <i class="material-icons">error</i>Email already exists or is blank.
             </div>
             <div th:if="${param.password}">
-                Password does not match or is blank.
+                <i class="material-icons">error</i>Password does not match or is blank.
             </div>
             <div th:if="${param.about}">
-                Please add a little information about you.
+                <i class="material-icons">error</i>Please add a little information about you.
             </div>
             <div th:if="${param.captcha}">
-                Please verify you are not a robot.
+                <i class="material-icons">error</i>Please verify you are not a robot.
             </div>
         </div>
     </div>
@@ -34,49 +34,55 @@
             <div class="row">
                 <form class="col s12" th:action="@{/register}" th:method="POST" th:object="${user}">
                     <div class="row">
-                        <div class="input-field col s12">
+                        <div class="input-field col s12" style="display: flex;">
+                            <i class="material-icons">account_circle</i>
                             <input id="username" type="text" class="validate" th:field="*{username}"/>
-                            <label for="username">Username</label>
+                            <label class="labelIcon" for="username">Username</label>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="input-field col s12">
+                        <div class="input-field col s12" style="display: flex;">
+                            <i class="material-icons">lock</i>
                             <input id="password" type="password" class="validate" th:field="*{password}">
-                            <label for="password">Password</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input id="confirmPass" type="password" class="validate" name="confirm-password">
-                            <label for="confirmPass">Confirm Password</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input id="email" type="email" class="validate" th:field="*{email}">
-                            <label for="email">Email</label>
+                            <label class="labelIcon" for="password">Password</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12" style="display: flex">
-                            <label for="body">About Me</label>
+                            <i class="material-icons">lock</i>
+                            <input id="confirmPass" type="password" class="validate" name="confirm-password">
+                            <label class="labelIcon" for="confirmPass">Confirm Password</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12" style="display:flex;">
+                            <i class="material-icons">email</i>
+                            <input id="email" type="email" class="validate" th:field="*{email}">
+                            <label class="labelIcon" for="email">Email</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12" style="display: flex">
+                            <i class="material-icons">edit</i>
+                            <label class="labelIcon" for="body">About Me</label>
                             <textarea class="materialize-textarea" id="body" th:field="*{aboutMe}"></textarea>
-                            <a class="waves-effect waves-light btn" onclick="$('.tap-target').tapTarget('open')"><i class="fas fa-question"></i></a>
+                            <a class="waves-effect waves-light" onclick="$('.tap-target').tapTarget('open')"><i class="material-icons">live_help</i></a>
                         </div>
 
                     </div>
 
                     <div class="g-recaptcha" th:data-sitekey="${@environment.getProperty('recaptcha.testing.site.key')}"></div>
+<!--                    <div class="g-recaptcha" th:data-sitekey="${@environment.getProperty('recaptcha.checkbox.site.key')}"></div>-->
 
 
-                    <button class="btn waves-effect waves-light" type="submit" name="action">Sign Up
-                        <i class="material-icons right">send</i>
+                    <button class="btn waves-effect waves-light" type="submit" name="action"><a>Sign Up
+                        <i class="material-icons right">send</i></a>
                     </button>
                 </form>
                 <div class="tap-target" data-target="menu">
                     <div class="tap-target-content">
                         <h5>About Me</h5>
-                        <p>This will be for other users on the site. Please add some information about you and your interests along with something that you are hoping to find here and collaborate on!</p>
+                        <p>This will be for other users on the site to see when they visit your profile. Please add some information about you and your interests along with something that you are hoping to find here and collaborate on!</p>
                     </div>
                 </div>
             </div>

@@ -97,6 +97,49 @@ main {
 .embedImg{
     border-radius: 30% !important;
 }
+
+/* the image sizing on request cards*/
+#requestImage{
+    max-width: 30% !important;
+}
+
+/*Form icons and style*/
+.labelIcon{
+    padding-left: 25px !important;
+}
+.select-wrapper{
+    width: 100% !important;
+}
+#podcastImage{
+    border: none !important;
+    background: none !important;
+}
+button:hover{
+    cursor: pointer;
+}
+
+
+/*link effect*/
+a{
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    background: linear-gradient(to right, #fafafc 50%, #3d7915 50%);
+
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 100%;
+    background-position: 100%;
+
+    transition: background-position 475ms ease;
+
+}
+a:hover{
+    background-position: 0 100%;
+}
+
+
 /*=============================================================================*/
 
 @media screen and (min-width: 992px){
