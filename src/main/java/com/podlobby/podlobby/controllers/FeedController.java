@@ -36,20 +36,25 @@ public class FeedController {
         List<Podcast> podcasts = podcastDao.findAll();
         model.addAttribute("podcasts", podcasts);
         model.addAttribute("currentUrl", request.getRequestURI());
-        return"/feeds/global-feed";
+        return"feeds/global-feed";
     }
 
 
     @GetMapping("/feeds/filtered")
     public String showFilteredFeed(Model model, HttpServletRequest request){
+        User user = userService.getLoggedInUser();
         model.addAttribute("currentUrl", request.getRequestURI());
-        List<Podcast> allPodcast = podcastDao.findAll();
         List<Podcast> selectPodcast = new ArrayList<>();
-//        for(Podcast podcast : allPodcast) {
-//            if(podcast.getId() == followDao)
-//        }
-        return"/feeds/filtered-feed";
+        List<User> following = followDao.findAllByUserId(user.getId());
+
+        for(User member : following) {
+           selectPodcast.addAll(member.getPodcasts());
+        }
+
+        model.addAttribute("filtered", selectPodcast);
+        return"feeds/filtered-feed";
     }
+
 
 
 

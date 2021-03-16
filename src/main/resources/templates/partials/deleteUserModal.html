@@ -1,0 +1,15 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="deleteUserModal" th:remove="tag">
+    <a th:if="${session.user.isAdmin == 1}" class="waves-effect waves-light btn modal-trigger deleteButton" href="#modal">Delete</a>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h4>Are You Sure you want to delete this user?</h4>
+        </div>
+        <form th:action="@{/otherProfile/delete/{id}(id=${userControllerId.id})}" th:method="GET">
+            <input type="hidden" name="currentUrl" id="currentUrl" th:value="${currentUrl}">
+            <button class="modal-close waves-effect waves-green btn-flat">Delete</button>
+        </form>
+    </div>
+</div>

@@ -68,7 +68,7 @@ public class FollowersController {
 
         User unfollow = userDao.getOne(id);
 
-        User currUser = (User) session.getAttribute("user");
+        User currUser = userService.getLoggedInUser();
 
         List<User> currentFollowList = followDao.findAllByUserId(currUser.getId());// get all followers for currently logged in user
 
@@ -84,19 +84,34 @@ public class FollowersController {
     @GetMapping("/followUser/{id}")
     public String followAUser(Model model, HttpServletRequest request, HttpSession session, @PathVariable(name = "id") long id){
         // add this user to the current user's follow list
-        User user = (User) session.getAttribute("user");
         User userToFollow = userDao.getOne(id);
+        User user = userService.getLoggedInUser();
 
         List<User> currentFollowList = followDao.findAllByUserId(user.getId());// get all followers for currently logged in user
 
         currentFollowList.add(userToFollow);
 
         user.setUsers(currentFollowList);
+
         followDao.save(user);
+
         model.addAttribute("userController", userDao);
         model.addAttribute("isFollowing", true); // viewing a followers page that you just followed
         model.addAttribute("currentUrl", request.getRequestURI());
         return "redirect:/otherProfile/" + id + "?followed";
+    }
+
+
+//    view all the users who follow you
+    @GetMapping("/followers")
+    public String viewMyFollowers(Model model){
+
+        User user = userService.getLoggedInUser();// get the current user
+
+        List<User> userFollowersList = followDao.findAllFollowersById(user.getId());// get a list of user's current followers
+
+        model.addAttribute("listOfFollowers", userFollowersList);
+        return "users/followers";
     }
 
 }

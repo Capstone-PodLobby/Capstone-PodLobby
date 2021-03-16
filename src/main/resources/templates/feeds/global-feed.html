@@ -7,7 +7,7 @@
 </style>
 
 <body>
-<nav  sec:authorize="isAnonymous()" th:replace="partials/navbar :: navbar"></nav>
+<nav sec:authorize="isAnonymous()" th:replace="partials/navbar :: navbar"></nav>
 <nav sec:authorize="isAuthenticated()" th:replace="partials/navbar-profile :: profileNav"></nav>
 <main>
 
@@ -18,7 +18,7 @@
 
 <div class="row">
 
-    <div th:replace="partials/fixedProfileCard :: fixedProfileCard"></div>
+    <div sec:authorize="isAuthenticated()" th:replace="partials/fixedProfileCard :: fixedProfileCard"></div>
 
 
 
@@ -66,11 +66,10 @@
 
 
 </main>
-</body>
-
-
 
 
 <footer th:replace="partials/footer :: footer"></footer>
-<div th:replace="partials/materializescripts :: scripts"></div></body>
+<div th:replace="partials/materializescripts :: scripts"></div>
+
+</body>
 </html>

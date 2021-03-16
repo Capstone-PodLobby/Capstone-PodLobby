@@ -9,7 +9,7 @@
         </div>
         <form th:action="@{/podcast/delete/{id}(id=${userPodcasts.get(i).id})}" th:method="GET">
             <input type="hidden" name="currentUrl" id="currentUrl" th:value="${currentUrl}">
-            <button class="modal-close waves-effect waves-green btn-flat">Delete</button>
+            <button class="modal-close waves-effect waves-green btn-flat"><a>Delete</a></button>
         </form>
     </div>
 </div>
