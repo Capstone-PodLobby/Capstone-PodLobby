@@ -12,4 +12,7 @@ public interface RequestRepository extends JpaRepository<Request, Long> {
 
     List<Request> findByUser(User user);
 
+    Request findByTitle(String title);
+
+    Request findById(long id);
 }

@@ -32,26 +32,33 @@
             </div>
 
         </div>
-    </div>
-</div>
+<!--    </div>-->
+<!--</div>-->
 
 
-    <div class="row">
-        <div th:each="request : ${requestList}" class="col s12 m6">
+<!--    <div class="row">-->
+        <div th:each="request : ${requestList}" class="col s12">
             <div class="card horizontal">
                 <div class="card-stacked">
-                    <div class="card-content">
-                        <p th:text="${request.title}"></p>
-                        <p th:text="${request.description}"></p>
+                    <div class="card-content" style="display: flex;">
+                        <img class="circle responsive-image" id="requestImage" th:src="${request.user.profileImage}">
+                        <div>
+                            <p th:text="${request.title}"></p>
+                            <p th:text="${request.description}"></p>
+                        </div>
                     </div>
                     <div class="card-action">
                         <p>Looking for : <span th:text="${request.guestCount}"></span> guests | <span th:text="${request.createdAt}"></span> </p>
-                        <button th:if="${request.isActive == 1}"><a href="/profile?requestView" class="btn-floating btn-large cyan pulse"></a><i class="material-icons">edit</i></button>
+                        <form class="right" th:if="${request.isActive == 1}" th:action="@{/user-request/{id}(id=${request.id})}" method="get">
+                            <input type="hidden" name="currentUrl" id="currentUrl" th:value="${currentUrl}">
+                            <button class="btn-floating btn-large cyan pulse"><i class="material-icons">edit</i></button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 <footer th:replace="partials/footer :: footer"></footer>
 <div th:replace="partials/materializescripts :: scripts"></div>

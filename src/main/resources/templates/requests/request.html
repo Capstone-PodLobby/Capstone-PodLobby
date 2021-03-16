@@ -3,30 +3,33 @@
     <head th:replace="partials/materializeHead :: styleHead('Request')"></head>
 <body>
 
-<div th:if="${!param.equals(0)}">
-    <div>
-        <div th:if="${param.guestCount}">
-            Number must be higher than zero.
-        </div>
-    </div>
-</div>
 
 <nav th:replace="partials/navbar-profile :: profileNav"></nav>
 <main>
+    <div th:if="${!param.equals(0)}">
+        <div>
+            <div th:if="${param.guestCount}">
+                <i class="material-icons">error</i>Number must be higher than zero.
+            </div>
+        </div>
+    </div>
     <form th:action="@{/request}" th:method="POST" th:object="${request}" class="container">
 
-        <div class="input-field">
-            <label for="title">Title</label>
+        <div class="input-field" style="display: flex">
+            <i class="material-icons">label_outline</i>
+            <label class="labelIcon" for="title">Title</label>
             <input id="title" name="title" type="text" th:value="*{title}"/>
         </div>
 
-        <div class="input-field">
-            <label for="description">Description</label>
+        <div class="input-field" style="display: flex">
+            <i class="material-icons">border_color</i>
+            <label class="labelIcon" for="description">Description</label>
             <input id="description" name="description" type="text" th:value="*{description}"/>
         </div>
 
-        <div class="input-field">
-            <label for="req-amount">How many people do you need?</label>
+        <div class="input-field" style="display: flex">
+            <i class="material-icons">contacts</i>
+            <label class="labelIcon" for="req-amount">How many people do you need?</label>
             <input id="req-amount" name="req-amount" type="number" th:value="*{guestCount}"/>
         </div>
 
