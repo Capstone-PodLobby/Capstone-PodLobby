@@ -42,12 +42,17 @@ public class UserController {
 //        get the current user
         User user = userService.getLoggedInUser();
         int followingCount = followDao.findAllByUserId(user.getId()).size();
+        int numberOfFollowers = followDao.findAllFollowersById(user.getId()).size();
         List<Podcast> createdPodcasts = user.getPodcasts();
 
         session.setAttribute("user", user);
         model.addAttribute("userController", userDao); // used in comment modal
 
+        model.addAttribute("followsCount", numberOfFollowers); //will display the number of followers a user has
+
+
 //        model.addAttribute("podcast",podcastDao.getOne(id));
+
 
 
         model.addAttribute("followingCount", followingCount); // make this a session attribute ? will it update on each page ( needs to be tested )

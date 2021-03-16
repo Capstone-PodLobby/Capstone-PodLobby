@@ -13,4 +13,9 @@ public interface FollowRepository extends JpaRepository<User, Long> {
     List<User> findAllByUserId(long id);
 
 
+    @Query(nativeQuery = true, value = "select * from users where id in (select user_id from followed_users where follow_id = ?1)")
+    List<User> findAllFollowersById(long id);
+
+
+
 }
