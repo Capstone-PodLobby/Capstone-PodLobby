@@ -1,6 +1,5 @@
 package com.podlobby.podlobby.controllers;
 
-
 import com.podlobby.podlobby.model.Request;
 import com.podlobby.podlobby.model.Response;
 import com.podlobby.podlobby.model.User;
@@ -20,6 +19,7 @@ import java.util.List;
 @Controller
 public class ResponseController {
 
+=======
     private final UserService userService;
     private final RequestRepository requestDao;
     private final ResponseRepository responseDao;
@@ -28,7 +28,7 @@ public class ResponseController {
         this.requestDao = requestDao;
         this.responseDao = responseDao;
         this.userService = userService;
-    }
+    }    
 
     @PostMapping("/response/create/{title}")
     public String createResponse(@PathVariable(name = "title") String title, @RequestParam(name = "response") String responseContent,
@@ -64,4 +64,11 @@ public class ResponseController {
         return "redirect:" + currentUrl;
     }
 
+    @GetMapping("/user-responses")
+    public String showResponses(Model model, User user, HttpServletRequest request){
+        user = userService.getLoggedInUser();
+        model.addAttribute("responseList", responseDao.findByUser(user));
+        model.addAttribute("currentUrl", request.getRequestURI());
+        return "responses/user-responses";
+    }
 }

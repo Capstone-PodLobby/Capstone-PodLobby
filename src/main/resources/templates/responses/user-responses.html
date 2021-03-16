@@ -11,22 +11,20 @@
         <div class="col s12 m9">
             <!-- Title-->
             <div class="title">
-                <h2>Requests</h2>
+                <h2>Responses</h2>
             </div>
         </div>
     </div>
 
     <div class="row">
-        <div th:each="request : ${requestList}" class="col s12 m6">
+        <div th:each="response : ${responseList}" class="col s12 m6">
             <div class="card horizontal">
                 <div class="card-stacked">
                     <div class="card-content">
-                        <h2 th:text="${request.title}"></h2>
-                        <p th:text="${request.description}"></p>
-                    </div>
-                    <div class="card-action">
-                        <p>Looking for : <span th:text="${request.guestCount}"></span> guests | <span class="right" th:text="${request.createdAt}"></span> </p>
-                        <a th:if="${request.isActive == 1}" href="/profile?requestView" class="btn-floating btn-large cyan pulse"><i class="material-icons">edit</i></a>
+                        <h2 th:text="${response.request.getTitle()}"></h2>
+                        <h3 th:text="${response.user.getUsername()}"></h3>
+                        <p th:text="${response.content}"></p>
+                        <p th:text="${response.createdAt}"></p>
                     </div>
                 </div>
             </div>
