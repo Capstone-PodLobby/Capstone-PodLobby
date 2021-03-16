@@ -67,9 +67,9 @@ public class PodcastPostController {
     public String editPodcast(@PathVariable long id, @ModelAttribute Podcast podcast) {
 
         podcast.setCreatedAt(new Timestamp(new Date().getTime()));
-        podcast.setUser(userDao.getOne(userService.getLoggedInUser().getId())); // ----- GET LOGGED IN USER -> session ?
+        podcast.setUser(userDao.getOne(userService.getLoggedInUser().getId()));
         podcastDao.save(podcast);
-        return "redirect:/profile";
+        return "redirect:/profile?edited";
     }
 
 
