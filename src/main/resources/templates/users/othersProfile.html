@@ -20,6 +20,16 @@
                 <a th:if="${!isFollowing}" th:href="@{/followUser/{id}(id=${following.id})}" class="collection-item">Follow</a>
                 <a th:if="${isFollowing}" th:href="@{/unfollow/{id}(id=${following.id})}" class="collection-item">UnFollow</a>
                 <a href="#!" class="collection-item">View active requests</a>
+
+
+
+                <div th:replace="partials/deleteUserModal :: deleteUserModal"></div>
+
+
+
+
+
+
                 <p class="center-align" th:text="${following.aboutMe}"></p>
             </div>
         </div>

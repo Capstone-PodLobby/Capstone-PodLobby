@@ -2,14 +2,14 @@
 create database if not exists podLobby_db;
 use podLobby_db;
 
-drop table if exists responses;
-drop table if exists comments;
-drop table if exists podcast_categories;
-drop table if exists categories;
-drop table if exists podcasts;
-drop table if exists requests;
-drop table if exists followed_users;
-drop table if exists users;
+# drop table if exists responses;
+# drop table if exists comments;
+# drop table if exists podcast_categories;
+# drop table if exists categories;
+# drop table if exists podcasts;
+# drop table if exists requests;
+# drop table if exists followed_users;
+# drop table if exists users;
 
 
 

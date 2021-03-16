@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -75,6 +76,8 @@ public class UserController {
         List<Podcast> createdPodcasts = podcastDao.findAllByUserId(id);
 
         model.addAttribute("followingPodcasts", createdPodcasts);
+        model.addAttribute("userControllerId", following);
+
 
         // check if this person is someone i am already following
         List<User> followedUsers = followDao.findAllByUserId(currUserId);
@@ -91,6 +94,13 @@ public class UserController {
         model.addAttribute("userController", userDao);
 
         return "users/othersProfile";
+    }
+
+    @GetMapping("/otherProfile/delete/{id}")
+    public String deleteUser(Model model, @PathVariable(name = "id") long id, HttpServletRequest request, @RequestParam(name = "currentUrl") String currentUrl){
+        userDao.delete(userDao.getOne(id));
+        model.addAttribute("currentUrl", request.getRequestURI());
+        return "redirect:/profile?deleted";
     }
 
 }

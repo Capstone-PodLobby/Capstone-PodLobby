@@ -43,7 +43,7 @@ public class User {
     @Column(columnDefinition = "TINYINT")
     private int isAuthenticated;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", orphanRemoval = true)
     private List<Podcast> podcasts;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
