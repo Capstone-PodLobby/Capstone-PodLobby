@@ -99,4 +99,17 @@ public class FollowersController {
         return "redirect:/otherProfile/" + id + "?followed";
     }
 
+
+//    view all the users who follow you
+    @GetMapping("/followers")
+    public String viewMyFollowers(Model model){
+
+        User user = userService.getLoggedInUser();// get the current user
+
+        List<User> userFollowersList = followDao.findAllFollowersById(user.getId());// get a list of user's current followers
+
+        model.addAttribute("listOfFollowers", userFollowersList);
+        return "users/followers";
+    }
+
 }

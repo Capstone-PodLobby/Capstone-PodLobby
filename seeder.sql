@@ -108,3 +108,9 @@ select * from podcasts where id in (
 select * from comments;
 # delete from comments where id = 8;
 select * from followed_users where user_id = 1;
+
+
+Select * From users where id in (
+    select user_id from followed_users where follow_id = ?1
+    );
+

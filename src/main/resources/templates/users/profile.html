@@ -34,6 +34,7 @@
                 <div class="collection">
                     <p class="collection-item teal-text text-darken-4" th:text="${session.user.username}"></p>
                     <a href="/following" class="collection-item teal-text text-darken-4">Following<span class="badge" th:text="${followingCount}"></span> </a>
+                    <a href="/followers" class="collection-item teal-text text-darken-4">Followers<span class="badge" th:text="${followsCount}"></span></a>
                     <a href="/getCategories" class="collection-item teal-text text-darken-4">Discover</a>
                     <a href="/user-requests" class="collection-item teal-text text-darken-4">Requests</a>
                     <a href="/user-responses" class="collection-item teal-text text-darken-4">Responses</a>
