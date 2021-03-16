@@ -53,11 +53,14 @@ public class PodcastPostController {
     @GetMapping("/podcasts/{id}/edit")
     public String viewEditPodcastForm(@PathVariable long id, Model model){
         long currUserName = userService.getLoggedInUser().getId();
+
+        int currUserNameIsAdmin = userService.getLoggedInUser().getIsAdmin();
+
         Podcast tryingToEdit = podcastDao.getOne(id);
         long findingInfo = tryingToEdit.getUser().getId();
         model.addAttribute("podcast",podcastDao.getOne(id));
 
-        if (currUserName == findingInfo) {
+        if (currUserName == findingInfo || currUserNameIsAdmin == 1) {
             return "podcasts/edit";
         } else {return "redirect:/profile?edit";}
     }
