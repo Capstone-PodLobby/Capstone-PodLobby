@@ -52,7 +52,7 @@
                             <div class="card-action">
                                 <form th:action="@{/listen/{id}(id=${followingPodcasts.get(i).id})}" method="get">
                                     <input type="hidden" name="currentUrl" id="currentUrl" th:value="${currentUrl}">
-                                    <button class="btn">Listen</button>
+                                    <button class="btn"><a>Listen</a></button>
                                 </form>
 <!--                                <a th:href="@{/listen/{id}(id=${followingPodcasts.get(i).id})}">Listen</a>-->
 

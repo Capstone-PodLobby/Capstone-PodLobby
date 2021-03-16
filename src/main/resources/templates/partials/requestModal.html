@@ -16,7 +16,7 @@
                 <img style="max-width: 25%;" class="circle responsive-image" th:src="${userController.getOne(res.user.id).profileImage}"/>
                 <form th:action="@{/response/delete/{id}(id=${res.id})}" th:method="GET" th:if="${res.user.id == session.user.id}">
                     <input type="hidden" name="currentUrl" id="URL" th:value="${currentUrl}">
-                    <button class="btn wave-effect">Delete Response</button>
+                    <button class="btn wave-effect"><a>Delete Response</a></button>
                 </form>
             </div>
         </div>
@@ -27,7 +27,7 @@
                     <input name="response" type="text" id="response" class="validate"/>
                 </div>
                 <input type="hidden" name="currentUrl" id="currentUrl" th:value="${currentUrl}">
-                <button class="btn wave-effect">Send response<i class="material-icons">chat</i> </button>
+                <button class="btn wave-effect"><a>Send response<i class="material-icons">chat</i></a></button>
             </form>
         </div>
     </div>

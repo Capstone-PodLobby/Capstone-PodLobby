@@ -58,7 +58,7 @@
                 <i class="material-icons">insert_photo</i>
                 <label class="labelIcon" for="imageURL">Image URL (optional)</label>
                 <input class="validate" type="text" id="imageURL" th:field="*{image}"/>
-                <button class="waves-light wave-effect" id="podcastImage"><i class="material-icons">cloud_download</i></button>
+                <button class="waves-light wave-effect" id="podcastImage"><a><i class="material-icons">cloud_download</i></a></button>
             </div>
             <div class="input-field" style="display: flex">
                 <i class="material-icons">list</i>
@@ -69,7 +69,7 @@
             </div>
 
             <input type="hidden" th:field="*{id}"/>
-            <input class="btn" type="submit" value="Create Post" />
+            <button class="btn waves-effect"><a>Create Podcast</a></button>
         </form>
 
         <div class="tap-target" data-target="menu">
