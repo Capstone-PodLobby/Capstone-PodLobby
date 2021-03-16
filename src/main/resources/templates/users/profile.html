@@ -25,6 +25,11 @@
                 Your comment has been successfully deleted
             </div>
         </div>
+        <div>
+            <div th:if="${param.edit}">
+                You are not allowed to edit this podcast
+            </div>
+        </div>
     </div>
 
     <main>

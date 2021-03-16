@@ -59,18 +59,12 @@ public class PodcastPostController {
 
         if (currUserName == findingInfo) {
             return "podcasts/edit";
-        } else {return "redirect:/profile";}
+        } else {return "redirect:/profile?edit";}
     }
 
 
     @PostMapping("/podcasts/{id}/edit")
     public String editPodcast(@PathVariable long id, @ModelAttribute Podcast podcast) {
-//        User currUser = userService.getLoggedInUser();
-//        long currUserName = userService.getLoggedInUser().getId();
-//        Podcast tryingToEdit = podcastDao.getOne(id);
-//        long findingInfo = tryingToEdit.getUser().getId();
-
-
 
         podcast.setCreatedAt(new Timestamp(new Date().getTime()));
         podcast.setUser(userDao.getOne(userService.getLoggedInUser().getId())); // ----- GET LOGGED IN USER -> session ?
