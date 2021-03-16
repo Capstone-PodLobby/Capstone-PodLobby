@@ -4,6 +4,7 @@ public class Methods {
 
     public static String numberSuffix(int num){
         String s = String.valueOf(num);
+        if(num >= 10 && num <= 20) return s+"th";
         char last = s.charAt(s.length() - 1);
         switch (last) {
             case '1':
