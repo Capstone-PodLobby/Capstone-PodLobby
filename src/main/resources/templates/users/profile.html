@@ -39,17 +39,6 @@
                     <a href="/user-responses" class="collection-item teal-text text-darken-4">Responses</a>
                     <a href="?recommendations" class="collection-item teal-text text-darken-4">Recommendations</a>
                     <a href="?myPodcasts" class="collection-item teal-text text-darken-4">My Podcasts</a>
-                    <a th:if="${param.requestView}"><button id="myBtn">Would you like to work with me?</button></a>
-                </div>
-                <!-- The Modal -->
-                <div id="myModal" class="modal">
-
-                    <!-- Modal content -->
-                    <div class="modal-content">
-                        <span class="close">&times;</span>
-                        <p>Are you interested in working on my podcast with me?</p>
-                    </div>
-
                 </div>
                 <!--    ^^^^^ THIS IS WHERE YOU CAN CLICK TO SEND A RESPONSE TO THE USER THAT CREATED THE REQUEST  -->
                 <p class="center-align" th:text="${session.user.aboutMe}"></p>
@@ -126,7 +115,6 @@
 
     <footer th:replace="partials/footer :: footer"></footer>
     <div th:replace="partials/materializescripts :: scripts"></div>
-    <div th:replace="partials/requestModal :: scripts"></div>
 </body>
 
 </html>
