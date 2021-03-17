@@ -7,10 +7,8 @@
 <main>
 <div class="container">
 
-    <div th:if="${!param.isEmpty()}">
-        <div>
-                You have unfollowed <span th:text="${param.unfollowed}"></span>.
-        </div>
+    <div th:if="${message != null}">
+        <p th:text="${message}"></p>
     </div>
 
     <h1 class="my-4">Following Page</h1>

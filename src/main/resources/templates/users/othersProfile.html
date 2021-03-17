@@ -4,13 +4,10 @@
 <body>
 <div th:replace="partials/navbar-profile :: profileNav"></div>
 
-<div th:if="${!param.isEmpty()}">
-    <div>
-        <div th:if="${param.followed}">
-            You have followed <span th:text="${following.username}"></span>.
-        </div>
-    </div>
+<div th:if="${message != null}">
+    <p th:text="${message}"></p>
 </div>
+
 <main>
     <div class="row">
         <div class="col m4 hide-on-small-only profile-side">
