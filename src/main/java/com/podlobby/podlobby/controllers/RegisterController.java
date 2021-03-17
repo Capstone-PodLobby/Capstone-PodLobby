@@ -72,10 +72,11 @@ public class RegisterController {
             return "redirect:/register?password";
         } else if(captcha.isEmpty()){
             return "redirect:/register?captcha";
+        } else if (!Password.goodQualityPassword(user.getPassword())){
+            return "redirect:/register?quality";
         }
 
         user.setIsAuthenticated(0); // they need to activate their account // NEEDS PRODUCTION TESTING
-//        user.setIsAuthenticated(1); // *********************** // THIS FOR NOW
 
         user.setJoinedAt(new Timestamp(new Date().getTime()));
         user.setPassword(encoder.encode(user.getPassword()));
@@ -87,8 +88,7 @@ public class RegisterController {
         String emailContent = "Thank you " + user.getUsername() + " for signing up at PodLobby!. Please follow this link to activate your account. http://localhost:8080/activate/" + user.getId() + "/" + Password.randomRegisterCode();
 //        String emailContent = "Please follow this link to activate your account. https://podlobby.club/activate/" + user.getId() + "/" + Password.randomRegisterCode();
         tlsEmail.sendEmail(user.getEmail(), user.getUsername(), "Welcome to PodLobby", emailContent, false);
-//        return "redirect:/getCategories"; // ====
-        return "redirect:/newAccount"; // ===== USE THIS FOR PRODUCTION TESTING THO
+        return "redirect:/newAccount";
     }
 
     // page telling user to check their email
