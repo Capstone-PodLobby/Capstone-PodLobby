@@ -61,7 +61,10 @@ insert into podcast_categories (podcast_id, category_id) VALUES (6,6);
 insert into podcast_categories (podcast_id, category_id) VALUES (7,1);
 
 insert into requests (created_at, description, guest_count, is_active, title, user_id) VALUES ('2020-02-09', 'I would like to make an episode about life and I am looking for any kind of advice you may be able to offer', 2, 1, 'Life today', 1);
-insert into responses (content, created_at, request_id, user_id) VALUES ('I like the idea and feel like I could offer some advice', '2020-02-09', 1, 2);
+insert into responses (content, created_at, request_id, user_id, accepted_status) VALUES ('I like the idea and feel like I could offer some advice', '2020-02-09', 1, 2, 0);
+insert into responses (content, created_at, request_id, user_id, accepted_status) VALUES ('I like the  and feel like I could offer some advice', '2020-02-09', 1, 4, 0);
+insert into responses (content, created_at, request_id, user_id, accepted_status) VALUES ('I like  idea and feel like I could offer some advice', '2020-02-09', 1, 5, 0);
+insert into responses (content, created_at, request_id, user_id, accepted_status) VALUES ('I like the idea  like I could offer some advice', '2020-02-09', 1, 3, 1);
 
 insert into comments (comment, created_at, podcast_id, user_id) VALUES ('I like the episode about side projects', '2020-02-11', 1, 2);
 insert into comments (comment, created_at, podcast_id, user_id) VALUES ('Nice Podcast Matt!', '2020-02-11', 1, 3);

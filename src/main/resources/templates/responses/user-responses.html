@@ -11,7 +11,7 @@
         <div class="col s12 m9">
             <!-- Title-->
             <div class="title">
-                <h2>Responses</h2>
+                <h2>Your Responses</h2>
             </div>
         </div>
     </div>
@@ -21,10 +21,15 @@
             <div class="card horizontal">
                 <div class="card-stacked">
                     <div class="card-content">
-                        <h2 th:text="${response.request.getTitle()}"></h2>
-                        <h3 th:text="${response.user.getUsername()}"></h3>
+                        <h2 th:text="${response.request.title}"></h2>
+                        <h3 th:text="${response.request.user.username}"></h3>
                         <p th:text="${response.content}"></p>
                         <p th:text="${response.createdAt}"></p>
+                        <p th:switch="${response.acceptedStatus == 1}">Status:
+                            <span th:case="${true}">Accepted</span>
+                            <span th:case="${false}">Pending</span>
+                        </p>
+                        <a th:href="@{/collaborate/{id}(id=${response.request.user.id})}" th:if="${response.acceptedStatus == 1}">Contact User</a>
                     </div>
                 </div>
             </div>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/materializeHead :: styleHead('Add PodLobby Category')">
+</head>
+<body>
+
+<nav th:replace="partials/navbar-profile :: profileNav"></nav>
+
+<main>
+
+    <h1>Add PodLobby Category</h1>
+
+    <form th:action="@{/admin/category-creation}" th:method="POST" class="container">
+        <div class="input-field" style="display: flex">
+            <i class="material-icons">border_color</i>
+            <label class="labelIcon" for="category">New Category</label>
+            <input class="validate" id="category" type="text" name="category"/>
+        </div>
+        <button class="btn waves-effect"><a>Create</a></button>
+    </form>
+
+</main>
+
+<footer th:replace="partials/footer.html :: footer"></footer>
+<div th:replace="partials/materializescripts :: scripts"></div>
+
+</body>
+</html>

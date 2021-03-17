@@ -18,7 +18,11 @@ public class Response {
 
     @Column
     private Timestamp createdAt;
-    //////////////////////////////////////
+
+    @Column(columnDefinition = "TINYINT")
+    private int acceptedStatus;
+
+
     @ManyToOne
     private User user;
 
@@ -80,5 +84,13 @@ public class Response {
 
     public void setRequest(Request request) {
         this.request = request;
+    }
+
+    public int getAcceptedStatus() {
+        return acceptedStatus;
+    }
+
+    public void setAcceptedStatus(int acceptedStatus) {
+        this.acceptedStatus = acceptedStatus;
     }
 }

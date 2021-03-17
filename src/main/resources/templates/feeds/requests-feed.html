@@ -4,7 +4,7 @@
 <body>
 
 <div th:replace="partials/navbar-profile :: profileNav"></div>
-
+<main>
 <!-- Authorized user's Home Page -->
 <div class="row">
 
@@ -37,7 +37,7 @@
 
 
 <!--    <div class="row">-->
-        <div th:each="i : ${#numbers.sequence(0, requestList.size() - 1)}" class="col s12">
+        <div th:each="i : ${#numbers.sequence(0, requestList.size() - 1)}" class="col s12" th:if="${requestList.get(i).guestCount &gt; 0}">
             <div class="card horizontal">
                 <div class="card-stacked">
                     <div class="card-content" style="display: flex;">
@@ -51,6 +51,8 @@
                         <p class="col s4">Looking for : <span th:text="${requestList.get(i).guestCount}"></span> guests | <span th:text="${requestList.get(i).createdAt}"></span> </p>
 
                         <div th:replace="partials/deleteRequestModal :: deleteRequestModal"></div>
+
+                        <div th:if="${requestList.get(i).user.id == session.user.id}" th:replace="partials/viewResponseModal :: viewResponseModal"></div>
 
                         <form class="col s3" th:action="@{/request/edit/{id}(id=${requestList.get(i).id})}" th:method="GET" th:if="${requestList.get(i).user.id == session.user.id}">
                             <input type="hidden" name="currentUrl" id="URL" th:value="${currentUrl}">
@@ -67,7 +69,7 @@
         </div>
     </div>
 </div>
-
+</main>
 <footer th:replace="partials/footer :: footer"></footer>
 <div th:replace="partials/materializescripts :: scripts"></div>
 

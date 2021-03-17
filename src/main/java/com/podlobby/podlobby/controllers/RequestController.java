@@ -4,6 +4,7 @@ import com.podlobby.podlobby.model.Request;
 import com.podlobby.podlobby.model.Response;
 import com.podlobby.podlobby.model.User;
 import com.podlobby.podlobby.repositories.RequestRepository;
+import com.podlobby.podlobby.repositories.ResponseRepository;
 import com.podlobby.podlobby.repositories.UserRepository;
 import com.podlobby.podlobby.services.TLSEmail;
 import com.podlobby.podlobby.services.UserService;
@@ -28,13 +29,15 @@ public class RequestController {
     private final UserService userService;
     private final TLSEmail tlsEmail;
     private final UserRepository userDao;
+    private final ResponseRepository responseDao;
 
 
-    public RequestController(RequestRepository requestDao, UserService userService, TLSEmail tlsEmail, UserRepository userDao){
+    public RequestController(RequestRepository requestDao, UserService userService, TLSEmail tlsEmail, UserRepository userDao, ResponseRepository responseDao){
         this.requestDao = requestDao;
         this.userService = userService;
         this.tlsEmail = tlsEmail;
         this.userDao = userDao;
+        this.responseDao = responseDao;
     }
 
 
