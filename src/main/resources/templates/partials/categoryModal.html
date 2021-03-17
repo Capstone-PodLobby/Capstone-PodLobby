@@ -4,7 +4,7 @@
     <div id="modalMain">
         <div id="modalHeader">
             <p id="question">What do you like to listen to?</p>
-            <a href="/profile"><button id="doThisLater">Do this Later X</button></a>
+            <a href="/profile?myProfile"><button id="doThisLater">Do this Later X</button></a>
         </div>
         <div id="modalContent" class="row">
             <div th:each="i : ${#numbers.sequence(0, categoryList.size() - 1)}">
@@ -22,11 +22,12 @@
                     </div>
                 </div>
             </div>
+
         </div>
 
         <div id="modalSubmit">
             <form onsubmit="handleRecommendations()" th:method="GET" id="categoryForm" th:action="@{/recommendations}">
-                <button id="submitCategories" class="right">Submit</button>
+                <button id="submitCategories" class="right"><a>Submit</a></button>
             </form>
         </div>
     </div>

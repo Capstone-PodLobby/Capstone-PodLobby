@@ -4,24 +4,35 @@
 <body>
 <div th:replace="partials/navbar-profile :: profileNav"></div>
 
-<div th:if="${!param.isEmpty()}">
-    <div>
-        <div th:if="${param.followed}">
-            You have followed <span th:text="${following.username}"></span>.
-        </div>
-    </div>
+<div th:if="${message != null}">
+    <p th:text="${message}"></p>
 </div>
+
 <main>
     <div class="row">
         <div class="col m4 hide-on-small-only profile-side">
             <img class="circle profile-Image" th:src="${following.profileImage}">
             <div class="collection">
-                <a href="#!" class="collection-item" th:text="${following.username}"></a>
+                <a class="collection-item" th:text="${following.username}"></a>
                 <a th:if="${!isFollowing}" th:href="@{/followUser/{id}(id=${following.id})}" class="collection-item">Follow</a>
                 <a th:if="${isFollowing}" th:href="@{/unfollow/{id}(id=${following.id})}" class="collection-item">UnFollow</a>
-                <a href="#!" class="collection-item">View active requests</a>
-                <p class="center-align" th:text="${following.aboutMe}"></p>
+
+                <a th:href="@{/user-requests/{id}(id=${following.id})}" class="collection-item">View active requests</a>
+                <div th:replace="partials/deleteUserModal :: deleteUserModal"></div>
+
             </div>
+
+            <!--       display the would you like to work with me if you got here through the requests page     -->
+            <div th:if="${!param.isEmpty()}">
+                <div>
+                    <div th:if="${param.requestViewing}">
+                        <div th:replace="partials/requestModal :: requestModal"></div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="center-align" th:text="${following.aboutMe}"></p>
+
         </div>
 
         <div class="col s12 m8 content-side">
@@ -41,9 +52,8 @@
                             <div class="card-action">
                                 <form th:action="@{/listen/{id}(id=${followingPodcasts.get(i).id})}" method="get">
                                     <input type="hidden" name="currentUrl" id="currentUrl" th:value="${currentUrl}">
-                                    <button class="btn">Listen</button>
+                                    <a><button class="waves-effect waves-light btn">Listen</button></a>
                                 </form>
-<!--                                <a th:href="@{/listen/{id}(id=${followingPodcasts.get(i).id})}">Listen</a>-->
 
                                 <a class="waves-effect waves-light btn modal-trigger deleteButton" th:href="@{#_modal{num}(num=${i})}">Comments</a>
 

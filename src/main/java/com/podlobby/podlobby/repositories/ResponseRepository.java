@@ -15,4 +15,7 @@ public interface ResponseRepository extends JpaRepository<Response, Long> {
 
     Response findResponsesByRequest(Request request);
 
+    List<Response> findByUser(User user);
+
+    List<Response> findAllByRequestId(long id);
 }

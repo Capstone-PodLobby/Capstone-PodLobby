@@ -3,34 +3,60 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    background: url(/static/images/podlobby-main-copy.png);
+
 }
+
+::-webkit-scrollbar {
+    width: 0px !important;
+    background-color: transparent !important;}
+
+
 main {
     flex: 1 0 auto;
 }
 
+.list-style {
+    background-color: white;
+
+
+}
 /* Profile page */
 .profile-side{
-    background-color: dimgray;
+    background-color: transparent;
     color: aliceblue;
     min-height: 100vh !important;
 }
 .content-side{
-    background-color: #027a02;
+    background-color: transparent;
     max-height: 100vh;
     overflow: scroll;
 }
 .profileContentItem{
     max-height: 350px;
     max-width: 900px;
+    margin-top: 75px;
+    background-color: transparent;
 }
 .profile-iframe{
     margin-left: 1vw;
     width: 87vw;
 }
 .profile-Image{
-    width: 80%;
-    height: auto;
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    margin-left: 20px !important;
+    margin-right: 0px !important;
+
+
 }
+.profile-heading {
+    color: aliceblue;
+    margin-left: 80px;
+}
+
+
 #profileNav{
     height: 140px;
 }
@@ -43,6 +69,17 @@ main {
     width: 100%;
     height: 150px;
     border: none;
+}
+
+.profile-style {
+   position: sticky;
+}
+
+.background-img {
+    min-width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: -1;
 }
 
 /*====== FOOTER PARTIAL ========*/
@@ -64,9 +101,7 @@ main {
     align-self: center !important;
 }
 #footerSubmitButton{
-    background: none !important;
     border: none !important;
-    color: #fff !important;
 }
 
 /*========= Styling for authorized user's home page (user-home.html) ========*/
@@ -92,11 +127,63 @@ main {
 
 /*style for tap target on create podcast*/
 .tap-target-content{
-    inset: 78px 0 0 350px !important;
+    padding: 51px !important;
 }
 .embedImg{
     border-radius: 30% !important;
 }
+
+/* the image sizing on request cards*/
+#requestImage{
+    max-width: 30% !important;
+}
+
+/*Form icons and style*/
+.labelIcon{
+    padding-left: 25px !important;
+}
+.select-wrapper{
+    width: 100% !important;
+}
+#podcastImage{
+    border: none !important;
+    background: none !important;
+}
+button:hover{
+    cursor: pointer;
+    background-position: 0 100%;
+}
+
+/*link effect*/
+a, button{
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    background: linear-gradient(to right, #a1a1c4 50%, #489e8d 50%);
+
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 100%;
+    background-position: 100%;
+
+    transition: background-position 475ms ease;
+
+}
+a:hover{
+    background-position: 0 100%;
+}
+
+.card-action {
+    display: flex;
+}
+
+.card-image{
+    height: 100%;
+}
+
+
+
 /*=============================================================================*/
 
 @media screen and (min-width: 992px){

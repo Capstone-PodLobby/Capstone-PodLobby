@@ -1,0 +1,16 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
+<div th:fragment="deleteRequestModal" th:remove="tag">
+    <a th:if="${session.user.id == requestList.get(i).user.id}" class="waves-effect waves-light btn modal-trigger deleteButton" th:href="@{#__modal{num}(num=${i})}">Delete</a>
+
+    <div th:id="'__modal' + ${i}" class="modal">
+        <div class="modal-content">
+            <h4>Are You Sure you want to delete this Request?</h4>
+        </div>
+        <form th:action="@{/request/delete/{id}(id=${requestList.get(i).id})}" th:method="GET" th:if="${requestList.get(i).user.id == session.user.id}">
+            <input type="hidden" name="currentUrl" id="URL" th:value="${currentUrl}">
+            <button class="wave-effect"><a>Delete</a></button>
+        </form>
+    </div>
+</div>

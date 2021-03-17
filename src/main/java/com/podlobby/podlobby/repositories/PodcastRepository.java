@@ -17,6 +17,7 @@ public interface PodcastRepository extends JpaRepository<Podcast, Long> {
     @Query(nativeQuery = true, value = "select * from podcasts where user_id = ?1")
     List<Podcast> findAllByUserId(long id);
 
+
     Podcast getByTitle(String title);
 
 }

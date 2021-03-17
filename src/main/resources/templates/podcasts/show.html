@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/materializeHead.html :: styleHead('Edit Podcast')"></head>
+<body>
+<nav th:replace="partials/navbar-profile :: profileNav"></nav>
+
+<div class="container">
+
+
+    <h3 th:text="${podcast.title}"></h3>
+    <p th:text="'Posted by ' + ${podcast.user.username}" />
+
+
+    <p th:text="${podcast.description}"></p>
+
+
+</div>
+</body>
+</html>

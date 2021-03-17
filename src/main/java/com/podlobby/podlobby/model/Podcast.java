@@ -20,14 +20,14 @@ public class Podcast {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "podcast")
     private List<Comment> comments;
-
-    @ManyToMany(cascade = CascadeType.ALL)
+    //////////////////////////////////////
+    @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
             name = "podcast_categories",
             joinColumns = {@JoinColumn(name = "podcast_id")},
             inverseJoinColumns = {@JoinColumn(name = "category_id")})
     private List<Category> categories = new ArrayList<>();
-
+    //////////////////////////////////////
     @Column(nullable = false)
     private String title;
 

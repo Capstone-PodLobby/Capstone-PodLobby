@@ -3,8 +3,8 @@
 <head th:replace="partials/materializeHead :: styleHead('Podcasts needing guests')"></head>
 <body>
 
-<div th:replace="partials/navbar :: navbar"></div>
-
+<div th:replace="partials/navbar-profile :: profileNav"></div>
+<main>
 <!-- Authorized user's Home Page -->
 <div class="row">
 
@@ -32,27 +32,44 @@
             </div>
 
         </div>
-    </div>
-</div>
+<!--    </div>-->
+<!--</div>-->
 
 
-    <div class="row">
-        <div th:each="request : ${requestList}" class="col s12 m6">
+<!--    <div class="row">-->
+        <div th:each="i : ${#numbers.sequence(0, requestList.size() - 1)}" class="col s12" th:if="${requestList.get(i).guestCount &gt; 0}">
             <div class="card horizontal">
                 <div class="card-stacked">
-                    <div class="card-content">
-                        <p th:text="${request.title}"></p>
-                        <p th:text="${request.description}"></p>
+                    <div class="card-content" style="display: flex;">
+                        <img class="circle responsive-image col s4" id="requestImage" th:src="${requestList.get(i).user.profileImage}">
+                        <div class="col s8">
+                            <h5 th:text="${requestList.get(i).title}"></h5>
+                            <p th:text="${requestList.get(i).description}"></p>
+                        </div>
                     </div>
                     <div class="card-action">
-                        <p>Looking for : <span th:text="${request.guestCount}"></span> guests | <span th:text="${request.createdAt}"></span> </p>
-                        <button th:if="${request.isActive == 1}"><a href="/profile?requestView" class="btn-floating btn-large cyan pulse"></a><i class="material-icons">edit</i></button>
+                        <p class="col s4">Looking for : <span th:text="${requestList.get(i).guestCount}"></span> guests | <span th:text="${requestList.get(i).createdAt}"></span> </p>
+
+                        <div th:replace="partials/deleteRequestModal :: deleteRequestModal"></div>
+
+                        <div th:if="${requestList.get(i).user.id == session.user.id}" th:replace="partials/viewResponseModal :: viewResponseModal"></div>
+
+                        <form class="col s3" th:action="@{/request/edit/{id}(id=${requestList.get(i).id})}" th:method="GET" th:if="${requestList.get(i).user.id == session.user.id}">
+                            <input type="hidden" name="currentUrl" id="URL" th:value="${currentUrl}">
+                            <button class="wave-effect"><a>Edit</a></button>
+                        </form>
+
+                        <form class="right" th:if="${requestList.get(i).isActive == 1}" th:action="@{/user-request/{id}(id=${requestList.get(i).id})}" method="get">
+                            <input type="hidden" name="currentUrl" id="currentUrl" th:value="${currentUrl}">
+                            <button class="btn-floating btn-large cyan pulse"><i class="material-icons">edit</i></button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+</div>
+</main>
 <footer th:replace="partials/footer :: footer"></footer>
 <div th:replace="partials/materializescripts :: scripts"></div>
 

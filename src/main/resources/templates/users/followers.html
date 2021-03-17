@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/materializeHead :: styleHead('Your Followers')">
+</head>
+<body>
+
+<nav th:replace="partials/navbar-profile :: profileNav"></nav>
+<main>
+<div class="container">
+
+    <h1>Your Followers</h1>
+
+    <div class="row">
+        <div th:replace="partials/fixedProfileCard :: fixedProfileCard"></div>
+
+        <div class="col s10 m6 l4" th:each="follower : ${listOfFollowers}">
+            <div class="row">
+                <div class="col s12">
+                    <div class="card">
+                        <div class="card-image">
+                            <img th:src="${follower.profileImage}">
+                        </div>
+                        <div class="card-content">
+                            <h3 th:text="${follower.username}"></h3>
+                            <ul>
+                                <li># of posts: <span th:text="${follower.podcasts.size()}"></span> </li>
+                                <li class="divider"></li>
+                                <li th:switch="${follower.requests.size() > 0}">Looking for guest(s):
+                                    <span th:case="${true}">Yes</span>
+                                    <span th:case="${false}">No</span>
+                                </li>
+                                <li class="divider"></li>
+                                <li># of active requests: <span th:text="${follower.requests.size()}"></span> </li>
+                            </ul>
+                        </div>
+                        <div class="card-action">
+                            <a th:href="@{/following/{id}(id=${follower.id})}">View Profile</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</main>
+<footer th:replace="partials/footer.html :: footer"></footer>
+<div th:replace="partials/materializescripts :: scripts"></div>
+
+</body>
+</html>

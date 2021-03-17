@@ -2,17 +2,16 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/materializeHead :: styleHead('Your Profile')"></head>
 <body>
-    <div th:replace="partials/navbar-profile :: profileNav"></div>
+<div>
+    <img id="animated-example heading" class="animated fadeInDown background-img background-img" th:src="@{/images/dark-lines-bg-copy.jpg}">
+</div>
+    <nav th:replace="partials/navbar-profile :: profileNav"></nav>
+
 
     <div th:if="${!param.isEmpty()}">
         <div>
             <div th:if="${param.messageSent}">
                 Our team has been notified. We will get back to you soon
-            </div>
-        </div>
-        <div>
-            <div th:if="${param.settings}">
-                Your information has been updated
             </div>
         </div>
         <div>
@@ -25,40 +24,55 @@
                 Your comment has been successfully deleted
             </div>
         </div>
+        <div>
+            <div th:if="${param.edit}">
+                You are not allowed to edit this podcast
+            </div>
+        </div>
+        <div>
+            <div th:if="${param.edited}">
+                Your podcast has been successfully edited
+            </div>
+        </div>
+        <div>
+            <div th:if="${param.deletedUser}">
+                You have successfully deleted the user
+            </div>
+        </div>
     </div>
+
+   <div th:if="${message != null}">
+        <p th:text="${message}"></p>
+    </div>
+<div class="container">
 
     <main>
         <div class="row">
-            <div class="col m4 hide-on-small-only profile-side">
+            <div class="col m4 hide-on-small-only profile-side profile-style">
                 <img class="circle profile-Image" th:src="${session.user.profileImage}">
-                <div class="collection">
+                <div class="collection list-style">
                     <p class="collection-item teal-text text-darken-4" th:text="${session.user.username}"></p>
                     <a href="/following" class="collection-item teal-text text-darken-4">Following<span class="badge" th:text="${followingCount}"></span> </a>
+                    <a href="/followers" class="collection-item teal-text text-darken-4">Followers<span class="badge" th:text="${followsCount}"></span></a>
                     <a href="/getCategories" class="collection-item teal-text text-darken-4">Discover</a>
                     <a href="/user-requests" class="collection-item teal-text text-darken-4">Requests</a>
                     <a href="/user-responses" class="collection-item teal-text text-darken-4">Responses</a>
-                    <a href="?recommendations" class="collection-item teal-text text-darken-4">Recommendations</a>
+                    <a href="/profile" class="collection-item teal-text text-darken-4">Recommendations</a>
                     <a href="?myPodcasts" class="collection-item teal-text text-darken-4">My Podcasts</a>
-                    <a th:if="${param.requestView}"><button id="myBtn">Would you like to work with me?</button></a>
-                </div>
-                <!-- The Modal -->
-                <div id="myModal" class="modal">
-
-                    <!-- Modal content -->
-                    <div class="modal-content">
-                        <span class="close">&times;</span>
-                        <p>Are you interested in working on my podcast with me?</p>
-                    </div>
-
                 </div>
                 <!--    ^^^^^ THIS IS WHERE YOU CAN CLICK TO SEND A RESPONSE TO THE USER THAT CREATED THE REQUEST  -->
                 <p class="center-align" th:text="${session.user.aboutMe}"></p>
             </div>
 
-            <div class="col s12 m8 content-side" th:if="${!param.isEmpty()}">
+            <h2 class="profile-heading" th:text="'Welcome back ' + ${session.user.username}" ></h2>
+
+            <div class="col s12 m8 content-side">
+
     <!--    In the content area can click on a specific podcast ( id ) and it will move to the nav bar to be played -->
-                <div>
-                    <div id="profileContentArea" th:if="${param.myPodcasts} OR ${param.settings} OR ${param.messageSent}">
+
+                <div th:if="${!param.isEmpty()}">
+                    <div id="profileContentArea">
+
 
                         <div th:if="${userPodcasts.size() > 0}">
                             <div class="col s12 profileContentItem" th:each="i : ${#numbers.sequence(0, userPodcasts.size() - 1)}">
@@ -67,17 +81,20 @@
                                         <img th:src="${userPodcasts.get(i).image}">
                                     </div>
                                     <div class="card-stacked">
-                                        <div class="card-content">
-                                            <iframe th:src="${userPodcasts.get(i).embedLink}"></iframe>
+                                        <div class="card-content" style="overflow:auto">
+                                            <p th:text="${userPodcasts.get(i).description}"></p>
                                         </div>
                                         <div class="card-action">
+
                                             <form th:action="@{/listen/{id}(id=${userPodcasts.get(i).id})}" method="get">
                                                 <input type="hidden" name="currentUrl" id="currentUrl" th:value="${currentUrl} + '?myPodcasts'">
-                                                <button class="btn">Listen</button>
+                                                <a><button class="btn waves-effect waves-light">Listen</button></a>
                                             </form>
-                                            <a href="/podcasts/edit">Edit</a>
+
+                                            <a th:href="@{/podcasts/{id}/edit(id=${userPodcasts.get(i).id})}" class="btn waves-effect waves-light">Edit</a>
                                             <div th:replace="partials/deleteModal :: deleteModal"></div>
                                             <div th:replace="partials/commentsModal :: commentModal"></div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -85,10 +102,11 @@
                         </div>
 
                     </div>
-
+                </div>
+                <div>
 
                     <div>
-                        <div id="profileContentAreaRecommendations" th:if="${param.recommendations}">
+                        <div id="profileContentAreaRecommendations" th:if="${param.isEmpty()}">
 
 
                             <h1 th:if="${session.recommendations == null}">Check out the discover option</h1>
@@ -100,15 +118,16 @@
                                     </div>
                                     <div class="card-stacked">
                                         <div class="card-content">
-                                            <iframe th:src="${recommendation.embedLink}"></iframe>
+                                                <p th:text="${recommendation.description}"></p>
                                         </div>
                                         <div class="card-action">
-<!--                                            <div th:each="category : ${recommendation.categories}">-->
-<!--                                                <p th:text="${category.name}"></p>-->
-<!--                                            </div>-->
+                                            <div style="display: flex; justify-content: space-around;">
+                                                <p th:each="category : ${recommendation.categories}" th:text="${category.name}"></p>
+                                            </div>
+
                                             <form th:action="@{/listen/{id}(id=${recommendation.id})}" method="get">
                                                 <input type="hidden" name="currentUrl" th:value="${currentUrl} + '?recommendations'">
-                                                <button class="btn">Listen</button>
+                                                <a><button class="waves-effect waves-light btn">Listen</button></a>
                                             </form>
                                          </div>
                                     </div>
@@ -122,11 +141,57 @@
                 </div>
             </div>
         </div>
+
     </main>
 
-    <footer th:replace="partials/footer :: footer"></footer>
+
+    <footer style="position: fixed; z-index: 3" th:replace="partials/footer :: footer"></footer>
+</div>
     <div th:replace="partials/materializescripts :: scripts"></div>
-    <div th:replace="partials/requestModal :: scripts"></div>
+    <script>
+        // a key map of allowed keys
+        var allowedKeys = {
+            37: 'left',
+            38: 'up',
+            39: 'right',
+            40: 'down',
+            65: 'a',
+            66: 'b'
+        };
+
+        // the 'official' Konami Code sequence
+        var konamiCode = ['up', 'up', 'down', 'down', 'left', 'right', 'left', 'right', 'b', 'a'];
+
+        // a variable to remember the 'position' the user has reached so far.
+        var konamiCodePosition = 0;
+
+        // add keydown event listener
+        document.addEventListener('keydown', function(e) {
+            // get the value of the key code from the key map
+            var key = allowedKeys[e.keyCode];
+            // get the value of the required key from the konami code
+            var requiredKey = konamiCode[konamiCodePosition];
+
+            // compare the key with the required key
+            if (key == requiredKey) {
+
+                // move to the next key in the konami code sequence
+                konamiCodePosition++;
+
+                // if the last key is reached, activate cheats
+                if (konamiCodePosition == konamiCode.length) {
+                    activateCheats();
+                    konamiCodePosition = 0;
+                }
+            } else {
+                konamiCodePosition = 0;
+            }
+        });
+
+        function activateCheats() {
+            alert("cheats activated");
+        }
+    </script>
 </body>
 
 </html>
