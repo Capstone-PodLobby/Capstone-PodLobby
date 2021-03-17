@@ -72,4 +72,12 @@ public class ResponseController {
         model.addAttribute("currentUrl", request.getRequestURI());
         return "responses/user-responses";
     }
+
+    @GetMapping("/accepted/{id}")
+    public String acceptedResponse(Model model, @PathVariable(name = "id") long id){
+        Response thisResponse = responseDao.getOne(id);
+        thisResponse.setAcceptedStatus(1);
+        responseDao.save(thisResponse);
+        return "redirect:/profile";
+    }
 }

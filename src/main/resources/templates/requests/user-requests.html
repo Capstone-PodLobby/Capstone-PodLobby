@@ -32,6 +32,8 @@
 
                         <div th:replace="partials/deleteRequestModal :: deleteRequestModal"></div>
 
+                        <div th:replace="partials/viewResponseModal :: viewResponseModal"></div>
+
                         <form class="col s3" th:action="@{/request/edit/{id}(id=${requestList.get(i).id})}" th:method="GET" th:if="${requestList.get(i).user.id == session.user.id}">
                             <input type="hidden" name="currentUrl" id="URL" th:value="${currentUrl}">
                             <button class="wave-effect"><a>Edit</a></button>
