@@ -2,6 +2,7 @@ package com.podlobby.podlobby.controllers;
 
 import com.mailjet.client.errors.MailjetException;
 import com.podlobby.podlobby.model.User;
+import com.podlobby.podlobby.services.TLSEmail;
 import com.podlobby.podlobby.services.UserService;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
@@ -16,9 +17,11 @@ import javax.servlet.http.HttpServletRequest;
 public class HomeController {
 
     private final UserService userService;
+    private final TLSEmail tlsEmail;
 
-    public HomeController(UserService userService){
+    public HomeController(UserService userService, TLSEmail tlsEmail){
         this.userService = userService;
+        this.tlsEmail = tlsEmail;
     }
 
     //    Display the landing page (non-authenticated) //
@@ -37,14 +40,12 @@ public class HomeController {
         } catch (Exception ignored){}
 
         if(user != null){
-
+            tlsEmail.sendEmail("podlobby@gmail.com", user.getUsername(), "Help request", message, false);
             model.addAttribute("currentUrl", request.getRequestURI());
             return "redirect:" + currentUrl + "?messageSent";// get the current page you are on
         }
-        // create a random user for the email
-        User emailSender = new User();
-        emailSender.setEmail("help@podlobby.com");
-        emailSender.setUsername("anonymous");
+
+        tlsEmail.sendEmail("podlobby@gmail.com", "Visitor", "Help request", message, false);
 
         return "redirect:/login?messageSent";
     }

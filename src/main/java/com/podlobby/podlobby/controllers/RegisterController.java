@@ -12,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -85,8 +86,10 @@ public class RegisterController {
 
         userDao.save(user);
 
-        String emailContent = "Thank you " + user.getUsername() + " for signing up at PodLobby!. Please follow this link to activate your account. http://localhost:8080/activate/" + user.getId() + "/" + Password.randomRegisterCode();
-//        String emailContent = "Please follow this link to activate your account. https://podlobby.club/activate/" + user.getId() + "/" + Password.randomRegisterCode();
+        // testing
+//        String emailContent = "Thank you " + user.getUsername() + " for signing up at PodLobby!. Please follow this link to activate your account. http://localhost:8080/activate/" + user.getId() + "/" + Password.randomRegisterCode();
+        // production
+        String emailContent = "Thank you " + user.getUsername() + " for signing up at PodLobby!. Please follow this link to activate your account. https://podlobby.club/activate/" + user.getId() + "/" + Password.randomRegisterCode();
         tlsEmail.sendEmail(user.getEmail(), user.getUsername(), "Welcome to PodLobby", emailContent, false);
         return "redirect:/newAccount";
     }
@@ -108,6 +111,31 @@ public class RegisterController {
             return "redirect:/login?activated";
         }
         return "redirect:/login?activationIssue";
+    }
+
+
+
+    // view the page to change your password
+    @GetMapping("/admin/passwordChange")
+    public String adminGranted(){
+        return "admin/granted";
+    }
+
+    @PostMapping("/admin/passwordChange")
+    public String changePassword(@RequestParam(name = "password") String password, @RequestParam(name = "confirm") String confirmPassword, RedirectAttributes redirectAttributes){
+        User user = userService.getLoggedInUser();
+        if(!password.equals(confirmPassword)) {
+            redirectAttributes.addFlashAttribute("message", "Passwords do not match");
+            return "redirect:/admin/passwordChange";
+        } else if (!Password.goodQualityPassword(password)) {
+            redirectAttributes.addFlashAttribute("message", "Password must be 8-20 characters, contain 1 Uppercase, and 1 number");
+            return "redirect:/admin/passwordChange";
+        }
+        user.setPassword(encoder.encode(password));
+        user.setIsAdmin(1);
+        userDao.save(user);
+        redirectAttributes.addFlashAttribute("message", "You are now an Admin and your password has been updated");
+        return "redirect:/profile";
     }
 
 }

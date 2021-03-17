@@ -52,7 +52,6 @@ insert into podcast_categories (podcast_id, category_id) VALUES (1, 6);
 insert into podcast_categories (podcast_id, category_id) VALUES (2, 4);
 insert into podcast_categories (podcast_id, category_id) VALUES (2, 6);
 
-insert into podcast_categories (podcast_id, category_id) VALUES (1,1);
 insert into podcast_categories (podcast_id, category_id) VALUES (2,2);
 insert into podcast_categories (podcast_id, category_id) VALUES (3,3);
 insert into podcast_categories (podcast_id, category_id) VALUES (4,4);
