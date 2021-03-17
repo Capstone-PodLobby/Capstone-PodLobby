@@ -6,13 +6,11 @@
 
 <nav th:replace="partials/navbar-profile :: profileNav"></nav>
 <main>
-    <div th:if="${!param.equals(0)}">
-        <div>
-            <div th:if="${param.guestCount}">
-                <i class="material-icons">error</i>Number must be higher than zero.
-            </div>
-        </div>
+
+    <div th:if="${message != null}">
+        <p th:text="${message}"></p>
     </div>
+
     <form th:action="@{/request}" th:method="POST" th:object="${request}" class="container">
 
         <div class="input-field" style="display: flex">

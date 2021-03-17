@@ -21,6 +21,11 @@
                 </div>
             </div>
             <div>
+                <div th:if="${param.quality}">
+                    <i class="material-icons">error</i>Password must be 8-20 characters, contain 1 Uppercase, and 1 number.
+                </div>
+            </div>
+            <div>
                 <div th:if="${param.passwords}">
                     <i class="material-icons">error</i>Passwords do not match
                 </div>

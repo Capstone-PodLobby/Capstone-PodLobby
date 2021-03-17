@@ -144,7 +144,7 @@ public class PodcastPostController {
         podcastDao.save(podcast);
 
         List<Podcast> userList = podcastDao.findAllByUserId(currUser.getId());
-        String message = "Thank you " + currUser.getUsername() + " for adding your " + Methods.numberSuffix(userList.size()) + " podcast it can be found on your profile!";
+        String message = "Thank you " + currUser.getUsername() + " for adding your " + Methods.numberSuffix(userList.size()) + " podcast, it can be found on your profile!";
         tlsEmail.sendEmail(currUser.getEmail(), currUser.getUsername(), "Your podcasts has been added", message, false);
 
         model.addAttribute("currentUrl", request.getRequestURI());
