@@ -18,13 +18,13 @@ public class Response {
 
     @Column
     private Timestamp createdAt;
-
-    @ManyToOne
+    //////////////////////////////////////
+    @ManyToOne(cascade = {CascadeType.ALL})
     private User user;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL})
     private Request request;
-
+    //////////////////////////////////////
     public Response(){}
 
     public Response(long id, String content, Timestamp createdAt, User user, Request request) {
