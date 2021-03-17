@@ -6,12 +6,20 @@ body {
     background: url(/static/images/podlobby-main-copy.png);
 
 }
+
+::-webkit-scrollbar {
+    width: 0px !important;
+    background-color: transparent !important;}
+
+
 main {
     flex: 1 0 auto;
 }
 
 .list-style {
-    background-color: rgba(0,0,0,0.6);
+    background-color: white;
+
+
 }
 /* Profile page */
 .profile-side{
@@ -23,12 +31,12 @@ main {
     background-color: transparent;
     max-height: 100vh;
     overflow: scroll;
-    margin-top: 50px;
 }
 .profileContentItem{
     max-height: 350px;
     max-width: 900px;
-    margin-top: 100px;
+    margin-top: 75px;
+    background-color: transparent;
 }
 .profile-iframe{
     margin-left: 1vw;
@@ -43,7 +51,10 @@ main {
 
 
 }
-
+.profile-heading {
+    color: aliceblue;
+    margin-left: 80px;
+}
 
 
 #profileNav{
@@ -148,7 +159,7 @@ a, button{
     position: relative;
     display: inline-block;
     overflow: hidden;
-    background: linear-gradient(to right, #a1a1c4 50%, #3d7915 50%);
+    background: linear-gradient(to right, #a1a1c4 50%, #489e8d 50%);
 
     background-clip: text;
     -webkit-background-clip: text;

@@ -64,7 +64,10 @@
                 <p class="center-align" th:text="${session.user.aboutMe}"></p>
             </div>
 
+            <h2 class="profile-heading" th:text="'Welcome back ' + ${session.user.username}" ></h2>
+
             <div class="col s12 m8 content-side">
+
     <!--    In the content area can click on a specific podcast ( id ) and it will move to the nav bar to be played -->
 
                 <div th:if="${!param.isEmpty()}">
@@ -80,7 +83,6 @@
                                     <div class="card-stacked">
                                         <div class="card-content" style="overflow:auto">
                                             <p th:text="${userPodcasts.get(i).description}"></p>
-
                                         </div>
                                         <div class="card-action">
 
@@ -116,7 +118,7 @@
                                     </div>
                                     <div class="card-stacked">
                                         <div class="card-content">
-                                            <iframe th:src="${recommendation.embedLink}"></iframe>
+                                                <p th:text="${recommendation.description}"></p>
                                         </div>
                                         <div class="card-action">
                                             <div style="display: flex; justify-content: space-around;">
