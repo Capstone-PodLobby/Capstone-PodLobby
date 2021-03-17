@@ -15,10 +15,11 @@ public class Category {
 
     @Column(nullable = false)
     private String name;
-
-    @ManyToMany(mappedBy = "categories")
+//////////////////////////////////////
+//    Adding cascadetype.all to this fixed our foreign key error
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "categories")
     private List<Podcast> podcastList = new ArrayList<>();
-
+//////////////////////////////////////
     public Category(){}
 
     public Category(long id, String name, List<Podcast> podcastList) {

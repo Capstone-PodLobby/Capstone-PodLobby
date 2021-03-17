@@ -22,6 +22,9 @@
             <div th:if="${param.password}">
                 <i class="material-icons">error</i>Password does not match or is blank.
             </div>
+            <div th:if="${param.quality}">
+                <i class="material-icons">error</i>Password must be 8-20 characters, contain 1 Uppercase, and 1 number.
+            </div>
             <div th:if="${param.about}">
                 <i class="material-icons">error</i>Please add a little information about you.
             </div>
@@ -80,7 +83,7 @@
                     </button>
                 </form>
                 <div class="tap-target" data-target="menu">
-                    <div class="tap-target-content">
+                    <div class="tap-target-content" id="registerDiscovery">
                         <h5>About Me</h5>
                         <p>This will be for other users on the site to see when they visit your profile. Please add some information about you and your interests along with something that you are hoping to find here and collaborate on!</p>
                     </div>

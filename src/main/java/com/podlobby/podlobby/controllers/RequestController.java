@@ -95,11 +95,15 @@ public class RequestController {
         return "feeds/requests-feed";
     }
 
-    // getting all requests for a specific user
+    // getting all requests for current user
     @GetMapping("/user-requests")
-    public String showRequestsAndResponses(Model model, HttpServletRequest request){
+    public String showRequestsAndResponses(Model model, HttpServletRequest request, RedirectAttributes redirectAtr){
         User user = userService.getLoggedInUser();
         List<Request> requestList = requestDao.findByUser(user);
+        if(requestList.size() < 1) {
+            redirectAtr.addFlashAttribute("message", "You do not have any active requests");
+            return "redirect:/profile?myPodcasts";
+        }
 
         model.addAttribute("requestList", requestList);
         model.addAttribute("currentUrl", request.getRequestURI());
@@ -108,9 +112,15 @@ public class RequestController {
 
     // getting all the requests for the persons profile you are looking at
     @GetMapping("/user-requests/{id}")
-    public String showRequestsForOtherUser(@PathVariable(name = "id") long id, Model model, HttpServletRequest request){
-        User user = userDao.getOne(id); // the user whos page you are on -> only their active requests
-        model.addAttribute("requestList", requestDao.findByUser(user));
+    public String showRequestsForOtherUser(@PathVariable(name = "id") long id, Model model, HttpServletRequest request, RedirectAttributes redirectAtr){
+        User user = userDao.getOne(id); // the user whos page you are on
+
+        List<Request> requestList = requestDao.findByUser(user);
+        if(requestList.size() < 1) {
+            redirectAtr.addFlashAttribute("message", "This user does not have any active requests"); // would you like to be notified when they have created one ? ( notification feature )
+            return "redirect:/otherProfile/" + id;
+        }
+        model.addAttribute("requestList", requestList);
         model.addAttribute("currentUrl", request.getRequestURI());
         return "requests/user-requests";
     }

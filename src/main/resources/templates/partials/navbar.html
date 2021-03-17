@@ -1,12 +1,12 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
-<div th:fragment="navbar" th:remove="tag">
+<div class="transparent" th:fragment="navbar" th:remove="tag">
     <ul id="dropdown1" class="dropdown-content">
         <li><a href="/">PodLobby</a></li>
         <li sec:authorize="isAnonymous()"><a href="/login">Login</a></li>
         <li><a href="/feeds/global">Global Feed</a></li>
     </ul>
-    <nav class="navbar-fixed">
+    <nav class="navbar-fixed transparent z-depth-0">
         <div class="nav-wrapper">
             <ul class="head-txt">
                 <li class="right">

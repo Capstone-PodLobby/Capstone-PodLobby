@@ -82,9 +82,7 @@ insert into comments (comment, created_at, podcast_id, user_id) VALUES ('That is
 
 insert into followed_users (user_id, follow_id) VALUES (1, 2);
 
-
 select * from users;
-
 select * from categories;
 
 select * from podcasts;

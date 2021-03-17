@@ -16,10 +16,10 @@ public class Password {
 
     public static String randomGen(){
         StringBuilder out = new StringBuilder();
-        List<String> specials = new ArrayList<>(Arrays.asList("!", "#", "$"));
+        List<String> specials = new ArrayList<>(Arrays.asList("!", "#", "$", "%", "*"));
         while(out.length() < 16){
             int ran = (int) Math.floor(Math.random() * 10);
-            if(ran < 3){
+            if(ran < 5){
                 out.append(specials.get(ran));
             }
             out.append(RandomStringUtils.randomAlphabetic(1));
@@ -47,17 +47,14 @@ public class Password {
         Pattern upper = Pattern.compile("\\p{Upper}");
         Pattern lower = Pattern.compile("\\p{Lower}");
         Pattern digit = Pattern.compile("\\d");
-        Pattern specialChar = Pattern.compile("\\W");
 
         Matcher matcherUp = upper.matcher(passwordAttempt);
         Matcher matcherLow = lower.matcher(passwordAttempt);
         Matcher matcherNum = digit.matcher(passwordAttempt);
-        Matcher special = specialChar.matcher(passwordAttempt);
 
         return matcherUp.find()
                 && matcherLow.find()
-                && matcherNum.find()
-                && ( special.find() || passwordAttempt.contains("_") );
+                && matcherNum.find();
     }
 
     public static List<String> getThePassword (){

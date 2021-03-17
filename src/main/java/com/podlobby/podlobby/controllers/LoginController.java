@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -122,9 +123,14 @@ public class LoginController {
     // check quality of new password and that they match before setting it to that user
     //send them back to log in now that the password has been changed
     @PostMapping("/newPassword")
-    public String newPasswordMade(HttpSession session, @RequestParam(name = "password") String password, @RequestParam(name = "confirmPassword") String confirm){
+    public String newPasswordMade(HttpSession session, @RequestParam(name = "password") String password,
+                                  @RequestParam(name = "confirmPassword") String confirm, RedirectAttributes redirectAtr){
         if ( !password.equals(confirm) ){
-            return "redirect:/newPassword?incorrect";
+            redirectAtr.addFlashAttribute("message", "Passwords do not match");
+            return "redirect:/newPassword";
+        } else if (!Password.goodQualityPassword(password)) {
+            redirectAtr.addFlashAttribute("message", "Password must be 8-20 characters, contain 1 Uppercase, and 1 number");
+            return "redirect:/newPassword";
         }
         User user = (User) session.getAttribute("user");
         user.setPassword(encoder.encode(password));
