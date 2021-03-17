@@ -53,11 +53,20 @@ public class RequestController {
 
     // create the request
     @PostMapping("/request")
-    public String createRequest(@ModelAttribute Request request, @RequestParam(name = "requestId") long id, @RequestParam(name = "req-amount") int amount, Model model, HttpServletRequest servletRequest){
+    public String createRequest(@ModelAttribute Request request, @RequestParam(name = "requestId") long id,
+                                @RequestParam(name = "req-amount") int amount, Model model,
+                                HttpServletRequest servletRequest, RedirectAttributes redirectAtr){
         User user = userService.getLoggedInUser();
         request.setGuestCount(amount);
         if(request.getGuestCount() <= 0) {
-            return "redirect:/request?guestCount";
+            redirectAtr.addFlashAttribute("message", "Guest count must be higher than 0");
+            return "redirect:/request";
+        } else if (request.getDescription().isEmpty()) {
+            redirectAtr.addFlashAttribute("message", "Request must include a description");
+            return "redirect:/request";
+        } else if (request.getTitle().isEmpty()) {
+            redirectAtr.addFlashAttribute("message", "Request must include a title");
+            return "redirect:/request";
         }
         // a new request is being made not edited
         if(id == 0) {
@@ -79,7 +88,7 @@ public class RequestController {
 
         List<Request> requestList = requestDao.findByUser(user);
 
-        String message = "Thank you " + user.getUsername() + " for adding your " + Methods.numberSuffix(requestList.size()) + " request it can be found on your profile!";
+        String message = "Thank you " + user.getUsername() + " for adding your " + Methods.numberSuffix(requestList.size()) + " request, it can be found on your profile!";
         tlsEmail.sendEmail(user.getEmail(), user.getUsername(), "Your request has been added", message, false);
 
         return "redirect:/profile?myPodcasts";

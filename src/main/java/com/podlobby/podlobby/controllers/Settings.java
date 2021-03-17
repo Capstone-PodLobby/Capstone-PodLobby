@@ -5,6 +5,7 @@ import com.podlobby.podlobby.model.Podcast;
 import com.podlobby.podlobby.model.User;
 import com.podlobby.podlobby.repositories.UserRepository;
 import com.podlobby.podlobby.services.UserService;
+import com.podlobby.podlobby.util.Password;
 import org.springframework.security.core.parameters.P;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -67,6 +68,9 @@ public class Settings {
         if (!user.getPassword().isEmpty()) {
             if (!user.getPassword().equals(confirmPassword)) {
                 return "redirect:/settings?passwords";
+            }
+            if(!Password.goodQualityPassword(user.getPassword())) {
+                return "redirect:/settings?quality";
             }
             currentUser.setPassword(encoder.encode(user.getPassword()));
         }
