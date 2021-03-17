@@ -42,8 +42,8 @@ public class TLSEmail {
 
         if(forgotPassword) {
             String randomPassword = Password.randomGen();
-            EmailUtil.sendEmail(session, toEmail, "Forgot Password", "Hello " + userName + " your temporary password is " + randomPassword + " please go to http://localhost:8080/reset");
-//            EmailUtil.sendEmail(session, toEmail, "Forgot Password", "Hello " + userName + " your temporary password is " + randomPassword + " please go to https://podlobby/reset");
+//            EmailUtil.sendEmail(session, toEmail, "Forgot Password", "Hello " + userName + " your temporary password is " + randomPassword + " please go to http://localhost:8080/reset");
+            EmailUtil.sendEmail(session, toEmail, "Forgot Password", "Hello " + userName + " your temporary password is " + randomPassword + " please go to https://podlobby/reset");
         } else {
             EmailUtil.sendEmail(session, toEmail, subject, content);
         }

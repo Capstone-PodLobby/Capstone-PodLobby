@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/materializeHead :: styleHead('Admin Privilege ')">
+</head>
+<body>
+
+<main>
+
+    <div th:if="${message != null}">
+        <p th:text="${message}"></p>
+    </div>
+
+    <h1>You have entered the secret Code! <strong>Now change that password</strong></h1>
+
+    <form th:action="@{/admin/passwordChange}" th:method="POST" class="container">
+        <div class="input-field" style="display: flex">
+            <i class="material-icons">lock</i>
+            <label class="labelIcon" for="password">New Password</label>
+            <input class="validate" id="password" type="password" name="password"/>
+        </div>
+        <div class="input-field" style="display: flex">
+            <i class="material-icons">lock</i>
+            <label class="labelIcon" for="confirm">Confirm Password</label>
+            <input class="validate" id="confirm" type="password" name="confirm"/>
+        </div>
+        <button class="btn waves-effect"><a>Change</a></button>
+    </form>
+
+</main>
+
+<footer th:replace="partials/footer.html :: footer"></footer>
+<div th:replace="partials/materializescripts :: scripts"></div>
+
+</body>
+</html>

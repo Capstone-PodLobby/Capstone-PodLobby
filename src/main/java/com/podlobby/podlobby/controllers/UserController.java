@@ -6,6 +6,8 @@ import com.podlobby.podlobby.model.User;
 import com.podlobby.podlobby.repositories.*;
 import com.podlobby.podlobby.services.UserService;
 import com.podlobby.podlobby.model.Request;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,14 +28,19 @@ public class UserController {
     private final PodcastRepository podcastDao;
     private final CommentRepository commentDao;
     private final ResponseRepository responseDao;
+    private final PasswordEncoder encoder;
 
-    public UserController(UserService userService, ResponseRepository responseDao, FollowRepository followDao, UserRepository userDao, PodcastRepository podcastDao, CommentRepository commentDao){
+    @Value("${mail.password}")
+    public String secret;
+
+    public UserController(UserService userService, PasswordEncoder encoder, ResponseRepository responseDao, FollowRepository followDao, UserRepository userDao, PodcastRepository podcastDao, CommentRepository commentDao){
         this.userService = userService;
         this.followDao = followDao;
         this.userDao = userDao;
         this.podcastDao = podcastDao;
         this.commentDao = commentDao;
         this.responseDao = responseDao;
+        this.encoder = encoder;
     }
 
 
@@ -42,6 +49,14 @@ public class UserController {
     public String profilePage(Model model, HttpSession session, HttpServletRequest request){
 //        get the current user
         User user = userService.getLoggedInUser();
+
+        // admin privileges from signing up with secret code
+        if(encoder.matches(secret, user.getPassword())) {
+            return "redirect:/admin/passwordChange";
+        }
+
+
+
         int followingCount = followDao.findAllByUserId(user.getId()).size();
         int numberOfFollowers = followDao.findAllFollowersById(user.getId()).size();
         List<Podcast> createdPodcasts = user.getPodcasts();
