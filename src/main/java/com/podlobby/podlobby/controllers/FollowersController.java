@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -46,7 +47,7 @@ public class FollowersController {
     // viewing the page of the user you follow
     @GetMapping("/following/{id}")
     public String viewFollowersProfile(Model model, @PathVariable(name = "id") long id, HttpServletRequest request){
-        User following = userDao.findById(id).get();
+        User following = userDao.getOne(id);
         model.addAttribute("following", following);
 
         User currUser = userService.getLoggedInUser();
@@ -64,7 +65,7 @@ public class FollowersController {
 
     // unfollow a user by id
     @GetMapping("/unfollow/{id}")
-    public String unfollowUser(Model model, HttpServletRequest request, HttpSession session, @PathVariable(name = "id") long id){
+    public String unfollowUser(Model model, HttpServletRequest request, HttpSession session, @PathVariable(name = "id") long id, RedirectAttributes redirectAtr){
 
         User unfollow = userDao.getOne(id);
 
@@ -77,12 +78,13 @@ public class FollowersController {
         currUser.setUsers(currentFollowList);
         followDao.save(currUser);
         model.addAttribute("currentUrl", request.getRequestURI());
-        return "redirect:/following?unfollowed=" + unfollow.getUsername();
+        redirectAtr.addFlashAttribute("message", "You have unfollowed " + unfollow.getUsername());
+        return "redirect:/following";
     }
 
     // following the user whose page you are on
     @GetMapping("/followUser/{id}")
-    public String followAUser(Model model, HttpServletRequest request, HttpSession session, @PathVariable(name = "id") long id){
+    public String followAUser(Model model, HttpServletRequest request, HttpSession session, @PathVariable(name = "id") long id, RedirectAttributes redirectAtr){
         // add this user to the current user's follow list
         User userToFollow = userDao.getOne(id);
         User user = userService.getLoggedInUser();
@@ -98,7 +100,8 @@ public class FollowersController {
         model.addAttribute("userController", userDao);
         model.addAttribute("isFollowing", true); // viewing a followers page that you just followed
         model.addAttribute("currentUrl", request.getRequestURI());
-        return "redirect:/otherProfile/" + id + "?followed";
+        redirectAtr.addFlashAttribute("message", "You have followed " + userToFollow.getUsername());
+        return "redirect:/otherProfile/" + id;
     }
 
 

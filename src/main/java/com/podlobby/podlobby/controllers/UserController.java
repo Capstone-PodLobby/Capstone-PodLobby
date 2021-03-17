@@ -73,7 +73,7 @@ public class UserController {
         long currUserId = currUser.getId();
         // this is your podcast
         if(currUserId == id){
-            return "redirect:/profile";
+            return "redirect:/profile?myPodcasts";
         }
 
         model.addAttribute("user", currUser);
@@ -83,7 +83,6 @@ public class UserController {
         List<Podcast> createdPodcasts = podcastDao.findAllByUserId(id);
 
         model.addAttribute("followingPodcasts", createdPodcasts);
-        model.addAttribute("userControllerId", following);
 
 
         // check if this person is someone i am already following
@@ -125,7 +124,7 @@ public class UserController {
     public String deleteUser(Model model, @PathVariable(name = "id") long id, HttpServletRequest request, @RequestParam(name = "currentUrl") String currentUrl){
         userDao.delete(userDao.getOne(id));
         model.addAttribute("currentUrl", request.getRequestURI());
-        return "redirect:/profile?deleted";
+        return "redirect:/profile?deletedUser";
     }
 
 }

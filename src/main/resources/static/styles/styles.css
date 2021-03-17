@@ -90,9 +90,7 @@ main {
     align-self: center !important;
 }
 #footerSubmitButton{
-    background: none !important;
     border: none !important;
-    color: #fff !important;
 }
 
 /*========= Styling for authorized user's home page (user-home.html) ========*/
@@ -118,7 +116,7 @@ main {
 
 /*style for tap target on create podcast*/
 .tap-target-content{
-    inset: 78px 0 0 350px !important;
+    padding: 51px !important;
 }
 .embedImg{
     border-radius: 30% !important;
@@ -142,15 +140,15 @@ main {
 }
 button:hover{
     cursor: pointer;
+    background-position: 0 100%;
 }
 
-
 /*link effect*/
-a{
+a, button{
     position: relative;
     display: inline-block;
     overflow: hidden;
-    background: linear-gradient(to right, #fafafc 50%, #3d7915 50%);
+    background: linear-gradient(to right, #a1a1c4 50%, #3d7915 50%);
 
     background-clip: text;
     -webkit-background-clip: text;
@@ -166,6 +164,7 @@ a:hover{
 }
 
 
+
 .card-action {
     display: flex;
 }
@@ -173,6 +172,8 @@ a:hover{
 .card-image{
     height: 100%;
 }
+
+
 
 /*=============================================================================*/
 
