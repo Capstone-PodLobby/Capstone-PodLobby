@@ -19,7 +19,7 @@ public class Response {
     @Column
     private Timestamp createdAt;
     //////////////////////////////////////
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @ManyToOne
     private User user;
 
     @ManyToOne(cascade = {CascadeType.ALL})
