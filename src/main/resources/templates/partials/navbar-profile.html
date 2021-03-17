@@ -1,65 +1,69 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
 
-<div th:fragment="profileNav" th:remove="tag">
-    <ul id="dropdown1" class="dropdown-content hide-on-small-only">
-        <li><a href="/feeds/global">Home</a></li>
-        <li><a href="/">PodLobby</a></li>
-        <li><a href="/podcasts/create">Create</a></li>
-        <li class="divider"></li>
-        <li><a href="/settings">Settings</a></li>
-        <li>
-            <form class="logoutForm" th:action="@{/logout}" method="POST">
-                <button class="logoutFormButton">Logout</button>
-            </form>
-        </li>
-        <li sec:authorize="isAuthenticated()"><a href="/request">Request</a></li>
-        <li sec:authorize="isAuthenticated()"><a href="/profile?myPodcasts">Profile</a></li>
-    </ul>
+    <div class="transparent" th:fragment="profileNav" th:remove="tag">
+        <ul id="dropdown1" class="dropdown-content hide-on-small-only ">
+            <li><a href="/feeds/global">Home</a></li>
+            <li><a href="/">PodLobby</a></li>
+            <li><a href="/podcasts/create">Create</a></li>
+            <li class="divider"></li>
+            <li><a href="/settings">Settings</a></li>
+            <li>
+                <form class="logoutForm" th:action="@{/logout}" method="POST">
+                    <button class="logoutFormButton">Logout</button>
+                </form>
+            </li>
+            <li sec:authorize="isAuthenticated()"><a href="/request">Request</a></li>
+            <li sec:authorize="isAuthenticated()"><a href="/profile?myPodcasts">Profile</a></li>
+        </ul>
 
-    <ul id="slide-out" class="sidenav hide-on-med-and-up">
-        <li>
-            <div class="user-view">
-                <div class="background">
-                    <img th:src="${session.user.backgroundImage}">
+        <ul id="slide-out" class="sidenav hide-on-med-and-up">
+            <li>
+                <div class="user-view">
+                    <div class="background">
+                        <img th:src="${session.user.backgroundImage}">
+                    </div>
+                    <a href="#user"><img class="circle" th:src="${session.user.getProfileImage}"></a>
+                    <a href="#name"><span class="white-text name" th:text="${session.user.username}"></span></a>
                 </div>
-                <a href="#user"><img class="circle" th:src="${session.user.getProfileImage}"></a>
-                <a href="#name"><span class="white-text name" th:text="${session.user.username}"></span></a>
+            </li>
+            <li><a class="subheader">Listening to</a></li>
+            <li th:if="${session.listeningTo != null}"><iframe id="profileIframeSideNav" th:src="${session.listeningTo}" allowtransparency="true" allow="encrypted-media"></iframe></li>
+            <li class="divider"></li>
+            <li><a class="subheader" href="/">PodLobby</a></li>
+            <li><a href="/feeds/global">Home</a></li>
+            <li><a href="/podcasts/create">Create</a></li>
+            <li class="divider"></li>
+            <li><a href="/settings">Settings</a></li>
+            <li sec:authorize="isAuthenticated()"><a href="/profile?myPodcasts">Profile</a></li>
+            <li class="divider"></li>
+            <li>
+                <form class="logoutForm" th:action="@{/logout}" method="POST">
+                    <button class="logoutFormButton">Logout</button>
+                </form>
+            </li>
+            <li class="divider"></li>
+            <li><a class="waves-effect" href="/following"><i class="material-icons">cloud</i>Followers<span class="badge" th:text="${followingCount}"></span></a></li>
+            <li><div class="divider"></div></li>
+            <li><a class="waves-effect" href="/getCategories"><i class="material-icons">cloud</i>Discover</a></li>
+        </ul>
+
+        <nav id="profileNav" class="transparent z-depth-0">
+            <div class="nav-wrapper">
+                <a href="/" class="brand-logo">PodLobby</a>
+                <ul>
+                    <li th:if="${session.listeningTo != null}" class="profile-iframe hide-on-small-only">
+                        <iframe id="profileIframe" th:src="${session.listeningTo}" allowtransparency="true" allow="encrypted-media"></iframe>
+                    </li>
+
+                    <li class="right">
+                        <a class="dropdown-trigger hide-on-small-only" href="#!" data-target="dropdown1"><i class="material-icons right">menu</i></a>
+                        <a href="#" data-target="slide-out" class="sidenav-trigger hide-on-med-and-up"><i class="material-icons">account_circle</i></a>
+                    </li>
+                </ul>
             </div>
-        </li>
-        <li><a class="subheader">Listening to</a></li>
-        <li th:if="${session.listeningTo != null}"><iframe id="profileIframeSideNav" th:src="${session.listeningTo}" allowtransparency="true" allow="encrypted-media"></iframe></li>
-        <li class="divider"></li>
-        <li><a class="subheader" href="/">PodLobby</a></li>
-        <li><a href="/feeds/global">Home</a></li>
-        <li><a href="/podcasts/create">Create</a></li>
-        <li class="divider"></li>
-        <li><a href="/settings">Settings</a></li>
-        <li sec:authorize="isAuthenticated()"><a href="/profile?myPodcasts">Profile</a></li>
-        <li class="divider"></li>
-        <li>
-            <form class="logoutForm" th:action="@{/logout}" method="POST">
-                <button class="logoutFormButton">Logout</button>
-            </form>
-        </li>
-        <li class="divider"></li>
-        <li><a class="waves-effect" href="/following"><i class="material-icons">cloud</i>Followers<span class="badge" th:text="${followingCount}"></span></a></li>
-        <li><div class="divider"></div></li>
-        <li><a class="waves-effect" href="/getCategories"><i class="material-icons">cloud</i>Discover</a></li>
-    </ul>
+        </nav>
+    </div>
 
-    <nav id="profileNav">
-        <div class="nav-wrapper">
-            <a href="/" class="brand-logo">PodLobby</a>
-            <ul>
-                <li th:if="${session.listeningTo != null}" class="profile-iframe hide-on-small-only">
-                    <iframe id="profileIframe" th:src="${session.listeningTo}" allowtransparency="true" allow="encrypted-media"></iframe>
-                </li>
-
-                <li class="right">
-                    <a class="dropdown-trigger hide-on-small-only" href="#!" data-target="dropdown1"><i class="material-icons right">menu</i></a>
-                    <a href="#" data-target="slide-out" class="sidenav-trigger hide-on-med-and-up"><i class="material-icons">account_circle</i></a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-</div>
+</html>
