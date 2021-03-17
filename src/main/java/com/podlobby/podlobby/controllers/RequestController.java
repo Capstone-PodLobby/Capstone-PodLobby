@@ -99,17 +99,9 @@ public class RequestController {
     @GetMapping("/user-requests")
     public String showRequestsAndResponses(Model model, HttpServletRequest request){
         User user = userService.getLoggedInUser();
-        System.out.println("==================");
         List<Request> requestList = requestDao.findByUser(user);
-        for(Request r : requestList){
-            System.out.println(r.getTitle());
-            List<Response> responseList = responseDao.findAllByRequestId(r.getId());
-            for(Response res : responseList){
-                System.out.println(res.getContent());
-            }
-        }
 
-        model.addAttribute("requestList", requestDao.findByUser(user));
+        model.addAttribute("requestList", requestList);
         model.addAttribute("currentUrl", request.getRequestURI());
         return "requests/user-requests";
     }
@@ -117,7 +109,7 @@ public class RequestController {
     // getting all the requests for the persons profile you are looking at
     @GetMapping("/user-requests/{id}")
     public String showRequestsForOtherUser(@PathVariable(name = "id") long id, Model model, HttpServletRequest request){
-        User user = userDao.getOne(id); // the user whos page you are on
+        User user = userDao.getOne(id); // the user whos page you are on -> only their active requests
         model.addAttribute("requestList", requestDao.findByUser(user));
         model.addAttribute("currentUrl", request.getRequestURI());
         return "requests/user-requests";

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/materializeHead :: styleHead('Let\'s Collaborate!')">
+</head>
+<body>
+
+<nav th:replace="partials/navbar-profile :: profileNav"></nav>
+
+<main>
+
+    <h1>Let's Collaborate!</h1>
+
+    <form th:action="@{/collaborate/contact}" th:method="POST" class="container">
+        <div class="input-field" style="display: flex">
+            <i class="material-icons">border_color</i>
+            <label class="labelIcon" for="body">Description</label>
+            <textarea class="materialize-textarea" id="body" name="body"></textarea>
+        </div>
+        <input type="hidden" name="toUserId" th:value="${userToContact.id}"/>
+        <button class="btn waves-effect"><a>Send</a></button>
+    </form>
+
+</main>
+
+<footer th:replace="partials/footer.html :: footer"></footer>
+<div th:replace="partials/materializescripts :: scripts"></div>
+
+</body>
+</html>

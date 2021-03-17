@@ -7,7 +7,7 @@
         <div class="modal-content">
             <h4>Here are the responses to your request</h4>
         </div>
-            <div th:each="response : ${requestList.get(i)}" class="col s12 m6">
+            <div th:each="response : ${requestList.get(i).responseList}" class="col s12 m6">
                 <div class="card horizontal">
                     <div class="card-stacked">
                         <div class="card-content">
@@ -15,16 +15,15 @@
                             <h3 th:text="${response.user.username}"></h3>
                             <p th:text="${response.content}"></p>
                             <p th:text="${response.createdAt}"></p>
-                            <p th:switch="${response.acceptedStatus == 1}">Is accepted:
-                            <span th:case="${true}">Yes</span>
-                            <span th:case="${false}">No</span>
+                            <p th:switch="${response.acceptedStatus == 1}">Status:
+                                <span th:case="${true}">Accepted</span>
+                                <span th:case="${false}">Pending</span>
                             </p>
+                            <a th:href="@{/collaborate/{id}(id=${response.user.id})}" th:if="${response.acceptedStatus == 1}">Contact User</a>
                         </div>
 
-                        <form th:action="@{/accepted{id}(id=${response.id})}" th:method="GET">
-                            <input type="hidden" name="currentUrl" id="URL" th:value="${currentUrl}">
-                            <button class="wave-effect"><a>Accept</a></button>
-                        </form>
+                        <a class="btn waves-effect waves-light" th:if="${response.acceptedStatus == 0}" th:href="@{/accepted/{id}(id=${response.id})}">Accept</a>
+
                     </div>
                 </div>
             </div>
