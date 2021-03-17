@@ -124,7 +124,7 @@ public class UserController {
     public String deleteUser(Model model, @PathVariable(name = "id") long id, HttpServletRequest request, @RequestParam(name = "currentUrl") String currentUrl){
         userDao.delete(userDao.getOne(id));
         model.addAttribute("currentUrl", request.getRequestURI());
-        return "redirect:/profile?deleted";
+        return "redirect:/profile?deletedUser";
     }
 
 }
