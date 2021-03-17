@@ -64,7 +64,10 @@
                 <p class="center-align" th:text="${session.user.aboutMe}"></p>
             </div>
 
+            <h2 class="profile-heading" th:text="'Welcome back ' + ${session.user.username}" ></h2>
+
             <div class="col s12 m8 content-side">
+
     <!--    In the content area can click on a specific podcast ( id ) and it will move to the nav bar to be played -->
 
                 <div th:if="${!param.isEmpty()}">
@@ -75,20 +78,14 @@
                             <div class="col s12 profileContentItem" th:each="i : ${#numbers.sequence(0, userPodcasts.size() - 1)}">
                                 <div class="card horizontal">
                                     <div class="card-image">
-<!--                                        <iframe th:src="${userPodcasts.get(i).embedLink}"></iframe>-->
                                         <img th:src="${userPodcasts.get(i).image}">
                                     </div>
                                     <div class="card-stacked">
                                         <div class="card-content" style="overflow:auto">
-<!--                                            <iframe th:src="${userPodcasts.get(i).embedLink}"></iframe>-->
                                             <p th:text="${userPodcasts.get(i).description}"></p>
-
                                         </div>
                                         <div class="card-action">
 
-                                            <button class="btn"><a th:href="@{/podcasts/{id}/edit(id=${userPodcasts.get(i).id})}">Edit</a></button>
-                                            <div th:replace="partials/deleteModal :: deleteModal"></div>
-                                            <div th:replace="partials/commentsModal :: commentModal"></div>
                                             <form th:action="@{/listen/{id}(id=${userPodcasts.get(i).id})}" method="get">
                                                 <input type="hidden" name="currentUrl" id="currentUrl" th:value="${currentUrl} + '?myPodcasts'">
                                                 <a><button class="btn waves-effect waves-light">Listen</button></a>
@@ -121,7 +118,7 @@
                                     </div>
                                     <div class="card-stacked">
                                         <div class="card-content">
-                                            <iframe th:src="${recommendation.embedLink}"></iframe>
+                                                <p th:text="${recommendation.description}"></p>
                                         </div>
                                         <div class="card-action">
                                             <div style="display: flex; justify-content: space-around;">
