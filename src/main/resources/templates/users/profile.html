@@ -2,7 +2,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/materializeHead :: styleHead('Your Profile')"></head>
 <body>
-    <div th:replace="partials/navbar-profile :: profileNav"></div>
+<div>
+    <img id="animated-example heading" class="animated fadeInDown background-img background-img" th:src="@{/images/dark-lines-bg-copy.jpg}">
+</div>
+    <nav th:replace="partials/navbar-profile :: profileNav"></nav>
+
 
     <div th:if="${!param.isEmpty()}">
         <div>
@@ -37,15 +41,16 @@
         </div>
     </div>
 
-    <div th:if="${message != null}">
+   <div th:if="${message != null}">
         <p th:text="${message}"></p>
     </div>
+<div class="container">
 
     <main>
         <div class="row">
-            <div class="col m4 hide-on-small-only profile-side">
+            <div class="col m4 hide-on-small-only profile-side profile-style">
                 <img class="circle profile-Image" th:src="${session.user.profileImage}">
-                <div class="collection">
+                <div class="collection list-style">
                     <p class="collection-item teal-text text-darken-4" th:text="${session.user.username}"></p>
                     <a href="/following" class="collection-item teal-text text-darken-4">Following<span class="badge" th:text="${followingCount}"></span> </a>
                     <a href="/followers" class="collection-item teal-text text-darken-4">Followers<span class="badge" th:text="${followsCount}"></span></a>
@@ -61,27 +66,38 @@
 
             <div class="col s12 m8 content-side">
     <!--    In the content area can click on a specific podcast ( id ) and it will move to the nav bar to be played -->
+
                 <div th:if="${!param.isEmpty()}">
                     <div id="profileContentArea">
+
 
                         <div th:if="${userPodcasts.size() > 0}">
                             <div class="col s12 profileContentItem" th:each="i : ${#numbers.sequence(0, userPodcasts.size() - 1)}">
                                 <div class="card horizontal">
                                     <div class="card-image">
+<!--                                        <iframe th:src="${userPodcasts.get(i).embedLink}"></iframe>-->
                                         <img th:src="${userPodcasts.get(i).image}">
                                     </div>
                                     <div class="card-stacked">
-                                        <div class="card-content">
-                                            <iframe th:src="${userPodcasts.get(i).embedLink}"></iframe>
+                                        <div class="card-content" style="overflow:auto">
+<!--                                            <iframe th:src="${userPodcasts.get(i).embedLink}"></iframe>-->
+                                            <p th:text="${userPodcasts.get(i).description}"></p>
+
                                         </div>
                                         <div class="card-action">
+
+                                            <button class="btn"><a th:href="@{/podcasts/{id}/edit(id=${userPodcasts.get(i).id})}">Edit</a></button>
+                                            <div th:replace="partials/deleteModal :: deleteModal"></div>
+                                            <div th:replace="partials/commentsModal :: commentModal"></div>
                                             <form th:action="@{/listen/{id}(id=${userPodcasts.get(i).id})}" method="get">
                                                 <input type="hidden" name="currentUrl" id="currentUrl" th:value="${currentUrl} + '?myPodcasts'">
                                                 <a><button class="btn waves-effect waves-light">Listen</button></a>
                                             </form>
+
                                             <a th:href="@{/podcasts/{id}/edit(id=${userPodcasts.get(i).id})}" class="btn waves-effect waves-light">Edit</a>
                                             <div th:replace="partials/deleteModal :: deleteModal"></div>
                                             <div th:replace="partials/commentsModal :: commentModal"></div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -128,9 +144,12 @@
                 </div>
             </div>
         </div>
+
     </main>
 
-    <footer th:replace="partials/footer :: footer"></footer>
+
+    <footer style="position: fixed; z-index: 3" th:replace="partials/footer :: footer"></footer>
+</div>
     <div th:replace="partials/materializescripts :: scripts"></div>
 </body>
 
