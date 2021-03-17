@@ -1,0 +1,63 @@
+body {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 1.7;
+    color: white;
+    overflow: hidden;
+    background-color: #499E8D;
+    margin: 0;
+}
+
+.nav-wrapper{
+    background-color: white;
+}
+#forgot-pass-div, #register-div {
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#login-btn-row, #frgt-reg-cont{
+    display: flex;
+    justify-content: center;
+}
+
+/* label color */
+.input-field label {
+    color: white;
+}
+/* label focus color */
+
+.input-field input[type=text]:focus + label, .validate input[type=text]:focus + label {
+    color: white !important;
+}
+/* label underline focus color */
+.input-field input[type=text]:focus {
+    color:white !important;
+    border-bottom: 1px solid white !important;
+    box-shadow: 0 1px 0 0 white !important;
+}
+
+/*#433520*/
+/* valid color */
+.input-field input[type=text].valid {
+    color: white !important;
+    border-bottom: 1px solid white !important;
+    box-shadow: 0 1px 0 0 white !important;
+}
+
+/* invalid color */
+.input-field input[type=text].invalid {
+    border-bottom: 1px solid #000;
+    box-shadow: 0 1px 0 0 #000;
+}
+/* icon prefix focus color */
+.input-field .prefix.active {
+    color: #000;
+}
+
+/*#login-button {*/
+/*    align-content: center;*/
+/*}*/
