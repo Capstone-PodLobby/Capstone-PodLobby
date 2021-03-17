@@ -1,6 +1,7 @@
 package com.podlobby.podlobby.controllers;
 
 
+import com.podlobby.podlobby.model.Category;
 import com.podlobby.podlobby.model.Podcast;
 import com.podlobby.podlobby.model.User;
 import com.podlobby.podlobby.repositories.CategoryRepository;
@@ -11,6 +12,7 @@ import com.podlobby.podlobby.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -45,7 +47,9 @@ public class RecommendationController {
 
 
     @GetMapping("/recommendations")
-    public String getCategoryRecommendations(@RequestParam (name = "category") List<String> categoryList, Model model, HttpSession session, HttpServletRequest request){
+    public String getCategoryRecommendations(@RequestParam (name = "category") List<String> categoryList,
+                                             Model model, HttpSession session, HttpServletRequest request,
+                                             RedirectAttributes redirectAttributes){
         User user = (User) session.getAttribute("user");
         int followingCount = followDao.findAllByUserId(user.getId()).size();
         model.addAttribute("followingCount", followingCount); // set this on the session ?
@@ -67,12 +71,15 @@ public class RecommendationController {
         for(Podcast p : podcastList){
             if(!podcastRecommendations.contains(p)){
                 podcastRecommendations.add(p);
+                List<Category> categories = new ArrayList<>(p.getCategories());
+                p.setCategories(categories); // seems pointless but for some reason it is needed
             }
         }
 
         session.setAttribute("recommendations", podcastRecommendations);
         model.addAttribute("currentUrl", request.getRequestURI());
-        return "redirect:/profile?recommendations"; // to show the recommended podcasts in the profile page first
+        redirectAttributes.addFlashAttribute("message", "Here are your recommendations");
+        return "redirect:/profile"; // to show the recommended podcasts in the profile page first
     }
 
 

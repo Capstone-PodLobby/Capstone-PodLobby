@@ -98,4 +98,3 @@ Select * From users where id in (
 
 select *
 from requests;
-

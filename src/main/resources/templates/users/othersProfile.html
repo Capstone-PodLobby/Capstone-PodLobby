@@ -20,11 +20,8 @@
                 <a th:if="${!isFollowing}" th:href="@{/followUser/{id}(id=${following.id})}" class="collection-item">Follow</a>
                 <a th:if="${isFollowing}" th:href="@{/unfollow/{id}(id=${following.id})}" class="collection-item">UnFollow</a>
 
-                <a href="#!" class="collection-item">View active requests</a>
-                <div th:replace="partials/deleteUserModal :: deleteUserModal"></div>
-                <p class="center-align" th:text="${following.aboutMe}"></p>
-
                 <a th:href="@{/user-requests/{id}(id=${following.id})}" class="collection-item">View active requests</a>
+                <div th:replace="partials/deleteUserModal :: deleteUserModal"></div>
 
             </div>
 
@@ -58,9 +55,8 @@
                             <div class="card-action">
                                 <form th:action="@{/listen/{id}(id=${followingPodcasts.get(i).id})}" method="get">
                                     <input type="hidden" name="currentUrl" id="currentUrl" th:value="${currentUrl}">
-                                    <button class="btn"><a>Listen</a></button>
+                                    <a><button class="waves-effect waves-light btn">Listen</button></a>
                                 </form>
-<!--                                <a th:href="@{/listen/{id}(id=${followingPodcasts.get(i).id})}">Listen</a>-->
 
                                 <a class="waves-effect waves-light btn modal-trigger deleteButton" th:href="@{#_modal{num}(num=${i})}">Comments</a>
 

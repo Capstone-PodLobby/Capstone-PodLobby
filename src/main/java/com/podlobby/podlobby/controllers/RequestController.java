@@ -10,6 +10,7 @@ import com.podlobby.podlobby.util.Methods;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -48,18 +49,28 @@ public class RequestController {
 
     // create the request
     @PostMapping("/request")
-    public String createRequest(@ModelAttribute Request request, @RequestParam(name = "req-amount") int amount, Model model, HttpServletRequest servletRequest){
+    public String createRequest(@ModelAttribute Request request, @RequestParam(name = "requestId") long id, @RequestParam(name = "req-amount") int amount, Model model, HttpServletRequest servletRequest){
         User user = userService.getLoggedInUser();
-        System.out.println(amount);
-        System.out.println(request.getGuestCount());
         request.setGuestCount(amount);
         if(request.getGuestCount() <= 0) {
             return "redirect:/request?guestCount";
         }
-        request.setCreatedAt(new Timestamp(new Date().getTime()));
-        request.setIsActive(1);
-        request.setUser(user);
-        requestDao.save(request);
+        // a new request is being made not edited
+        if(id == 0) {
+            request.setCreatedAt(new Timestamp(new Date().getTime()));
+            request.setIsActive(1);
+            request.setUser(user);
+            requestDao.save(request);
+        } else {
+            // updating a request => had to do it this way as it was creating duplicate data in the db
+            Request updatingRequest = requestDao.getOne(id);
+            updatingRequest.setCreatedAt(new Timestamp(new Date().getTime()));
+            updatingRequest.setGuestCount(amount);
+            updatingRequest.setDescription(request.getDescription());
+            updatingRequest.setTitle(request.getTitle());
+            requestDao.save(updatingRequest);
+        }
+
         model.addAttribute("currentUrl", servletRequest.getRequestURI());
 
         List<Request> requestList = requestDao.findByUser(user);
@@ -67,7 +78,7 @@ public class RequestController {
         String message = "Thank you " + user.getUsername() + " for adding your " + Methods.numberSuffix(requestList.size()) + " request it can be found on your profile!";
         tlsEmail.sendEmail(user.getEmail(), user.getUsername(), "Your request has been added", message, false);
 
-        return "redirect:/profile";
+        return "redirect:/profile?myPodcasts";
     }
 
     // view the feed of active requests
@@ -113,6 +124,23 @@ public class RequestController {
         return "redirect:/otherProfile/" + requester.getId() + "?requestViewing"; // go to that user's page so you can work with them
     }
 
+
+
+    @GetMapping("/request/delete/{id}")
+    public String deleteRequest (@PathVariable(name = "id") long id, RedirectAttributes redirectAtr){
+        requestDao.deleteById(id); // need to cascade the responses for it
+        redirectAtr.addFlashAttribute("message", "Your request has been deleted");
+        return "redirect:/profile?myPodcasts";
+    }
+
+    @GetMapping("/request/edit/{id}")
+    public String editRequest(@PathVariable(name = "id") long id, Model model, HttpServletRequest request){
+        model.addAttribute("request", requestDao.getOne(id));
+        User user = userService.getLoggedInUser();
+        model.addAttribute("user", user);
+        model.addAttribute("currentUrl", request.getRequestURI());
+        return "requests/request";
+    }
 
 
 }

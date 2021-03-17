@@ -29,7 +29,7 @@
         <li><a class="subheader">Listening to</a></li>
         <li th:if="${session.listeningTo != null}"><iframe id="profileIframeSideNav" th:src="${session.listeningTo}" allowtransparency="true" allow="encrypted-media"></iframe></li>
         <li class="divider"></li>
-        <li><a class="subheader" href="/">PodLobby</a></li>
+        <li><a href="/">PodLobby</a></li>
         <li><a href="/feeds/global">Home</a></li>
         <li><a href="/podcasts/create">Create</a></li>
         <li class="divider"></li>
@@ -43,6 +43,7 @@
         </li>
         <li class="divider"></li>
         <li><a class="waves-effect" href="/following"><i class="material-icons">cloud</i>Followers<span class="badge" th:text="${followingCount}"></span></a></li>
+        <li><a class="waves-effect" href="/followers"><i class="material-icons">cloud</i>Followers<span class="badge" th:text="${followsCount}"></span></a></li>
         <li><div class="divider"></div></li>
         <li><a class="waves-effect" href="/getCategories"><i class="material-icons">cloud</i>Discover</a></li>
     </ul>

@@ -21,7 +21,7 @@
 
 
         <div class="col s10 m6 l4" th:each="following : ${followingList}">
-            <a th:href="@{/unfollow/{id}(id=${following.id})}"><button class="btn wave-effect">Unfollow</button></a>
+            <button class="wave-effect"><a th:href="@{/unfollow/{id}(id=${following.id})}">Unfollow</a></button>
             <div class="row">
                 <div class="col s12">
                     <div class="card">
@@ -42,7 +42,7 @@
                             </ul>
                         </div>
                         <div class="card-action">
-                            <a th:href="@{/following/{id}(id=${following.id})}">View Profile</a>
+                            <button class="wave-effect"><a th:href="@{/following/{id}(id=${following.id})}">View Profile</a></button>
                         </div>
                     </div>
                 </div>
