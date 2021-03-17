@@ -1,10 +1,16 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/materializeHead :: styleHead('Login')"></head>
+<head th:replace="partials/materializeHead :: styleHead('login')">
+    <meta charset="UTF-8">
+    <title>Pod Lobby</title>
+    <link rel="stylesheet" th:href="@{/styles/login.css}" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
 <body>
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 <main>
-    <h1 class="text-center">Please Log In</h1>
+
 
     <div th:if="${!param.isEmpty()}">
         <div>
@@ -27,7 +33,7 @@
     </div>
 
     <form class="container" method="post" th:action="@{/login}">
-
+        <h1 class="text-center">Please Log In</h1>
         <div class="input-field" style="display:flex;">
             <i class="material-icons">account_circle</i>
             <input class="validate" type="text" id="username" name="username"/>
@@ -38,11 +44,22 @@
             <input class="validate" type="password" id="password" name="password"/>
             <label class="labelIcon" for="password">Password</label>
         </div>
-        <button class="btn waves-effect"><a>Login</a></button>
-
+        <div class="row" id="login-btn-row">
+        <button class="btn waves-effect" id="login-button"><a>Login</a></button>
+        </div>
     </form>
-    <button class="btn waves-effect"><a href="/forgotPassword">Forgot Password</a></button>
-    <button class="btn waves-effect"><a class="white-text" href="/register">Register</a></button>
+
+    <div class="container" id="frgt-reg-cont">
+        <div class="row">
+            <div class="col" id="forgot-pass-div">
+                <button class="btn waves-effect" id="forgot-pass-button"><a href="/forgotPassword">Forgot Password</a></button>
+            </div>
+            <div class="col" id="register-div">
+                <button class="btn waves-effect" id="register-button"><a class="white-text" href="/register">Register</a></button>
+            </div>
+        </div>
+    </div>
+
 </main>
 <footer th:replace="partials/footer.html :: footer"></footer>
 <div th:replace="partials/materializescripts :: scripts"></div>
