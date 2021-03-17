@@ -46,7 +46,7 @@ public class FollowersController {
     // viewing the page of the user you follow
     @GetMapping("/following/{id}")
     public String viewFollowersProfile(Model model, @PathVariable(name = "id") long id, HttpServletRequest request){
-        User following = userDao.findById(id).get();
+        User following = userDao.getOne(id);
         model.addAttribute("following", following);
 
         User currUser = userService.getLoggedInUser();

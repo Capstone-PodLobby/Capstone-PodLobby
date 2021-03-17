@@ -48,7 +48,7 @@ public class RegisterController {
 
         if(user != null){
             model.addAttribute("currentUrl", request.getRequestURI());
-            return "redirect:/profile";
+            return "redirect:/profile?myPodcasts";
         }
 
         model.addAttribute("user", new User());

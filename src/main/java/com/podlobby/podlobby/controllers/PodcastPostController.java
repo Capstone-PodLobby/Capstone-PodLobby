@@ -148,7 +148,7 @@ public class PodcastPostController {
         tlsEmail.sendEmail(currUser.getEmail(), currUser.getUsername(), "Your podcasts has been added", message, false);
 
         model.addAttribute("currentUrl", request.getRequestURI());
-        return "redirect:/profile";
+        return "redirect:/profile?myPodcasts";
     }
 
 

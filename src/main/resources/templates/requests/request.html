@@ -33,6 +33,7 @@
             <input id="req-amount" name="req-amount" type="number" th:value="*{guestCount}"/>
         </div>
 
+        <input type="hidden" name="requestId" th:value="${request.id &gt; 0 ? request.id : 0}"/>
         <button class="btn waves-effect"><a>Submit</a></button>
 
     </form>

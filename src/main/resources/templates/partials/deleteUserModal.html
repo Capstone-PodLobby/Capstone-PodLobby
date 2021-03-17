@@ -7,9 +7,9 @@
         <div class="modal-content">
             <h4>Are You Sure you want to delete this user?</h4>
         </div>
-        <form th:action="@{/otherProfile/delete/{id}(id=${userControllerId.id})}" th:method="GET">
+        <form th:action="@{/otherProfile/delete/{id}(id=${following.id})}" th:method="GET">
             <input type="hidden" name="currentUrl" id="currentUrl" th:value="${currentUrl}">
-            <button class="modal-close waves-effect waves-green btn-flat">Delete</button>
+            <button class="modal-close waves-effect waves-green btn-flat"><a>Delete</a></button>
         </form>
     </div>
 </div>
