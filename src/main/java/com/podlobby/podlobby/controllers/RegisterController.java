@@ -77,7 +77,8 @@ public class RegisterController {
             return "redirect:/register?quality";
         }
 
-        user.setIsAuthenticated(0); // they need to activate their account // NEEDS PRODUCTION TESTING
+//        user.setIsAuthenticated(0); // they need to activate their account // NEEDS PRODUCTION TESTING
+        user.setIsAuthenticated(1); // for production for now
 
         user.setJoinedAt(new Timestamp(new Date().getTime()));
         user.setPassword(encoder.encode(user.getPassword()));
@@ -91,7 +92,8 @@ public class RegisterController {
         // production
         String emailContent = "Thank you " + user.getUsername() + " for signing up at PodLobby!. Please follow this link to activate your account. https://podlobby.club/activate/" + user.getId() + "/" + Password.randomRegisterCode();
         tlsEmail.sendEmail(user.getEmail(), user.getUsername(), "Welcome to PodLobby", emailContent, false);
-        return "redirect:/newAccount";
+//        return "redirect:/newAccount";
+        return "redirect:/getCategories";
     }
 
     // page telling user to check their email
