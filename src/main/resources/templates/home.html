@@ -14,20 +14,35 @@
 <!--landing page navbar-->
 
     <div class="nav-style main-nav topnav">
-        <ul class="animated-three fadeIn">
-            <li class="list-opt hidden-link"><a href="/">PodLobby</a></li>
-            <li class="list-opt hidden-link"><a href="/feeds/global">Home</a></li>
-            <li class="list-opt hidden-link" sec:authorize="isAnonymous()"><a href="/login">Login</a></li>
-            <li class="list-opt hidden-link" sec:authorize="isAuthenticated()">
-                <form class="logoutForm" th:action="@{/logout}" method="POST">
-                    <button class="logoutFormButton">Logout</button>
-                </form>
-            </li>
-            <li class="list-opt hidden-link" sec:authorize="isAuthenticated()"><a href="/request">Request</a></li>
-            <li class="list-opt hidden-link" sec:authorize="isAuthenticated()"><a href="/podcasts/create">Create</a></li>
-            <li class="list-opt hidden-link" sec:authorize="isAuthenticated()"><a href="/settings">Settings</a></li>
-            <li class="list-opt hidden-link" sec:authorize="isAuthenticated()"><a href="/profile">Profile</a></li>
-        </ul>
+
+            <ul class="animated-three fadeIn">
+    <!--            <li class="list-opt hidden-link"><a href="/">PodLobby</a></li>-->
+    <!--            <li class="list-opt hidden-link"><a href="/feeds/global">Home</a></li>-->
+    <!--            <li class="list-opt hidden-link" sec:authorize="isAnonymous()"><a href="/login">Login</a></li>-->
+    <!--            <li class="list-opt hidden-link" sec:authorize="isAuthenticated()">-->
+    <!--                <form class="logoutForm" th:action="@{/logout}" method="POST">-->
+    <!--                    <button class="logoutFormButton">Logout</button>-->
+    <!--                </form>-->
+    <!--            </li>-->
+
+                    <li class="list-opt hidden-link" sec:authorize="isAuthenticated()">
+                        <form class="logoutForm" th:action="@{/logout}" method="POST">
+                            <button class="logoutFormButton">Logout</button>
+                        </form>
+                    </li>
+
+
+                    <li class="list-opt hidden-link align-nav-right" sec:authorize="isAuthenticated()"><a href="/request">Request</a></li>
+                    <li class="list-opt hidden-link align-nav-right" sec:authorize="isAuthenticated()"><a href="/podcasts/create">Create</a></li>
+                    <li class="list-opt hidden-link align-nav-right" sec:authorize="isAuthenticated()"><a href="/settings">Settings</a></li>
+                    <li class="list-opt hidden-link align-nav-right" sec:authorize="isAuthenticated()"><a href="/profile">Profile</a></li>
+                    <li class="list-opt  align-nav-right"><a href="/">PodLobby</a></li>
+                    <li class="list-opt  align-nav-right"><a href="/feeds/global">Home</a></li>
+                    <li class="list-opt  align-nav-right" sec:authorize="isAnonymous()"><a href="/login">Login</a></li>
+
+
+            </ul>
+
     </div>
 
 
