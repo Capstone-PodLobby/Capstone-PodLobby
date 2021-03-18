@@ -7,7 +7,7 @@
 <main>
 
     <div class="container">
-        <h1 class="my-4">Edit Profile Info</h1>
+        <h1 class="my-4">Edit Profile</h1>
 
         <div th:if="${!param.isEmpty()}">
             <div>
@@ -77,8 +77,8 @@
                     <button class="btn wave-effect" id="backgroundUploader"><a><i class="material-icons">cloud_download</i></a></button>
                 </div>
             </div>
-            <div class="row">
-                <div class="input-field col s12" style="display:flex;">
+            <div class="row" id="about-me-txt">
+                <div class="input-field col s12" style="display:flex;" id="about-me-col">
                     <i class="material-icons">edit</i>
                     <label class="labelIcon" for="body">Edit About Me</label>
                     <textarea class="materialize-textarea" id="body" th:field="*{aboutMe}"></textarea>
