@@ -38,12 +38,14 @@
         <div class="col s12 m8 content-side">
             <p class="center-align">Activity</p>
             <!--    In the content area can click on a specific podcast ( id ) and it will move to the nav bar to be played -->
-            <div id="profileContentArea">
+            <div th:if="${quantityPodcasts>0}" id="profileContentArea">
 
                 <div class="col s12 profileContentItem" th:each="i : ${#numbers.sequence(0, followingPodcasts.size() - 1)}">
                     <div class="card horizontal">
                         <div class="card-image">
+
                             <img th:src="${followingPodcasts.get(i).image}">
+
                         </div>
                         <div class="card-stacked">
                             <div class="card-content">
