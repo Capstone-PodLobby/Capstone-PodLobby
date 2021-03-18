@@ -97,10 +97,11 @@ public class RequestController {
 
     // view the feed of active requests
     @GetMapping("/feeds/requests")
-    public String showRequestPosts(Model model, HttpServletRequest request){
+    public String showRequestPosts(Model model, HttpServletRequest request, HttpSession session){
         model.addAttribute("requestList", requestDao.findAll());
         User user = userService.getLoggedInUser();
         model.addAttribute("user", user);
+        session.setAttribute("user", user);
         model.addAttribute("page", "Active Requests");
         model.addAttribute("currentUrl", request.getRequestURI());
         return "feeds/requests-feed";
@@ -108,8 +109,9 @@ public class RequestController {
 
     // getting all requests for current user
     @GetMapping("/user-requests")
-    public String showRequestsAndResponses(Model model, HttpServletRequest request, RedirectAttributes redirectAtr){
+    public String showRequestsAndResponses(Model model, HttpServletRequest request, RedirectAttributes redirectAtr, HttpSession session){
         User user = userService.getLoggedInUser();
+        session.setAttribute("user", user);
         List<Request> requestList = requestDao.findByUser(user);
         if(requestList.size() < 1) {
             redirectAtr.addFlashAttribute("message", "You do not have any active requests");
