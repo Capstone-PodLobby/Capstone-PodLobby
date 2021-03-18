@@ -1,19 +1,22 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <div th:fragment="commentModal" th:remove="tag">
-    <a class="waves-effect waves-light btn modal-trigger deleteButton" th:href="@{#_modal{num}(num=${i})}">Comments</a>
+    <a class="waves-effect waves-light btn modal-trigger deleteButton buttonItem" th:href="@{#_modal{num}(num=${i})}">Comments</a>
 
-    <div th:id="'_modal' + ${i}" class="modal">
+    <div th:id="'_modal' + ${i}" class="modal commentModalBox">
         <div class="modal-content">
             <div class="commentArea" th:each="comment : ${userPodcasts.get(i).comments}">
-                <p th:text="${comment.comment}"></p>
-                <p>Posted at : <span th:text="${comment.createdAt}"></span></p>
-                <p>Posted by : <span th:text="${userController.getOne(comment.user.id).username}"></span></p>
-                <img style="max-width: 25%;" class="circle responsive-image" th:src="${userController.getOne(comment.user.id).profileImage}"/>
+                <img style="max-width: 25%;" class="commentProImage circle responsive-image" th:src="${userController.getOne(comment.user.id).profileImage}"/>
+                <div class="widthText">
+                    <p class="fullWidthText">Posted at : <span th:text="${comment.createdAt.toString().substring(0, 16)}"></span></p>
+                    <p class="fullWidthText">Posted by : <span th:text="${userController.getOne(comment.user.id).username}"></span></p>
+                </div>
+                <p class="commentContent" th:text="${comment.comment}"></p>
                 <form th:action="@{/comment/delete/{id}(id=${comment.id})}" th:method="GET" th:if="${comment.user.id == session.user.id}">
                     <input type="hidden" name="currentUrl" id="URL" th:value="${currentUrl}">
                     <button class="btn wave-effect"><a>Delete Comment</a></button>
                 </form>
+                <div class="divider" id="commentDivide"></div>
             </div>
         </div>
         <div>

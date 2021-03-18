@@ -8,7 +8,7 @@
 <main>
 
     <div th:if="${message != null}">
-        <p th:text="${message}"></p>
+        <p class="errorMsg" th:text="${message}"></p>
     </div>
 
     <form th:action="@{/request}" th:method="POST" th:object="${request}" class="container">

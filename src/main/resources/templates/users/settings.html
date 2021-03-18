@@ -16,22 +16,22 @@
 
         <div th:if="${!param.isEmpty()}">
             <div>
-                <div th:if="${param.username}">
+                <div class="errorMsg" th:if="${param.username}">
                     <i class="material-icons">error</i>Username can not be the same as another user
                 </div>
             </div>
             <div>
-                <div th:if="${param.quality}">
+                <div class="errorMsg" th:if="${param.quality}">
                     <i class="material-icons">error</i>Password must be 8-20 characters, contain 1 Uppercase, and 1 number.
                 </div>
             </div>
             <div>
-                <div th:if="${param.passwords}">
+                <div class="errorMsg" th:if="${param.passwords}">
                     <i class="material-icons">error</i>Passwords do not match
                 </div>
             </div>
             <div>
-                <div th:if="${param.aboutMe}">
+                <div class="errorMsg" th:if="${param.aboutMe}">
                     <i class="material-icons">error</i>Please keep something about you on your profile
                 </div>
             </div>

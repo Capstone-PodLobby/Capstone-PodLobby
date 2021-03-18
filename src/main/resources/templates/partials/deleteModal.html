@@ -1,7 +1,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <div th:fragment="deleteModal" th:remove="tag">
-    <a th:if="${session.user.id == userPodcasts.get(i).user.id}" class="waves-effect waves-light btn modal-trigger deleteButton" th:href="@{#modal{num}(num=${i})}">Delete</a>
+    <a th:if="${session.user.id == userPodcasts.get(i).user.id}" class="buttonItem waves-effect waves-light btn modal-trigger deleteButton" th:href="@{#modal{num}(num=${i})}">Delete</a>
 
     <div th:id="'modal' + ${i}" class="modal">
         <div class="modal-content">

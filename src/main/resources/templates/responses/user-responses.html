@@ -24,7 +24,7 @@
                         <h2 th:text="${response.request.title}"></h2>
                         <h3 th:text="${response.request.user.username}"></h3>
                         <p th:text="${response.content}"></p>
-                        <p th:text="${response.createdAt}"></p>
+                        <p th:text="${response.createdAt.toString().substring(0, 16)}"></p>
                         <p th:switch="${response.acceptedStatus == 1}">Status:
                             <span th:case="${true}">Accepted</span>
                             <span th:case="${false}">Pending</span>

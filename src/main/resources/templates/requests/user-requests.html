@@ -6,7 +6,7 @@
 <nav th:replace="partials/navbar-profile :: profileNav"></nav>
 <main>
     <div th:if="${message != null}">
-        <p th:text="${message}"></p>
+        <p class="errorMsg" th:text="${message}"></p>
     </div>
 
     <div class="row">
@@ -31,7 +31,7 @@
                         </div>
                     </div>
                     <div class="card-action">
-                        <p class="col s3">Looking for : <span th:text="${requestList.get(i).guestCount}"></span> guests | By: <span th:text="${requestList.get(i).user.username}"></span> | <span class="right" th:text="${requestList.get(i).createdAt}"></span> </p>
+                        <p class="col s3">Looking for : <span th:text="${requestList.get(i).guestCount}"></span> guests | By: <span th:text="${requestList.get(i).user.username}"></span> | <span class="right" th:text="${requestList.get(i).createdAt.toString().substring(0, 16)}"></span> </p>
 
                         <div th:replace="partials/deleteRequestModal :: deleteRequestModal"></div>
 

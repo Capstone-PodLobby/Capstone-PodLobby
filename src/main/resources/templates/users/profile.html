@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/materializeHead :: styleHead('Your Profile')"></head>
+<head th:replace="partials/profilePageStyle :: styleHead('Your Profile')"></head>
 <body>
 <div>
     <img id="animated-example heading" class="animated fadeInDown background-img background-img" th:src="@{/images/dark-lines-bg-copy.jpg}">
@@ -10,41 +10,41 @@
 
     <div th:if="${!param.isEmpty()}">
         <div>
-            <div th:if="${param.messageSent}">
+            <div class="errorMsg" th:if="${param.messageSent}">
                 Our team has been notified. We will get back to you soon
             </div>
         </div>
         <div>
-            <div th:if="${param.deleted}">
+            <div class="errorMsg" th:if="${param.deleted}">
                 Your podcast has been successfully deleted
             </div>
         </div>
         <div>
-            <div th:if="${param.comment}">
+            <div class="errorMsg" th:if="${param.comment}">
                 Your comment has been successfully deleted
             </div>
         </div>
         <div>
-            <div th:if="${param.edit}">
+            <div class="errorMsg" th:if="${param.edit}">
                 You are not allowed to edit this podcast
             </div>
         </div>
         <div>
-            <div th:if="${param.edited}">
+            <div class="errorMsg" th:if="${param.edited}">
                 Your podcast has been successfully edited
             </div>
         </div>
         <div>
-            <div th:if="${param.deletedUser}">
+            <div class="errorMsg" th:if="${param.deletedUser}">
                 You have successfully deleted the user
             </div>
         </div>
     </div>
 
    <div th:if="${message != null}">
-        <p th:text="${message}"></p>
+        <p class="errorMsg" th:text="${message}"></p>
     </div>
-<div class="container">
+<div class="container" id="profileContentContainer">
 
     <main>
         <div class="row">
@@ -75,25 +75,27 @@
 
 
                         <div th:if="${userPodcasts.size() > 0}">
-                            <div class="col s12 profileContentItem" th:each="i : ${#numbers.sequence(0, userPodcasts.size() - 1)}">
-                                <div class="card horizontal">
+                            <div class="col s12 l8 profileContentItem" th:each="i : ${#numbers.sequence(0, userPodcasts.size() - 1)}">
+                                <div class="card horizontal profileCard-Card">
                                     <div class="card-image">
                                         <img th:src="${userPodcasts.get(i).image}">
                                     </div>
                                     <div class="card-stacked">
-                                        <div class="card-content" style="overflow:auto">
+                                        <div class="card-content" id="podcastsDesc">
                                             <p th:text="${userPodcasts.get(i).description}"></p>
                                         </div>
                                         <div class="card-action">
 
-                                            <form th:action="@{/listen/{id}(id=${userPodcasts.get(i).id})}" method="get">
+                                            <form class="buttonItem" th:action="@{/listen/{id}(id=${userPodcasts.get(i).id})}" method="get">
                                                 <input type="hidden" name="currentUrl" id="currentUrl" th:value="${currentUrl} + '?myPodcasts'">
-                                                <a><button class="btn waves-effect waves-light">Listen</button></a>
+                                                <a class="widthFull"><button class="widthFull btn waves-effect waves-light">Listen</button></a>
                                             </form>
 
-                                            <a th:href="@{/podcasts/{id}/edit(id=${userPodcasts.get(i).id})}" class="btn waves-effect waves-light">Edit</a>
-                                            <div th:replace="partials/deleteModal :: deleteModal"></div>
-                                            <div th:replace="partials/commentsModal :: commentModal"></div>
+                                            <a th:href="@{/podcasts/{id}/edit(id=${userPodcasts.get(i).id})}" class="buttonItem btn waves-effect waves-light">Edit</a>
+                                            <div id="mobileSplitContainer">
+                                                <div th:replace="partials/deleteModal :: deleteModal"></div>
+                                                <div th:replace="partials/commentsModal :: commentModal"></div>
+                                            </div>
 
                                         </div>
                                     </div>
