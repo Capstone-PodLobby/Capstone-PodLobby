@@ -13,22 +13,22 @@
 
     <div th:if="${!param.isEmpty()}">
         <div>
-            <div th:if="${param.username}">
+            <div class="errorMsg" th:if="${param.username}">
                 <i class="material-icons">error</i>Username already exists or is blank.
             </div>
-            <div th:if="${param.email}">
+            <div class="errorMsg" th:if="${param.email}">
                 <i class="material-icons">error</i>Email already exists or is blank.
             </div>
-            <div th:if="${param.password}">
+            <div class="errorMsg" th:if="${param.password}">
                 <i class="material-icons">error</i>Password does not match or is blank.
             </div>
-            <div th:if="${param.quality}">
+            <div class="errorMsg" th:if="${param.quality}">
                 <i class="material-icons">error</i>Password must be 8-20 characters, contain 1 Uppercase, and 1 number.
             </div>
-            <div th:if="${param.about}">
+            <div class="errorMsg" th:if="${param.about}">
                 <i class="material-icons">error</i>Please add a little information about you.
             </div>
-            <div th:if="${param.captcha}">
+            <div class="errorMsg" th:if="${param.captcha}">
                 <i class="material-icons">error</i>Please verify you are not a robot.
             </div>
         </div>

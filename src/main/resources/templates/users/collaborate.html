@@ -7,8 +7,12 @@
 <nav th:replace="partials/navbar-profile :: profileNav"></nav>
 
 <main>
+    <div th:if="${message != null}">
+        <p class="errorMsg" th:text="${message}"></p>
+    </div>
 
     <h1>Let's Collaborate!</h1>
+    <small>Your email will be shared with this user</small>
 
     <form th:action="@{/collaborate/contact}" th:method="POST" class="container">
         <div class="input-field" style="display: flex">

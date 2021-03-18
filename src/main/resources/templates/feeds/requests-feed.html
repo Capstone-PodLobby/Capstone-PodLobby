@@ -45,7 +45,7 @@
                         </div>
                     </div>
                     <div class="card-action">
-                        <p class="col s4">Looking for : <span th:text="${requestList.get(i).guestCount}"></span> guests | <span th:text="${requestList.get(i).createdAt}"></span> </p>
+                        <p class="col s4">Looking for : <span th:text="${requestList.get(i).guestCount}"></span> guests | <span th:text="${requestList.get(i).createdAt.toString().substring(0, 16)}"></span> </p>
 
                         <div th:replace="partials/deleteRequestModal :: deleteRequestModal"></div>
 

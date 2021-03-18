@@ -5,7 +5,7 @@
 <div th:replace="partials/navbar-profile :: profileNav"></div>
 
 <div th:if="${message != null}">
-    <p th:text="${message}"></p>
+    <p class="errorMsg" th:text="${message}"></p>
 </div>
 
 <main>
@@ -25,7 +25,7 @@
             <!--       display the would you like to work with me if you got here through the requests page     -->
             <div th:if="${!param.isEmpty()}">
                 <div>
-                    <div th:if="${param.requestViewing}">
+                    <div class="errorMsg" th:if="${param.requestViewing}">
                         <div th:replace="partials/requestModal :: requestModal"></div>
                     </div>
                 </div>

@@ -84,6 +84,14 @@ main {
     z-index: -1;
 }
 
+/*profile image side nav top*/
+#slide-outLi{
+    height: 125px !important;
+}
+#slide-outLiTop{
+    height: 100% !important;
+}
+
 /*====== FOOTER PARTIAL ========*/
 .footerUl{
     display: flex !important;
@@ -193,6 +201,45 @@ a:hover{
 .card-image{
     height: 100%;
 }
+/*Just wanted to include it so it can be easily changed*/
+.errorMsg{
+    color: #d2c6c4 !important;
+}
+
+
+
+/*comment modal*/
+.commentModalBox{
+    max-height: 65vh !important;
+}
+.commentArea{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 30px auto;
+}
+.commentContent{
+    width: 100%;
+    text-align: center;
+    height: auto;
+    margin: 10px 0;
+}
+.commentProImage{
+    min-width: 60px !important;
+    min-height: 60px !important;
+    max-width: 40%;
+    height: auto;
+}
+.widthText{
+    width: 60% !important;
+}
+.fullWidthText{
+    width: 100% !important;
+    margin-left: 10% !important;
+}
+#commentDivide{
+    width: 100% !important;
+}
+
 
 
 
@@ -201,6 +248,10 @@ a:hover{
     .profile-heading {
         margin-left: 80px;
     }
+    .commentModalBox{
+        max-width: 60vw !important;
+    }
+
 }
 
 

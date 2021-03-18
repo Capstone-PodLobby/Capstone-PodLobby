@@ -1,0 +1,86 @@
+#profileContentContainer{
+
+}
+
+.profileContentItem{
+    max-height: 380px !important;
+    margin-bottom: 45px !important;
+}
+.profileCard-Card{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    max-width: 400px !important;
+}
+.card.horizontal .card-image {
+    max-width: 100% !important;
+}
+.card-action{
+    height: 125px !important;
+    padding: 10px 16px !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: space-around !important;
+}
+#mobileSplitContainer{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+.buttonItem{
+    width: 45% !important;
+}
+.widthFull{
+    width: 100% !important;
+    margin: 0 !important;
+}
+.btn{
+    font-size: 12px !important;
+}
+#podcastsDesc{
+    overflow: auto;
+}
+
+@media only screen and (min-width: 500px) {
+    .profileContentItem {
+        margin-left: 28px !important;
+    }
+}
+
+
+@media only screen and (min-width: 770px) {
+    .profileCard-Card{
+        min-width: 400px !important;
+        max-width: 500px !important;
+    }
+    #podcastsDesc{
+        height: 90px !important;
+    }
+}
+
+@media only screen and (min-width: 770px) {
+    .profileContentItem{
+        margin-bottom: 90px !important;
+    }
+}
+
+
+@media only screen and (min-width: 993px) {
+    .container {
+        width: 85%;
+    }
+    .profileCard-Card{
+        min-width: 500px !important;
+    }
+    .profile-Image{
+        width: 175px !important;
+        height: 175px !important;
+    }
+}
+
+@media only screen and (min-width: 1300px) {
+    .profile-Image{
+        width: 200px !important;
+        height: 200px !important;
+    }
+}
