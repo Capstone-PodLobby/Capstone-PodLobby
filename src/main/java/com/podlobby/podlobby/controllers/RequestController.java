@@ -97,10 +97,11 @@ public class RequestController {
 
     // view the feed of active requests
     @GetMapping("/feeds/requests")
-    public String showRequestPosts(Model model, HttpServletRequest request){
+    public String showRequestPosts(Model model, HttpServletRequest request, HttpSession session){
         model.addAttribute("requestList", requestDao.findAll());
         User user = userService.getLoggedInUser();
         model.addAttribute("user", user);
+        session.setAttribute("user", user);
         model.addAttribute("page", "Active Requests");
         model.addAttribute("currentUrl", request.getRequestURI());
         return "feeds/requests-feed";
