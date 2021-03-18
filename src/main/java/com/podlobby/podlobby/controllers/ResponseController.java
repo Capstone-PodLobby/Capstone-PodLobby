@@ -111,7 +111,7 @@ public class ResponseController {
         // get the user you are sending a message to
         User toUser = userDao.getOne(toUserId);
         // send email message
-        tlsEmail.sendEmail(toUser.getEmail(), toUser.getUsername(), "Let's Collaborate on a Podcast!", messageBody, false);
+        tlsEmail.sendEmail(toUser.getEmail(), toUser.getUsername(), "Let's Collaborate on a Podcast!", messageBody);
         return "redirect:/profile";
     }
 

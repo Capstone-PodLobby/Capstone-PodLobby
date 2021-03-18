@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +33,14 @@ public class FeedController {
     }
 
     @GetMapping("/feeds/global")
-    public String showGlobalFeed(Model model, HttpServletRequest request){
+    public String showGlobalFeed(Model model, HttpServletRequest request, HttpSession session){
+        User user = null;
+        try {
+            user = userService.getLoggedInUser();
+        } catch (Exception ignored){}
+        if(user != null) {
+            session.setAttribute("user", user);
+        }
         List<Podcast> podcasts = podcastDao.findAll();
         model.addAttribute("podcasts", podcasts);
         model.addAttribute("currentUrl", request.getRequestURI());
@@ -41,8 +49,9 @@ public class FeedController {
 
 
     @GetMapping("/feeds/filtered")
-    public String showFilteredFeed(Model model, HttpServletRequest request){
+    public String showFilteredFeed(Model model, HttpServletRequest request, HttpSession session){
         User user = userService.getLoggedInUser();
+        session.setAttribute("user", user);
         model.addAttribute("currentUrl", request.getRequestURI());
         List<Podcast> selectPodcast = new ArrayList<>();
         List<User> following = followDao.findAllByUserId(user.getId());

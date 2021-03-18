@@ -40,12 +40,12 @@ public class HomeController {
         } catch (Exception ignored){}
 
         if(user != null){
-            tlsEmail.sendEmail("podlobby@gmail.com", user.getUsername(), "Help request", message, false);
+            tlsEmail.sendEmail("podlobby@gmail.com", user.getUsername(), "Help request", message);
             model.addAttribute("currentUrl", request.getRequestURI());
             return "redirect:" + currentUrl + "?messageSent";// get the current page you are on
         }
 
-        tlsEmail.sendEmail("podlobby@gmail.com", "Visitor", "Help request", message, false);
+        tlsEmail.sendEmail("podlobby@gmail.com", "Visitor", "Help request", message);
 
         return "redirect:/login?messageSent";
     }

@@ -76,8 +76,10 @@ public class LoginController {
             return "redirect:/forgotPassword?email";
         }
 
-        tlsEmail.sendEmail(email, username, "", "", true);
-        String newPassword = Password.getThePassword().get(0);
+        String newPassword = Password.randomGen();
+
+        tlsEmail.sendEmail(email, username, "Forgot Password", "Hello " + username + " your temporary password is " + newPassword + " please go to https://podlobby/reset");
+
         user.setPassword(encoder.encode(newPassword)); // set the password to the one that is randomly generated;
         userDao.save(user);
         return "authentication/forgotPasswordSent";
@@ -125,7 +127,7 @@ public class LoginController {
     @PostMapping("/newPassword")
     public String newPasswordMade(HttpSession session, @RequestParam(name = "password") String password,
                                   @RequestParam(name = "confirmPassword") String confirm, RedirectAttributes redirectAtr){
-        if ( !password.equals(confirm) ){
+        if (!password.equals(confirm)){
             redirectAtr.addFlashAttribute("message", "Passwords do not match");
             return "redirect:/newPassword";
         } else if (!Password.goodQualityPassword(password)) {
