@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="partials/materializeHead :: styleHead('Request')"></head>
+    <head th:replace="partials/materializeRequest :: styleHead('Request')"></head>
 <body>
 
 
@@ -12,7 +12,7 @@
     </div>
 
     <form th:action="@{/request}" th:method="POST" th:object="${request}" class="container">
-
+        <h1 class="text-center">Place Your Request</h1>
         <div class="input-field" style="display: flex">
             <i class="material-icons">label_outline</i>
             <label class="labelIcon" for="title">Title</label>
@@ -25,14 +25,19 @@
             <input id="description" name="description" type="text" th:value="*{description}"/>
         </div>
 
-        <div class="input-field" style="display: flex">
+        <div class="input-field" id="quantity-needed" style="display: flex">
             <i class="material-icons">contacts</i>
-            <label class="labelIcon" for="req-amount">How many people do you need?</label>
+            <label class="labelIcon" for="req-amount">Contributors</label>
             <input id="req-amount" name="req-amount" type="number" th:value="*{guestCount}"/>
         </div>
 
         <input type="hidden" name="requestId" th:value="${request.id &gt; 0 ? request.id : 0}"/>
-        <button class="btn waves-effect"><a>Submit</a></button>
+
+        <div class="row" id="submit-btn-row">
+            <div class="col">
+                <button class="btn waves-effect"><a>Submit</a></button>
+            </div>
+        </div>
 
     </form>
 </main>
