@@ -20,7 +20,7 @@
     </div>
 
     <div class="row">
-        <div th:each="i : ${#numbers.sequence(0, requestList.size() - 1)}" class="col s12 m6" th:if="${requestList.get(i).guestCount &gt; 0}">
+        <div th:each="i : ${#numbers.sequence(0, requestList.size() - 1)}" class="col s12 m6" th:if="${requestList.get(i).guestCount &gt; 0} OR ${requestList.get(i).user.id == session.user.id}">
             <div class="card horizontal">
                 <div class="card-stacked">
                     <div class="card-content" style="display: flex;">

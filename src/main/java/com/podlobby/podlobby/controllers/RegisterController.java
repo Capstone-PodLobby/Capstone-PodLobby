@@ -75,6 +75,7 @@ public class RegisterController {
         }
 
         user.setIsAuthenticated(0); // they need to activate their account // NEEDS PRODUCTION TESTING
+        user.setIsAdmin(0);
         String accountAuthCode = Password.randomRegisterCode();
         user.setAuthCode(accountAuthCode);
 //        user.setIsAuthenticated(1); // for production for now
@@ -87,9 +88,9 @@ public class RegisterController {
         userDao.save(user);
 
         // testing
-        String emailContent = "Thank you " + user.getUsername() + " for signing up at PodLobby!. Please follow this link to activate your account. http://localhost:8080/activate/" + user.getId() + "/" + user.getAuthCode();
+//        String emailContent = "Thank you " + user.getUsername() + " for signing up at PodLobby!. Please follow this link to activate your account. http://localhost:8080/activate/" + user.getId() + "/" + user.getAuthCode();
         // production
-//        String emailContent = "Thank you " + user.getUsername() + " for signing up at PodLobby!. Please follow this link to activate your account. https://podlobby.club/activate/" + user.getId() + "/" + user.getAuthCode();
+        String emailContent = "Thank you " + user.getUsername() + " for signing up at PodLobby!. Please follow this link to activate your account. https://podlobby.club/activate/" + user.getId() + "/" + user.getAuthCode();
         tlsEmail.sendEmail(user.getEmail(), user.getUsername(), "Welcome to PodLobby", emailContent);
         return "redirect:/newAccount";
 //        return "redirect:/getCategories";

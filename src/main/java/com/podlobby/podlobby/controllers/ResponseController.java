@@ -107,7 +107,7 @@ public class ResponseController {
     }
 
     @PostMapping("/collaborate/contact")
-    public String contactRequester(@RequestParam(name = "body") String messageBody, @RequestParam(name = "id") long toUserId){
+    public String contactRequester(@RequestParam(name = "body") String messageBody, @RequestParam(name = "toUserId") long toUserId){
         // get the user you are sending a message to
         User toUser = userDao.getOne(toUserId);
         // send email message
