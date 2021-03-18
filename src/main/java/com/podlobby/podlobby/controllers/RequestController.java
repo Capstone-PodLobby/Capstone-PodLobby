@@ -109,8 +109,9 @@ public class RequestController {
 
     // getting all requests for current user
     @GetMapping("/user-requests")
-    public String showRequestsAndResponses(Model model, HttpServletRequest request, RedirectAttributes redirectAtr){
+    public String showRequestsAndResponses(Model model, HttpServletRequest request, RedirectAttributes redirectAtr, HttpSession session){
         User user = userService.getLoggedInUser();
+        session.setAttribute("user", user);
         List<Request> requestList = requestDao.findByUser(user);
         if(requestList.size() < 1) {
             redirectAtr.addFlashAttribute("message", "You do not have any active requests");
