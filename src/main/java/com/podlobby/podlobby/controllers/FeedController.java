@@ -42,6 +42,7 @@ public class FeedController {
             session.setAttribute("user", user);
         }
         List<Podcast> podcasts = podcastDao.findAll();
+        model.addAttribute("page", "Global Feed");
         model.addAttribute("podcasts", podcasts);
         model.addAttribute("currentUrl", request.getRequestURI());
         return"feeds/global-feed";
@@ -52,6 +53,7 @@ public class FeedController {
     public String showFilteredFeed(Model model, HttpServletRequest request, HttpSession session){
         User user = userService.getLoggedInUser();
         session.setAttribute("user", user);
+        model.addAttribute("page", "Follower Feed");
         model.addAttribute("currentUrl", request.getRequestURI());
         List<Podcast> selectPodcast = new ArrayList<>();
         List<User> following = followDao.findAllByUserId(user.getId());
