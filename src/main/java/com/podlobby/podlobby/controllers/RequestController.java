@@ -101,6 +101,7 @@ public class RequestController {
         model.addAttribute("requestList", requestDao.findAll());
         User user = userService.getLoggedInUser();
         model.addAttribute("user", user);
+        model.addAttribute("page", "Active Requests");
         model.addAttribute("currentUrl", request.getRequestURI());
         return "feeds/requests-feed";
     }
