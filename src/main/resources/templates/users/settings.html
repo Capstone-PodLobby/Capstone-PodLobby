@@ -1,18 +1,13 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/materializeHead :: styleHead('Your Settings')"></head>
+<head th:replace="partials/materializeSettings :: styleHead('Your Settings')"></head>
 <body>
 <div th:replace="partials/navbar-profile :: profileNav"></div>
 
-
 <main>
 
-    <div class="row container">
-
-        <div class="col s12">
-            <h1>Edit the info you would like to change</h1>
-        </div>
-
+    <div class="container">
+        <h1 class="my-4">Edit Profile Info</h1>
 
         <div th:if="${!param.isEmpty()}">
             <div>
@@ -96,8 +91,8 @@
             </button>
         </form>
     </div>
-
 </main>
+
 <footer th:replace="partials/footer :: footer"></footer>
 <div th:replace="partials/materializescripts :: scripts"></div>
 <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
@@ -126,10 +121,6 @@
         document.getElementById("profileImage").value = fileString;
 
     }
-
-
-
-
 
 
     const optionsBackground = {

@@ -33,7 +33,7 @@ body {
     justify-content: center;
 }
 
-#login-btn-row, #frgt-reg-cont, #submit-btn-row{
+#login-btn-row, #frgt-reg-cont, #submit-btn-row, #create-btn{
     display: flex;
     justify-content: center;
 }
@@ -99,5 +99,25 @@ a:hover{
     color: white !important;
     /*border-bottom: 1px solid white !important;*/
     /*box-shadow: 0 1px 0 0 #000;*/
+}
+
+/*----------------------------------*/
+/*FOR CREATE PODCAST CATEGORIES ONLY*/
+/*----------------------------------*/
+
+span {
+    color: #433520 !important;
+}
+
+.select-dropdown.dropdown-trigger {
+    color: white !important;
+}
+
+.hide{
+    display: none;
+}
+
+main{
+    overflow: auto !important;
 }
 
