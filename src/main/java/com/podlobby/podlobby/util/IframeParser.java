@@ -15,7 +15,7 @@ public class IframeParser {
         for(int i = 0; i < list.size(); i++){
             if(list.get(i).startsWith("src")) idx = i;
         }
-        if(idx == -1){
+        if(idx == -1 || list.get(idx).length() < 7){
             return "noSRC";
         }
         return list.get(idx).substring(5, list.get(idx).length() - 1);
