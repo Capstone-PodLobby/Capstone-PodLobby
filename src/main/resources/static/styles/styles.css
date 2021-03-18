@@ -153,7 +153,15 @@ button:hover{
     cursor: pointer;
     background-position: 0 100%;
 }
-
+.logoutFormButton{
+    height: 100%;
+    width: 80px;
+    border: none;
+    font-size: 16px;
+}
+.logoutForm{
+    height: 50px;
+}
 /*link effect*/
 a, button{
     position: relative;
@@ -173,7 +181,10 @@ a, button{
 a:hover{
     background-position: 0 100%;
 }
-
+/*footer contact links*/
+.contactLinks{
+    font-size: 18px;
+}
 .card-action {
     display: flex;
 }
@@ -190,6 +201,9 @@ a:hover{
     .profile-iframe{
         margin-left: 15vw;
         width: 78vw;
+    }
+    .contactLinks{
+        font-size: 24px;
     }
 }
 

@@ -11,8 +11,11 @@ body {
 
 .page-footer{
     background-color: white !important;
+    color: #443620 !important;
 }
-
+#footerContactLabel{
+    color: #443620 !important;
+}
 .nav-wrapper{
     background-color: white;
 }
