@@ -1,3 +1,10 @@
+/*---------------------------------------*/
+/*APPLIES TO LOGIN, REQUEST, AND RESPONSE*/
+/*---------------------------------------*/
+
+/*--------------*/
+/*NAV AND FOOTER*/
+/*--------------*/
 body {
     font-family: "Lato", sans-serif;
     font-weight: 400;
@@ -8,9 +15,12 @@ body {
     background-color: #499E8D;
     margin: 0;
 }
-
 .page-footer{
     background-color: white !important;
+    color: #443620 !important;
+}
+#footerContactLabel{
+    color: #443620 !important;
 }
 
 .nav-wrapper{
@@ -23,28 +33,31 @@ body {
     justify-content: center;
 }
 
-#login-btn-row, #frgt-reg-cont{
+#login-btn-row, #frgt-reg-cont, #submit-btn-row{
     display: flex;
     justify-content: center;
 }
+/*------------------*/
+/*BEGIN FORM STYLING*/
+/*------------------*/
 
 /* label color */
 .input-field label {
     color: white !important;
 }
 /* label focus color */
-.input-field input[type=text]:focus + label, .input-field input[type=password]:focus + label {
+.input-field input[type=text]:focus + label, .input-field input[type=password]:focus + label,.input-field input[type=number]:focus + label {
     color: white !important;
 }
 /* label underline focus color */
-.input-field input[type=text]:focus, .input-field input[type=password]:focus {
+.input-field input[type=text]:focus, .input-field input[type=password]:focus, .input-field input[type=number]:focus {
     color:white !important;
     border-bottom: 1px solid white !important;
     box-shadow: 0 1px 0 0 white !important;
 }
 
 /* valid color */
-.input-field input[type=text].valid, .input-field input[type=password].valid {
+.input-field input[type=text].valid, .input-field input[type=password].valid, .input-field input[type=number].valid {
     color: white !important;
     border-bottom: 1px solid white !important;
     box-shadow: 0 1px 0 0 white !important;
@@ -75,21 +88,16 @@ a:hover{
     background-position: 0 100% !important;
 }
 
-
-
+/*field txt color*/
+#title, #description, #req-amount {
+    color: white !important;
+}
 
 
 /* invalid color */
-/*.input-field input[type=text].invalid {*/
-/*    border-bottom: 1px solid #000;*/
-/*    box-shadow: 0 1px 0 0 #000;*/
-/*}*/
+.input-field input[type=number].invalid {
+    color: white !important;
+    /*border-bottom: 1px solid white !important;*/
+    /*box-shadow: 0 1px 0 0 #000;*/
+}
 
-/* icon prefix focus color */
-/*.input-field .prefix.active {*/
-/*    color: #000;*/
-/*}*/
-
-/*#login-button {*/
-/*    align-content: center;*/
-/*}*/

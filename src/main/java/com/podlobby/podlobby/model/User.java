@@ -43,6 +43,9 @@ public class User {
     @Column(columnDefinition = "TINYINT")
     private int isAuthenticated;
 
+    @Column
+    private String authCode;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", orphanRemoval = true)
     private List<Podcast> podcasts;
 
@@ -86,10 +89,12 @@ public class User {
         this.users = copy.users;
         this.followers = copy.followers;
         this.isAuthenticated = copy.isAuthenticated;
+        this.authCode = copy.authCode;
     }
 
-    public User(long id, String backgroundImage, String username, String password, String email, Timestamp joinedAt, String profileImage, int isAuthenticated, int isAdmin, String aboutMe, List<Podcast> podcasts, List<Comment> comments, List<Request> requests, List<Response> responseList, List<User> users, List<User> followers) {
+    public User(long id, String backgroundImage, String authCode, String username, String password, String email, Timestamp joinedAt, String profileImage, int isAuthenticated, int isAdmin, String aboutMe, List<Podcast> podcasts, List<Comment> comments, List<Request> requests, List<Response> responseList, List<User> users, List<User> followers) {
         this.id = id;
+        this.authCode = authCode;
         this.username = username;
         this.password = password;
         this.email = email;
@@ -107,8 +112,9 @@ public class User {
         this.isAuthenticated = isAuthenticated;
     }
 
-    public User(String username, String backgroundImage, String password, String email, Timestamp joinedAt, String profileImage, int isAdmin, int isAuthenticated, String aboutMe, List<Podcast> podcasts, List<Comment> comments, List<Request> requests, List<Response> responseList, List<User> users, List<User> followers) {
+    public User(String username, String backgroundImage, String authCode, String password, String email, Timestamp joinedAt, String profileImage, int isAdmin, int isAuthenticated, String aboutMe, List<Podcast> podcasts, List<Comment> comments, List<Request> requests, List<Response> responseList, List<User> users, List<User> followers) {
         this.username = username;
+        this.authCode = authCode;
         this.password = password;
         this.email = email;
         this.joinedAt = joinedAt;
@@ -251,5 +257,13 @@ public class User {
 
     public void setIsAuthenticated(int isAuthenticated) {
         this.isAuthenticated = isAuthenticated;
+    }
+
+    public String getAuthCode() {
+        return authCode;
+    }
+
+    public void setAuthCode(String authCode) {
+        this.authCode = authCode;
     }
 }

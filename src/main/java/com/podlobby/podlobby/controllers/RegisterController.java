@@ -1,13 +1,10 @@
 package com.podlobby.podlobby.controllers;
 
-import com.mailjet.client.errors.MailjetException;
 import com.podlobby.podlobby.model.User;
 import com.podlobby.podlobby.repositories.UserRepository;
 import com.podlobby.podlobby.services.TLSEmail;
 import com.podlobby.podlobby.services.UserService;
 import com.podlobby.podlobby.util.Password;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.security.core.parameters.P;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -77,23 +74,25 @@ public class RegisterController {
             return "redirect:/register?quality";
         }
 
-//        user.setIsAuthenticated(0); // they need to activate their account // NEEDS PRODUCTION TESTING
-        user.setIsAuthenticated(1); // for production for now
+        user.setIsAuthenticated(0); // they need to activate their account // NEEDS PRODUCTION TESTING
+        String accountAuthCode = Password.randomRegisterCode();
+        user.setAuthCode(accountAuthCode);
+//        user.setIsAuthenticated(1); // for production for now
 
         user.setJoinedAt(new Timestamp(new Date().getTime()));
         user.setPassword(encoder.encode(user.getPassword()));
         user.setBackgroundImage("https://images.unsplash.com/photo-1567596388756-f6d710c8fc07?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80,1");
-        user.setProfileImage("https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png");
+        user.setProfileImage("https://images.unsplash.com/photo-1567596388756-f6d710c8fc07?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mnx8bWljcm9waG9uZXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80");
 
         userDao.save(user);
 
         // testing
-//        String emailContent = "Thank you " + user.getUsername() + " for signing up at PodLobby!. Please follow this link to activate your account. http://localhost:8080/activate/" + user.getId() + "/" + Password.randomRegisterCode();
+        String emailContent = "Thank you " + user.getUsername() + " for signing up at PodLobby!. Please follow this link to activate your account. http://localhost:8080/activate/" + user.getId() + "/" + user.getAuthCode();
         // production
-        String emailContent = "Thank you " + user.getUsername() + " for signing up at PodLobby!. Please follow this link to activate your account. https://podlobby.club/activate/" + user.getId() + "/" + Password.randomRegisterCode();
-        tlsEmail.sendEmail(user.getEmail(), user.getUsername(), "Welcome to PodLobby", emailContent, false);
-//        return "redirect:/newAccount";
-        return "redirect:/getCategories";
+//        String emailContent = "Thank you " + user.getUsername() + " for signing up at PodLobby!. Please follow this link to activate your account. https://podlobby.club/activate/" + user.getId() + "/" + user.getAuthCode();
+        tlsEmail.sendEmail(user.getEmail(), user.getUsername(), "Welcome to PodLobby", emailContent);
+        return "redirect:/newAccount";
+//        return "redirect:/getCategories";
     }
 
     // page telling user to check their email
@@ -106,8 +105,8 @@ public class RegisterController {
     // link in email that will activate their account
     @GetMapping("/activate/{id}/{code}")
     public String activateAccount(@PathVariable(name = "code") String code, @PathVariable(name = "id") long id){
-        if(code.equals(Password.getRegisterCode().get(0))){
-            User user = userDao.getOne(id);
+        User user = userDao.getOne(id);
+        if(code.equals(user.getAuthCode())) { // ensure they actually clicked the email link rather than typing something into the browser
             user.setIsAuthenticated(1);
             userDao.save(user);
             return "redirect:/login?activated";

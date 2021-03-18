@@ -15,7 +15,7 @@
     <div class="col s12 m8">
         <!-- Title-->
         <div class="feed-title">
-            <h2>FEED</h2>
+            <h2 th:text="${page}"></h2>
         </div>
 
         <!--Feed Buttons-->
@@ -26,9 +26,6 @@
             </div>
             <div class="col s12 m4">
                 <a href="/feeds/filtered" class="waves-effect waves-light btn-large">FOLLOWERS</a>
-            </div>
-            <div class="col s12 m4">
-                <a href="/feeds/requests" class="waves-effect waves-light btn-large">REQUESTS</a>
             </div>
 
         </div>

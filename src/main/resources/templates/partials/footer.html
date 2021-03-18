@@ -6,23 +6,23 @@
             <div class="col l7 s12">
                 <div id="footerIconAndName">
                     <i class="large material-icons">airplay</i>
-                    <h5 class="white-text" id="footerSiteName">PodLobby</h5>
+                    <h5 id="footerSiteName">PodLobby</h5>
                 </div>
-                <h5 class="white-text centerText">About Us</h5>
+                <h5 class="centerText">About Us</h5>
                 <ul class="footerUl">
-                    <li><a class="grey-text text-lighten-3" href="https://www.linkedin.com/in/matthew-baker-76b17b200/">Matthew</a></li>
-                    <li><a class="grey-text text-lighten-3" href="https://www.linkedin.com/in/cwardlaw/">Caleb</a></li>
-                    <li><a class="grey-text text-lighten-3" href="https://www.linkedin.com/in/amber-mattis/">Amber</a></li>
-                    <li><a class="grey-text text-lighten-3" href="https://www.linkedin.com/in/gonzalo-ovalle3/">Gonzalo</a></li>
+                    <li><a class="contactLinks" href="https://www.linkedin.com/in/matthew-baker-76b17b200/">Matthew</a></li>
+                    <li><a class="contactLinks" href="https://www.linkedin.com/in/cwardlaw/">Caleb</a></li>
+                    <li><a class="contactLinks" href="https://www.linkedin.com/in/amber-mattis/">Amber</a></li>
+                    <li><a class="contactLinks" href="https://www.linkedin.com/in/gonzalo-ovalle3/">Gonzalo</a></li>
                 </ul>
             </div>
 
             <div class="col l5 s12">
                 <form th:action="@{/sendMessage}" method="post">
-                    <h5 class="white-text">Contact Us</h5>
+                    <h5>Contact Us</h5>
                     <div class="input-field col s6">
                         <textarea class="materialize-textarea" id="messageUs" name="messageUs"></textarea>
-                        <label for="messageUs">Message</label>
+                        <label for="messageUs" id="footerContactLabel">Message</label>
                     </div>
                     <input type="hidden" name="currentUrl" id="currentUrl" th:value="${currentUrl}">
                     <a><button class="waves-effect waves-light" name="action" id="footerSubmitButton">

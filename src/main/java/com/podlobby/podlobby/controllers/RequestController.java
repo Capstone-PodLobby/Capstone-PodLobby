@@ -43,9 +43,10 @@ public class RequestController {
 
     // show the form
     @GetMapping("/request")
-    public String showRequestForm(Model model, HttpServletRequest request){
+    public String showRequestForm(Model model, HttpServletRequest request, HttpSession session){
         model.addAttribute("request", new Request());
         User user = userService.getLoggedInUser();
+        session.setAttribute("user", user);
         model.addAttribute("user", user);
         model.addAttribute("currentUrl", request.getRequestURI());
         return "requests/request";
@@ -89,7 +90,7 @@ public class RequestController {
         List<Request> requestList = requestDao.findByUser(user);
 
         String message = "Thank you " + user.getUsername() + " for adding your " + Methods.numberSuffix(requestList.size()) + " request, it can be found on your profile!";
-        tlsEmail.sendEmail(user.getEmail(), user.getUsername(), "Your request has been added", message, false);
+        tlsEmail.sendEmail(user.getEmail(), user.getUsername(), "Your request has been added", message);
 
         return "redirect:/profile?myPodcasts";
     }
@@ -100,6 +101,7 @@ public class RequestController {
         model.addAttribute("requestList", requestDao.findAll());
         User user = userService.getLoggedInUser();
         model.addAttribute("user", user);
+        model.addAttribute("page", "Active Requests");
         model.addAttribute("currentUrl", request.getRequestURI());
         return "feeds/requests-feed";
     }
