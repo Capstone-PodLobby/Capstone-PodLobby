@@ -25,11 +25,12 @@
             <!--       display the would you like to work with me if you got here through the requests page     -->
             <div th:if="${!param.isEmpty()}">
                 <div>
-                    <div class="errorMsg" th:if="${param.requestViewing}">
+                    <div th:if="${param.requestViewing}">
                         <div th:replace="partials/requestModal :: requestModal"></div>
                     </div>
                 </div>
             </div>
+            <!--    ^^^^^ THIS IS WHERE YOU CAN CLICK TO SEND A RESPONSE TO THE USER THAT CREATED THE REQUEST  -->
 
             <p class="center-align" th:text="${following.aboutMe}"></p>
 

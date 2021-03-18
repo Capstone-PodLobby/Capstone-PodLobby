@@ -82,7 +82,7 @@ public class RegisterController {
 
         user.setJoinedAt(new Timestamp(new Date().getTime()));
         user.setPassword(encoder.encode(user.getPassword()));
-        user.setBackgroundImage("https://images.unsplash.com/photo-1567596388756-f6d710c8fc07?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80,1");
+        user.setBackgroundImage("https://images.unsplash.com/photo-1447703693928-9cd89c8d3ac5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=2102&q=80");
         user.setProfileImage("https://images.unsplash.com/photo-1567596388756-f6d710c8fc07?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mnx8bWljcm9waG9uZXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80");
 
         userDao.save(user);
@@ -93,7 +93,6 @@ public class RegisterController {
         String emailContent = "Thank you " + user.getUsername() + " for signing up at PodLobby!. Please follow this link to activate your account. https://podlobby.club/activate/" + user.getId() + "/" + user.getAuthCode();
         tlsEmail.sendEmail(user.getEmail(), user.getUsername(), "Welcome to PodLobby", emailContent);
         return "redirect:/newAccount";
-//        return "redirect:/getCategories";
     }
 
     // page telling user to check their email
