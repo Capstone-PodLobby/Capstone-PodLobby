@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="partials/materializeHead :: styleHead('Create Podcast')"></head>
+    <head th:replace="partials/materializeCreate :: styleHead('Create Podcast')"></head>
 <body>
 <nav th:replace="partials/navbar-profile :: profileNav"></nav>
 <main>
@@ -52,6 +52,12 @@
                 <label class="labelIcon" for="embedUrl">Embed URL</label>
                 <input class="validate" type="text" id="embedUrl" th:field="*{embedLink}"/>
                 <a class="waves-effect waves-light" onclick="$('.tap-target').tapTarget('open')"><i class="material-icons">live_help</i></a>
+
+                <div class="hide">
+                    <a id="menu" class="waves-effect waves-light btn btn-floating" ><i class="material-icons">menu</i></a>
+                </div>
+
+
             </div>
 
             <div class="input-field" style="display: flex">
@@ -69,7 +75,11 @@
             </div>
 
             <input type="hidden" th:field="*{id}"/>
-            <button class="btn waves-effect"><a>Create Podcast</a></button>
+            <div class="row" id="create-btn">
+                <div class="col">
+                    <button class="btn waves-effect"><a>Create Podcast</a></button>
+                </div>
+            </div>
         </form>
 
         <div class="tap-target" data-target="menu">
@@ -82,14 +92,11 @@
             </div>
         </div>
 
-        <a id="menu" class="waves-effect waves-light btn btn-floating" ><i class="material-icons">menu</i></a>
-
     </div>
 </main>
 
 <footer th:replace="partials/footer.html :: footer"></footer>
 <div th:replace="partials/materializescripts :: scripts"></div>
-
 <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
 <script th:src="@{/js/keys.js}"></script>
 <script>
