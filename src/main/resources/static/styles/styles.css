@@ -53,9 +53,11 @@ main {
 }
 .profile-heading {
     color: aliceblue;
-    margin-left: 80px;
+    margin-left: 25px;
 }
-
+.sidenav .user-view .name {
+    font-size: 32px;
+}
 
 #profileNav{
     height: 140px;
@@ -147,7 +149,6 @@ main {
 }
 #podcastImage{
     border: none !important;
-    background: none !important;
 }
 button:hover{
     cursor: pointer;
@@ -196,6 +197,12 @@ a:hover{
 
 
 /*=============================================================================*/
+@media screen and (min-width: 600px) {
+    .profile-heading {
+        margin-left: 80px;
+    }
+}
+
 
 @media screen and (min-width: 992px){
     .profile-iframe{
