@@ -11,6 +11,8 @@
     <main>
         <div class="container">
             <h1 th:text="${registerMessage}">Create an Account</h1>
+            <small class="registerErrors" id="passErrorCustom">Passwords do not match</small>
+            <small class="registerErrors" id="passErrorCustom2">Passwords must have 1 number, 1 uppercase letter and be 8-20 characters long</small>
             <div class="errorMsg" th:if="${errorList.size() &gt; 0}" th:each="error : ${errorList}">
                 <small th:text="${error}"></small><br>
             </div>
@@ -28,14 +30,14 @@
                     <div class="input-field col s12" style="display: flex;">
                         <i class="material-icons">lock</i>
                         <input id="password" type="password" class="validate" th:field="*{password}">
-                        <label class="labelIcon" for="password">Password</label>
+                        <label class="labelIcon" for="password" id="passLabel">Password</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12" style="display: flex">
                         <i class="material-icons">lock</i>
                         <input id="confirmPass" type="password" class="validate" name="confirm-password">
-                        <label class="labelIcon" for="confirmPass">Confirm Password</label>
+                        <label class="labelIcon" for="confirmPass" id="confirmLabel">Confirm Password</label>
                     </div>
                 </div>
                 <div class="row">
@@ -53,16 +55,12 @@
                         <a class="waves-effect waves-light" onclick="$('.tap-target').tapTarget('open')"><i class="material-icons">live_help</i></a>
                     </div>
 
-
-                    <div class="g-recaptcha" th:data-sitekey="${@environment.getProperty('recaptcha.testing.site.key')}"></div>
-<!--                    <div class="g-recaptcha" th:data-sitekey="${@environment.getProperty('recaptcha.checkbox.site.key')}"></div>-->
-
                 </div>
 
 
                 <div class="row" id="recaptcha-row">
-                    <!--                    <div class="g-recaptcha" th:data-sitekey="${@environment.getProperty('recaptcha.testing.site.key')}"></div>-->
-                    <div class="g-recaptcha" th:data-sitekey="${@environment.getProperty('recaptcha.checkbox.site.key')}">
+                                        <div class="g-recaptcha" th:data-sitekey="${@environment.getProperty('recaptcha.testing.site.key')}"></div>
+<!--                    <div class="g-recaptcha" th:data-sitekey="${@environment.getProperty('recaptcha.checkbox.site.key')}">-->
 
                     </div>
 
@@ -92,6 +90,65 @@
 
 <div th:replace="partials/footer.html :: footer"></div>
 <div th:replace="partials/materializescripts :: scripts"></div>
+
+
+<script>
+    $("#passErrorCustom").hide();
+    $("#passErrorCustom2").hide();
+    $(document).ready(function (){
+
+        const passInput = document.getElementById("password");
+        const passConfirm = document.getElementById("confirmPass");
+
+
+        $("#confirmPass").on("input", function () {
+           if($(this).val() !== passInput.value){
+               $(this).attr("style", "color: #5a1666 !important");
+               $("#password").attr("style", "color: #5a1666 !important");
+               $("#passErrorCustom").show(300);
+               $("#passErrorCustom2").hide();
+           } else if (!goodPassword($(this).val())) {
+               $(this).attr("style", "color: #5a1666 !important");
+               $("#password").attr("style", "color: #5a1666 !important");
+               $("#passErrorCustom2").show(300);
+               $("#passErrorCustom").hide();
+           } else {
+               $(this).removeAttr("style");
+               $("#password").removeAttr("style");
+               $("#passErrorCustom").hide(300);
+               $("#passErrorCustom2").hide(300);
+           }
+        });
+
+        $("#password").on("input", function () {
+            if($(this).val() !== passConfirm.value){
+                $(this).attr("style", "color: #5a1666 !important");
+                $("#confirmPass").attr("style", "color: #5a1666 !important");
+                $("#passErrorCustom").show(300);
+                $("#passErrorCustom2").hide();
+            } else if (!goodPassword($(this).val())) {
+                $(this).attr("style", "color: #5a1666 !important");
+                $("#confirmPass").attr("style", "color: #5a1666 !important");
+                $("#passErrorCustom2").show(300);
+                $("#passErrorCustom").hide();
+            } else {
+                $(this).removeAttr("style");
+                $("#confirmPass").removeAttr("style");
+                $("#passErrorCustom").hide(300);
+                $("#passErrorCustom2").hide(300);
+            }
+        });
+
+        function goodPassword(s1){
+            if(s1.length > 21 || s1.length < 8) return false;
+            if(s1.toLowerCase() === s1) return false;
+            return /\d/.test(s1);
+        }
+
+    });
+
+
+</script>
 
 </body>
 </html>

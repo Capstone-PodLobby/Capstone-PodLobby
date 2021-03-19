@@ -237,6 +237,11 @@ a:hover{
 }
 
 
+.registerErrors{
+    position: absolute;
+    font-size: 25% !important;
+    color: #5a1666;
+}
 
 
 /*=============================================================================*/
@@ -246,6 +251,9 @@ a:hover{
     }
     .commentModalBox{
         max-width: 60vw !important;
+    }
+    .registerErrors{
+        font-size: 35% !important;
     }
 
 }
