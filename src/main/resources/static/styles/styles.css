@@ -93,6 +93,11 @@ main {
 }
 
 /*====== FOOTER PARTIAL ========*/
+.page-footer{
+    padding-top: 50px !important;
+    background: rgb(255, 255, 255) !important;
+    background: linear-gradient(0deg, rgb(255, 255, 255) 8%, rgb(73, 158, 140) 93%) !important;
+}
 .footerUl{
     display: flex !important;
     justify-content: space-around !important;
@@ -203,6 +208,26 @@ a:hover{
 }
 
 
+/*Global feed card*/
+
+.globalDescription{
+    min-height: 118px !important;
+    overflow: auto !important;
+    max-height: 118px !important;
+}
+.podImageGlobal{
+    width: 100% !important;
+}
+#podcastsDesc{
+    padding: 12px 0 !important;
+}
+.globalListenButton{
+    width: 100% !important;
+}
+
+
+
+
 
 /*comment modal*/
 .commentModalBox{
@@ -254,6 +279,10 @@ a:hover{
     }
     .registerErrors{
         font-size: 35% !important;
+    }
+    .globalPodcastCard{
+        /*for better grid layout*/
+        min-height: 380px !important;
     }
 
 }

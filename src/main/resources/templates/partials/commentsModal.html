@@ -22,7 +22,7 @@
             </div>
         </div>
         <div>
-            <form th:action="@{/comment/create/{title}(title=${userPodcasts.get(i).title})}" th:method="POST" class="container">
+            <form th:action="@{/comment/create/{title}(title=${userPodcasts.get(i).title})}" th:method="POST" class="container" style="margin-bottom: 20px !important;">
                 <div class="input-field">
                     <label for="comment">Comment</label>
                     <input name="comment" type="text" id="comment" class="validate"/>

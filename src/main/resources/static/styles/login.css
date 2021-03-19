@@ -116,6 +116,11 @@ span {
     display: none;
 }
 
+/*char counter -> create*/
+.character-counter{
+    font-size: 10px !important;
+}
+
 /*main{*/
 /*    overflow: auto !important;*/
 /*}*/

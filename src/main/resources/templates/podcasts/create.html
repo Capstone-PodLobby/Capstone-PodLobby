@@ -39,7 +39,7 @@
             <div class="input-field" style="display: flex">
                 <i class="material-icons">label_outline</i>
                 <label class="labelIcon" for="title">Title</label>
-                <input class="validate" type="text" id="title" th:field="*{title}"/>
+                <input class="validate" type="text" id="title" data-length="128" th:field="*{title}"/>
             </div>
             <div class="input-field" style="display: flex">
                 <i class="material-icons">border_color</i>
@@ -77,7 +77,7 @@
             <input type="hidden" th:field="*{id}"/>
             <div class="row" id="create-btn">
                 <div class="col">
-                    <button class="btn waves-effect"><a>Create Podcast</a></button>
+                    <button class="btn waves-effect" id="createPodcast"><a>Create Podcast</a></button>
                 </div>
             </div>
         </form>
@@ -100,6 +100,19 @@
 <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
 <script th:src="@{/js/keys.js}"></script>
 <script>
+
+    const titleInput = document.getElementById("title");
+    const create = document.getElementById("createPodcast");
+
+    titleInput.addEventListener("input", function () {
+        if (titleInput.value.length > 128) {
+            create.disabled = true;
+            $(".character-counter").attr("style", "color: #5a1666 !important");
+        } else {
+            create.disabled = false;
+            $(".character-counter").removeAttr("style");
+        }
+    });
 
     const client = filestack.init(fileStackToken);
 
