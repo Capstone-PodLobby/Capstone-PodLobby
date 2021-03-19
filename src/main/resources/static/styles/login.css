@@ -33,7 +33,7 @@ body {
     justify-content: center;
 }
 
-#login-btn-row, #frgt-reg-cont, #submit-btn-row, #create-btn{
+#login-btn-row, #frgt-reg-cont, #submit-btn-row, #create-btn, #sign-up-btn-row, #recaptcha-row{
     display: flex;
     justify-content: center;
 }
@@ -95,9 +95,9 @@ a:hover{
 
 
 /* invalid color */
-.input-field input[type=number].invalid {
+.input-field input[type=number].invalid,.input-field input[type=text].valid, .input-field input[type=password].valid {
     color: white !important;
-    /*border-bottom: 1px solid white !important;*/
+    /*border-bottom: 1px solid #fde8cd !important;*/
     /*box-shadow: 0 1px 0 0 #000;*/
 }
 
@@ -117,11 +117,22 @@ span {
     display: none;
 }
 
-main{
+/*main{*/
+/*    overflow: auto !important;*/
+/*}*/
+
+/*.materialize-textarea, #about-me-txt, #about-me-col{*/
+/*    overflow: auto !important;*/
+/*}*/
+
+#drop-down{
+    height: 300px !important;
     overflow: auto !important;
 }
 
-.materialize-textarea, #about-me-txt, #about-me-col{
-    overflow: auto !important;
-}
+/*.tap-target{*/
+/*    visibility: hidden;*/
+/*}*/
+
+
 
