@@ -19,8 +19,8 @@
         </ul>
 
         <ul id="slide-out" class="sidenav hide-on-med-and-up">
-            <li>
-                <div class="user-view">
+            <li id="slide-outLi">
+                <div id="slide-outLiTop" class="user-view">
                     <div class="background">
                         <img th:src="${session.user.backgroundImage}">
                     </div>
@@ -35,6 +35,8 @@
             <li><a class="subheader" href="/">PodLobby</a></li>
             <li><a href="/feeds/global">Home</a></li>
             <li><a href="/podcasts/create">Create</a></li>
+            <li><a href="/user-requests" class="collection-item teal-text text-darken-4">Requests</a></li>
+            <li><a href="/user-responses" class="collection-item teal-text text-darken-4">Responses</a></li>
             <li class="divider"></li>
             <li><a href="/settings">Settings</a></li>
             <li sec:authorize="isAuthenticated()"><a href="/profile?myPodcasts">Profile</a></li>

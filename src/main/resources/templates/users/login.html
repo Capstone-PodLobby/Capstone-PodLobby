@@ -9,19 +9,19 @@
 
     <div th:if="${!param.isEmpty()}">
         <div>
-            <div th:if="${param.logout}">
+            <div class="errorMsg" th:if="${param.logout}">
                 <i class="material-icons">error</i>You have been logged out.
             </div>
-            <div th:if="${param.error}">
+            <div class="errorMsg" th:if="${param.error}">
                 <i class="material-icons">error</i>Username or password does not exist, you may need to activate your account.
             </div>
-            <div th:if="${param.messageSent}">
+            <div class="errorMsg" th:if="${param.messageSent}">
                 <i class="material-icons">error</i>Our team has been notified. We will get back to you soon
             </div>
-            <div th:if="${param.activated}">
+            <div class="errorMsg" th:if="${param.activated}">
                 <i class="material-icons">error</i>Your account has been activated
             </div>
-            <div th:if="${param.activationIssue}">
+            <div class="errorMsg" th:if="${param.activationIssue}">
                 <i class="material-icons">error</i>There was an issue activating your account
             </div>
         </div>

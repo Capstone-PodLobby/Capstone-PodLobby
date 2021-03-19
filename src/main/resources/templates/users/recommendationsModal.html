@@ -8,7 +8,7 @@
 
         <div th:if="${!param.isEmpty()}">
             <div>
-                <div th:if="${param.default}">
+                <div class="errorMsg" th:if="${param.default}">
                     Please make a selection or choose to do this later.
                 </div>
             </div>

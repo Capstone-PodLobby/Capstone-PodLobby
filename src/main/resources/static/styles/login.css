@@ -3,17 +3,16 @@
 /*---------------------------------------*/
 
 /*--------------*/
-/*NAV AND FOOTER*/
+/*NAV AND FOOTER     HAD TO REMOVE THE OVERFLOW HIDDEN FOR MOBILE FORM VIEW AND SETTINGS PAGE*/
 /*--------------*/
 body {
     font-family: "Lato", sans-serif;
-    font-weight: 400;
-    font-size: 30px;
-    line-height: 1.7;
-    color: white;
-    overflow: hidden;
+    /*font-weight: 400;*/
+    /*font-size: 30px;*/
+    /*line-height: 1.7;*/
+    /*color: white;*/
     background-color: #499E8D;
-    margin: 0;
+    /*margin: 0;*/
 }
 .page-footer{
     background-color: white !important;
@@ -33,7 +32,7 @@ body {
     justify-content: center;
 }
 
-#login-btn-row, #frgt-reg-cont, #submit-btn-row{
+#login-btn-row, #frgt-reg-cont, #submit-btn-row, #create-btn, #sign-up-btn-row, #recaptcha-row{
     display: flex;
     justify-content: center;
 }
@@ -89,15 +88,58 @@ a:hover{
 }
 
 /*field txt color*/
-#title, #description, #req-amount {
+#title, #description, #req-amount, #username, #email, #body {
     color: white !important;
 }
 
 
 /* invalid color */
-.input-field input[type=number].invalid {
+.input-field input[type=number].invalid,.input-field input[type=text].valid, .input-field input[type=password].valid {
     color: white !important;
-    /*border-bottom: 1px solid white !important;*/
+    /*border-bottom: 1px solid #fde8cd !important;*/
     /*box-shadow: 0 1px 0 0 #000;*/
 }
+
+/*----------------------------------*/
+/*FOR CREATE PODCAST CATEGORIES ONLY*/
+/*----------------------------------*/
+
+span {
+    color: #433520 !important;
+}
+
+.select-dropdown.dropdown-trigger {
+    color: white !important;
+}
+
+.hide{
+    display: none;
+}
+
+/*char counter -> create*/
+.character-counter{
+    font-size: 10px !important;
+}
+
+/*main{*/
+/*    overflow: auto !important;*/
+/*}*/
+
+/*.materialize-textarea, #about-me-txt, #about-me-col{*/
+/*    overflow: auto !important;*/
+/*}*/
+
+
+/*had to change this selector to target just the text area, was causing issues with the display of the label*/
+.materialize-textarea{
+    overflow: auto !important;
+}
+#drop-down{
+    height: 300px !important;
+}
+/*.tap-target{*/
+/*    visibility: hidden;*/
+/*}*/
+
+
 

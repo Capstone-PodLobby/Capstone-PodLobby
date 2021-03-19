@@ -93,6 +93,7 @@ public class ResponseController {
             requestDao.save(thisRequest);
             thisResponse.setAcceptedStatus(1);
             responseDao.save(thisResponse);
+            tlsEmail.sendEmail(thisResponse.getUser().getEmail(), thisRequest.getUser().getUsername(), "Response approved!", "Good news! " +  thisRequest.getUser().getUsername() + " has agreed to work with you on their request for " + thisRequest.getTitle() + " you are now able to contact " + thisRequest.getUser().getUsername() + " in the responses tab on your profile.");
             return "redirect:/user-requests";
         }
         redirectAtr.addFlashAttribute("message", "Your request does not need any more guests");
@@ -107,11 +108,16 @@ public class ResponseController {
     }
 
     @PostMapping("/collaborate/contact")
-    public String contactRequester(@RequestParam(name = "body") String messageBody, @RequestParam(name = "toUserId") long toUserId){
+    public String contactRequester(@RequestParam(name = "body") String messageBody, @RequestParam(name = "toUserId") long toUserId, RedirectAttributes redirectAtr){
         // get the user you are sending a message to
+        if(messageBody.isEmpty()){
+            redirectAtr.addFlashAttribute("message", "Please add a message");
+            return "redirect:/collaborate/" + toUserId;
+        }
         User toUser = userDao.getOne(toUserId);
+        User currUser = userService.getLoggedInUser();
         // send email message
-        tlsEmail.sendEmail(toUser.getEmail(), toUser.getUsername(), "Let's Collaborate on a Podcast!", messageBody);
+        tlsEmail.sendEmail(toUser.getEmail(), toUser.getUsername(), "Let's Collaborate on a Podcast!", messageBody + " from " + currUser.getUsername() + " contact : " + currUser.getEmail());
         return "redirect:/profile";
     }
 

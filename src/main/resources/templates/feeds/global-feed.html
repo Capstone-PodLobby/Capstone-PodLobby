@@ -11,11 +11,9 @@
 <nav sec:authorize="isAuthenticated()" th:replace="partials/navbar-profile :: profileNav"></nav>
 <main>
 
-<div class="row">
+<div class="row container">
 
-    <div sec:authorize="isAuthenticated()" th:replace="partials/fixedProfileCard :: fixedProfileCard"></div>
-
-    <div class="col s12 m8">
+    <div class="col s12">
         <!-- Title-->
         <div class="feed-title">
             <h2 th:text="${page}"></h2>
@@ -24,10 +22,10 @@
         <!--Feed Buttons-->
         <div class="feed-buttons">
 
-            <div class="col s12 l4">
+            <div class="col s12 m4 offset-m2">
                 <a href="/feeds/filtered" class="waves-effect waves-light btn-large">FOLLOWERS</a>
             </div>
-            <div class="col s12 l4">
+            <div class="col s12 m4 offset-m2">
                 <a href="/feeds/requests" class="waves-effect waves-light btn-large">REQUESTS</a>
             </div>
 
@@ -36,15 +34,22 @@
 </div>
 
 <!-- Podcast Global Feed -->
- <div class="row">
-    <div class="col s12 m6 l4" th:each="podcast : ${podcasts}">
-        <div class="card horizontal" style="box-shadow: none !important; background: none !important;">
+ <div class="row container">
+    <div class="col s12 m6 globalPodcastCard" th:each="podcast : ${podcasts}">
+        <div class="card" style="box-shadow: none !important; background: none !important;">
+            <div class="card-image" style="display: flex !important;">
+                <img class="podImageGlobal" th:src="${podcast.image}">
+            </div>
+            <p>By: <span><a class="right" th:href="@{/otherProfile/{id}(id=${podcast.user.id})}" th:text="${podcast.user.username}"></a></span></p>
             <div class="card-stacked">
-                <div class="card-action">
-                    <iframe th:src="${podcast.getEmbedLink()}"></iframe>
+                <div class="card-content globalDescription" id="podcastsDesc">
+                    <p th:text="${podcast.description}"></p>
                 </div>
-                <div class="card-action">
-                    <a th:href="@{/otherProfile/{id}(id=${podcast.user.id})}" th:text="${podcast.user.username}"></a>
+                <div class="card-action globalListenButton">
+                    <form sec:authorize="isAuthenticated()" class="globalListenButton buttonItem" th:action="@{/listen/{id}(id=${podcast.id})}" method="get">
+                        <input type="hidden" name="currentUrl" id="currentUrl" th:value="${currentUrl}">
+                        <a class="globalListenButton"><button class="globalListenButton btn waves-effect waves-light">Listen</button></a>
+                    </form>
                 </div>
             </div>
         </div>
