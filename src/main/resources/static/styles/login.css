@@ -33,7 +33,7 @@ body {
     justify-content: center;
 }
 
-#login-btn-row, #frgt-reg-cont, #submit-btn-row, #create-btn{
+#login-btn-row, #frgt-reg-cont, #submit-btn-row, #create-btn, #sign-up-btn-row, #recaptcha-row{
     display: flex;
     justify-content: center;
 }
@@ -128,6 +128,10 @@ span {
 #drop-down{
     height: 300px !important;
     overflow: auto !important;
+}
+
+.tap-target{
+    visibility: hidden;
 }
 
 
