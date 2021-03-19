@@ -1,19 +1,19 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <div th:fragment="viewResponseModal" th:remove="tag">
-    <a th:if="${session.user.id == requestList.get(i).user.id}" class="waves-effect waves-light btn modal-trigger responseButton" th:href="@{#_modal{num}(num=${i})}">Responses</a>
+    <a th:if="${session.user.id == requestList.get(i).user.id}" class="waves-effect waves-light btn modal-trigger responseButton requestButtonBtn" th:href="@{#_modal{num}(num=${i})}">Responses</a>
 
     <div th:id="'_modal' + ${i}" class="modal">
         <div class="modal-content">
-            <h4>Here are the responses to your request</h4>
+            <h4>Here are the responses to your request on <span th:text="${requestList.get(i).title}"></span></h4>
         </div>
             <div th:each="response : ${requestList.get(i).responseList}" class="col s12 m6">
                 <div class="card horizontal">
                     <div class="card-stacked">
                         <div class="card-content">
-                            <h2 th:text="${requestList.get(i).title}"></h2>
-                            <h3 th:text="${response.user.username}"></h3>
+                            <h3 th:text="${response.user.username}"><span>responding to your request on </span></h3>
                             <p th:text="${response.content}"></p>
+                            <div class="divider"></div>
                             <p th:text="${response.createdAt.toString().substring(0, 16)}"></p>
                             <p th:switch="${response.acceptedStatus == 1}">Status:
                                 <span th:case="${true}">Accepted</span>

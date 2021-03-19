@@ -6,33 +6,14 @@
 
 <body>
 
-<div th:replace="partials/navbar.html :: navbar"></div>
-<main>
-    <div class="container">
-        <h1>Create an Account</h1>
 
-        <div th:if="${!param.isEmpty()}">
-            <div>
-                <div class="errorMsg" th:if="${param.username}">
-                    <i class="material-icons">error</i>Username already exists or is blank.
-                </div>
-                <div class="errorMsg" th:if="${param.email}">
-                    <i class="material-icons">error</i>Email already exists or is blank.
-                </div>
-                <div class="errorMsg" th:if="${param.password}">
-                    <i class="material-icons">error</i>Password does not match or is blank.
-                </div>
-                <div class="errorMsg" th:if="${param.quality}">
-                    <i class="material-icons">error</i>Password must be 8-20 characters, contain 1 Uppercase, and 1 number.
-                </div>
-                <div class="errorMsg" th:if="${param.about}">
-                    <i class="material-icons">error</i>Please add a little information about you.
-                </div>
-                <div class="errorMsg" th:if="${param.captcha}">
-                    <i class="material-icons">error</i>Please verify you are not a robot.
-                </div>
+    <div th:replace="partials/navbar.html :: navbar"></div>
+    <main>
+        <div class="container">
+            <h1 th:text="${registerMessage}">Create an Account</h1>
+            <div class="errorMsg" th:if="${errorList.size() &gt; 0}" th:each="error : ${errorList}">
+                <small th:text="${error}"></small><br>
             </div>
-        </div>
 
         <div class="row">
             <form class="col s12" th:action="@{/register}" th:method="POST" th:object="${user}">
@@ -72,7 +53,12 @@
                         <a class="waves-effect waves-light" onclick="$('.tap-target').tapTarget('open')"><i class="material-icons">live_help</i></a>
                     </div>
 
+
+                    <div class="g-recaptcha" th:data-sitekey="${@environment.getProperty('recaptcha.testing.site.key')}"></div>
+<!--                    <div class="g-recaptcha" th:data-sitekey="${@environment.getProperty('recaptcha.checkbox.site.key')}"></div>-->
+
                 </div>
+
 
                 <div class="row" id="recaptcha-row">
                     <!--                    <div class="g-recaptcha" th:data-sitekey="${@environment.getProperty('recaptcha.testing.site.key')}"></div>-->

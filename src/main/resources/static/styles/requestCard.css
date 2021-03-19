@@ -1,0 +1,34 @@
+#requestImage{
+    height: 70px !important;
+    max-width: 82px !important;
+}
+#buttonsContainer{
+    display: flex !important;
+    flex-direction: column !important;
+}
+.requestButtonBtn{
+    font-size: 8px !important;
+    padding: 0 6px !important;
+}
+#smallMargin {
+    margin-bottom: 5px !important;
+    width: 100% !important;
+}
+
+
+@media screen and (min-width: 768px) {
+    .requestButtonBtn{
+        font-size: 14px !important;
+    }
+    #requestImage{
+        height: 100px !important;
+        max-width: 115px !important;
+    }
+}
+
+@media screen and (min-width: 1180px) {
+    #requestImage{
+        height: 122px !important;
+        max-width: 140px !important;
+    }
+}

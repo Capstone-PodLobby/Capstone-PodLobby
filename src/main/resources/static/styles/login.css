@@ -3,7 +3,7 @@
 /*---------------------------------------*/
 
 /*--------------*/
-/*NAV AND FOOTER*/
+/*NAV AND FOOTER     HAD TO REMOVE THE OVERFLOW HIDDEN FOR MOBILE FORM VIEW AND SETTINGS PAGE*/
 /*--------------*/
 body {
     font-family: "Lato", sans-serif;
@@ -11,7 +11,6 @@ body {
     font-size: 30px;
     line-height: 1.7;
     color: white;
-    overflow: hidden;
     background-color: #499E8D;
     margin: 0;
 }
@@ -125,11 +124,14 @@ span {
 /*    overflow: auto !important;*/
 /*}*/
 
-#drop-down{
-    height: 300px !important;
+
+/*had to change this selector to target just the text area, was causing issues with the display of the label*/
+.materialize-textarea{
     overflow: auto !important;
 }
-
+#drop-down{
+    height: 300px !important;
+}
 /*.tap-target{*/
 /*    visibility: hidden;*/
 /*}*/

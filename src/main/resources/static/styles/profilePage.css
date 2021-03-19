@@ -41,6 +41,11 @@
     overflow: auto;
 }
 
+/*other user profile -> no edit and delete button*/
+#otherProfileButtonBox{
+    height: 65px !important;
+}
+
 @media only screen and (min-width: 500px) {
     .profileContentItem {
         margin-left: 28px !important;
@@ -76,11 +81,23 @@
         width: 175px !important;
         height: 175px !important;
     }
+    .profileContentItem{
+        margin-bottom: 125px !important;
+    }
+    .row .profileContentItem{
+        padding: 0 4rem;
+    }
 }
 
 @media only screen and (min-width: 1300px) {
     .profile-Image{
         width: 200px !important;
         height: 200px !important;
+    }
+    .profileContentItem{
+        margin-bottom: 140px !important;
+    }
+    .row .profileContentItem{
+        padding: 0 8rem;
     }
 }
