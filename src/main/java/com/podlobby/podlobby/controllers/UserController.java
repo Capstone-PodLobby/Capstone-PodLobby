@@ -100,8 +100,8 @@ public class UserController {
 
         List<Podcast> createdPodcasts = podcastDao.findAllByUserId(id);
         int quantityCreatedPodcasts = createdPodcasts.size();
-        model.addAttribute("followingPodcasts", createdPodcasts);
         model.addAttribute("quantityPodcasts", quantityCreatedPodcasts);
+        model.addAttribute("followingPodcasts", createdPodcasts);
 
         // check if this person is someone i am already following
         List<User> followedUsers = followDao.findAllByUserId(currUserId);

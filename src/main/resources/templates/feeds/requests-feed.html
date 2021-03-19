@@ -5,14 +5,12 @@
 
 <div th:replace="partials/navbar-profile :: profileNav"></div>
 <main>
-<!-- Authorized user's Home Page -->
-<div class="row">
-
-    <div th:replace="partials/fixedProfileCard :: fixedProfileCard"></div>
 
 
+<div class="row container">
 
-    <div class="col s12 m8">
+
+    <div class="col s12">
         <!-- Title-->
         <div class="feed-title">
             <h2 th:text="${page}"></h2>
@@ -21,57 +19,59 @@
         <!--Feed Buttons-->
         <div class="feed-buttons">
 
-            <div class="col s12 m4">
+            <div class="col s12 m4 offset-m2">
                 <a href="/feeds/global" class="waves-effect waves-light btn-large">GLOBAL</a>
             </div>
-            <div class="col s12 m4">
+            <div class="col s12 m4 offset-m2">
                 <a href="/feeds/filtered" class="waves-effect waves-light btn-large">FOLLOWERS</a>
             </div>
 
         </div>
-<!--    </div>-->
-<!--</div>-->
+    </div>
+</div>
 
-
-<!--    <div class="row">-->
-        <div th:each="i : ${#numbers.sequence(0, requestList.size() - 1)}" class="col s12" th:if="${requestList.size() &gt; 0}">
-            <div class="card horizontal">
-                <div class="card-stacked">
-                    <div class="card-content" style="display: flex;">
-                        <img class="circle responsive-image col s4" id="requestImage" th:src="${requestList.get(i).user.profileImage}">
-                        <div class="col s8">
-                            <div th:replace="partials/deleteRequestModal :: deleteRequestModal"></div>
-                            <h5 th:text="${requestList.get(i).title}"></h5>
-                            <p th:text="${requestList.get(i).description}"></p>
+    <div class="row container">
+        <div class="col s12">
+            <div th:each="i : ${#numbers.sequence(0, requestList.size() - 1)}" class="col s12" th:if="${requestList.size() &gt; 0}">
+                <div class="card horizontal">
+                    <div class="card-stacked">
+                        <div class="card-content" style="display: flex;">
+                            <img class="circle responsive-image col s4" id="requestImage" th:src="${requestList.get(i).user.profileImage}">
+                            <div class="col s8">
+                                <div th:replace="partials/deleteRequestModal :: deleteRequestModal"></div>
+                                <h5 th:text="${requestList.get(i).title}"></h5>
+                                <p th:text="${requestList.get(i).description}"></p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="card-action">
-                        <div class="col s7 m8" id="aboutRequestContainer">
-                            <p>Looking for : <span th:text="${requestList.get(i).guestCount}"></span> guest(s)</p>
-                            <p>By: <span th:text="${requestList.get(i).user.username}"></span></p>
-                            <p><span th:text="${requestList.get(i).createdAt.toString().substring(0, 16)}"></span> </p>
-                        </div>
+                        <div class="card-action">
+                            <div class="col s7 m8" id="aboutRequestContainer">
+                                <p>Looking for : <span th:text="${requestList.get(i).guestCount}"></span> guest(s)</p>
+                                <p>By: <span th:text="${requestList.get(i).user.username}"></span></p>
+                                <p><span th:text="${requestList.get(i).createdAt.toString().substring(0, 16)}"></span> </p>
+                            </div>
 
-                        <div class="col s5 m4" id="buttonsContainer">
-                            <div th:if="${requestList.get(i).user.id == session.user.id}" th:replace="partials/viewResponseModal :: viewResponseModal"></div>
+                            <div class="col s5 m4" id="buttonsContainer">
+                                <div th:if="${requestList.get(i).user.id == session.user.id}" th:replace="partials/viewResponseModal :: viewResponseModal"></div>
 
-                            <form th:action="@{/request/edit/{id}(id=${requestList.get(i).id})}" th:method="GET" th:if="${requestList.get(i).user.id == session.user.id}">
-                                <input type="hidden" name="currentUrl" id="URL" th:value="${currentUrl}">
-                                <button id="smallMargin" class="requestButtonBtn wave-effect waves-light btn"><a>Edit</a></button>
-                            </form>
+                                <form th:action="@{/request/edit/{id}(id=${requestList.get(i).id})}" th:method="GET" th:if="${requestList.get(i).user.id == session.user.id}">
+                                    <input type="hidden" name="currentUrl" id="URL" th:value="${currentUrl}">
+                                    <button id="smallMargin" class="requestButtonBtn wave-effect waves-light btn"><a>Edit</a></button>
+                                </form>
 
-                            <form class="right" th:if="${requestList.get(i).isActive == 1}" th:action="@{/user-request/{id}(id=${requestList.get(i).id})}" method="get">
-                                <input type="hidden" name="currentUrl" id="currentUrl" th:value="${currentUrl}">
-                                <button class="btn-floating btn-large cyan pulse"><i class="material-icons">edit</i></button>
-                            </form>
+                                <form class="right" th:if="${requestList.get(i).isActive == 1}" th:action="@{/user-request/{id}(id=${requestList.get(i).id})}" method="get">
+                                    <input type="hidden" name="currentUrl" id="currentUrl" th:value="${currentUrl}">
+                                    <button class="btn-floating btn-large cyan pulse"><i class="material-icons">edit</i></button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
 </main>
+
 <footer th:replace="partials/footer :: footer"></footer>
 <div th:replace="partials/materializescripts :: scripts"></div>
 

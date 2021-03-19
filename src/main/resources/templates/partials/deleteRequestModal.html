@@ -10,7 +10,7 @@
         </div>
         <form th:action="@{/request/delete/{id}(id=${requestList.get(i).id})}" th:method="GET" th:if="${requestList.get(i).user.id == session.user.id}">
             <input type="hidden" name="currentUrl" id="URL" th:value="${currentUrl}">
-            <button class="wave-effect"><a>Delete</a></button>
+            <button style="border: none !important;" class="wave-effect"><a>Delete</a></button>
         </form>
     </div>
 </div>

@@ -59,6 +59,8 @@ public class FollowersController {
         model.addAttribute("currentUrl", request.getRequestURI());
 
         List<Podcast> createdPodcasts = podcastDao.findAllByUserId(id);
+        int quantityCreatedPodcasts = createdPodcasts.size();
+        model.addAttribute("quantityPodcasts", quantityCreatedPodcasts);
         model.addAttribute("followingPodcasts", createdPodcasts);
         model.addAttribute("userController", userDao);
         model.addAttribute("isFollowing", true); // viewing a followers page -> you are following them
