@@ -217,6 +217,8 @@ a:hover{
 }
 .podImageGlobal{
     width: 100% !important;
+    /*May change this when a more normalised styling is added*/
+    max-height: 250px !important;
 }
 #podcastsDesc{
     padding: 12px 0 !important;
