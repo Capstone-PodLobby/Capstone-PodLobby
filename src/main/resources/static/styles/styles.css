@@ -143,10 +143,6 @@ main {
     border-radius: 30% !important;
 }
 
-/* the image sizing on request cards*/
-#requestImage{
-    max-width: 30% !important;
-}
 
 /*Form icons and style*/
 .labelIcon{

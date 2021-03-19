@@ -48,6 +48,9 @@ public class FollowersController {
     @GetMapping("/following/{id}")
     public String viewFollowersProfile(Model model, @PathVariable(name = "id") long id, HttpServletRequest request){
         User following = userDao.getOne(id);
+        if(following.getBackgroundImage() == null){
+            following.setBackgroundImage("https://images.unsplash.com/photo-1447703693928-9cd89c8d3ac5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=2102&q=80");
+        }
         model.addAttribute("following", following);
 
         User currUser = userService.getLoggedInUser();
