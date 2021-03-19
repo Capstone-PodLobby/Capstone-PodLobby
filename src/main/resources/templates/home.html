@@ -11,19 +11,11 @@
 
 <body>
 
+
 <!--landing page navbar-->
 
     <div class="nav-style main-nav topnav">
-
-            <ul class="animated-three fadeIn">
-    <!--            <li class="list-opt hidden-link"><a href="/">PodLobby</a></li>-->
-    <!--            <li class="list-opt hidden-link"><a href="/feeds/global">Home</a></li>-->
-    <!--            <li class="list-opt hidden-link" sec:authorize="isAnonymous()"><a href="/login">Login</a></li>-->
-    <!--            <li class="list-opt hidden-link" sec:authorize="isAuthenticated()">-->
-    <!--                <form class="logoutForm" th:action="@{/logout}" method="POST">-->
-    <!--                    <button class="logoutFormButton">Logout</button>-->
-    <!--                </form>-->
-    <!--            </li>-->
+            <ul class="animated-three fadeIn right" >
 
                     <li class="list-opt hidden-link" sec:authorize="isAuthenticated()">
                         <form class="logoutForm" th:action="@{/logout}" method="POST">
@@ -40,10 +32,12 @@
                     <li class="list-opt  align-nav-right"><a href="/feeds/global">Home</a></li>
                     <li class="list-opt  align-nav-right" sec:authorize="isAnonymous()"><a href="/login">Login</a></li>
 
-
+<!--                 <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>-->
             </ul>
-
     </div>
+
+
+
 
 
 <!--Podlobby centered logo-->
@@ -65,7 +59,19 @@
     <div>
         <img  class="mobile-bg" th:src="@{/images/the-mobile-bg-copy_one.png}" >
     </div>
-
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<!--    <script>-->
+<!--        $(document).ready(function(){-->
+<!--        $('.sidenav').sidenav();-->
+<!--        });-->
+<!--    </script>-->
+
+<!--<script>-->
+<!--    document.addEventListener('DOMContentLoaded', function() {-->
+<!--        var elems = document.querySelectorAll('.sidenav');-->
+<!--        var instances = M.Sidenav.init(elems, options);-->
+<!--    });-->
+<!--</script>-->
 </body>
 </html>

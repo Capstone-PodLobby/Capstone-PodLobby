@@ -8,6 +8,15 @@ body, html {
     padding: 0;
 }
 
+
+#slide-out {
+    display: none;
+}
+
+.sidenav {
+    display: none;
+}
+
 .mobile-bg{
     display: none;
 }
@@ -222,7 +231,7 @@ ul {
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-        min-width: 100%;
+        width: 110%;
         height: 110%;
         position: absolute;
         right: 0%;
@@ -251,9 +260,30 @@ ul {
 
 /*Mobile Phones */
 @media screen and (min-width:320px) and (max-width:480px) {
+
+
+    .nav-style {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+
+    ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+    }
+
     .list-opt {
         display: inline;
+        display: flex;
+        flex-direction: column;
+
+        margin-top: 10px;
     }
+
 
     .hidden-link {
         display: none;
@@ -274,6 +304,7 @@ ul {
         box-shadow: 10px 13px 0px -3px rgba(87,196,167,0.99);
         float: none;
         /*margin-left: 15px;*/
+        margin-top: 30px !important;
     }
 
     .big-logo {
@@ -298,8 +329,10 @@ ul {
         min-width: 100%;
         height: 110%;
         position: absolute;
-        right: 0%;
+        right: -30%;
     }
+
+
 
 
 }
