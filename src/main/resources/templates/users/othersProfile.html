@@ -1,11 +1,14 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/materializeHead :: styleHead('User Profile')"></head>
+<head th:replace="partials/profilePageStyle :: styleHead('User Profile')"></head>
 <body>
+<div>
+    <img id="animated-example heading" class="animated fadeInDown background-img background-img" th:src="${following.backgroundImage}">
+</div>
 <div th:replace="partials/navbar-profile :: profileNav"></div>
 
 <div th:if="${message != null}">
-    <p th:text="${message}"></p>
+    <p class="errorMsg" th:text="${message}"></p>
 </div>
 
 <main>
@@ -30,6 +33,7 @@
                     </div>
                 </div>
             </div>
+            <!--    ^^^^^ THIS IS WHERE YOU CAN CLICK TO SEND A RESPONSE TO THE USER THAT CREATED THE REQUEST  -->
 
             <p class="center-align" th:text="${following.aboutMe}"></p>
 
@@ -41,35 +45,40 @@
             <div th:if="${quantityPodcasts>0}" id="profileContentArea">
 
                 <div class="col s12 profileContentItem" th:each="i : ${#numbers.sequence(0, followingPodcasts.size() - 1)}">
-                    <div class="card horizontal">
+                    <div class="card horizontal profileCard-Card">
                         <div class="card-image">
 
                             <img th:src="${followingPodcasts.get(i).image}">
 
                         </div>
                         <div class="card-stacked">
-                            <div class="card-content">
-                                <iframe th:src="${followingPodcasts.get(i).embedLink}"></iframe>
+                            <div class="card-content" id="podcastsDesc">
+                                <p th:text="${followingPodcasts.get(i).description}"></p>
                             </div>
-                            <div class="card-action">
+                            <div class="card-action" id="otherProfileButtonBox">
                                 <form th:action="@{/listen/{id}(id=${followingPodcasts.get(i).id})}" method="get">
                                     <input type="hidden" name="currentUrl" id="currentUrl" th:value="${currentUrl}">
-                                    <a><button class="waves-effect waves-light btn">Listen</button></a>
+                                    <a>
+                                        <button class="waves-effect waves-light btn">Listen</button>
+                                    </a>
                                 </form>
 
                                 <a class="waves-effect waves-light btn modal-trigger deleteButton" th:href="@{#_modal{num}(num=${i})}">Comments</a>
 
-                                <div th:id="'_modal' + ${i}" class="modal">
+                                <div th:id="'_modal' + ${i}" class="modal commentModalBox">
                                     <div class="modal-content">
                                         <div class="commentArea" th:each="comment : ${followingPodcasts.get(i).comments}">
-                                            <p th:text="${comment.comment}"></p>
-                                            <p>Posted at : <span th:text="${comment.createdAt}"></span></p>
-                                            <p>Posted by : <span th:text="${userController.getOne(comment.user.id).username}"></span></p>
                                             <img style="max-width: 25%;" class="circle responsive-image" th:src="${userController.getOne(comment.user.id).profileImage}"/>
+                                            <div class="widthText">
+                                                <p class="fullWidthText">Posted at : <span th:text="${comment.createdAt}"></span></p>
+                                                <p class="fullWidthText">Posted by : <span th:text="${userController.getOne(comment.user.id).username}"></span></p>
+                                            </div>
+                                            <p class="commentContent" th:text="${comment.comment}"></p>
                                             <form th:action="@{/comment/delete/{id}(id=${comment.id})}" th:method="GET" th:if="${comment.user.id == session.user.id}">
                                                 <input type="hidden" name="currentUrl" id="URL" th:value="${currentUrl}">
                                                 <button class="btn wave-effect">Delete Comment</button>
                                             </form>
+                                            <div class="divider" id="commentDivide"></div>
                                         </div>
                                     </div>
                                     <div>

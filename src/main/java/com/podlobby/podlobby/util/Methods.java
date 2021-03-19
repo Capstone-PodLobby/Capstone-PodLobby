@@ -1,5 +1,8 @@
 package com.podlobby.podlobby.util;
 
+import java.util.Date;
+import java.sql.Timestamp;
+
 public class Methods {
 
     public static String numberSuffix(int num){
@@ -18,20 +21,22 @@ public class Methods {
         }
     }
 
+
     public static void main(String[] args) {
-        System.out.println(Methods.numberSuffix(22));
-        System.out.println(Methods.numberSuffix(61));
-        System.out.println(Methods.numberSuffix(7));
-        System.out.println(Methods.numberSuffix(9));
-        System.out.println(Methods.numberSuffix(55));
-        System.out.println(Methods.numberSuffix(1));
-        System.out.println(Methods.numberSuffix(3));
-        System.out.println(Methods.numberSuffix(2));
-        System.out.println(Methods.numberSuffix(4));
-        System.out.println(Methods.numberSuffix(77));
-        System.out.println(Methods.numberSuffix(24));
-        System.out.println(Methods.numberSuffix(14));
-        System.out.println(Methods.numberSuffix(13));
+//        System.out.println(Methods.numberSuffix(22));
+//        System.out.println(Methods.numberSuffix(61));
+//        System.out.println(Methods.numberSuffix(7));
+//        System.out.println(Methods.numberSuffix(9));
+//        System.out.println(Methods.numberSuffix(55));
+//        System.out.println(Methods.numberSuffix(1));
+//        System.out.println(Methods.numberSuffix(3));
+//        System.out.println(Methods.numberSuffix(2));
+//        System.out.println(Methods.numberSuffix(4));
+//        System.out.println(Methods.numberSuffix(77));
+//        System.out.println(Methods.numberSuffix(24));
+//        System.out.println(Methods.numberSuffix(14));
+//        System.out.println(Methods.numberSuffix(13));
+
     }
 
 }

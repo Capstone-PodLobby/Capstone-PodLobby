@@ -8,6 +8,9 @@ import com.podlobby.podlobby.util.Password;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -50,28 +53,46 @@ public class RegisterController {
         }
 
         model.addAttribute("user", new User());
+        model.addAttribute("registerMessage", "Create an Account");
         return "users/register";
     }
 
     @PostMapping("/register")
-    public String registered(Model model, @ModelAttribute User user, @RequestParam(name = "confirm-password", required = false) String confirmPassword,
-                             @RequestParam(name = "g-recaptcha-response") String captcha) {
+    public String registered(Model model, @ModelAttribute @Validated User user, Errors validation, @RequestParam(name = "confirm-password", required = false) String confirmPassword,
+                             @RequestParam(name = "g-recaptcha-response") String captcha, RedirectAttributes redirectAttributes) {
+        List<String> errorMsg = new ArrayList<>();
         if(userDao.findByUsername(user.getUsername()) != null) {
-            model.addAttribute("username", user.getUsername());
-            return "redirect:/register?username";
-        } else if(userDao.findByEmail(user.getEmail()) != null) {
-            model.addAttribute("email", user.getEmail());
-            return "redirect:/register?email";
-        } else if(user.getAboutMe().isEmpty()) {
-            model.addAttribute("about", user.getAboutMe());
-            return "redirect:/register?about";
-        } else if(!confirmPassword.equals(user.getPassword())) {
-            model.addAttribute("mismatch", 0);
-            return "redirect:/register?password";
-        } else if(captcha.isEmpty()){
-            return "redirect:/register?captcha";
-        } else if (!Password.goodQualityPassword(user.getPassword())){
-            return "redirect:/register?quality";
+            validation.rejectValue("username", "Username can not be the same as another user");
+            errorMsg.add("Username can not be the same as another user");
+        }
+        if(userDao.findByEmail(user.getEmail()) != null) {
+            validation.rejectValue("email", "Email is already in use for another account");
+            errorMsg.add("Email is already in use for another account");
+        }
+        if(user.getAboutMe().isEmpty()) {
+            validation.rejectValue("aboutMe", "About me can not be blank");
+            errorMsg.add("About me can not be blank");
+        }
+        if(!confirmPassword.equals(user.getPassword())) {
+            errorMsg.add("Passwords do not match");
+        }
+        if(captcha.isEmpty()){
+            errorMsg.add("Please verify you are not a robot");
+        }
+        if (!Password.goodQualityPassword(user.getPassword())){
+            validation.rejectValue("password", "Password must be 8-20 characters, contain 1 Uppercase, and 1 number.");
+            errorMsg.add("Password must be 8-20 characters, contain 1 Uppercase, and 1 number.");
+        }
+        if (user.getUsername().isEmpty()){
+            validation.rejectValue("username", "Username can not be blank.");
+            errorMsg.add("Username can not be blank.");
+        }
+
+        if(validation.hasErrors()){
+            model.addAttribute("errorList", errorMsg);
+            model.addAttribute("registerMessage", "Error Creating an Account");
+            model.addAttribute("user", user);
+            return "users/register";
         }
 
         user.setIsAuthenticated(0); // they need to activate their account // NEEDS PRODUCTION TESTING
@@ -82,7 +103,7 @@ public class RegisterController {
 
         user.setJoinedAt(new Timestamp(new Date().getTime()));
         user.setPassword(encoder.encode(user.getPassword()));
-        user.setBackgroundImage("https://images.unsplash.com/photo-1567596388756-f6d710c8fc07?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80,1");
+        user.setBackgroundImage("https://images.unsplash.com/photo-1447703693928-9cd89c8d3ac5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=2102&q=80");
         user.setProfileImage("https://images.unsplash.com/photo-1567596388756-f6d710c8fc07?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mnx8bWljcm9waG9uZXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80");
 
         userDao.save(user);
@@ -93,7 +114,6 @@ public class RegisterController {
         String emailContent = "Thank you " + user.getUsername() + " for signing up at PodLobby!. Please follow this link to activate your account. https://podlobby.club/activate/" + user.getId() + "/" + user.getAuthCode();
         tlsEmail.sendEmail(user.getEmail(), user.getUsername(), "Welcome to PodLobby", emailContent);
         return "redirect:/newAccount";
-//        return "redirect:/getCategories";
     }
 
     // page telling user to check their email
@@ -139,5 +159,6 @@ public class RegisterController {
         redirectAttributes.addFlashAttribute("message", "You are now an Admin and your password has been updated");
         return "redirect:/profile";
     }
+
 
 }

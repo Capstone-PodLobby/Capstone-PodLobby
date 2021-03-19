@@ -6,7 +6,7 @@
 <nav th:replace="partials/navbar-profile :: profileNav"></nav>
 <main>
     <div th:if="${message != null}">
-        <p th:text="${message}"></p>
+        <p class="errorMsg" th:text="${message}"></p>
     </div>
 
     <div class="row">
@@ -20,32 +20,37 @@
     </div>
 
     <div class="row">
-        <div th:each="i : ${#numbers.sequence(0, requestList.size() - 1)}" class="col s12 m6" th:if="${requestList.get(i).guestCount &gt; 0} OR ${requestList.get(i).user.id == session.user.id}">
+        <div th:each="i : ${#numbers.sequence(0, requestList.size() - 1)}" class="col s12 l6" th:if="${requestList.get(i).guestCount &gt; 0} OR ${requestList.get(i).user.id == session.user.id}">
             <div class="card horizontal">
                 <div class="card-stacked">
                     <div class="card-content" style="display: flex;">
                         <img class="circle responsive-image col s4" id="requestImage" th:src="${requestList.get(i).user.profileImage}">
                         <div class="col s8">
+                            <div th:replace="partials/deleteRequestModal :: deleteRequestModal"></div>
                             <h5 th:text="${requestList.get(i).title}"></h5>
                             <p th:text="${requestList.get(i).description}"></p>
                         </div>
                     </div>
                     <div class="card-action">
-                        <p class="col s3">Looking for : <span th:text="${requestList.get(i).guestCount}"></span> guests | By: <span th:text="${requestList.get(i).user.username}"></span> | <span class="right" th:text="${requestList.get(i).createdAt}"></span> </p>
+                        <div class="col s8" id="aboutRequestContainer">
+                            <p>Looking for : <span th:text="${requestList.get(i).guestCount}"></span> guest(s)</p>
+                            <p>By: <span th:text="${requestList.get(i).user.username}"></span></p>
+                            <p><span th:text="${requestList.get(i).createdAt.toString().substring(0, 16)}"></span> </p>
+                        </div>
 
-                        <div th:replace="partials/deleteRequestModal :: deleteRequestModal"></div>
+                        <div class="col s4" id="buttonsContainer">
+                            <div th:replace="partials/viewResponseModal :: viewResponseModal"></div>
 
-                        <div th:replace="partials/viewResponseModal :: viewResponseModal"></div>
+                            <form th:action="@{/request/edit/{id}(id=${requestList.get(i).id})}" th:method="GET" th:if="${requestList.get(i).user.id == session.user.id}">
+                                <input type="hidden" name="currentUrl" id="URL" th:value="${currentUrl}">
+                                <button id="smallMargin" class="requestButtonBtn wave-effect waves-light btn"><a>Edit</a></button>
+                            </form>
 
-                        <form class="col s3" th:action="@{/request/edit/{id}(id=${requestList.get(i).id})}" th:method="GET" th:if="${requestList.get(i).user.id == session.user.id}">
-                            <input type="hidden" name="currentUrl" id="URL" th:value="${currentUrl}">
-                            <button class="wave-effect"><a>Edit</a></button>
-                        </form>
-
-                        <form class="right" th:if="${requestList.get(i).isActive == 1}" th:action="@{/user-request/{id}(id=${requestList.get(i).id})}" method="get">
-                            <input type="hidden" name="currentUrl" id="currentUrl" th:value="${currentUrl}">
-                            <button class="btn-floating btn-large cyan pulse"><i class="material-icons">edit</i></button>
-                        </form>
+                            <form class="right" th:if="${requestList.get(i).isActive == 1}" th:action="@{/user-request/{id}(id=${requestList.get(i).id})}" method="get">
+                                <input type="hidden" name="currentUrl" id="currentUrl" th:value="${currentUrl}">
+                                <button class="btn-floating btn-large cyan pulse"><i class="material-icons">edit</i></button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

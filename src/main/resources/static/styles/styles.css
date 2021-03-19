@@ -84,7 +84,20 @@ main {
     z-index: -1;
 }
 
+/*profile image side nav top*/
+#slide-outLi{
+    height: 125px !important;
+}
+#slide-outLiTop{
+    height: 100% !important;
+}
+
 /*====== FOOTER PARTIAL ========*/
+.page-footer{
+    padding-top: 50px !important;
+    background: rgb(255, 255, 255) !important;
+    background: linear-gradient(0deg, rgb(255, 255, 255) 8%, rgb(73, 158, 140) 93%) !important;
+}
 .footerUl{
     display: flex !important;
     justify-content: space-around !important;
@@ -135,10 +148,6 @@ main {
     border-radius: 30% !important;
 }
 
-/* the image sizing on request cards*/
-#requestImage{
-    max-width: 30% !important;
-}
 
 /*Form icons and style*/
 .labelIcon{
@@ -193,7 +202,73 @@ a:hover{
 .card-image{
     height: 100%;
 }
+/*Just wanted to include it so it can be easily changed*/
+.errorMsg{
+    color: #d2c6c4 !important;
+}
 
+
+/*Global feed card*/
+
+.globalDescription{
+    min-height: 118px !important;
+    overflow: auto !important;
+    max-height: 118px !important;
+}
+.podImageGlobal{
+    width: 100% !important;
+    /*May change this when a more normalised styling is added*/
+    max-height: 250px !important;
+}
+#podcastsDesc{
+    padding: 12px 0 !important;
+}
+.globalListenButton{
+    width: 100% !important;
+}
+
+
+
+
+
+/*comment modal*/
+.commentModalBox{
+    max-height: 65vh !important;
+}
+.commentArea{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 30px auto;
+}
+.commentContent{
+    width: 100%;
+    text-align: center;
+    height: auto;
+    margin: 10px 0;
+}
+.commentProImage{
+    min-width: 60px !important;
+    min-height: 60px !important;
+    max-width: 40%;
+    height: auto;
+}
+.widthText{
+    width: 60% !important;
+}
+.fullWidthText{
+    width: 100% !important;
+    margin-left: 10% !important;
+}
+#commentDivide{
+    width: 100% !important;
+}
+
+
+.registerErrors{
+    position: absolute;
+    font-size: 25% !important;
+    color: #5a1666;
+}
 
 
 /*=============================================================================*/
@@ -201,6 +276,17 @@ a:hover{
     .profile-heading {
         margin-left: 80px;
     }
+    .commentModalBox{
+        max-width: 60vw !important;
+    }
+    .registerErrors{
+        font-size: 35% !important;
+    }
+    .globalPodcastCard{
+        /*for better grid layout*/
+        min-height: 380px !important;
+    }
+
 }
 
 
@@ -211,6 +297,9 @@ a:hover{
     }
     .contactLinks{
         font-size: 24px;
+    }
+    .brand-logo{
+        display: none;
     }
 }
 

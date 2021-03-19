@@ -1,37 +1,32 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/materializeHead :: styleHead('Your Settings')"></head>
+<head th:replace="partials/materializeSettings :: styleHead('Your Settings')"></head>
 <body>
 <div th:replace="partials/navbar-profile :: profileNav"></div>
 
-
 <main>
 
-    <div class="row container">
-
-        <div class="col s12">
-            <h1>Edit the info you would like to change</h1>
-        </div>
-
+    <div class="container">
+        <h1 class="my-4">Edit Profile</h1>
 
         <div th:if="${!param.isEmpty()}">
             <div>
-                <div th:if="${param.username}">
+                <div class="errorMsg" th:if="${param.username}">
                     <i class="material-icons">error</i>Username can not be the same as another user
                 </div>
             </div>
             <div>
-                <div th:if="${param.quality}">
+                <div class="errorMsg" th:if="${param.quality}">
                     <i class="material-icons">error</i>Password must be 8-20 characters, contain 1 Uppercase, and 1 number.
                 </div>
             </div>
             <div>
-                <div th:if="${param.passwords}">
+                <div class="errorMsg" th:if="${param.passwords}">
                     <i class="material-icons">error</i>Passwords do not match
                 </div>
             </div>
             <div>
-                <div th:if="${param.aboutMe}">
+                <div class="errorMsg" th:if="${param.aboutMe}">
                     <i class="material-icons">error</i>Please keep something about you on your profile
                 </div>
             </div>
@@ -82,8 +77,8 @@
                     <button class="btn wave-effect" id="backgroundUploader"><a><i class="material-icons">cloud_download</i></a></button>
                 </div>
             </div>
-            <div class="row">
-                <div class="input-field col s12" style="display:flex;">
+            <div class="row" id="about-me-txt">
+                <div class="input-field col s12" style="display:flex;" id="about-me-col">
                     <i class="material-icons">edit</i>
                     <label class="labelIcon" for="body">Edit About Me</label>
                     <textarea class="materialize-textarea" id="body" th:field="*{aboutMe}"></textarea>
@@ -96,8 +91,8 @@
             </button>
         </form>
     </div>
-
 </main>
+
 <footer th:replace="partials/footer :: footer"></footer>
 <div th:replace="partials/materializescripts :: scripts"></div>
 <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
@@ -126,10 +121,6 @@
         document.getElementById("profileImage").value = fileString;
 
     }
-
-
-
-
 
 
     const optionsBackground = {
