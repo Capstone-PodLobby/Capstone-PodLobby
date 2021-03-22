@@ -17,10 +17,11 @@
                 <label class="labelIcon" for="title">Title</label>
                 <input class="validate" type="text" id="title" data-length="128" th:field="*{title}"/>
             </div>
+
             <div class="input-field" style="display: flex">
                 <i class="material-icons">border_color</i>
                 <label class="labelIcon" for="body">Description</label>
-                <textarea class="materialize-textarea" id="body" th:field="*{description}"></textarea>
+                <textarea class="materialize-textarea" type="text" id="body" th:field="*{description}"></textarea>
             </div>
 
             <div class="input-field" style="display: flex">
