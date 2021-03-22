@@ -289,6 +289,10 @@ ul {
         display: none;
     }
 
+    .show-link {
+        display: revert;
+    }
+
     .background-img {
         display: none;
     }
@@ -327,10 +331,17 @@ ul {
         background-repeat: no-repeat;
         background-size: cover;
         min-width: 100%;
-        height: 110%;
+        height: 130%;
         position: absolute;
         right: -30%;
     }
+
+    html {
+    height: 100%;
+    width: 100%;
+        overflow: hidden;
+}
+
 
 
 

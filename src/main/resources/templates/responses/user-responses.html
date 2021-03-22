@@ -21,6 +21,10 @@
             <div class="card horizontal">
                 <div class="card-stacked">
                     <div class="card-content">
+                        <form class="right" th:action="@{/response/delete/{id}(id=${response.id})}" th:method="GET" th:if="${response.acceptedStatus == 0}">
+                            <input type="hidden" name="currentUrl" id="URL" th:value="${currentUrl}">
+                            <button class="btn wave-effect waves-light"><a>Delete Response</a></button>
+                        </form>
                         <h2 th:text="${response.request.title}"></h2>
                         <h3 th:text="${response.request.user.username}"></h3>
                         <p th:text="${response.content}"></p>
@@ -29,7 +33,7 @@
                             <span th:case="${true}">Accepted</span>
                             <span th:case="${false}">Pending</span>
                         </p>
-                        <a th:href="@{/collaborate/{id}(id=${response.request.user.id})}" th:if="${response.acceptedStatus == 1}">Contact User</a>
+                        <button class="btn wave-effect waves-light" th:if="${response.acceptedStatus == 1}"><a th:href="@{/collaborate/{id}(id=${response.request.user.id})}" >Contact User</a></button>
                     </div>
                 </div>
             </div>

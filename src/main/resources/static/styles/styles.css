@@ -7,6 +7,20 @@ body {
 
 }
 
+
+
+/*TO BE USED ON THE REGISTER / CREATE PAGES*/
+
+.tap-target{
+    height: 95vh !important;
+    width: 215vw !important;
+}
+.tap-target-content{
+    width: 340px !important;
+}
+
+
+
 ::-webkit-scrollbar {
     width: 0px !important;
     background-color: transparent !important;}
@@ -25,7 +39,13 @@ main {
 .profile-side{
     background-color: transparent;
     color: aliceblue;
-    min-height: 100vh !important;
+}
+#otherUserProfileCard{
+    height: 80vh !important;
+}
+.user-about-me{
+    overflow: auto;
+    overflow-x: hidden;
 }
 .content-side{
     background-color: transparent;
@@ -46,11 +66,10 @@ main {
     width: 150px;
     height: 150px;
     border-radius: 100%;
-    margin-left: 20px !important;
-    margin-right: 0px !important;
-
-
+    margin-left: 30px !important;
+    margin-right: 0 !important;
 }
+
 .profile-heading {
     color: aliceblue;
     margin-left: 25px;
@@ -141,11 +160,14 @@ main {
 
 
 /*style for tap target on create podcast*/
+.tap-target{
+    background-color: #fce8cd !important;
+}
 .tap-target-content{
-    padding: 51px !important;
+    padding: 0 51px !important;
 }
 .embedImg{
-    border-radius: 30% !important;
+    border-radius: 3% !important;
 }
 
 
@@ -177,7 +199,8 @@ a, button{
     position: relative;
     display: inline-block;
     overflow: hidden;
-    background: linear-gradient(to right, #a1a1c4 50%, #489e8d 50%);
+    /*background: linear-gradient(to right, #a1a1c4 50%, #489e8d 50%);*/
+    background: linear-gradient(to right, #fde8cd 50%, #433520 50%);
 
     background-clip: text;
     -webkit-background-clip: text;
@@ -266,11 +289,14 @@ a:hover{
 
 .registerErrors{
     position: absolute;
-    font-size: 25% !important;
+    font-size: 8px !important;
     color: #5a1666;
 }
+#errorMsgBox{
+    margin-top: 35px;
+}
 
-
+/*object fit for images*/
 /*=============================================================================*/
 @media screen and (min-width: 600px) {
     .profile-heading {
@@ -280,26 +306,55 @@ a:hover{
         max-width: 60vw !important;
     }
     .registerErrors{
-        font-size: 35% !important;
+        font-size: 10px !important;
     }
     .globalPodcastCard{
         /*for better grid layout*/
         min-height: 380px !important;
     }
+    .profile-side{
+        min-height: 100vh !important;
+    }
 
 }
 
+@media screen and (min-width: 768px) {
+    .tap-target{
+        height: 95vh !important;
+        width: 115vw !important;
+    }
+    #errorMsgBox{
+        margin-top: 45px;
+    }
+}
 
-@media screen and (min-width: 992px){
-    .profile-iframe{
+
+
+@media screen and (min-width: 992px) {
+    .profile-iframe {
         margin-left: 15vw;
         width: 78vw;
     }
-    .contactLinks{
+
+    .contactLinks {
         font-size: 24px;
     }
-    .brand-logo{
+
+    .brand-logo {
         display: none;
     }
-}
+    .tap-target{
+        height: 90vh !important;
+        width: 99vw !important;
+    }
 
+}
+@media screen and (min-width: 1300px) {
+    .tap-target{
+        height: 100vh !important;
+        width: 83vw !important;
+    }
+    .registerErrors{
+        font-size: 14px;
+    }
+}

@@ -26,7 +26,8 @@ public class Response {
     @ManyToOne
     private User user;
 
-    @ManyToOne(cascade = {CascadeType.ALL})
+
+    @ManyToOne
     private Request request;
     //////////////////////////////////////
     public Response(){}

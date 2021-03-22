@@ -3,8 +3,8 @@
 <div th:fragment="catModal" th:remove="tag">
     <div id="modalMain">
         <div id="modalHeader">
-            <p id="question">What do you like to listen to?</p>
-            <a href="/profile?myProfile"><button id="doThisLater">Do this Later X</button></a>
+            <p id="question" class="white-text">What do you like to listen to?</p>
+            <a href="/profile?myProfile"><button id="doThisLater" class="btn waves-effect waves-light">Do this Later X</button></a>
         </div>
         <div id="modalContent" class="row">
             <div th:each="i : ${#numbers.sequence(0, categoryList.size() - 1)}">
@@ -12,11 +12,11 @@
                 <div class="col s12 m8 offset-m2 l5"  th:classappend="${i % 2 == 0 ? 'offset-l1' : ''}">
                     <div class="card-panel z-depth-1 categoryItem">
                         <div class="row valign-wrapper">
-                            <div class="col s2">
-                                <img th:src="@{/images/audio.jpg}" alt="" class="circle responsive-img">
+                            <div class="col s4">
+                                <img th:src="@{/images/the-mobile-bg-copy_one.png}" alt="" class="circle responsive-img">
                             </div>
-                            <div class="col s10">
-                                <h2 class="black-text" th:text="${categoryList.get(i).name}"></h2>
+                            <div class="col s8">
+                                <h2 class="black-text categoryName" th:text="${categoryList.get(i).name}"></h2>
                             </div>
                         </div>
                     </div>
@@ -27,7 +27,7 @@
 
         <div id="modalSubmit">
             <form onsubmit="handleRecommendations()" th:method="GET" id="categoryForm" th:action="@{/recommendations}">
-                <button id="submitCategories" class="right"><a>Submit</a></button>
+                <button id="submitCategories" class="right btn waves-effect waves-light"><a>Submit</a></button>
             </form>
         </div>
     </div>

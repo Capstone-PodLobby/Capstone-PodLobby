@@ -65,11 +65,6 @@ public class ResponseController {
 
     @GetMapping("/response/delete/{id}")
     public String deleteResponse(@PathVariable(name = "id") long id, @RequestParam(name = "currentUrl") String currentUrl){
-        Request thisRequest = requestDao.findById(responseDao.getOne(id).getRequest().getId());
-        List<Response> responseList = responseDao.findAllByRequestId(thisRequest.getId());
-        responseList.remove(responseDao.getOne(id));
-        thisRequest.setResponseList(responseList);
-        requestDao.save(thisRequest);
         responseDao.deleteById(id);
         return "redirect:" + currentUrl;
     }
@@ -77,7 +72,11 @@ public class ResponseController {
     @GetMapping("/user-responses")
     public String showResponses(Model model, HttpServletRequest request){
         User user = userService.getLoggedInUser();
-        model.addAttribute("responseList", responseDao.findByUser(user));
+        List<Response> responseList = responseDao.findByUser(user);
+        if(responseList.size() < 1) {
+            return "redirect:/profile?noResponses";
+        }
+        model.addAttribute("responseList", responseList);
         model.addAttribute("currentUrl", request.getRequestURI());
         return "responses/user-responses";
     }

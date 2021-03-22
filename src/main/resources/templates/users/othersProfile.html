@@ -11,11 +11,13 @@
     <p class="errorMsg" th:text="${message}"></p>
 </div>
 
+<div class="container" id="profileContentContainer">
+
 <main>
     <div class="row">
-        <div class="col m4 hide-on-small-only profile-side">
+        <div class="col m4 profile-side" id="otherUserProfileCard">
             <img class="circle profile-Image" th:src="${following.profileImage}">
-            <div class="collection">
+            <div class="collection list-style">
                 <a class="collection-item" th:text="${following.username}"></a>
                 <a th:if="${!isFollowing}" th:href="@{/followUser/{id}(id=${following.id})}" class="collection-item">Follow</a>
                 <a th:if="${isFollowing}" th:href="@{/unfollow/{id}(id=${following.id})}" class="collection-item">UnFollow</a>
@@ -35,7 +37,7 @@
             </div>
             <!--    ^^^^^ THIS IS WHERE YOU CAN CLICK TO SEND A RESPONSE TO THE USER THAT CREATED THE REQUEST  -->
 
-            <p class="center-align" th:text="${following.aboutMe}"></p>
+            <p class="center-align user-about-me" th:text="${following.aboutMe}"></p>
 
         </div>
 
@@ -48,18 +50,19 @@
                     <div class="card horizontal profileCard-Card">
                         <div class="card-image">
 
-                            <img th:src="${followingPodcasts.get(i).image}">
+                            <img class="podImageProfiles" th:src="${followingPodcasts.get(i).image}">
 
                         </div>
                         <div class="card-stacked">
-                            <div class="card-content" id="podcastsDesc">
+                            <div class="card-content podcastsDesc" style="display: flex; flex-direction: column;">
+                                <p class="left" th:text="${followingPodcasts.get(i).title}"></p>
                                 <p th:text="${followingPodcasts.get(i).description}"></p>
                             </div>
                             <div class="card-action" id="otherProfileButtonBox">
-                                <form th:action="@{/listen/{id}(id=${followingPodcasts.get(i).id})}" method="get">
+                                <form class="buttonItem" th:action="@{/listen/{id}(id=${followingPodcasts.get(i).id})}" method="get">
                                     <input type="hidden" name="currentUrl" id="currentUrl" th:value="${currentUrl}">
-                                    <a>
-                                        <button class="waves-effect waves-light btn">Listen</button>
+                                    <a class="widthFull">
+                                        <button class="widthFull waves-effect waves-light btn">Listen</button>
                                     </a>
                                 </form>
 
@@ -101,6 +104,7 @@
         </div>
     </div>
 </main>
+</div>
 
 <footer th:replace="partials/footer :: footer"></footer>
 <div th:replace="partials/materializescripts :: scripts"></div>
