@@ -8,17 +8,20 @@
 
 
     <div th:replace="partials/navbar.html :: navbar"></div>
-    <main>
-        <div class="container">
-            <h1 th:text="${registerMessage}">Create an Account</h1>
-            <small class="registerErrors" id="passErrorCustom">Passwords do not match</small>
-            <small class="registerErrors" id="passErrorCustom2">Passwords must have 1 number, 1 uppercase letter and be 8-20 characters long</small>
-            <div id="errorMsgBox">
-                <div class="errorMsg" th:if="${errorList.size() &gt; 0}" th:each="error : ${errorList}">
-                    <small th:text="${error}"></small><br>
-                </div>
+    <div class="container">
+    <div class="row">
+        <div class="col s-12">
+        <h1 th:text="${registerMessage}">Create an Account</h1>
+        <small class="registerErrors" id="passErrorCustom">Passwords do not match</small>
+        <small class="registerErrors" id="passErrorCustom2">Passwords must have 1 number, 1 uppercase letter and be 8-20 characters long</small>
+        <div id="errorMsgBox">
+            <div class="errorMsg" th:if="${errorList.size() &gt; 0}" th:each="error : ${errorList}">
+                <small th:text="${error}"></small><br>
             </div>
-
+        </div>
+        </div>
+    </div>
+    <main>
         <div class="row">
             <form class="col s12" th:action="@{/register}" th:method="POST" th:object="${user}">
                 <div class="row">

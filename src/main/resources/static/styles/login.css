@@ -25,17 +25,23 @@ body {
 .nav-wrapper{
     background-color: white;
 }
-/*#forgot-pass-div, #register-div {*/
-/*    padding-left: 0;*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*    justify-content: center;*/
-/*}*/
-/**/
-/*#login-btn-row, #frgt-reg-cont, #submit-btn-row, #create-btn, #sign-up-btn-row, #recaptcha-row{*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*}*/
+#forgot-pass-div,
+#register-div {
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#login-btn-row,
+#frgt-reg-cont,
+#submit-btn-row,
+#create-btn,
+#sign-up-btn-row,
+#recaptcha-row{
+    display: flex;
+    justify-content: center;
+}
 /*------------------*/
 /*BEGIN FORM STYLING*/
 /*------------------*/
@@ -45,22 +51,37 @@ body {
     color: white !important;
 }
 /* label focus color */
-.input-field input[type=text]:focus + label, .input-field input[type=password]:focus + label,.input-field input[type=number]:focus + label {
+.input-field input[type=text]:focus + label,
+.input-field input[type=password]:focus + label,
+.input-field input[type=number]:focus + label,
+.input-field input[type=email]:focus + label{
     color: white !important;
 }
 /* label underline focus color */
-.input-field input[type=text]:focus, .input-field input[type=password]:focus, .input-field input[type=number]:focus {
+.input-field input[type=text]:focus,
+.input-field input[type=password]:focus,
+.input-field input[type=number]:focus,
+.input-field input[type=text-area]:focus,
+.input-field input[type=email]:focus{
     color:white !important;
     border-bottom: 1px solid white !important;
     box-shadow: 0 1px 0 0 white !important;
 }
 /**/
 /* valid color */
-.input-field input[type=text].valid, .input-field input[type=password].valid, .input-field input[type=number].valid {
+.input-field input[type=text].valid,
+.input-field input[type=password].valid,
+.input-field input[type=number].valid,
+.input-field input[type=email].valid,
+.input-field input[type=text-area].valid,
+.materialize-textarea.valid{
     color: white !important;
     border-bottom: 1px solid white !important;
     box-shadow: 0 1px 0 0 white !important;
 }
+
+/*.materialize-textarea:focus:not([readonly]).valid*/
+
 /* button colors for login */
 /*button:hover{*/
 /*    cursor: pointer !important;*/
@@ -87,18 +108,26 @@ body {
 /*    background-position: 0 100% !important;*/
 /*}*/
 /**/
-/*!*field txt color*!*/
-/*#title, #description, #req-amount, #username, #email, #body {*/
-/*    color: white !important;*/
-/*}*/
+
+/*field txt color*/
+#title,
+#description,
+#req-amount,
+#username,
+#email,
+#body {
+    color: white !important;
+}
 
 
-/*!* invalid color *!*/
-/*.input-field input[type=number].invalid,.input-field input[type=text].valid, .input-field input[type=password].valid {*/
-/*    color: white !important;*/
-/*    !*border-bottom: 1px solid #fde8cd !important;*!*/
-/*    !*box-shadow: 0 1px 0 0 #000;*!*/
-/*}*/
+/* invalid color */
+.input-field input[type=number].invalid,
+.input-field input[type=text].invalid,
+.input-field input[type=password].invalid {
+    color: white !important;
+    border-bottom: 1px solid #fde8cd !important;
+    /*box-shadow: 0 1px 0 0 #000;*/
+}
 
 /*!*----------------------------------*!*/
 /*!*FOR CREATE PODCAST CATEGORIES ONLY*!*/
@@ -140,6 +169,28 @@ span {
 /*.tap-target{*/
 /*    visibility: hidden;*/
 /*}*/
+
+.registerErrors{
+    position: relative;
+    padding-bottom: 4px !important;
+    font-size: medium !important;
+}
+
+/*!*------------------------------*!*/
+/*For create description bottom line*/
+/*!*------------------------------*!*/
+textarea.materialize-textarea:focus:not([readonly]){
+    color:white !important;
+    border-bottom: 1px solid white !important;
+    box-shadow: 0 1px 0 0 white !important;
+}
+
+textarea.materialize-textarea.valid{
+    color: white !important;
+    border-bottom: 1px solid white !important;
+    box-shadow: 0 1px 0 0 white !important;
+}
+
 
 
 
