@@ -3,7 +3,9 @@
 <head th:replace="partials/materializeHead :: styleHead('Your Followers')">
 </head>
 <body>
-
+<div>
+    <img id="animated-example heading" class="animated fadeInDown background-img background-img" th:style="'background:linear-gradient(rgba(0, 0, 0, 0.75),rgba(0, 0, 0, .75)),url(' + ${session.user.backgroundImage} + '); background-repeat: no-repeat !important; background-size: cover !important;'">
+</div>
 <nav th:replace="partials/navbar-profile :: profileNav"></nav>
 <main>
 <div class="container">
@@ -14,7 +16,7 @@
         <div class="col s10 m6 l4" th:each="follower : ${listOfFollowers}">
             <div class="row">
                 <div class="col s12">
-                    <div class="card">
+                    <div class="card" style="box-shadow: none !important; background: rgba(252, 232, 205, .8) !important; color: #433520 !important;">
                         <div class="card-image">
                             <img th:src="${follower.profileImage}">
                         </div>

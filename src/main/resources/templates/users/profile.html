@@ -3,7 +3,7 @@
 <head th:replace="partials/profilePageStyle :: styleHead('Your Profile')"></head>
 <body>
 <div>
-    <img id="animated-example heading" class="animated fadeInDown background-img background-img" th:src="${session.user.backgroundImage}">
+    <img id="animated-example heading" class="animated fadeInDown background-img background-img" th:style="'background:linear-gradient(rgba(0, 0, 0, 0.75),rgba(0, 0, 0, .75)),url(' + ${session.user.backgroundImage} + '); background-repeat: no-repeat !important; background-size: cover !important;'">
 </div>
     <nav th:replace="partials/navbar-profile :: profileNav"></nav>
 
@@ -56,14 +56,14 @@
             <div class="col m4 hide-on-small-only profile-side profile-style">
                 <img class="circle profile-Image" th:src="${session.user.profileImage}">
                 <div class="collection list-style">
-                    <p class="collection-item teal-text text-darken-4" th:text="${session.user.username}"></p>
-                    <a href="/following" class="collection-item teal-text text-darken-4">Following<span class="badge" th:text="${followingCount}"></span> </a>
-                    <a href="/followers" class="collection-item teal-text text-darken-4">Followers<span class="badge" th:text="${followsCount}"></span></a>
-                    <a href="/getCategories" class="collection-item teal-text text-darken-4">Discover</a>
-                    <a href="/user-requests" class="collection-item teal-text text-darken-4">Requests</a>
-                    <a href="/user-responses" class="collection-item teal-text text-darken-4">Responses</a>
-                    <a href="/profile" class="collection-item teal-text text-darken-4">Recommendations</a>
-                    <a href="?myPodcasts" class="collection-item teal-text text-darken-4">My Podcasts</a>
+                    <p class="collection-item"><a th:text="${session.user.username}"></a></p>
+                    <p class="collection-item"><a href="/following">Following<span class="badge" th:text="${followingCount}"></span> </a></p>
+                    <p class="collection-item"><a href="/followers">Followers<span class="badge" th:text="${followsCount}"></span></a></p>
+                    <p class="collection-item"><a href="/getCategories">Discover</a></p>
+                    <p class="collection-item"><a href="/user-requests">Requests</a></p>
+                    <p class="collection-item"><a href="/user-responses">Responses</a></p>
+                    <p class="collection-item"><a href="/profile">Recommendations</a></p>
+                    <p class="collection-item"><a href="?myPodcasts">My Podcasts</a></p>
                 </div>
 
                 <p class="center-align" th:text="${session.user.aboutMe}"></p>
@@ -81,7 +81,7 @@
 
                         <div th:if="${userPodcasts.size() > 0}">
                             <div class="col s12 l8 profileContentItem" th:each="i : ${#numbers.sequence(0, userPodcasts.size() - 1)}">
-                                <div class="card horizontal profileCard-Card">
+                                <div class="card horizontal profileCard-Card" style="box-shadow: none !important; background: rgba(252, 232, 205, .8) !important; color: #433520 !important;">
                                     <div class="card-image">
                                         <img class="podImageProfiles" th:src="${userPodcasts.get(i).image}">
                                     </div>
@@ -152,8 +152,8 @@
     </main>
 
 
-    <footer style="position: fixed; z-index: 3" th:replace="partials/footer :: footer"></footer>
 </div>
+    <footer style="position: fixed; z-index: 3" th:replace="partials/footer :: footer"></footer>
     <div th:replace="partials/materializescripts :: scripts"></div>
     <script>
         // a key map of allowed keys

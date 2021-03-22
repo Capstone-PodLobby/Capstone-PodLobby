@@ -2,7 +2,9 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/materializeHead :: styleHead('Posts needing guests')"></head>
 <body>
-
+<div>
+    <img id="animated-example heading" class="animated fadeInDown background-img background-img" th:style="'background:linear-gradient(rgba(0, 0, 0, 0.75),rgba(0, 0, 0, .75)),url(' + ${session.user.backgroundImage} + '); background-repeat: no-repeat !important; background-size: cover !important;'">
+</div>
 <nav th:replace="partials/navbar-profile :: profileNav"></nav>
 <main>
     <div th:if="${message != null}">
@@ -21,7 +23,7 @@
 
     <div class="row">
         <div th:each="i : ${#numbers.sequence(0, requestList.size() - 1)}" class="col s12 l6" th:if="${requestList.get(i).guestCount &gt; 0} OR ${requestList.get(i).user.id == session.user.id}">
-            <div class="card horizontal">
+            <div class="card horizontal" style="box-shadow: none !important; background: rgba(252, 232, 205, .8) !important; color: #433520 !important;">
                 <div class="card-stacked">
                     <div class="card-content" style="display: flex;">
                         <img class="circle responsive-image col s4" id="requestImage" th:src="${requestList.get(i).user.profileImage}">
