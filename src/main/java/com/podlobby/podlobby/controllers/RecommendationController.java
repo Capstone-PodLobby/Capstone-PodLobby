@@ -76,7 +76,9 @@ public class RecommendationController {
             }
         }
 
+
         session.setAttribute("recommendations", podcastRecommendations);
+        session.setAttribute("categoriesChosen", categoryList);
         model.addAttribute("currentUrl", request.getRequestURI());
         redirectAttributes.addFlashAttribute("message", "Here are your recommendations");
         return "redirect:/profile"; // to show the recommended podcasts in the profile page first

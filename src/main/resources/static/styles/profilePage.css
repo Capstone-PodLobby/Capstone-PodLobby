@@ -15,6 +15,10 @@
 .card.horizontal .card-image {
     max-width: 100% !important;
 }
+.podImageProfiles{
+    max-height: 165px !important;
+    width: 100% !important;
+}
 .card-action{
     height: 125px !important;
     padding: 10px 16px !important;
@@ -37,13 +41,23 @@
 .btn{
     font-size: 12px !important;
 }
-#podcastsDesc{
+.podcastsDesc{
     overflow: auto;
+    height: 90px !important;
 }
 
 /*other user profile -> no edit and delete button*/
 #otherProfileButtonBox{
     height: 65px !important;
+}
+
+
+/* Recommendation card*/
+#recommendActionArea {
+    height: 88px !important;
+}
+.buttonItem2{
+    width: 90% !important;
 }
 
 @media only screen and (min-width: 500px) {
@@ -58,8 +72,8 @@
         min-width: 400px !important;
         max-width: 500px !important;
     }
-    #podcastsDesc{
-        height: 90px !important;
+    .podImageProfiles{
+        max-height: 262px !important;
     }
 }
 
@@ -87,6 +101,9 @@
     .row .profileContentItem{
         padding: 0 4rem;
     }
+    .podImageProfiles{
+        max-height: 330px !important;
+    }
 }
 
 @media only screen and (min-width: 1300px) {
@@ -95,9 +112,12 @@
         height: 200px !important;
     }
     .profileContentItem{
-        margin-bottom: 140px !important;
+        margin-bottom: 150px !important;
     }
     .row .profileContentItem{
         padding: 0 8rem;
+    }
+    .podImageProfiles{
+        max-height: 350px !important;
     }
 }

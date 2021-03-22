@@ -11,12 +11,12 @@
         <p class="errorMsg" th:text="${message}"></p>
     </div>
 
-    <h1 class="my-4">Following Page</h1>
+    <h1>Following Page</h1>
 
     <div class="row">
 
         <div class="col s10 m6 l4" th:each="following : ${followingList}">
-            <button class="wave-effect"><a th:href="@{/unfollow/{id}(id=${following.id})}">Unfollow</a></button>
+            <a class="widthFull btn waves-effect waves-light" th:href="@{/unfollow/{id}(id=${following.id})}">Unfollow</a>
             <div class="row">
                 <div class="col s12">
                     <div class="card">
@@ -37,7 +37,7 @@
                             </ul>
                         </div>
                         <div class="card-action">
-                            <button class="wave-effect"><a th:href="@{/following/{id}(id=${following.id})}">View Profile</a></button>
+                            <a class="widthFull btn waves-effect waves-light" th:href="@{/following/{id}(id=${following.id})}">View Profile</a>
                         </div>
                     </div>
                 </div>

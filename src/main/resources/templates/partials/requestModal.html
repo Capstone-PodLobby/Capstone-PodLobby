@@ -10,10 +10,12 @@
     <div id="responses" class="modal">
         <div class="modal-content" th:if="${responseList != null}">
             <div class="commentArea" th:each="res : ${responseList}">
-                <p class="teal-text text-darken-3" th:text="${res.content}"></p>
-                <p class="teal-text text-darken-3">Posted at : <span th:text="${res.createdAt}"></span></p>
-                <p class="teal-text text-darken-3">Posted by : <span th:text="${userController.getOne(res.user.id).username}"></span></p>
-                <img style="max-width: 25%;" class="circle responsive-image" th:src="${userController.getOne(res.user.id).profileImage}"/>
+                <img style="max-width: 25%;" class="commentProImage circle responsive-image" th:src="${userController.getOne(res.user.id).profileImage}"/>
+                <div class="widthText">
+                    <p class="teal-text text-darken-3">Posted at : <span th:text="${res.createdAt.toString().substring(0, 16)}"></span></p>
+                    <p class="teal-text text-darken-3">Posted by : <span th:text="${userController.getOne(res.user.id).username}"></span></p>
+                </div>
+                <p class="commentContent teal-text text-darken-3" th:text="${res.content}"></p>
                 <form th:action="@{/response/delete/{id}(id=${res.id})}" th:method="GET" th:if="${res.user.id == session.user.id}">
                     <input type="hidden" name="currentUrl" id="URL" th:value="${currentUrl}">
                     <button class="btn wave-effect"><a>Delete Response</a></button>
