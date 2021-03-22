@@ -15,6 +15,11 @@ h1, h2, h3, h4, h5 {
     background: #faebd6;
 }
 
+/*to get rid of the random padding*/
+.dropdown-content {
+    background-color: #f9ebd5 !important;
+}
+
 /*TO BE USED ON THE REGISTER / CREATE PAGES*/
 
 .tap-target{
