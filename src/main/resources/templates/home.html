@@ -28,8 +28,8 @@
                     <li class="list-opt hidden-link align-nav-right" sec:authorize="isAuthenticated()"><a href="/request">Request</a></li>
                     <li class="list-opt hidden-link align-nav-right" sec:authorize="isAuthenticated()"><a href="/podcasts/create">Create</a></li>
                     <li class="list-opt hidden-link align-nav-right" sec:authorize="isAuthenticated()"><a href="/settings">Settings</a></li>
-                    <li class="list-opt hidden-link align-nav-right" sec:authorize="isAuthenticated()"><a href="/profile">Profile</a></li>
-                    <li class="list-opt  align-nav-right"><a href="/">PodLobby</a></li>
+                    <li class="list-opt align-nav-right" id="show-link" sec:authorize="isAuthenticated()"><a href="/profile">Profile</a></li>
+                    <li class="list-opt  align-nav-right"><a href="/about">About Us</a></li>
                     <li class="list-opt  align-nav-right"><a href="/feeds/global">Home</a></li>
                     <li class="list-opt  align-nav-right" sec:authorize="isAnonymous()"><a href="/login">Login</a></li>
 
