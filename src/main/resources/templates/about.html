@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/materializeHead.html :: styleHead('About')">
+</head>
+<body>
+
+
+<div class="parallax-container">
+    <div th:replace="partials/navbar.html :: navbar"></div>
+
+
+    <div class="parallax">
+
+        <h2>About podLobby</h2>
+        <img src="images/podlobby-main-copy.png"></div>
+    </div>
+<div class="section white">
+    <div class="row container">
+        <h2 class="header">Parallax</h2>
+        <p class="grey-text text-darken-3 lighten-3">Welcome to PodLobby, a social media site designed to be a central
+            location for like-minded podcast enthusiasts to get together and collaborate on new ideas. <a href="/register"> Become a podLobby
+                member </a> and you will gain access to a cool new list of features. Add a personal podcast, view our global feed of podcast
+        created by other podLobby members, follow other podLobbyists and listen to their podcasts, and much more!   </p>
+    </div>
+</div>
+<div class="parallax-container">
+    <div class="parallax"><img src="images/podlobby-main-copy.png"></div>
+</div>
+<div class="section white">
+    <div class="row container">
+        <h2>Meet the Developers</h2>
+
+            <div class="col s12 m4">
+                <div class="card">
+                    <div class="card-image">
+                        <img style="padding: 7px" src="/images/blog2.jpg" height="300">
+                    </div>
+                    <div class="card-content">
+                    </div>
+                </div>
+            </div>
+
+    </div>
+
+</div>
+
+
+    <div th:replace="partials/materializescripts :: scripts"></div>
+</body>
+</html>
