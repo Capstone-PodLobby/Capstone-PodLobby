@@ -25,6 +25,11 @@
             </div>
         </div>
         <div>
+            <div class="errorMsg" th:if="${param.noResponses}">
+                You have not responded to any open requests
+            </div>
+        </div>
+        <div>
             <div class="errorMsg" th:if="${param.edit}">
                 You are not allowed to edit this podcast
             </div>
@@ -78,10 +83,10 @@
                             <div class="col s12 l8 profileContentItem" th:each="i : ${#numbers.sequence(0, userPodcasts.size() - 1)}">
                                 <div class="card horizontal profileCard-Card">
                                     <div class="card-image">
-                                        <img th:src="${userPodcasts.get(i).image}">
+                                        <img class="podImageProfiles" th:src="${userPodcasts.get(i).image}">
                                     </div>
                                     <div class="card-stacked">
-                                        <div class="card-content" id="podcastsDesc">
+                                        <div class="card-content podcastsDesc">
                                             <p th:text="${userPodcasts.get(i).description}"></p>
                                         </div>
                                         <div class="card-action">
@@ -114,22 +119,22 @@
                             <h1 th:if="${session.recommendations == null}">Check out the discover option</h1>
 
                             <div th:if="${session.recommendations != null}" class="col s12 profileContentItem" th:each="recommendation : ${session.recommendations}">
-                                <div class="card horizontal">
+                                <div class="card horizontal profileCard-Card">
                                     <div class="card-image">
-                                        <img th:src="${recommendation.image}">
+                                        <img class="podImageProfiles" th:src="${recommendation.image}">
                                     </div>
                                     <div class="card-stacked">
-                                        <div class="card-content">
+                                        <div class="card-content podcastsDesc">
                                                 <p th:text="${recommendation.description}"></p>
                                         </div>
-                                        <div class="card-action">
-                                            <div style="display: flex; justify-content: space-around;">
-                                                <p th:each="category : ${recommendation.categories}" th:text="${category.name}"></p>
+                                        <div class="card-action" id="recommendActionArea">
+                                            <div style="display: flex; justify-content: space-around; width: 90% !important;">
+                                                <span th:each="category : ${recommendation.categories}"  th:if="${session.categoriesChosen.contains(category.name)}" th:text="${category.name}"></span>
                                             </div>
 
-                                            <form th:action="@{/listen/{id}(id=${recommendation.id})}" method="get">
+                                            <form class="buttonItem2" th:action="@{/listen/{id}(id=${recommendation.id})}" method="get">
                                                 <input type="hidden" name="currentUrl" th:value="${currentUrl} + '?recommendations'">
-                                                <a><button class="waves-effect waves-light btn">Listen</button></a>
+                                                <a class="widthFull"><button class="widthFull waves-effect waves-light btn">Listen</button></a>
                                             </form>
                                          </div>
                                     </div>

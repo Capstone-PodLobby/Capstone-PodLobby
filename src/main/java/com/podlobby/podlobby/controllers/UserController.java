@@ -55,8 +55,6 @@ public class UserController {
             return "redirect:/admin/passwordChange";
         }
 
-
-
         int followingCount = followDao.findAllByUserId(user.getId()).size();
         int numberOfFollowers = followDao.findAllFollowersById(user.getId()).size();
         List<Podcast> createdPodcasts = user.getPodcasts();
@@ -68,8 +66,6 @@ public class UserController {
 
 
 //        model.addAttribute("podcast",podcastDao.getOne(id));
-
-
 
         model.addAttribute("followingCount", followingCount); // make this a session attribute ? will it update on each page ( needs to be tested )
         model.addAttribute("userPodcasts", createdPodcasts); // ^^ same

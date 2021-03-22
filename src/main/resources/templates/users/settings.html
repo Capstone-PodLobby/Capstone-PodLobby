@@ -7,22 +7,14 @@
 <main>
 
     <div class="container">
-        <h1 class="my-4">Edit Profile</h1>
+        <h1>Edit Profile</h1>
+        <small class="registerErrors" id="passErrorCustom">Passwords do not match</small>
+        <small class="registerErrors" id="passErrorCustom2">Passwords must have 1 number, 1 uppercase letter and be 8-20 characters long</small>
 
         <div th:if="${!param.isEmpty()}">
             <div>
                 <div class="errorMsg" th:if="${param.username}">
                     <i class="material-icons">error</i>Username can not be the same as another user
-                </div>
-            </div>
-            <div>
-                <div class="errorMsg" th:if="${param.quality}">
-                    <i class="material-icons">error</i>Password must be 8-20 characters, contain 1 Uppercase, and 1 number.
-                </div>
-            </div>
-            <div>
-                <div class="errorMsg" th:if="${param.passwords}">
-                    <i class="material-icons">error</i>Passwords do not match
                 </div>
             </div>
             <div>
@@ -32,7 +24,7 @@
             </div>
         </div>
 
-        <form class="col s12" th:action="@{/settings}" th:method="POST" th:object="${user}">
+        <form class="col s12" th:action="@{/settings}" th:method="POST" th:object="${user}" style="margin-top: 35px !important;">
             <div class="row">
                 <div class="input-field col s12" style="display: flex">
                     <i class="material-icons">account_circle</i>
@@ -139,6 +131,60 @@
         const fileString = fileData[0].url;
         document.getElementById("backgroundImage").value = fileString;
     }
+
+    $("#passErrorCustom").hide();
+    $("#passErrorCustom2").hide();
+    $(document).ready(function (){
+
+        const passInput = document.getElementById("password");
+        const passConfirm = document.getElementById("confirmPass");
+
+
+        $("#confirmPass").on("input", function () {
+            if($(this).val() !== passInput.value){
+                $(this).attr("style", "color: #5a1666 !important");
+                $("#password").attr("style", "color: #5a1666 !important");
+                $("#passErrorCustom").show(300);
+                $("#passErrorCustom2").hide();
+            } else if (!goodPassword($(this).val())) {
+                $(this).attr("style", "color: #5a1666 !important");
+                $("#password").attr("style", "color: #5a1666 !important");
+                $("#passErrorCustom2").show(300);
+                $("#passErrorCustom").hide();
+            } else {
+                $(this).removeAttr("style");
+                $("#password").removeAttr("style");
+                $("#passErrorCustom").hide(300);
+                $("#passErrorCustom2").hide(300);
+            }
+        });
+
+        $("#password").on("input", function () {
+            if($(this).val() !== passConfirm.value){
+                $(this).attr("style", "color: #5a1666 !important");
+                $("#confirmPass").attr("style", "color: #5a1666 !important");
+                $("#passErrorCustom").show(300);
+                $("#passErrorCustom2").hide();
+            } else if (!goodPassword($(this).val())) {
+                $(this).attr("style", "color: #5a1666 !important");
+                $("#confirmPass").attr("style", "color: #5a1666 !important");
+                $("#passErrorCustom2").show(300);
+                $("#passErrorCustom").hide();
+            } else {
+                $(this).removeAttr("style");
+                $("#confirmPass").removeAttr("style");
+                $("#passErrorCustom").hide(300);
+                $("#passErrorCustom2").hide(300);
+            }
+        });
+
+        function goodPassword(s1){
+            if(s1.length > 21 || s1.length < 8) return false;
+            if(s1.toLowerCase() === s1) return false;
+            return /\d/.test(s1);
+        }
+
+    });
 
 </script>
 </body>
