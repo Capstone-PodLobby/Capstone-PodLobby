@@ -3,7 +3,7 @@
 <head th:replace="partials/profilePageStyle :: styleHead('User Profile')"></head>
 <body>
 <div>
-    <img id="animated-example heading" class="animated fadeInDown background-img background-img" th:src="${following.backgroundImage}">
+    <img id="animated-example heading" class="animated fadeInDown background-img background-img" th:style="'background:linear-gradient(rgba(0, 0, 0, 0.75),rgba(0, 0, 0, .75)),url(' + ${following.backgroundImage} + '); background-repeat: no-repeat !important; background-size: cover !important;'">
 </div>
 <div th:replace="partials/navbar-profile :: profileNav"></div>
 
@@ -47,7 +47,7 @@
             <div th:if="${quantityPodcasts>0}" id="profileContentArea">
 
                 <div class="col s12 profileContentItem" th:each="i : ${#numbers.sequence(0, followingPodcasts.size() - 1)}">
-                    <div class="card horizontal profileCard-Card">
+                    <div class="card horizontal profileCard-Card" style="box-shadow: none !important; background: rgba(252, 232, 205, .8) !important; color: #433520 !important;">
                         <div class="card-image">
 
                             <img class="podImageProfiles" th:src="${followingPodcasts.get(i).image}">

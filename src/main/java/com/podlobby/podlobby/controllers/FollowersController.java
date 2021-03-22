@@ -35,10 +35,14 @@ public class FollowersController {
 
     // seeing all of the users you follow
     @GetMapping("/following")
-    public String showFollowers(Model model, HttpServletRequest request){
+    public String showFollowers(Model model, HttpServletRequest request, RedirectAttributes redirectAttributes){
         User user = userService.getLoggedInUser();
         model.addAttribute("currentUrl", request.getRequestURI());
         model.addAttribute("followingList", followDao.findAllByUserId(user.getId()));
+        if(followDao.findAllByUserId(user.getId()).size() < 1) {
+            redirectAttributes.addFlashAttribute("message", "You are not following any other users right now");
+            return "redirect:/profile?myPodcasts";
+        }
         model.addAttribute("user", user);
         return "users/following";
     }
@@ -63,7 +67,17 @@ public class FollowersController {
         model.addAttribute("quantityPodcasts", quantityCreatedPodcasts);
         model.addAttribute("followingPodcasts", createdPodcasts);
         model.addAttribute("userController", userDao);
-        model.addAttribute("isFollowing", true); // viewing a followers page -> you are following them
+
+        boolean followingThisUser = false;
+        List<User> currentFollowList = followDao.findAllByUserId(currUser.getId());// get all followers for currently logged in user
+        for(User user : currentFollowList) {
+            if(user.getId() == id) {
+                followingThisUser = true;
+            }
+        }
+
+        model.addAttribute("isFollowing", followingThisUser); // viewing a followers page -> you are following them
+
         return "users/othersProfile";
     }
 
@@ -112,11 +126,16 @@ public class FollowersController {
 
 //    view all the users who follow you
     @GetMapping("/followers")
-    public String viewMyFollowers(Model model){
+    public String viewMyFollowers(Model model, RedirectAttributes redirectAttributes){
 
         User user = userService.getLoggedInUser();// get the current user
 
         List<User> userFollowersList = followDao.findAllFollowersById(user.getId());// get a list of user's current followers
+
+        if(userFollowersList.size() < 1) {
+            redirectAttributes.addFlashAttribute("message", "You currently do not have any followers");
+            return "redirect:/profile?myPodcasts";
+        }
 
         model.addAttribute("listOfFollowers", userFollowersList);
         return "users/followers";

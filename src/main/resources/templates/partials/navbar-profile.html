@@ -4,18 +4,18 @@
 
     <div class="transparent" th:fragment="profileNav" th:remove="tag">
         <ul id="dropdown1" class="dropdown-content hide-on-small-only ">
-            <li><a href="/feeds/global">Home</a></li>
-            <li><a href="/">PodLobby</a></li>
-            <li><a href="/podcasts/create">Create</a></li>
+            <li><a class="navAnchor" href="/feeds/global">Home</a></li>
+            <li><a class="navAnchor" href="/">PodLobby</a></li>
+            <li><a class="navAnchor" href="/podcasts/create">Create</a></li>
             <li class="divider"></li>
-            <li><a href="/settings">Settings</a></li>
+            <li><a class="navAnchor" href="/settings">Settings</a></li>
             <li>
                 <form class="logoutForm" th:action="@{/logout}" method="POST">
                     <button class="logoutFormButton">Logout</button>
                 </form>
             </li>
-            <li sec:authorize="isAuthenticated()"><a href="/request">Request</a></li>
-            <li sec:authorize="isAuthenticated()"><a href="/profile?myPodcasts">Profile</a></li>
+            <li sec:authorize="isAuthenticated()"><a class="navAnchor" href="/request">Request</a></li>
+            <li sec:authorize="isAuthenticated()"><a class="navAnchor" href="/profile?myPodcasts">Profile</a></li>
         </ul>
 
         <ul id="slide-out" class="sidenav hide-on-med-and-up">
@@ -29,17 +29,17 @@
                 </div>
 
             </li>
-            <li><a class="subheader">Listening to</a></li>
+            <li><a th:class="navAnchor" class="subheader">Listening to</a></li>
             <li th:if="${session.listeningTo != null}"><iframe id="profileIframeSideNav" th:src="${session.listeningTo}" allowtransparency="true" allow="encrypted-media"></iframe></li>
             <li class="divider"></li>
-            <li><a class="subheader" href="/">PodLobby</a></li>
-            <li><a href="/feeds/global">Home</a></li>
-            <li><a href="/podcasts/create">Create</a></li>
-            <li><a href="/user-requests" class="collection-item teal-text text-darken-4">Requests</a></li>
-            <li><a href="/user-responses" class="collection-item teal-text text-darken-4">Responses</a></li>
+            <li><a th:class="navAnchor" class="subheader" href="/">PodLobby</a></li>
+            <li><a th:class="navAnchor" href="/feeds/global">Home</a></li>
+            <li><a th:class="navAnchor" href="/podcasts/create">Create</a></li>
+            <li><a th:class="navAnchor" href="/user-requests" class="collection-item teal-text text-darken-4">Requests</a></li>
+            <li><a th:class="navAnchor" href="/user-responses" class="collection-item teal-text text-darken-4">Responses</a></li>
             <li class="divider"></li>
-            <li><a href="/settings">Settings</a></li>
-            <li sec:authorize="isAuthenticated()"><a href="/profile?myPodcasts">Profile</a></li>
+            <li><a th:class="navAnchor" href="/settings">Settings</a></li>
+            <li sec:authorize="isAuthenticated()"><a th:class="navAnchor" href="/profile?myPodcasts">Profile</a></li>
             <li class="divider"></li>
             <li>
                 <form class="logoutForm" th:action="@{/logout}" method="POST">
@@ -47,10 +47,10 @@
                 </form>
             </li>
             <li class="divider"></li>
-            <li><a class="waves-effect" href="/following"><i class="material-icons">cloud</i>Following<span class="badge" th:text="${followingCount}"></span></a></li>
-           <li><a class="waves-effect" href="/followers"><i class="material-icons">cloud</i>Followers<span class="badge" th:text="${followsCount}"></span></a></li>
+            <li><a th:class="navAnchor" class="waves-effect" href="/following"><i class="material-icons">cloud</i>Following<span class="badge" th:text="${followingCount}"></span></a></li>
+           <li><a th:class="navAnchor" class="waves-effect" href="/followers"><i class="material-icons">cloud</i>Followers<span class="badge" th:text="${followsCount}"></span></a></li>
           <li><div class="divider"></div></li>
-            <li><a class="waves-effect" href="/getCategories"><i class="material-icons">cloud</i>Discover</a></li>
+            <li><a th:class="navAnchor" class="waves-effect" href="/getCategories"><i class="material-icons">cloud</i>Discover</a></li>
         </ul>
 
         <nav id="profileNav" class="transparent z-depth-0">
