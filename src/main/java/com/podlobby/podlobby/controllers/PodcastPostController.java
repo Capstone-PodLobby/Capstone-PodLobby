@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletException;
@@ -68,7 +70,8 @@ public class PodcastPostController {
 
         if (currUserName == findingInfo || currUserNameIsAdmin == 1) {
             return "podcasts/edit";
-        } else {return "redirect:/profile?edit";}
+        }
+        return "redirect:/profile?edit";
     }
 
 
@@ -95,7 +98,9 @@ public class PodcastPostController {
     //    DISPLAY  //
     /////////////////
     @GetMapping("/podcasts/create")
-    public String showPodcastCreate(Model model, HttpServletRequest request){
+    public String showPodcastCreate(Model model, HttpServletRequest request, HttpSession session){
+        User user = userService.getLoggedInUser();
+        session.setAttribute("user", user);
         model.addAttribute("podcast", new Podcast());
         model.addAttribute("categoryList", categoryDao.findAll());
         model.addAttribute("currentUrl", request.getRequestURI());
@@ -105,20 +110,37 @@ public class PodcastPostController {
 
 
     @PostMapping("/podcasts/create")
-    public String createPodcast(Model model, @ModelAttribute Podcast podcast, @RequestParam(name = "categories", required = false) String categories, HttpServletRequest request) throws ServletException, IOException {
+    public String createPodcast(Model model, @ModelAttribute @Validated Podcast podcast, Errors validation, @RequestParam(name = "categories", required = false) String categories, HttpServletRequest request) throws ServletException, IOException {
 
-        IframeParser iframeParser = new IframeParser(); // to parse it on creation
+        List<String> errorMsg = new ArrayList<>();
 
         if (podcast.getTitle().isEmpty()) {
-            return "redirect:/podcasts/create?title";
-        } else if (podcast.getDescription().isEmpty()) {
-            return "redirect:/podcasts/create?description";
-        } else if (podcast.getEmbedLink().isEmpty()) {
-            return "redirect:/podcasts/create?embed";
-        } else if (podcast.getCategories().isEmpty()) {
-            return "redirect:/podcasts/create?categories";
-        } else if (iframeParser.parseIframe(podcast.getEmbedLink()).equalsIgnoreCase("nosrc")){
-            return "redirect:/podcasts/create?embedIssue";
+            validation.rejectValue("title", "Title can not be missing");
+            errorMsg.add("Title can not be missing");
+        }
+        if (podcast.getDescription().isEmpty()) {
+            validation.rejectValue("description", "Description can not be missing");
+            errorMsg.add("Description can not be missing");
+        }
+        if (podcast.getEmbedLink().isEmpty()) {
+            validation.rejectValue("embedLink", "Embed Link can not be missing, see help");
+            errorMsg.add("Embed link can not be missing, see help");
+        }
+        if (podcast.getCategories().isEmpty()) {
+            validation.rejectValue("categories", "Please include at least one category");
+            errorMsg.add("Please include at least one category");
+        }
+        if (IframeParser.parseIframe(podcast.getEmbedLink()).equalsIgnoreCase("nosrc")){
+            validation.rejectValue("embedLink", "Issue with embed link, please check src= attribute");
+            errorMsg.add("Issue with embed link, please check src= attribute");
+        }
+
+        if(validation.hasErrors()) {
+            model.addAttribute("podcast", podcast);
+            model.addAttribute("errorList", errorMsg);
+            model.addAttribute("categoryList", categoryDao.findAll());
+            model.addAttribute("currentUrl", request.getRequestURI());
+            return"podcasts/create";
         }
 
         if(podcast.getImage().isEmpty()){ // set the default image if one is not provided
@@ -140,7 +162,7 @@ public class PodcastPostController {
 
         podcast.setCreatedAt(new Timestamp(new Date().getTime()));
         podcast.setUser(userDao.getOne(currUser.getId())); // ----- GET LOGGED IN USER -> session ?
-        podcast.setEmbedLink(iframeParser.parseIframe(podcast.getEmbedLink())); // parse it before it is stored in the database
+        podcast.setEmbedLink(IframeParser.parseIframe(podcast.getEmbedLink())); // parse it before it is stored in the database
         podcastDao.save(podcast);
 
         List<Podcast> userList = podcastDao.findAllByUserId(currUser.getId());

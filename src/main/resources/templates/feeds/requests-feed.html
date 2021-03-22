@@ -33,7 +33,7 @@
     <div class="row container">
         <div class="col s12">
             <div th:each="i : ${#numbers.sequence(0, requestList.size() - 1)}" class="col s12" th:if="${requestList.size() &gt; 0}">
-                <div class="card horizontal">
+                <div class="card horizontal" th:if="${requestList.get(i).guestCount &gt; 0}">
                     <div class="card-stacked">
                         <div class="card-content" style="display: flex;">
                             <img class="circle responsive-image col s4" id="requestImage" th:src="${requestList.get(i).user.profileImage}">
@@ -55,7 +55,7 @@
 
                                 <form th:action="@{/request/edit/{id}(id=${requestList.get(i).id})}" th:method="GET" th:if="${requestList.get(i).user.id == session.user.id}">
                                     <input type="hidden" name="currentUrl" id="URL" th:value="${currentUrl}">
-                                    <button id="smallMargin" class="requestButtonBtn wave-effect waves-light btn"><a>Edit</a></button>
+                                    <button th:if="${requestList.get(i).guestCount &gt; 0}" id="smallMargin" class="requestButtonBtn wave-effect waves-light btn"><a>Edit</a></button>
                                 </form>
 
                                 <form class="right" th:if="${requestList.get(i).isActive == 1}" th:action="@{/user-request/{id}(id=${requestList.get(i).id})}" method="get">

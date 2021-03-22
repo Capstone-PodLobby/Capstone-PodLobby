@@ -38,7 +38,7 @@
                 </div>
                 <div class="card-stacked">
                     <p>By: <span><a class="right" th:href="@{/otherProfile/{id}(id=${podcast.user.id})}" th:text="${podcast.user.username}"></a></span></p>
-                    <div class="card-content globalDescription" id="podcastsDesc">
+                    <div class="card-content globalDescription podcastsDesc">
                         <p th:text="${podcast.description}"></p>
                     </div>
                     <div class="card-action">
