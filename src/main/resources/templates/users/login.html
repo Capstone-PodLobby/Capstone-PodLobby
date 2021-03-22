@@ -59,28 +59,6 @@
 <footer th:replace="partials/footer.html :: footer"></footer>
 <div th:replace="partials/materializescripts :: scripts"></div>
 
-<script>
-    $(document).ready(function (){
-
-        const login = document.getElementById("login-button");
-        login.disabled = true;
-        const un = document.getElementById("username");
-        const pass = document.getElementById("password");
-
-        un.addEventListener("input", () => {
-            checkContent();
-        });
-
-        pass.addEventListener("input", () => {
-            checkContent();
-        });
-
-        function checkContent(){
-            login.disabled = !(un.value.length > 0 && pass.value.length > 0);
-        }
-
-    });
-</script>
 
 </body>
 </html>

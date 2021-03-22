@@ -144,7 +144,7 @@ public class PodcastPostController {
         }
 
         if(podcast.getImage().isEmpty()){ // set the default image if one is not provided
-            podcast.setImage("https://images.unsplash.com/photo-1567596388756-f6d710c8fc07?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80,1");
+            podcast.setImage("https://q3p9g6n2.rocketcdn.me/wp-content/ml-loads/2017/02/microphone-podcast-radio-ss-1920.jpg");
         }
 
         // give the categories to the podcast
