@@ -2,7 +2,9 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/materializeHead :: styleHead('Posts needing guests')"></head>
 <body>
-
+<div>
+    <img id="animated-example heading" class="animated fadeInDown background-img background-img" th:style="'background:linear-gradient(rgba(0, 0, 0, 0.75),rgba(0, 0, 0, .75)),url(' + ${session.user.backgroundImage} + '); background-repeat: no-repeat !important; background-size: cover !important;'">
+</div>
 <nav th:replace="partials/navbar-profile :: profileNav"></nav>
 <main>
 
@@ -18,7 +20,7 @@
 
     <div class="row">
         <div th:each="response : ${responseList}" class="col s12 m6">
-            <div class="card horizontal">
+            <div class="card horizontal" style="box-shadow: none !important; background: rgba(252, 232, 205, .8) !important; color: #433520 !important;">
                 <div class="card-stacked">
                     <div class="card-content">
                         <form class="right" th:action="@{/response/delete/{id}(id=${response.id})}" th:method="GET" th:if="${response.acceptedStatus == 0}">
