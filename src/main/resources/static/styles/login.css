@@ -23,7 +23,10 @@ body {
 #submit-btn-row,
 #create-btn,
 #sign-up-btn-row,
-#recaptcha-row{
+#recaptcha-row,
+#forgot-pass-div,
+#register-div,
+.fgt-rg-hldr{
     display: flex;
     justify-content: center;
 }
