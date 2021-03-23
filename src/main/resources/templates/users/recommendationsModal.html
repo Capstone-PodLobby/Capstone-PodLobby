@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/materializeHead :: styleHead('Podcast Recommendations')"></head>
+<head th:replace="partials/recommendationsStyle :: styleHead('Podcast Recommendations')"></head>
 <body>
 <nav th:replace="partials/navbar-profile :: profileNav"></nav>
 
@@ -34,7 +34,6 @@
                 $(this)[0].classList.add("clicked");
                 recommendationsArr.push(category);
             }
-            // console.log(recommendationsArr);
         });
 
         function handleRecommendations(){
@@ -47,17 +46,6 @@
                 form.insertAdjacentHTML("afterbegin", renderInput("default"));
             }
 
-            // $("#categoryForm").submit();
-            // $.ajax({
-            //     url: "/recommendations",
-            //     type: "GET",
-            //     dataType: 'json',
-            //     contentType: 'application/json;charset=utf-8',
-            //     data: JSON.stringify(recommendationsArr),
-            //     success: function(result){
-            //         console.log(result);
-            //     }
-            // });
         }
 
         function renderInput(string){

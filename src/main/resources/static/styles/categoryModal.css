@@ -29,18 +29,22 @@
     overflow: scroll;
     overflow-x: hidden;
     width: 90%;
-    height: 85%;
+    height: 80%;
     background-color: #fce8cd;
     margin-bottom: 0;
 }
 
 #doThisLater{
     align-self: center;
-    height: 50%;
     margin-right: 2%;
+    font-size: 8px;
+    width: 100%;
+}
+#laterBtn{
+    min-width: 30%;
 }
 #modalSubmit{
-    height: 5%;
+    height: 10%;
 }
 #submitCategories{
     margin-right: 2%;
@@ -52,9 +56,26 @@
 .categoryName {
     font-size: 2.3rem !important;
 }
+.nav-wrapper{
+    background-color: #faebd6;
+}
+
+.categoryItem{
+    -webkit-transition: opacity .5s ease-in-out;
+    -moz-transition: opacity .5s ease-in-out;
+    -ms-transition: opacity .5s ease-in-out;
+    -o-transition: opacity .5s ease-in-out;
+    transition: opacity .5s ease-in-out;
+}
 
 @media screen and (min-width: 900px){
     .categoryName {
         font-size: 3.5rem !important;
+    }
+    #doThisLater{
+        font-size: 12px;
+    }
+    #laterBtn{
+        min-width: 18%;
     }
 }
