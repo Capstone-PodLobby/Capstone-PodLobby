@@ -4,7 +4,7 @@
     <div id="modalMain">
         <div id="modalHeader">
             <p id="question" class="white-text">What do you like to listen to?</p>
-            <a href="/profile?myProfile"><button id="doThisLater" class="btn waves-effect waves-light">Do this Later X</button></a>
+            <a href="/profile?myProfile" id="laterBtn"><button id="doThisLater" class="btn waves-effect waves-light">Do this Later</button></a>
         </div>
         <div id="modalContent" class="row">
             <div th:each="i : ${#numbers.sequence(0, categoryList.size() - 1)}">
@@ -13,7 +13,7 @@
                     <div class="card-panel z-depth-1 categoryItem">
                         <div class="row valign-wrapper">
                             <div class="col s4">
-                                <img th:src="@{/images/the-mobile-bg-copy_one.png}" alt="" class="circle responsive-img">
+                                <img th:src="@{/images/the-mobile-bg-copy_one.png}" alt="" class="circle responsive-img" id="recLogo">
                             </div>
                             <div class="col s8">
                                 <h2 class="black-text categoryName" th:text="${categoryList.get(i).name}"></h2>
