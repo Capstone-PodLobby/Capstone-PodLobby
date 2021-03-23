@@ -51,7 +51,7 @@ body {
 .input-field input[type=email]:focus{
     color:white !important;
     border-bottom: 1px solid white !important;
-    box-shadow: 0 1px 0 0 white !important;
+    /*box-shadow: 0 1px 0 0 white !important;*/
 }
 /* valid color */
 .input-field input[type=text].valid,
@@ -62,7 +62,7 @@ body {
 .materialize-textarea.valid{
     color: white !important;
     border-bottom: 1px solid white !important;
-    box-shadow: 0 1px 0 0 white !important;
+    /*box-shadow: 0 1px 0 0 white !important;*/
 }
 /*field txt color*/
 #title,
@@ -111,15 +111,14 @@ span {
 textarea.materialize-textarea:focus:not([readonly]){
     color:white !important;
     border-bottom: 1px solid white !important;
-    box-shadow: 0 1px 0 0 white !important;
+    /*box-shadow: 0 1px 0 0 white !important;*/
 }
 
-input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):focus:not([readonly]), input[type=password]:not(.browser-default):focus:not([readonly]), input[type=email]:not(.browser-default):focus:not([readonly]), input[type=url]:not(.browser-default):focus:not([readonly]), input[type=time]:not(.browser-default):focus:not([readonly]), input[type=date]:not(.browser-default):focus:not([readonly]), input[type=datetime]:not(.browser-default):focus:not([readonly]), input[type=datetime-local]:not(.browser-default):focus:not([readonly]), input[type=tel]:not(.browser-default):focus:not([readonly]), input[type=number]:not(.browser-default):focus:not([readonly]), input[type=search]:not(.browser-default):focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly])
 
 textarea.materialize-textarea.valid{
     color: white !important;
     border-bottom: 1px solid white !important;
-    box-shadow: 0 1px 0 0 white !important;
+    /*box-shadow: 0 1px 0 0 white !important;*/
 }
 
 
