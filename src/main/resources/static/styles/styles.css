@@ -331,6 +331,11 @@ a:hover{
     margin-top: 35px;
 }
 
+/*MODAL*/
+.modalWithContent{
+    background-color: #433520 !important;
+}
+
 /*object fit for images*/
 /*=============================================================================*/
 @media screen and (min-width: 600px) {

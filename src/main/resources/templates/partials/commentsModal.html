@@ -4,7 +4,7 @@
     <a class="waves-effect waves-light btn modal-trigger deleteButton buttonItem" th:href="@{#_modal{num}(num=${i})}">Comments</a>
 
     <div th:id="'_modal' + ${i}" class="modal commentModalBox">
-        <div class="modal-content">
+        <div class="modal-content" style="background-color: #f9ebd5 !important;">
             <div class="commentArea" th:each="comment : ${userPodcasts.get(i).comments}">
                 <img style="max-width: 25%;" class="commentProImage circle responsive-image" th:src="${userController.getOne(comment.user.id).profileImage}"/>
                 <div class="widthText">

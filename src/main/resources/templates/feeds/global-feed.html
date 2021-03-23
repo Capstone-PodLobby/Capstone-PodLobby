@@ -6,10 +6,10 @@
 
 <body>
 <div sec:authorize="isAuthenticated()">
-    <img id="animated-example heading" class="animated fadeInDown background-img background-img" th:style="'background:linear-gradient(rgba(0, 0, 0, 0.75),rgba(0, 0, 0, .75)),url(' + ${session.user.backgroundImage} + '); background-repeat: no-repeat !important; background-size: cover !important;'">
+    <img id="animated-example heading" class="animated fadeInDown background-img background-img" th:style="'background:linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, .8)),url(' + ${session.user.backgroundImage} + '); background-repeat: no-repeat !important; background-size: cover !important;'">
 </div>
 <div sec:authorize="isAnonymous()">
-    <img class="animated fadeInDown background-img background-img" style="background:linear-gradient(rgba(0, 0, 0, 0.75),rgba(0, 0, 0, .75)),url('https://images.unsplash.com/photo-1447703693928-9cd89c8d3ac5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=2102&q=80'); background-repeat: no-repeat !important; background-size: cover !important;">
+    <img class="animated fadeInDown background-img background-img" style="background:linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, .8)),url('https://wallpaperaccess.com/full/4061951.jpg'); background-repeat: no-repeat !important; background-size: cover !important;">
 </div>
 <nav sec:authorize="isAuthenticated()" th:replace="partials/navbar-profile :: profileNav"></nav>
 
