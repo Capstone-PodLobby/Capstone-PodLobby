@@ -43,17 +43,22 @@
         <button class="btn waves-effect" id="login-button"><a>Login</a></button>
         </div>
     </form>
-
-    <div class="container" id="frgt-reg-cont">
-        <div class="row">
-            <div class="col" id="forgot-pass-div">
+        <div class="fgt-rg-hldr">
+        <div class="row" id="forgot-pass-div">
+            <div class="col">
                 <button class="btn waves-effect" id="forgot-pass-button"><a href="/forgotPassword">Forgot Password</a></button>
             </div>
-            <div class="col" id="register-div">
+        </div>
+        </div>
+
+        <div class="fgt-rg-hldr">
+        <div class="row" id="register-div">
+            <div class="col">
                 <button class="btn waves-effect" id="register-button"><a class="white-text" href="/register">Register</a></button>
             </div>
         </div>
-    </div>
+        </div>
+
 
 </main>
 <footer th:replace="partials/footer.html :: footer"></footer>
