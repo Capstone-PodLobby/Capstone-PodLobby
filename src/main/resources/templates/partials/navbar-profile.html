@@ -1,6 +1,4 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-</head>
 
     <div class="transparent" th:fragment="profileNav" th:remove="tag">
         <ul id="dropdown1" class="dropdown-content hide-on-small-only ">
@@ -11,7 +9,7 @@
             <li><a class="navAnchor" href="/settings">Settings</a></li>
             <li>
                 <form class="logoutForm" th:action="@{/logout}" method="POST">
-                    <button class="logoutFormButton">Logout</button>
+                    <button class="logoutFormButton navAnchor">Logout</button>
                 </form>
             </li>
             <li sec:authorize="isAuthenticated()"><a class="navAnchor" href="/request">Request</a></li>

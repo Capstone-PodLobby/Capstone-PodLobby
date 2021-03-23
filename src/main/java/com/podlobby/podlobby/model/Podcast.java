@@ -21,7 +21,7 @@ public class Podcast {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "podcast")
     private List<Comment> comments;
     //////////////////////////////////////
-    @ManyToMany(cascade = {CascadeType.ALL})
+    @ManyToMany()
     @JoinTable(
             name = "podcast_categories",
             joinColumns = {@JoinColumn(name = "podcast_id")},

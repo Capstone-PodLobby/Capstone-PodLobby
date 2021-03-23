@@ -30,6 +30,7 @@
                     <label class="labelIcon" for="username">Edit UserName</label>
                 </div>
             </div>
+
             <div class="row">
                 <div class="input-field col s12" style="display: flex">
                     <i class="material-icons">lock</i>
@@ -37,6 +38,7 @@
                     <label class="labelIcon" for="password">Edit Password</label>
                 </div>
             </div>
+
             <div class="row">
                 <div class="input-field col s12" style="display: flex">
                     <i class="material-icons">lock</i>
@@ -44,6 +46,7 @@
                     <label class="labelIcon" for="confirmPass">Confirm Edit Password</label>
                 </div>
             </div>
+
             <div class="row">
                 <div class="input-field col s12" style="display: flex">
                     <i class="material-icons">email</i>
@@ -51,6 +54,7 @@
                     <label class="labelIcon" for="email">Edit Email</label>
                 </div>
             </div>
+
             <div class="row">
                 <div class="input-field col s12" style="display: flex">
                     <i class="material-icons">insert_photo</i>
@@ -59,6 +63,7 @@
                     <button class="btn wave-effect" id="fileUploader"><a><i class="material-icons">cloud_download</i></a></button>
                 </div>
             </div>
+
             <div class="row">
                 <div class="input-field col s12" style="display: flex">
                     <i class="material-icons">insert_photo</i>
@@ -67,18 +72,20 @@
                     <button class="btn wave-effect" id="backgroundUploader"><a><i class="material-icons">cloud_download</i></a></button>
                 </div>
             </div>
-            <div class="row" id="about-me-txt">
-                <div class="input-field col s12" style="display:flex;" id="about-me-col">
-                    <i class="material-icons">edit</i>
-                    <label class="labelIcon" for="body">Edit About Me</label>
-                    <textarea class="materialize-textarea" id="body" th:field="*{aboutMe}"></textarea>
-                </div>
 
+            <div class="row">
+                <div class="input-field col s12" style="display: flex">
+                    <i class="material-icons">edit</i>
+                    <label class="labelIcon" for="about-me">About Me</label>
+                    <input class="validate"  id="about-me" name="description" type="text" th:value="*{aboutMe}"/>
+                </div>
             </div>
 
-            <button class="btn waves-effect waves-light" type="submit" name="action"><a>Submit
-                <i class="material-icons right">send</i></a>
-            </button>
+            <div class="row" id="submit-btn-row">
+                <button class="btn waves-effect waves-light" type="submit" name="action"><a>Submit
+                    <i class="material-icons right">send</i></a>
+                </button>
+            </div>
         </form>
     </div>
 </main>
@@ -107,7 +114,6 @@
     function uploadFile(result){
         const fileData = result.filesUploaded;
         const fileString = fileData[0].url;
-        console.log(fileString);
         document.getElementById("profileImage").value = fileString;
 
     }

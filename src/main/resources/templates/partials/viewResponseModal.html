@@ -3,15 +3,15 @@
 <div th:fragment="viewResponseModal" th:remove="tag">
     <a th:if="${session.user.id == requestList.get(i).user.id}" class="waves-effect waves-light btn modal-trigger responseButton requestButtonBtn" th:href="@{#_modal{num}(num=${i})}">Responses</a>
 
-    <div th:id="'_modal' + ${i}" class="modal">
+    <div th:id="'_modal' + ${i}" class="modal modalWithContent">
         <div class="modal-content">
             <h4>Here are the responses to your request on <span th:text="${requestList.get(i).title}"></span></h4>
         </div>
             <div th:each="response : ${requestList.get(i).responseList}" class="col s12 m6">
-                <div class="card horizontal">
+                <div class="card horizontal" style="background-color: #f9ebd5 !important;">
                     <div class="card-stacked">
                         <div class="card-content">
-                            <h3 th:text="${response.user.username}"><span>responding to your request on </span></h3>
+                            <h3 th:text="${response.user.username}" style="color: #433520 !important;"></h3>
                             <p th:text="${response.content}"></p>
                             <div class="divider"></div>
                             <p th:text="${response.createdAt.toString().substring(0, 16)}"></p>

@@ -4,7 +4,14 @@
     padding: 0;
 }
 #mainPadding{
-    background-color: #499e8b;
+    background:linear-gradient(rgba(0, 0, 0, 0.85),rgba(0, 0, 0, .85)),url('https://wallpaperaccess.com/full/4061951.jpg');
+    background-size: cover;
+}
+.btn{
+    line-height: 14px !important;
+}
+.imageBox{
+    padding: 0 !important;
 }
 #mainPadding{
     padding: 3vmin;
@@ -13,7 +20,7 @@
     width: 90vw;
     height: 80vh;
     margin: auto;
-    background-color: #045955;
+    opacity: .95;
 }
 #question {
     margin-left: 10%;
@@ -29,18 +36,21 @@
     overflow: scroll;
     overflow-x: hidden;
     width: 90%;
-    height: 85%;
-    background-color: #fce8cd;
+    height: 80%;
     margin-bottom: 0;
 }
 
 #doThisLater{
     align-self: center;
-    height: 50%;
     margin-right: 2%;
+    font-size: 8px;
+    width: 100%;
+}
+#laterBtn{
+    min-width: 30%;
 }
 #modalSubmit{
-    height: 5%;
+    height: 10%;
 }
 #submitCategories{
     margin-right: 2%;
@@ -50,11 +60,38 @@
     opacity: .2;
 }
 .categoryName {
-    font-size: 2.3rem !important;
+    font-size: 2rem !important;
+}
+.nav-wrapper{
+    background-color: #faebd6;
+}
+.categoryBox{
+    margin-top: 15px !important;
+    margin-right: 15px !important;
+    margin-bottom: 15px !important;
+}
+.categoryItem{
+    -webkit-transition: opacity .5s ease-in-out;
+    -moz-transition: opacity .5s ease-in-out;
+    -ms-transition: opacity .5s ease-in-out;
+    -o-transition: opacity .5s ease-in-out;
+    transition: opacity .5s ease-in-out;
 }
 
 @media screen and (min-width: 900px){
     .categoryName {
-        font-size: 3.5rem !important;
+        font-size: 3.2rem !important;
+    }
+    #doThisLater{
+        font-size: 12px;
+    }
+    #laterBtn{
+        min-width: 18%;
+    }
+    .modal-content{
+        height: 90%;
+    }
+    #modalSubmit{
+        height: 5%;
     }
 }

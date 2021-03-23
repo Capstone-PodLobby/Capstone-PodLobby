@@ -2,46 +2,56 @@
 <html lang="en">
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/materializeHead.html :: styleHead('About')">
+<head>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/36f035c426.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" th:href="@{/styles/about.css}">
 </head>
-<body>
+<body class="body-style">
 
 
 <div class="parallax-container">
     <div th:replace="partials/navbar.html :: navbar"></div>
 
-
+    <h1 class="main-header">About podLobby</h1>
     <div class="parallax">
 
-        <h2>About podLobby</h2>
-        <img src="images/podlobby-main-copy.png"></div>
+
+        <img src="images/podcast-girls-brown-overlay-copy.jpg"></div>
     </div>
-<div class="section white">
+<div class="section black">
     <div class="row container">
-        <h2 class="header">About podLobby</h2>
-        <p class="grey-text text-darken-3 lighten-3">Welcome to PodLobby, a social media site designed to be a central
-            location for like-minded podcast enthusiasts to get together and collaborate on new ideas. <a id="about-link" href="/register"> Become a podLobby
-                member </a> and you will gain access to a cool new list of features. Add a personal podcast, view our global feed of podcast
+        <h2 class="header">WELCOME TO PODLOBBY!</h2>
+        <p class="about-text orange-text text-lighten-5">Welcome to PodLobby, a social media site designed to be a central
+            location for like-minded podcast enthusiasts to get together and collaborate on new ideas. <span class="link-color"><a id="about-link" class="teal-text text-lighten-2" href="/register"> Become a podLobby
+                member </a></span> and you will gain access to a cool new list of features. Add a personal podcast, view our global feed of podcast
         created by other podLobby members, follow other podLobbyists and listen to their podcasts, and much more!   </p>
     </div>
 </div>
 <div class="parallax-container">
     <div class="parallax"><img src="images/podlobby-main-copy.png"></div>
 </div>
-<div class="section white">
+<div class="section black">
     <div class="row container">
         <h2>Meet the Developers</h2>
 
             <div class="col s12 m3">
-                <div class="card">
+                <div class="card card-style">
                     <div class="card-image">
-                        <img  src="images/matt-profile.jpg" width="200" height="250">
+                        <img class="img-style" src="images/matt-profile.jpg" width="200" height="200">
                     </div>
                     <div class="card-content content-style">
-                        <p>MATTHEW</p>
-                        <ul>
-                            <li><a><span style="font-size: 40px"><i class="fab fa-github-square"></i></span></a></li>
-                            <li><a><span style="font-size: 40px"><i class="fab fa-linkedin"></i></span></a></li>
+                        <p class="names">MATTHEW</p>
+                        <ul class="developer-link-list">
+                            <li class="about-link-style"><a href="https://github.com/Mdbaker19"><span class="icon-style" style="font-size: 40px; color: #499E8D"><i class="fab fa-github-square"></i></span></a></li>
+                            <li class="about-link-style"><a href="https://www.linkedin.com/in/matthew-baker-76b17b200/"><span class="icon-style" style="font-size: 40px"><i class="fab fa-linkedin"></i></span></a></li>
 
                         </ul>
                     </div>
@@ -49,16 +59,16 @@
             </div>
 
              <div class="col s12 m3">
-                <div class="card">
+                <div class="card card-style">
                     <div class="card-image">
-                        <img  src="/images/gonzalo_ovalle_headshot.jpg" width="200" height="250">
+                        <img class="img-style" src="/images/gonzalo_ovalle_headshot.jpg" width="200px" height="200px">
                     </div>
                     <div class="card-content content-style">
-                        <p>GONZALO</p>
+                        <p class="names">GONZALO</p>
 
-                        <ul>
-                        <li><a><span style="font-size: 40px"><i class="fab fa-github-square"></i></span></a></li>
-                        <li><a><span style="font-size: 40px"><i class="fab fa-linkedin"></i></span></a></li>
+                        <ul class="developer-link-list">
+                            <li><a href="https://github.com/gonzaloovalle"><span class="icon-style" style="font-size: 40px"><i class="fab fa-github-square"></i></span></a></li>
+                            <li><a href="https://www.linkedin.com/in/gonzalo-ovalle3/"><span class="icon-style" style="font-size: 40px"><i class="fab fa-linkedin"></i></span></a></li>
                         </ul>
 
                     </div>
@@ -66,33 +76,31 @@
             </div>
 
             <div class="col s12 m3">
-                <div class="card">
+                <div class="card card-style">
                     <div class="card-image">
-                        <img  src="/images/amber-headshot-copy.jpg" width="200" height="250">
+                        <img class="img-style" src="/images/amber-headshot-copy.jpg" width="200" height="200">
                     </div>
                     <div class="card-content content-style">
-                        <p>AMBER</p>
+                        <p class="names">AMBER</p>
 
-                        <ul>
-                        <li><a><span style="font-size: 40px"><i class="fab fa-github-square"></i></span></a></li>
-                        <li><a><span style="font-size: 40px"><i class="fab fa-linkedin"></i></span></a></li>
+                        <ul class="developer-link-list">
+                            <li><a href="https://github.com/AmberMattis"><span class="icon-style"  style="font-size: 40px"><i class="fab fa-github-square"></i></span></a></li>
+                            <li><a href="https://www.linkedin.com/in/amber-mattis/"><span class="icon-style"  style="font-size: 40px"><i class="fab fa-linkedin"></i></span></a></li>
                         </ul>
-
-
                     </div>
                 </div>
             </div>
 
             <div class="col s12 m3">
-                <div class="card">
+                <div class="card card-style">
                     <div class="card-image">
-                        <img  src="/images/caleb-headshot-copy.jpg" width="200" height="250">
+                        <img class="img-style" src="/images/caleb-headshot-copy.jpg" width="200" height="200">
                     </div>
                     <div class="card-content content-style">
-                        <p>CALEB</p>
-                        <ul>
-                        <li><a><span style="font-size: 40px"><i class="fab fa-github-square"></i></span></a></li>
-                        <li><a><span style="font-size: 40px"><i class="fab fa-linkedin"></i></i></span></a></li>
+                        <p class="names">CALEB</p>
+                        <ul class="developer-link-list">
+                            <li><a href="https://github.com/CalebWardlaw"><span class="icon-style"  style="font-size: 40px"><i class="fab fa-github-square"></i></span></a></li>
+                            <li><a href="https://www.linkedin.com/in/cwardlaw/"><span class="icon-style"  style="font-size: 40px"><i class="fab fa-linkedin"></i></i></span></a></li>
                         </ul>
 
                     </div>
