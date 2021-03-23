@@ -3,25 +3,12 @@
 /*---------------------------------------*/
 
 /*--------------*/
-/*NAV AND FOOTER     HAD TO REMOVE THE OVERFLOW HIDDEN FOR MOBILE FORM VIEW AND SETTINGS PAGE*/
+/*NAV AND FOOTER
 /*--------------*/
 body {
-    /*font-family: "Lato", sans-serif;*/
-    /*font-weight: 400;*/
-    /*font-size: 30px;*/
-    /*line-height: 1.7;*/
-    /*color: white;*/
     background-color: #499E8D;
-    /*margin: 0;*/
-}
-/*.page-footer{*/
-/*    background-color: white !important;*/
-/*    color: #443620 !important;*/
-/*}*/
-/*#footerContactLabel{*/
-/*    color: #443620 !important;*/
-/*}*/
 
+}
 
 #forgot-pass-div,
 #register-div {
@@ -66,7 +53,6 @@ body {
     border-bottom: 1px solid white !important;
     box-shadow: 0 1px 0 0 white !important;
 }
-/**/
 /* valid color */
 .input-field input[type=text].valid,
 .input-field input[type=password].valid,
@@ -78,36 +64,6 @@ body {
     border-bottom: 1px solid white !important;
     box-shadow: 0 1px 0 0 white !important;
 }
-
-/*.materialize-textarea:focus:not([readonly]).valid*/
-
-/* button colors for login */
-/*button:hover{*/
-/*    cursor: pointer !important;*/
-/*    background-position: 0 100% !important;*/
-/*}*/
-
-/*!*link effect*!*/
-/*a, button{*/
-/*    position: relative !important;*/
-/*    display: inline-block !important;*/
-/*    overflow: hidden !important;*/
-/*    background: linear-gradient(to right, #fde8cd 50%, #433520 50%) !important;*/
-/**/
-/*    background-clip: text !important;*/
-/*    -webkit-background-clip: text !important;*/
-/*    -webkit-text-fill-color: transparent !important;*/
-/*    background-size: 200% 100% !important;*/
-/*    background-position: 100% !important;*/
-
-    /*transition: background-position 475ms ease !important;*/
-
-/*}*/
-/*a:hover{*/
-/*    background-position: 0 100% !important;*/
-/*}*/
-/**/
-
 /*field txt color*/
 #title,
 #description,
@@ -117,17 +73,14 @@ body {
 #body {
     color: white !important;
 }
-
-
 /* invalid color */
 .input-field input[type=number].invalid,
 .input-field input[type=text].invalid,
 .input-field input[type=password].invalid {
     color: white !important;
-    border-bottom: 1px solid #fde8cd !important;
+    border-bottom: 1px solid #433520 !important;
     /*box-shadow: 0 1px 0 0 #000;*/
 }
-
 /*!*----------------------------------*!*/
 /*!*FOR CREATE PODCAST CATEGORIES ONLY*!*/
 /*!*----------------------------------*!*/
@@ -140,34 +93,10 @@ span {
     color: white !important;
 }
 
-/*!*.hide{*!*/
-/*!*    display: none;*!*/
-/*!*}*!*/
-
 /*!*char counter -> create*!*/
 .character-counter{
     font-size: 10px !important;
 }
-
-/*!*main{*!*/
-/*!*    overflow: auto !important;*!*/
-/*!*}*!*/
-
-/*!*.materialize-textarea, #about-me-txt, #about-me-col{*!*/
-/*!*    overflow: auto !important;*!*/
-/*!*}*!*/
-
-
-/*!*had to change this selector to target just the text area, was causing issues with the display of the label*!*/
-/*.materialize-textarea{*/
-/*    overflow: auto !important;*/
-/*}*/
-/*#drop-down{*/
-/*    height: 300px !important;*/
-/*}*/
-/*.tap-target{*/
-/*    visibility: hidden;*/
-/*}*/
 
 .registerErrors{
     position: relative;
@@ -178,17 +107,21 @@ span {
 /*!*------------------------------*!*/
 /*For create description bottom line*/
 /*!*------------------------------*!*/
+
 textarea.materialize-textarea:focus:not([readonly]){
     color:white !important;
     border-bottom: 1px solid white !important;
     box-shadow: 0 1px 0 0 white !important;
 }
 
+input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):focus:not([readonly]), input[type=password]:not(.browser-default):focus:not([readonly]), input[type=email]:not(.browser-default):focus:not([readonly]), input[type=url]:not(.browser-default):focus:not([readonly]), input[type=time]:not(.browser-default):focus:not([readonly]), input[type=date]:not(.browser-default):focus:not([readonly]), input[type=datetime]:not(.browser-default):focus:not([readonly]), input[type=datetime-local]:not(.browser-default):focus:not([readonly]), input[type=tel]:not(.browser-default):focus:not([readonly]), input[type=number]:not(.browser-default):focus:not([readonly]), input[type=search]:not(.browser-default):focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly])
+
 textarea.materialize-textarea.valid{
     color: white !important;
     border-bottom: 1px solid white !important;
     box-shadow: 0 1px 0 0 white !important;
 }
+
 
 
 

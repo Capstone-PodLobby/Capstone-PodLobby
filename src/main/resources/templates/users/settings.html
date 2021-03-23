@@ -73,12 +73,15 @@
                     <label class="labelIcon" for="body">Edit About Me</label>
                     <textarea class="materialize-textarea" id="body" th:field="*{aboutMe}"></textarea>
                 </div>
-
             </div>
 
-            <button class="btn waves-effect waves-light" type="submit" name="action"><a>Submit
-                <i class="material-icons right">send</i></a>
-            </button>
+
+
+            <div class="row" id="submit-btn-row">
+                <button class="btn waves-effect waves-light" type="submit" name="action"><a>Submit
+                    <i class="material-icons right">send</i></a>
+                </button>
+            </div>
         </form>
     </div>
 </main>

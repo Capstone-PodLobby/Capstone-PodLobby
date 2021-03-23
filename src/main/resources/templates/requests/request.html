@@ -6,12 +6,12 @@
 
 <nav th:replace="partials/navbar-profile :: profileNav"></nav>
 <main>
-
+    <div class="container">
     <div th:if="${message != null}">
         <p class="errorMsg" th:text="${message}"></p>
     </div>
 
-    <form th:action="@{/request}" th:method="POST" th:object="${request}" class="container">
+    <form th:action="@{/request}" th:method="POST" th:object="${request}">
         <h1 class="text-center">Place Your Request</h1>
         <div class="input-field" style="display: flex">
             <i class="material-icons">label_outline</i>
@@ -40,6 +40,7 @@
         </div>
 
     </form>
+    </div>
 </main>
 <footer th:replace="partials/footer.html :: footer"></footer>
 <div th:replace="partials/materializescripts :: scripts"></div>
