@@ -9,7 +9,7 @@
             <li><a class="navAnchor" href="/settings">Settings</a></li>
             <li>
                 <form class="logoutForm" th:action="@{/logout}" method="POST">
-                    <button class="logoutFormButton">Logout</button>
+                    <button class="logoutFormButton navAnchor">Logout</button>
                 </form>
             </li>
             <li sec:authorize="isAuthenticated()"><a class="navAnchor" href="/request">Request</a></li>
