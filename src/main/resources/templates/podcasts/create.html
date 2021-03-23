@@ -20,8 +20,8 @@
 
             <div class="input-field" style="display: flex">
                 <i class="material-icons">border_color</i>
-                <label class="labelIcon" for="body">Description</label>
-                <textarea class="materialize-textarea" type="text" id="body" th:field="*{description}"></textarea>
+                <label class="labelIcon" for="description">Description</label>
+                <input class="validate"  id="description" name="description" type="text" th:value="*{description}"/>
             </div>
 
             <div class="input-field" style="display: flex">
@@ -33,8 +33,6 @@
                 <div class="hide">
                     <a id="menu" class="waves-effect waves-light btn btn-floating" ><i class="material-icons">menu</i></a>
                 </div>
-
-
             </div>
 
             <div class="input-field" style="display: flex">

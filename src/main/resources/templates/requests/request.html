@@ -3,32 +3,32 @@
     <head th:replace="partials/materializeRequest :: styleHead('Request')"></head>
 <body>
 
-
 <nav th:replace="partials/navbar-profile :: profileNav"></nav>
 <main>
-
+    <div class="container">
+        <h1 class="text-center">Place Your Request</h1>
     <div th:if="${message != null}">
         <p class="errorMsg" th:text="${message}"></p>
     </div>
 
-    <form th:action="@{/request}" th:method="POST" th:object="${request}" class="container">
-        <h1 class="text-center">Place Your Request</h1>
+    <form th:action="@{/request}" th:method="POST" th:object="${request}">
+
         <div class="input-field" style="display: flex">
             <i class="material-icons">label_outline</i>
             <label class="labelIcon" for="title">Title</label>
-            <input id="title" name="title" type="text" th:value="*{title}"/>
+            <input class="validate" id="title" name="title" type="text" th:value="*{title}"/>
         </div>
 
         <div class="input-field" style="display: flex">
             <i class="material-icons">border_color</i>
             <label class="labelIcon" for="description">Description</label>
-            <input id="description" name="description" type="text" th:value="*{description}"/>
+            <input class="validate"  id="description" name="description" type="text" th:value="*{description}"/>
         </div>
 
         <div class="input-field" id="quantity-needed" style="display: flex">
             <i class="material-icons">contacts</i>
             <label class="labelIcon" for="req-amount">Contributors</label>
-            <input id="req-amount" name="req-amount" type="number" th:value="*{guestCount}"/>
+            <input class="validate"  id="req-amount" name="req-amount" type="number" th:value="*{guestCount}"/>
         </div>
 
         <input type="hidden" name="requestId" th:value="${request.id &gt; 0 ? request.id : 0}"/>
@@ -40,6 +40,7 @@
         </div>
 
     </form>
+    </div>
 </main>
 <footer th:replace="partials/footer.html :: footer"></footer>
 <div th:replace="partials/materializescripts :: scripts"></div>
