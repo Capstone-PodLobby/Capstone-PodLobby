@@ -1,16 +1,63 @@
+.body-style {
+    box-sizing:border-box;
+}
+
 .content-style {
     padding: 5px !important;
     text-align: center;
     font-size: 25px;
     letter-spacing: 5px;
+    background: transparent;
 }
 
-ul {
-    display: flex;
+.developer-link-list{
+    display:flex;
+    justify-content: center;
 }
 
-li {
+.about-link-style {
     list-style-type: none !important;
     display: inline-block;
     margin: 0 5px 0 5px;
+}
+
+.card-style {
+    background: transparent !important;
+    margin: 0 20px 0 20px;
+}
+
+.names {
+    color: #cbbba5;
+}
+
+.img-style {
+    border-radius: 50% !important;
+}
+
+.about-text{
+    font-size: 22px;
+}
+
+#about-link{
+    display: inline;
+    color: #499E8D !important;
+}
+
+.link-color {
+    color: #499E8D !important;
+}
+
+.header {
+    color: #cbbba5;
+    text-align: center;
+}
+
+.icon-style {
+    color: #499E8D;
+}
+
+.main-header {
+    z-index: 9999;
+    text-align: center;
+    font-size: 90px;
 }

@@ -7,7 +7,7 @@ body {
 
 }
 
-h1, h2, h3, h4, h5 {
+h1, h2 {
     color: #faebd6 !important;
 }
 
@@ -329,6 +329,14 @@ a:hover{
 }
 #errorMsgBox{
     margin-top: 35px;
+}
+
+/*MODAL*/
+.modalWithContent{
+    background-color: #433520 !important;
+}
+.modal{
+    background-color: #faebd6;
 }
 
 /*object fit for images*/

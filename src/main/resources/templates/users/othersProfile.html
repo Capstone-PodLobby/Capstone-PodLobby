@@ -3,7 +3,7 @@
 <head th:replace="partials/profilePageStyle :: styleHead('User Profile')"></head>
 <body>
 <div>
-    <img id="animated-example heading" class="animated fadeInDown background-img background-img" th:style="'background:linear-gradient(rgba(0, 0, 0, 0.75),rgba(0, 0, 0, .75)),url(' + ${following.backgroundImage} + '); background-repeat: no-repeat !important; background-size: cover !important;'">
+    <img id="animated-example heading" class="animated fadeInDown background-img background-img" th:style="'background:linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, .8)),url(' + ${following.backgroundImage} + '); background-repeat: no-repeat !important; background-size: cover !important;'">
 </div>
 <div th:replace="partials/navbar-profile :: profileNav"></div>
 
@@ -17,7 +17,7 @@
     <div class="row">
         <div class="col m4 profile-side" id="otherUserProfileCard">
             <img class="circle profile-Image" th:src="${following.profileImage}">
-            <div class="collection list-style">
+            <div class="collection list-style" style="background-color: #cbbba5 !important;">
                 <a class="collection-item" th:text="${following.username}"></a>
                 <a th:if="${!isFollowing}" th:href="@{/followUser/{id}(id=${following.id})}" class="collection-item">Follow</a>
                 <a th:if="${isFollowing}" th:href="@{/unfollow/{id}(id=${following.id})}" class="collection-item">UnFollow</a>
@@ -69,7 +69,7 @@
                                 <a class="waves-effect waves-light btn modal-trigger deleteButton" th:href="@{#_modal{num}(num=${i})}">Comments</a>
 
                                 <div th:id="'_modal' + ${i}" class="modal commentModalBox">
-                                    <div class="modal-content">
+                                    <div class="modal-content" style="background-color: #f9ebd5 !important;">
                                         <div class="commentArea" th:each="comment : ${followingPodcasts.get(i).comments}">
                                             <img style="max-width: 25%;" class="circle responsive-image" th:src="${userController.getOne(comment.user.id).profileImage}"/>
                                             <div class="widthText">
