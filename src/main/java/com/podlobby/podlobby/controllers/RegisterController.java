@@ -1,24 +1,37 @@
 package com.podlobby.podlobby.controllers;
 
+import com.podlobby.podlobby.RecaptchaResponse;
 import com.podlobby.podlobby.model.User;
 import com.podlobby.podlobby.repositories.UserRepository;
 import com.podlobby.podlobby.services.TLSEmail;
 import com.podlobby.podlobby.services.UserService;
 import com.podlobby.podlobby.util.Password;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import java.awt.*;
 import java.io.IOException;
 import java.util.*;
 import java.sql.Timestamp;
+import java.util.List;
 
 
 @Controller
@@ -28,6 +41,27 @@ public class RegisterController {
     private final PasswordEncoder encoder;
     private final UserService userService;
     private final TLSEmail tlsEmail;
+
+
+    @Value("${recaptcha.checkbox.secret.key}")
+    private String recaptchaCheckboxSecret;
+
+    @Value("${recaptcha.testing.secret.key}")
+    private String recaptchaTestingSecret;
+
+    private final String recaptchaServerURL = "https://www.google.com/recaptcha/api/siteverify";
+
+
+    @Bean
+    public RestTemplate restTemplate(RestTemplateBuilder builder){
+        return builder.build();
+    }
+
+    @Autowired
+    private RestTemplate restTemplate;
+
+//    @Autowired
+//    private ReCaptchaValidationService reCaptchaValidationService;
 
 
     public RegisterController(UserRepository userDao, PasswordEncoder encoder, UserService userService, TLSEmail tlsEmail) {
@@ -61,6 +95,11 @@ public class RegisterController {
     public String registered(Model model, @ModelAttribute @Validated User user, Errors validation, @RequestParam(name = "confirm-password", required = false) String confirmPassword,
                              @RequestParam(name = "g-recaptcha-response") String captcha, RedirectAttributes redirectAttributes) {
         List<String> errorMsg = new ArrayList<>();
+
+        if(!verifyCaptcha(captcha)) {
+            errorMsg.add("Please verify you are not a robot");
+        }
+
         if(userDao.findByUsername(user.getUsername()) != null) {
             validation.rejectValue("username", "Username can not be the same as another user");
             errorMsg.add("Username can not be the same as another user");
@@ -75,9 +114,6 @@ public class RegisterController {
         }
         if(!confirmPassword.equals(user.getPassword())) {
             errorMsg.add("Passwords do not match");
-        }
-        if(captcha.isEmpty()){
-            errorMsg.add("Please verify you are not a robot");
         }
         if (!Password.goodQualityPassword(user.getPassword())){
             validation.rejectValue("password", "Password must be 8-20 characters, contain 1 Uppercase, and 1 number.");
@@ -104,7 +140,7 @@ public class RegisterController {
         user.setJoinedAt(new Timestamp(new Date().getTime()));
         user.setPassword(encoder.encode(user.getPassword()));
         user.setBackgroundImage("https://wallpaperaccess.com/full/4061951.jpg");
-        user.setProfileImage("https://images.unsplash.com/photo-1567596388756-f6d710c8fc07?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mnx8bWljcm9waG9uZXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80");
+        user.setProfileImage("/images/ProfilePic.png");
 
         userDao.save(user);
 
@@ -115,6 +151,8 @@ public class RegisterController {
         tlsEmail.sendEmail(user.getEmail(), user.getUsername(), "Welcome to PodLobby", emailContent);
         return "redirect:/newAccount";
     }
+
+
 
     // page telling user to check their email
     @GetMapping("/newAccount")
@@ -160,5 +198,21 @@ public class RegisterController {
         return "redirect:/profile";
     }
 
+    private boolean verifyCaptcha(String captchaResponse) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+        MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
+        map.add("secret", recaptchaCheckboxSecret);
+//        map.add("secret", recaptchaTestingSecret);
+        map.add("response", captchaResponse);
+
+        HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map, headers);
+
+        RecaptchaResponse response = restTemplate.postForObject(recaptchaServerURL, request, RecaptchaResponse.class);
+        if(response == null) {
+            return false;
+        }
+        return response.isSuccess();
+    }
 
 }

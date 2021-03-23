@@ -9,14 +9,14 @@
         <div id="modalContent" class="row">
             <div th:each="i : ${#numbers.sequence(0, categoryList.size() - 1)}">
 
-                <div class="col s12 m8 offset-m2 l5"  th:classappend="${i % 2 == 0 ? 'offset-l1' : ''}">
+                <div class="col s12 m8 offset-m2 l5 categoryBox"  th:classappend="${i % 2 == 0 ? 'offset-l1' : ''}">
                     <div class="card-panel z-depth-1 categoryItem">
                         <div class="row valign-wrapper">
-                            <div class="col s4">
-                                <img th:src="@{/images/the-mobile-bg-copy_one.png}" alt="" class="circle responsive-img" id="recLogo">
+                            <div class="col s5 imageBox">
+                                <img th:src="@{/images/categoryPic.png}" alt="" class="circle responsive-img" id="recLogo">
                             </div>
-                            <div class="col s8">
-                                <h2 class="black-text categoryName" th:text="${categoryList.get(i).name}"></h2>
+                            <div class="col s7">
+                                <h3 class="black-text categoryName" th:text="${categoryList.get(i).name}"></h3>
                             </div>
                         </div>
                     </div>
@@ -27,7 +27,8 @@
 
         <div id="modalSubmit">
             <form onsubmit="handleRecommendations()" th:method="GET" id="categoryForm" th:action="@{/recommendations}">
-                <button id="submitCategories" class="right btn waves-effect waves-light"><a>Submit</a></button>
+                <a id="submitCategories" class="right"><button class="btn waves-effect waves-light">Submit</button></a>
+<!--                <button id="submitCategories" class="right btn waves-effect waves-light"><a>Submit</a></button>-->
             </form>
         </div>
     </div>
