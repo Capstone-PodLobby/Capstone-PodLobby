@@ -1,0 +1,12 @@
+.content-style {
+    padding: 5px !important;
+    text-align: center;
+    font-size: 25px;
+    letter-spacing: 5px;
+}
+
+.about-link-style {
+    list-style-type: none !important;
+    display: inline-block;
+    margin: 0 5px 0 5px;
+}
