@@ -42,14 +42,14 @@ main {
 }
 
 .list-style {
-    background-color: white;
+    background-color: #f9ebd5;
 
 
 }
 /* Profile page */
 .profile-side{
     background-color: transparent;
-    color: aliceblue;
+    color: #f9ebd5;
 }
 #otherUserProfileCard{
     height: 80vh !important;
@@ -127,11 +127,16 @@ main {
     height: 100% !important;
 }
 
+.customButton{
+    background: rgba(2, 89, 85, .15);
+}
+
 /*====== FOOTER PARTIAL ========*/
 .page-footer{
     padding-top: 50px !important;
     background: rgb(255, 255, 255) !important;
     background: linear-gradient(0deg, rgb(252, 232, 205) 8%, rgb(73, 158, 140) 93%) !important;
+    color: #433520 !important;
 }
 .footerUl{
     display: flex !important;

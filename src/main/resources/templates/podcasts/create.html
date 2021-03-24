@@ -37,7 +37,7 @@
 
             <div class="input-field" style="display: flex">
                 <i class="material-icons">insert_photo</i>
-                <label class="labelIcon" for="imageURL">Image URL (optional)</label>
+                <label class="labelIcon" id="podcastImageUrl" for="imageURL">Image URL (optional)</label>
                 <input class="validate" type="text" id="imageURL" th:field="*{image}"/>
                 <button class="waves-light wave-effect" id="podcastImage"><a><i class="material-icons">cloud_download</i></a></button>
             </div>
@@ -105,6 +105,7 @@
     function uploadFile(result){
         const fileData = result.filesUploaded;
         const fileString = fileData[0].url;
+        $("#podcastImageUrl").addClass("active");
         document.getElementById("imageURL").value = fileString;
     }
 
