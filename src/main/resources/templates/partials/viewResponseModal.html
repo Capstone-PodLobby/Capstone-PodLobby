@@ -5,7 +5,7 @@
 
     <div th:id="'_modal' + ${i}" class="modal modalWithContent">
         <div class="modal-content">
-            <h4>Here are the responses to your request on <span th:text="${requestList.get(i).title}"></span></h4>
+            <h4 style="color: #f9ebd5 !important;">Here are the responses to your request on <span th:text="${requestList.get(i).title}"></span></h4>
         </div>
             <div th:each="response : ${requestList.get(i).responseList}" class="col s12 m6">
                 <div class="card horizontal" style="background-color: #f9ebd5 !important;">

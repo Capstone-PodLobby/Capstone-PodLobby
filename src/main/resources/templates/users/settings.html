@@ -20,6 +20,21 @@
                     <i class="material-icons">error</i>Please keep something about you on your profile
                 </div>
             </div>
+            <div>
+                <div class="errorMsg" th:if="${param.email}">
+                    <i class="material-icons">error</i>Email is already in use or is blank
+                </div>
+            </div>
+            <div>
+                <div class="errorMsg" th:if="${param.passwords}">
+                    <i class="material-icons">error</i>Passwords do not match
+                </div>
+            </div>
+            <div>
+                <div class="errorMsg" th:if="${param.quality}">
+                    <i class="material-icons">error</i>Password needs to be 8-20 char, have 1 number and 1 uppercase
+                </div>
+            </div>
         </div>
 
         <form class="col s12" th:action="@{/settings}" th:method="POST" th:object="${user}" style="margin-top: 35px !important;">
@@ -59,8 +74,8 @@
                 <div class="input-field col s12" style="display: flex">
                     <i class="material-icons">insert_photo</i>
                     <input id="profileImage" type="text" class="validate" name="profileImage">
-                    <label class="labelIcon" for="profileImage">Edit Profile Image</label>
-                    <button class="btn wave-effect" id="fileUploader"><a><i class="material-icons">cloud_download</i></a></button>
+                    <label class="labelIcon" id="editProfileImageLabel" for="profileImage">Edit Profile Image</label>
+                    <button class="wave-effect waves-light" id="fileUploader" style="border: none !important;"><a><i class="material-icons">cloud_download</i></a></button>
                 </div>
             </div>
 
@@ -68,8 +83,8 @@
                 <div class="input-field col s12" style="display: flex">
                     <i class="material-icons">insert_photo</i>
                     <input id="backgroundImage" type="text" class="validate" name="backgroundImage">
-                    <label class="labelIcon" for="backgroundImage">Edit Background Image</label>
-                    <button class="btn wave-effect" id="backgroundUploader"><a><i class="material-icons">cloud_download</i></a></button>
+                    <label class="labelIcon" id="editBackImageLabel" for="backgroundImage">Edit Background Image</label>
+                    <button class="wave-effect waves-light" id="backgroundUploader" style="border: none !important;"><a><i class="material-icons">cloud_download</i></a></button>
                 </div>
             </div>
 
@@ -114,6 +129,7 @@
     function uploadFile(result){
         const fileData = result.filesUploaded;
         const fileString = fileData[0].url;
+        $("#editProfileImageLabel").addClass("active");
         document.getElementById("profileImage").value = fileString;
 
     }
@@ -133,6 +149,7 @@
     function uploadFileBackground(result){
         const fileData = result.filesUploaded;
         const fileString = fileData[0].url;
+        $("#editBackImageLabel").addClass("active");
         document.getElementById("backgroundImage").value = fileString;
     }
 

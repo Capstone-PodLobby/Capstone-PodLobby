@@ -48,6 +48,8 @@
 }
 #laterBtn{
     min-width: 30%;
+    background: rgba(2, 89, 85, .15);
+    height: 50%;
 }
 #modalSubmit{
     height: 10%;
@@ -56,11 +58,16 @@
     margin-right: 2%;
 }
 .clicked{
-    background-color: #443620 !important;
     opacity: .2;
+}
+.clicked2{
+    opacity: .99;
 }
 .categoryName {
     font-size: 2rem !important;
+    /*background: rgba(2, 89, 85, .5);*/
+    text-align: center;
+    color: #499e8b !important;
 }
 .nav-wrapper{
     background-color: #faebd6;
@@ -70,14 +77,37 @@
     margin-right: 15px !important;
     margin-bottom: 15px !important;
 }
-.categoryItem{
+.categoryName{
     -webkit-transition: opacity .5s ease-in-out;
     -moz-transition: opacity .5s ease-in-out;
     -ms-transition: opacity .5s ease-in-out;
     -o-transition: opacity .5s ease-in-out;
     transition: opacity .5s ease-in-out;
 }
-
+.categoryImage{
+    -webkit-transition: opacity .5s ease-in-out;
+    -moz-transition: opacity .5s ease-in-out;
+    -ms-transition: opacity .5s ease-in-out;
+    -o-transition: opacity .5s ease-in-out;
+    transition: opacity .5s ease-in-out;
+}
+.imageBox{
+    -webkit-transition: opacity .5s ease-in-out;
+    -moz-transition: opacity .5s ease-in-out;
+    -ms-transition: opacity .5s ease-in-out;
+    -o-transition: opacity .5s ease-in-out;
+    transition: opacity .5s ease-in-out;
+}
+.textBox{
+    -webkit-transition: opacity .5s ease-in-out;
+    -moz-transition: opacity .5s ease-in-out;
+    -ms-transition: opacity .5s ease-in-out;
+    -o-transition: opacity .5s ease-in-out;
+    transition: opacity .5s ease-in-out;
+}
+.customButton{
+    background: rgba(2, 89, 85, .15);
+}
 @media screen and (min-width: 900px){
     .categoryName {
         font-size: 3.2rem !important;
