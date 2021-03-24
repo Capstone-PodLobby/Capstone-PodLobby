@@ -48,9 +48,16 @@ public class Settings {
                              @RequestParam(name = "confirm-password", required = false) String confirmPassword,
                              @RequestParam(name = "profileImage", required = false) String profileImage,
                              @RequestParam(name = "backgroundImage", required = false) String backgroundImage,
+                             @RequestParam(name = "description") String aboutMe,
                              RedirectAttributes redirectAtr
     ){
-        User currentUser = (User) session.getAttribute("user");
+        User currentUser =  userService.getLoggedInUser();
+
+        if(userDao.findByEmail(user.getEmail()) != null && !currentUser.getEmail().equals(user.getEmail())){
+            return "redirect:/settings?email";
+        } else {
+            currentUser.setEmail(user.getEmail());
+        }
 
         if (userDao.findByUsername(user.getUsername()) != null && !currentUser.getUsername().equals(user.getUsername())) {
             return "redirect:/settings?username";
@@ -75,10 +82,10 @@ public class Settings {
             currentUser.setPassword(encoder.encode(user.getPassword()));
         }
 
-        if(user.getAboutMe().isEmpty()) {
+        if (aboutMe.isEmpty()) {
             return "redirect:/settings?aboutMe";
         }
-        currentUser.setAboutMe(user.getAboutMe());
+        currentUser.setAboutMe(aboutMe);
 
         userDao.save(currentUser);
         session.setAttribute("user", currentUser);
