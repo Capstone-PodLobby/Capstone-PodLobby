@@ -23,7 +23,6 @@ public class Methods {
 
     public String timeFormat(String timeStamp){
         String timeString = timeStamp.substring(0, 16);
-        System.out.println(timeString);
         String time = timeString.substring(11, 13);
         int number = Integer.parseInt(time);
         if(number == 12) {

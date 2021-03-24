@@ -134,6 +134,10 @@ public class PodcastPostController {
             validation.rejectValue("embedLink", "Issue with embed link, please check src= attribute");
             errorMsg.add("Issue with embed link, please check src= attribute");
         }
+        if(podcastDao.getByTitle(podcast.getTitle()) != null) {
+            validation.rejectValue("title", "Please pick a unique podcast Title");
+            errorMsg.add("Title can not be the same as another Podcast");
+        }
 
         if(validation.hasErrors()) {
             model.addAttribute("podcast", podcast);
