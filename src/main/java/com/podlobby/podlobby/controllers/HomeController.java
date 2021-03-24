@@ -4,6 +4,8 @@ import com.mailjet.client.errors.MailjetException;
 import com.podlobby.podlobby.model.User;
 import com.podlobby.podlobby.services.TLSEmail;
 import com.podlobby.podlobby.services.UserService;
+import com.podlobby.podlobby.util.Methods;
+import org.aspectj.apache.bcel.classfile.Method;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,12 +14,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class HomeController {
 
     private final UserService userService;
     private final TLSEmail tlsEmail;
+    private final Methods method = new Methods();
 
     public HomeController(UserService userService, TLSEmail tlsEmail){
         this.userService = userService;
@@ -26,7 +30,8 @@ public class HomeController {
 
     //    Display the landing page (non-authenticated) //
     @GetMapping("/")
-    public String showHomePage(){
+    public String showHomePage(HttpSession session){
+        session.setAttribute("method", method);
         return"home";
     }
 

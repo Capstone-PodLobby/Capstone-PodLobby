@@ -117,7 +117,7 @@ public class ResponseController {
         User currUser = userService.getLoggedInUser();
         // send email message
         tlsEmail.sendEmail(toUser.getEmail(), toUser.getUsername(), "Let's Collaborate on a Podcast!", messageBody + " from " + currUser.getUsername() + " contact : " + currUser.getEmail());
-        return "redirect:/profile";
+        return "redirect:/profile?myPodcasts";
     }
 
 }
