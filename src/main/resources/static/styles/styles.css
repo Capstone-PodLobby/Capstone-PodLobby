@@ -89,6 +89,10 @@ main {
     font-size: 32px;
 }
 
+.sidenav{
+    background-color: #faebd6 !important;
+}
+
 #profileNav{
     height: 140px;
 }
@@ -128,7 +132,7 @@ main {
 }
 
 .customButton{
-    background: rgba(2, 89, 85, .15);
+    background: rgba(2, 89, 85, .5);
 }
 
 /*====== FOOTER PARTIAL ========*/
@@ -235,6 +239,27 @@ a, button{
 
 }
 a:hover{
+    background-position: 0 100%;
+}
+
+
+button.feedButton  {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    /*background: linear-gradient(to right, #a1a1c4 50%, #489e8d 50%);*/
+    background: linear-gradient(to right, #faebd6 50%, #49a985 50%);
+
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 100%;
+    background-position: 100%;
+
+    transition: background-position 475ms ease;
+}
+
+button.feedButton:hover {
     background-position: 0 100%;
 }
 .navAnchor {
