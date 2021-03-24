@@ -5,14 +5,14 @@
 
 
 <div th:fragment="requestModal" th:remove="tag">
-    <a class="waves-effect waves-light btn modal-trigger deleteButton" href="#responses">Would you like to work with me?</a>
+    <a class="modal-trigger customButton" href="#responses"><button class="waves-effect waves-light feedButton">Would you like to work with me?</button></a>
 
     <div id="responses" class="modal">
         <div class="modal-content" th:if="${responseList != null}">
             <div class="commentArea" th:each="response : ${responseList}">
                 <img style="max-width: 25%;" class="commentProImage circle responsive-image" th:src="${userController.getOne(response.user.id).profileImage}"/>
                 <div class="widthText">
-                    <p class="teal-text text-darken-3">Posted at : <span th:text="${response.createdAt.toString().substring(0, 16)}"></span></p>
+                    <p class="teal-text text-darken-3">Posted at : <span th:text="${session.method.timeFormat(response.createdAt.toString().substring(0, 16))}"></span></p>
                     <p class="teal-text text-darken-3">Posted by : <span th:text="${userController.getOne(response.user.id).username}"></span></p>
                 </div>
                 <p class="commentContent teal-text text-darken-3" th:text="${response.content}"></p>
