@@ -5,7 +5,7 @@
 
 
 <div th:fragment="requestModal" th:remove="tag">
-    <a class="modal-trigger customButton" href="#responses"><button class="waves-effect waves-light feedButton">Would you like to work with me?</button></a>
+    <a class="modal-trigger customButton" href="#responses"><button class="waves-effect waves-light feedButton" style="border: none !important;">Would you like to work with me?</button></a>
 
     <div id="responses" class="modal">
         <div class="modal-content" th:if="${responseList != null}">
