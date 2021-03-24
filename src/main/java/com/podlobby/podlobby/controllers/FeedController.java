@@ -8,6 +8,7 @@ import com.podlobby.podlobby.repositories.PodcastRepository;
 import com.podlobby.podlobby.repositories.UserRepository;
 import com.podlobby.podlobby.services.UserService;
 import com.podlobby.podlobby.util.IframeParser;
+import com.podlobby.podlobby.util.Methods;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +25,7 @@ public class FeedController {
     private final PodcastRepository podcastDao;
     private final UserRepository usersDao;
     private final FollowRepository followDao;
+    private final Methods methods = new Methods();
 
     public FeedController(PodcastRepository podcastDao, UserRepository usersDao, FollowRepository followDao, UserService userService){
         this.podcastDao = podcastDao;
@@ -45,6 +47,7 @@ public class FeedController {
         model.addAttribute("page", "Global Feed");
         model.addAttribute("podcasts", podcasts);
         model.addAttribute("currentUrl", request.getRequestURI());
+        session.setAttribute("method", methods);
         return"feeds/global-feed";
     }
 

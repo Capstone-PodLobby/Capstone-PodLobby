@@ -15,6 +15,35 @@ h1, h2 {
     background: #faebd6;
 }
 
+
+
+/*contact user highlight*/
+#contactUser{
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    /*background: linear-gradient(to right, #a1a1c4 50%, #489e8d 50%);*/
+    background: linear-gradient(to right, #b8986b 50%, #433520 50%);
+
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 100%;
+    background-position: 100%;
+
+    transition: background-position 475ms ease;
+
+}
+#contactUser:hover{
+    background-position: 0 100%;
+}
+
+
+/*Pulse effect*/
+.cyan {
+    background-color: #d1c2b1 !important;
+}
+
 /*to get rid of the random padding*/
 .dropdown-content {
     background-color: #f9ebd5 !important;
@@ -242,6 +271,25 @@ a:hover{
     background-position: 0 100%;
 }
 
+.byLink{
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    /*background: linear-gradient(to right, #a1a1c4 50%, #489e8d 50%);*/
+    background: linear-gradient(to right, #d6bb95 50%, #faebd6 50%);
+
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 100%;
+    background-position: 100%;
+
+    transition: background-position 475ms ease;
+
+}
+.byLink:hover{
+    background-position: 0 100%;
+}
 
 button.feedButton  {
     position: relative;

@@ -45,9 +45,10 @@
             <div class="card-image" style="display: flex !important;">
                 <img class="podImageGlobal" th:src="${podcast.image}">
             </div>
-            <p style="color: #6e574d; margin-left: 5px; margin-right: 5px"> By: <span><a class="right" th:href="@{/otherProfile/{id}(id=${podcast.user.id})}" th:text="${podcast.user.username}"></a></span></p>
+            <p style="padding: 0 24px !important;"><span><a class="byLink" th:href="@{/otherProfile/{id}(id=${podcast.user.id})}" th:text="'By : ' + ${podcast.user.username}"></a></span></p>
             <div class="card-stacked">
                 <div class="card-content globalDescription podcastsDesc">
+                    <p th:text="${podcast.title}"></p>
                     <p th:text="${podcast.description}"></p>
                 </div>
                 <div class="card-action globalListenButton">

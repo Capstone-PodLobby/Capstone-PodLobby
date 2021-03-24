@@ -14,12 +14,12 @@
                             <h3 th:text="${response.user.username}" style="color: #433520 !important;"></h3>
                             <p th:text="${response.content}"></p>
                             <div class="divider"></div>
-                            <p th:text="${response.createdAt.toString().substring(0, 16)}"></p>
+                            <p th:text="${session.method.timeFormat(response.createdAt.toString().substring(0, 16))}"></p>
                             <p th:switch="${response.acceptedStatus == 1}">Status:
                                 <span th:case="${true}">Accepted</span>
                                 <span th:case="${false}">Pending</span>
                             </p>
-                            <a th:href="@{/collaborate/{id}(id=${response.user.id})}" th:if="${response.acceptedStatus == 1}">Contact User</a>
+                            <a id="contactUser" th:href="@{/collaborate/{id}(id=${response.user.id})}" th:if="${response.acceptedStatus == 1}">Contact User</a>
                         </div>
 
                         <a class="btn waves-effect waves-light" th:if="${response.acceptedStatus == 0}" th:href="@{/accepted/{id}(id=${response.id})}">Accept</a>

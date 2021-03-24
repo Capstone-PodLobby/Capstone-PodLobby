@@ -11,6 +11,8 @@ import com.podlobby.podlobby.services.UserService;
 import com.podlobby.podlobby.util.Methods;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -18,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.lang.reflect.Method;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -45,6 +48,7 @@ public class RequestController {
     @GetMapping("/request")
     public String showRequestForm(Model model, HttpServletRequest request, HttpSession session){
         model.addAttribute("request", new Request());
+        model.addAttribute("newRequest", true);
         User user = userService.getLoggedInUser();
         session.setAttribute("user", user);
         model.addAttribute("user", user);
@@ -54,36 +58,41 @@ public class RequestController {
 
     // create the request
     @PostMapping("/request")
-    public String createRequest(@ModelAttribute Request request, @RequestParam(name = "requestId") long id,
+    public String createRequest(@ModelAttribute @Validated Request request, Errors validation, @RequestParam(name = "requestId") long id,
                                 @RequestParam(name = "req-amount") int amount, Model model,
-                                HttpServletRequest servletRequest, RedirectAttributes redirectAtr){
+                                HttpServletRequest servletRequest){
+
         User user = userService.getLoggedInUser();
+        List<String> errorMsg = new ArrayList<>();
+
         request.setGuestCount(amount);
         if(request.getGuestCount() <= 0) {
-            redirectAtr.addFlashAttribute("message", "Guest count must be higher than 0");
-            return "redirect:/request";
+            validation.rejectValue("guestCount", "Guest count must be higher than 0");
+            errorMsg.add("Guest count must be higher than 0");
         } else if (request.getDescription().isEmpty()) {
-            redirectAtr.addFlashAttribute("message", "Request must include a description");
-            return "redirect:/request";
+            validation.rejectValue("description", "Description can not be missing");
+            errorMsg.add("Description can not be missing");
         } else if (request.getTitle().isEmpty()) {
-            redirectAtr.addFlashAttribute("message", "Request must include a title");
-            return "redirect:/request";
+            validation.rejectValue("title", "Title can not be missing");
+            errorMsg.add("Title can not be missing");
+        } else if (requestDao.findByTitle(request.getTitle()) != null) {
+            validation.rejectValue("title", "Title can not be missing");
+            errorMsg.add("Request title must be unique");
         }
-        // a new request is being made not edited
-        if(id == 0) {
-            request.setCreatedAt(new Timestamp(new Date().getTime()));
-            request.setIsActive(1);
-            request.setUser(user);
-            requestDao.save(request);
-        } else {
-            // updating a request => had to do it this way as it was creating duplicate data in the db
-            Request updatingRequest = requestDao.getOne(id);
-            updatingRequest.setCreatedAt(new Timestamp(new Date().getTime()));
-            updatingRequest.setGuestCount(amount);
-            updatingRequest.setDescription(request.getDescription());
-            updatingRequest.setTitle(request.getTitle());
-            requestDao.save(updatingRequest);
+
+        if(validation.hasErrors()) {
+            model.addAttribute("request", request);
+            model.addAttribute("errorList", errorMsg);
+            model.addAttribute("user", user);
+            model.addAttribute("currentUrl", servletRequest.getRequestURI());
+            model.addAttribute("newRequest", true);
+            return "requests/request";
         }
+
+        request.setCreatedAt(new Timestamp(new Date().getTime()));
+        request.setIsActive(1);
+        request.setUser(user);
+        requestDao.save(request);
 
         model.addAttribute("currentUrl", servletRequest.getRequestURI());
 
@@ -164,15 +173,54 @@ public class RequestController {
 
     @GetMapping("/request/edit/{id}")
     public String editRequest(@PathVariable(name = "id") long id, Model model, HttpServletRequest request){
-        model.addAttribute("request", requestDao.getOne(id));
         User user = userService.getLoggedInUser();
+
+        if(requestDao.getOne(id).getUser().getId() != user.getId()){
+            if(user.getIsAdmin() == 0) {
+                return "redirect:/profile";
+            }
+        }
+
+        model.addAttribute("editing", true);
+
+        model.addAttribute("request", requestDao.getOne(id));
         model.addAttribute("user", user);
         model.addAttribute("currentUrl", request.getRequestURI());
         return "requests/request";
     }
 
+    @PostMapping("/request/edit")
+    public String editRequestPost(@RequestParam(name = "requestId") long id, Model model, @RequestParam(name = "req-amount") int amount,
+                                  @ModelAttribute @Validated Request request, Errors validation, RedirectAttributes redirectAttributes, HttpServletRequest servletRequest) {
+
+        List<String> errorMsg = new ArrayList<>();
+        if (requestDao.findByTitle(request.getTitle()) != null && !request.getTitle().equals(requestDao.findById(id).getTitle())) {
+            validation.rejectValue("title", "Title can not be missing");
+            errorMsg.add("Request title must be unique");
+        } else if(amount <= 0) {
+            validation.rejectValue("guestCount", "Guest count must be higher than 0");
+            errorMsg.add("Guest count must be higher than 0");
+        }
+
+        if(validation.hasErrors()){
+            model.addAttribute("editing", true);
+            model.addAttribute("errorList", errorMsg);
+            model.addAttribute("request", requestDao.getOne(id));
+            model.addAttribute("user", userService.getLoggedInUser());
+            model.addAttribute("currentUrl", servletRequest.getRequestURI());
+            return "requests/request";
+        }
+
+        Request updatingRequest = requestDao.getOne(id);
+        updatingRequest.setCreatedAt(new Timestamp(new Date().getTime()));
+        updatingRequest.setGuestCount(amount);
+        updatingRequest.setDescription(request.getDescription());
+        updatingRequest.setTitle(request.getTitle());
+        requestDao.save(updatingRequest);
+
+        redirectAttributes.addFlashAttribute("message", "Your request has been edited");
+        return "redirect:/user-requests";
+    }
+
 
 }
-
-
-// request.getSession().putKey("infoMessage", "whatever")
