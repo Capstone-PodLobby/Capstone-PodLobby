@@ -46,7 +46,7 @@ public class User {
     @Column
     private String authCode;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Podcast> podcasts;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")

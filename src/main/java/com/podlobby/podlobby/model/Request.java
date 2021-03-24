@@ -16,7 +16,7 @@ public class Request {
     @ManyToOne
     private User user;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "request")
+    @OneToMany(mappedBy = "request")
     private List<Response> responseList;
 
     @Column(nullable = false)
