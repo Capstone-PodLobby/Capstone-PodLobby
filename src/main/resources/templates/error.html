@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/materializeHead :: styleHead(Error)"></head>
-<body>
+<body style="background: #499E8D !important;">
 
     <nav sec:authorize="isAnonymous()" th:replace="partials/navbar :: navbar"></nav>
     <nav sec:authorize="isAuthenticated()" th:replace="partials/navbar-profile :: profileNav"></nav>

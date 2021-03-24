@@ -23,7 +23,7 @@
                         <img th:src="${session.user.backgroundImage}">
                     </div>
                     <a href="#user"><img class="circle" th:src="${session.user.getProfileImage}"></a>
-                    <a href="#name"><span class="white-text name" th:text="${session.user.username}"></span></a>
+                    <a href="#name"><span class="name" th:text="${session.user.username}"></span></a>
                 </div>
 
             </li>
@@ -41,7 +41,7 @@
             <li class="divider"></li>
             <li>
                 <form class="logoutForm" th:action="@{/logout}" method="POST">
-                    <button class="logoutFormButton">Logout</button>
+                    <button class="logoutFormButton" style="margin-left: 17px">Logout</button>
                 </form>
             </li>
             <li class="divider"></li>

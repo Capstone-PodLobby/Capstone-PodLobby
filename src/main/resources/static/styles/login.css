@@ -40,14 +40,14 @@ body {
 
 /* label color */
 .input-field label {
-    color: white !important;
+    color: #f9ebd5 !important;
 }
 /* label focus color */
 .input-field input[type=text]:focus + label,
 .input-field input[type=password]:focus + label,
 .input-field input[type=number]:focus + label,
 .input-field input[type=email]:focus + label{
-    color: white !important;
+    color: #f9ebd5 !important;
 }
 /* label underline focus color */
 .input-field input[type=text]:focus,
@@ -55,8 +55,8 @@ body {
 .input-field input[type=number]:focus,
 .input-field input[type=text-area]:focus,
 .input-field input[type=email]:focus{
-    color:white !important;
-    border-bottom: 1px solid white !important;
+    color:#f9ebd5 !important;
+    border-bottom: 1px solid #f9ebd5 !important;
     /*box-shadow: 0 1px 0 0 white !important;*/
 }
 /* valid color */
@@ -66,8 +66,8 @@ body {
 .input-field input[type=email].valid,
 .input-field input[type=text-area].valid,
 .materialize-textarea.valid{
-    color: white !important;
-    border-bottom: 1px solid white !important;
+    color: #f9ebd5 !important;
+    border-bottom: 1px solid #f9ebd5 !important;
     /*box-shadow: 0 1px 0 0 white !important;*/
 }
 /*field txt color*/
@@ -76,14 +76,19 @@ body {
 #req-amount,
 #username,
 #email,
-#body {
-    color: white !important;
+#body,
+#about-me,
+#profileImage,
+#embedUrl,
+#imageURL,
+#backgroundImage{
+    color: #f9ebd5 !important;
 }
 /* invalid color */
 .input-field input[type=number].invalid,
 .input-field input[type=text].invalid,
 .input-field input[type=password].invalid {
-    color: white !important;
+    color: #f9ebd5 !important;
     border-bottom: 1px solid #433520 !important;
     /*box-shadow: 0 1px 0 0 #000;*/
 }
@@ -96,7 +101,7 @@ span {
 }
 /**/
 .select-dropdown.dropdown-trigger {
-    color: white !important;
+    color: #f9ebd5 !important;
 }
 
 /*!*char counter -> create*!*/
@@ -115,15 +120,15 @@ span {
 /*!*------------------------------*!*/
 
 textarea.materialize-textarea:focus:not([readonly]){
-    color:white !important;
-    border-bottom: 1px solid white !important;
+    color:#f9ebd5 !important;
+    border-bottom: 1px solid #f9ebd5 !important;
     /*box-shadow: 0 1px 0 0 white !important;*/
 }
 
 
 textarea.materialize-textarea.valid{
-    color: white !important;
-    border-bottom: 1px solid white !important;
+    color: #f9ebd5 !important;
+    border-bottom: 1px solid #f9ebd5 !important;
     /*box-shadow: 0 1px 0 0 white !important;*/
 }
 
