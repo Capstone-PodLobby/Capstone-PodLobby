@@ -1,17 +1,31 @@
-.card-buttons{
-    display: flex !important;
-    justify-content: center !important;
-}
+/*.card-buttons{*/
+/*    display: flex !important;*/
+/*    justify-content: space-around !important;*/
+/*}*/
 
-#btn-hld-top{
-    display: flex !important;
-    justify-content: center !important;
-}
+/*#btn-hld-top{*/
+/*    display: flex !important;*/
+/*    justify-content: space-around !important;*/
+/*    width: 100% !important;*/
+/*}*/
 
-#btn-hld-bottom{
-    display: flex !important;
-    justify-content: center !important;
-}
+/*#btn-hld-bottom{*/
+/*    display: flex !important;*/
+/*    justify-content: center !important;*/
+/*    width: 100% !important;*/
+/*}*/
+
+/*#pro-btn-row{*/
+/*    display: flex !important;*/
+/*    justify-content: center !important;*/
+/*}*/
+
+/*#pro-btn-col{*/
+/*    display: flex;*/
+/*    !*justify-content: space-between;*!*/
+/*    flex-direction: row;*/
+/*    !*flex-wrap: wrap;*!*/
+/*}*/
 
 .card-image{
     display: flex !important;
@@ -27,6 +41,82 @@
     width: 100% !important;
     margin-right: 0 !important;
 }
+
+#lst-btn, #cmt-btn, #dlt-btn, #edt-btn{
+    width: 100% !important;
+    margin: 0 !important;
+}
+
+/*#edit-btn, #delete-btn, #comment-btn{*/
+/*    width: 100%;*/
+/*    !*margin: 0;*!*/
+/*}*/
+
+#tst-row{
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+}
+
+#tst-bt-1, #tst-bt-2, #tst-bt-3, #tst-bt-4{
+    display: flex;
+    justify-content: center;
+}
+
+
+.p{
+    /*background-color:white;*/
+    display: flex;
+    justify-content: center;
+    width: 75% !important;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 1em;
+    /*margin-left: 10%;*/
+    /*margin-right: 10%;*/
+}
+
+.full-width{
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
