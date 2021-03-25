@@ -1,14 +1,12 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/profilePageStyle :: styleHead('Your Profile')"></head>
+<head th:replace="partials/materializeProfile :: styleHead('Your Profile')"></head>
 <body>
 <div>
     <img id="animated-example heading" class="animated fadeInDown background-img background-img" th:style="'background:linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, .8)),url(' + ${session.user.backgroundImage} + '); background-repeat: no-repeat !important; background-size: cover !important;'">
 </div>
-    <nav th:replace="partials/navbar-profile :: profileNav"></nav>
-
-
-    <div th:if="${!param.isEmpty()}">
+<nav th:replace="partials/navbar-profile :: profileNav"></nav>
+<div th:if="${!param.isEmpty()}">
         <div>
             <div class="errorMsg" th:if="${param.messageSent}">
                 Our team has been notified. We will get back to you soon
@@ -50,16 +48,18 @@
             </div>
         </div>
     </div>
-
-   <div th:if="${message != null}">
-        <p class="errorMsg" th:text="${message}"></p>
-    </div>
+<div th:if="${message != null}">
+    <p class="errorMsg" th:text="${message}"></p>
+</div>
 <div class="container" id="profileContentContainer">
-
     <main>
         <div class="row">
-            <div class="col m4 hide-on-small-only profile-side profile-style">
+            <div class="col m6 l6 xl6 hide-on-small-only">
                 <img class="circle profile-Image" th:src="${session.user.profileImage}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col m6 hide-on-small-only profile-side profile-style">
                 <div class="collection list-style">
                     <p class="collection-item"><a th:text="${session.user.username}"></a></p>
                     <p class="collection-item"><a href="/following" style="width: 100%;">Following<span class="badge right" th:text="${followingCount}"></span> </a></p>
@@ -70,96 +70,126 @@
                     <p class="collection-item"><a href="/profile">Recommendations</a></p>
                     <p class="collection-item"><a href="?myPodcasts">My Podcasts</a></p>
                 </div>
-
                 <p class="center-align" th:text="${session.user.aboutMe}"></p>
             </div>
 
-            <h2 class="profile-heading" th:text="'Welcome back ' + ${session.user.username}" ></h2>
-
-            <div class="col s12 m8 content-side">
-
-    <!--    In the content area can click on a specific podcast ( id ) and it will move to the nav bar to be played -->
-
+            <div class="col s12 m6 l6 xl6">
+                <div class="row">
                 <div th:if="${!param.isEmpty()}">
+
                     <div id="profileContentArea">
-
-
                         <div th:if="${userPodcasts.size() > 0}">
-                            <div class="col s12 l8 profileContentItem" th:each="i : ${#numbers.sequence(0, userPodcasts.size() - 1)}">
-                                <div class="card horizontal profileCard-Card" style="box-shadow: none !important; background: rgba(252, 232, 205, .8) !important; color: #433520 !important;">
-                                    <div class="card-image">
+                            <div class="col s12 m12 l12 xl12" th:each="i : ${#numbers.sequence(0, userPodcasts.size() - 1)}">
+                                <div class="card" style="box-shadow: none !important; background: rgba(252, 232, 205, .8) !important; color: #433520 !important;">
                                         <img class="podImageProfiles" th:src="${userPodcasts.get(i).image}">
-                                    </div>
                                     <div class="card-stacked">
-                                        <div class="card-content podcastsDesc">
-                                            <p th:text="${userPodcasts.get(i).title}"></p>
-                                            <p th:text="${userPodcasts.get(i).description}"></p>
-                                        </div>
-                                        <div class="card-action">
 
-                                            <form class="buttonItem" th:action="@{/listen/{id}(id=${userPodcasts.get(i).id})}" method="get">
-                                                <input type="hidden" name="currentUrl" id="currentUrl" th:value="${currentUrl} + '?myPodcasts'">
-                                                <a class="widthFull"><button class="widthFull btn waves-effect waves-light">Listen</button></a>
-                                            </form>
-
-                                            <a th:href="@{/podcasts/{id}/edit(id=${userPodcasts.get(i).id})}" class="buttonItem btn waves-effect waves-light">Edit</a>
-                                            <div id="mobileSplitContainer">
-                                                <div th:replace="partials/deleteModal :: deleteModal"></div>
-                                                <div th:replace="partials/commentsModal :: commentModal"></div>
+                                        <div class="row">
+<!--                                            <div class="col 12" id="pdc-dsc">-->
+                                            <div class="container">
+                                            <p class="dsc" th:text="${userPodcasts.get(i).description}"></p>
                                             </div>
+<!--                                            </div>-->
+                                      
+                                      <!-- INPUT TITLE INTO CARDS -->
+                                       <!-- <div class="card-content podcastsDesc"> -->
+                                           <!-- <p th:text="${userPodcasts.get(i).title}"></p> -->
+                                            <!-- <p th:text="${userPodcasts.get(i).description}"></p> -->
 
                                         </div>
+                                        <!--Start My-Podcast-Card Buttons-->
+                                        <div class="row" id="tst-row">
+                                            <div class="col s6" id="tst-bt-1">
+                                                <div class="p">
+                                                    <form class="full-width" th:action="@{/listen/{id}(id=${userPodcasts.get(i).id})}" method="get">
+                                                        <input class="full-width" type="hidden" name="currentUrl" id="currentUrl" th:value="${currentUrl} + '?myPodcasts'">
+                                                        <a class="full-width"><button class="full-width btn  waves-effect waves-light">Listen</button></a>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <div class="col s6" id="tst-bt-2">
+                                                <div class="p">
+                                                    <a th:href="@{/podcasts/{id}/edit(id=${userPodcasts.get(i).id})}" class="full-width btn  waves-effect waves-light">Edit</a>
+                                                </div>
+                                            </div>
+                                            <div class="col s6" id="tst-bt-3">
+                                                <div class="p">
+                                                    <div class="full-width" th:replace="partials/deleteModal :: deleteModal"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col s6" id="tst-bt-4">
+                                                <div class="p">
+                                                    <div th:replace="partials/commentsModal :: commentModal"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--End My-Podcast-Card Buttons-->
+
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
                 <div>
-
                     <div>
                         <div id="profileContentAreaRecommendations" th:if="${param.isEmpty()}">
-
-
                             <h1 th:if="${session.recommendations == null}">Check out the discover option</h1>
+                            <div th:if="${session.recommendations != null}" class="col s12 m12 l12 xl12" th:each="recommendation : ${session.recommendations}">
 
-                            <div th:if="${session.recommendations != null}" class="col s12 profileContentItem" th:each="recommendation : ${session.recommendations}">
-                                <div class="card horizontal profileCard-Card" style="box-shadow: none !important; background: rgba(252, 232, 205, .8) !important; color: #433520 !important;">
-                                    <div class="card-image">
+                                <div class="card" style="box-shadow: none !important; background: rgba(252, 232, 205, .8) !important; color: #433520 !important;">
+<!--                                    <div class="card-image">-->
                                         <img class="podImageProfiles" th:src="${recommendation.image}">
+
+<!--                                    </div>-->
+                                    <div class="card-stacked">
+<!--                                        <div class="card-content podcastsDesc">-->
+                                        <div class="row">
+                                            <div class="col">
+                                                    <p th:text="${recommendation.description}"></p>
+                                            </div>
+
+                                   <!-- INPUT TITLE FOR CARDS -->       
+                                   <!--       
                                     </div>
                                     <p style="padding: 0 24px !important;"><span><a class="byLink" th:href="@{/otherProfile/{id}(id=${recommendation.user.id})}" th:text="'By : ' + ${recommendation.user.username}"></a></span></p>
                                     <div class="card-stacked">
                                         <div class="card-content podcastsDesc">
                                                 <p th:text="${recommendation.title}"></p>
                                                 <p th:text="${recommendation.description}"></p>
+                                    -->
+
                                         </div>
-                                        <div class="card-action" id="recommendActionArea">
+
+
+
+
+<!--                                        CATEGORIES START-->
+                                        <div class="row" id="disc-cat">
                                             <div style="display: flex; justify-content: space-around; width: 90% !important;">
                                                 <span th:each="category : ${recommendation.categories}"  th:if="${session.categoriesChosen.contains(category.name)}" th:text="${category.name}"></span>
                                             </div>
+                                        </div>
 
+                                        <div class="row" id="dsc-lst-btn">
+<!--                                            LISTEN BUTTON START-->
                                             <form class="buttonItem2" th:action="@{/listen/{id}(id=${recommendation.id})}" method="get">
                                                 <input type="hidden" name="currentUrl" th:value="${currentUrl} + '?recommendations'">
                                                 <a class="widthFull"><button class="widthFull waves-effect waves-light btn">Listen</button></a>
                                             </form>
-                                         </div>
+                                        </div>
+<!--                                    </div>-->
                                     </div>
                                 </div>
                             </div>
 
                         </div>
-
                     </div>
-
                 </div>
             </div>
+            </div>
         </div>
-
     </main>
-
-
 </div>
     <footer style="position: fixed; z-index: 3" th:replace="partials/footer :: footer"></footer>
     <div th:replace="partials/materializescripts :: scripts"></div>

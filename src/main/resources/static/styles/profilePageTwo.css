@@ -1,0 +1,99 @@
+.card-image{
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
+    margin-right: 0 !important;
+}
+
+.podImageProfiles{
+    object-fit: contain !important;
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
+    margin-right: 0 !important;
+}
+
+#lst-btn, #cmt-btn, #dlt-btn, #edt-btn{
+    width: 100% !important;
+    margin: 0 !important;
+}
+
+#tst-row{
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+}
+
+#tst-bt-1, #tst-bt-2, #tst-bt-3, #tst-bt-4{
+    display: flex;
+    justify-content: center;
+}
+
+.p{
+
+    display: flex;
+    justify-content: center;
+    width: 75% !important;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 1em;
+}
+
+.full-width{
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
+}
+
+.dsc{
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media only screen and (min-width: 1400px) {
+    .podImageProfiles{
+        object-fit: cover !important;
+    }
+
+    .card-image{
+        margin-right: 0 !important;
+    }
+}
+
+

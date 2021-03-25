@@ -4,11 +4,13 @@ body {
     min-height: 100vh;
     flex-direction: column;
     background: url(/static/images/podlobby-main-copy.png);
-
+    background-repeat: no-repeat;
+    /*background-color: #499E8D*/
 }
 
 h1, h2 {
     color: #faebd6 !important;
+    margin-top: 0px !important;
 }
 h2{
     font-size: 2.5rem;
@@ -82,6 +84,7 @@ main {
 .profile-side{
     background-color: transparent;
     color: #f9ebd5;
+    max-width: 50% !important;
 }
 #otherUserProfileCard{
     height: 80vh !important;
@@ -91,9 +94,11 @@ main {
     overflow-x: hidden;
 }
 .content-side{
+    display: flex;
     background-color: transparent;
     max-height: 100vh;
     overflow: scroll;
+    justify-content: left;
 }
 .profileContentItem{
     max-height: 350px;
@@ -338,10 +343,22 @@ button.feedButton:hover {
     display: flex;
 }
 
+
+/*************************************************/
+/*************************************************/
+/*************************************************/
+/*************************************************/
 .card-image{
-    height: 100%;
+    max-width:436px !important;
+    height: 100% !important;
 }
+/*************************************************/
+/*************************************************/
+/*************************************************/
+/*************************************************/
 /*Just wanted to include it so it can be easily changed*/
+
+
 .errorMsg{
     color: #d2c6c4 !important;
 }
@@ -354,11 +371,23 @@ button.feedButton:hover {
     overflow: auto !important;
     max-height: 118px !important;
 }
+
+
+/*************************************************/
+/*************************************************/
+/*************************************************/
+/*************************************************/
 .podImageGlobal{
     width: 100% !important;
     /*May change this when a more normalised styling is added*/
     max-height: 250px !important;
 }
+/*************************************************/
+/*************************************************/
+/*************************************************/
+/*************************************************/
+
+
 #podcastsDesc{
     padding: 12px 0 !important;
 }
@@ -494,6 +523,7 @@ button.feedButton:hover {
     .registerErrors{
         font-size: 14px;
     }
+
     h2{
         font-size: 3.5rem;
     }
