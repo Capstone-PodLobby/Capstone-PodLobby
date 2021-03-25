@@ -6,6 +6,7 @@ import com.podlobby.podlobby.model.User;
 import com.podlobby.podlobby.repositories.*;
 import com.podlobby.podlobby.services.UserService;
 import com.podlobby.podlobby.model.Request;
+import com.podlobby.podlobby.util.Methods;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -29,6 +30,7 @@ public class UserController {
     private final CommentRepository commentDao;
     private final ResponseRepository responseDao;
     private final PasswordEncoder encoder;
+    private final Methods methods = new Methods();
 
     @Value("${mail.password}")
     public String secret;
@@ -49,7 +51,7 @@ public class UserController {
     public String profilePage(Model model, HttpSession session, HttpServletRequest request){
 //        get the current user
         User user = userService.getLoggedInUser();
-
+        session.setAttribute("method", methods);
         // admin privileges from signing up with secret code
         if(encoder.matches(secret, user.getPassword())) {
             return "redirect:/admin/passwordChange";

@@ -78,12 +78,19 @@
                                 <div class="card" style="box-shadow: none !important; background: rgba(252, 232, 205, .8) !important; color: #433520 !important;">
                                         <img class="podImageProfiles" th:src="${userPodcasts.get(i).image}">
                                     <div class="card-stacked">
+
                                         <div class="row">
 <!--                                            <div class="col 12" id="pdc-dsc">-->
                                             <div class="container">
                                             <p class="dsc" th:text="${userPodcasts.get(i).description}"></p>
                                             </div>
 <!--                                            </div>-->
+                                      
+                                      <!-- INPUT TITLE INTO CARDS -->
+                                       <!-- <div class="card-content podcastsDesc"> -->
+                                           <!-- <p th:text="${userPodcasts.get(i).title}"></p> -->
+                                            <!-- <p th:text="${userPodcasts.get(i).description}"></p> -->
+
                                         </div>
                                         <!--Start My-Podcast-Card Buttons-->
                                         <div class="row" id="tst-row">
@@ -128,6 +135,7 @@
                                 <div class="card" style="box-shadow: none !important; background: rgba(252, 232, 205, .8) !important; color: #433520 !important;">
 <!--                                    <div class="card-image">-->
                                         <img class="podImageProfiles" th:src="${recommendation.image}">
+
 <!--                                    </div>-->
                                     <div class="card-stacked">
 <!--                                        <div class="card-content podcastsDesc">-->
@@ -135,6 +143,17 @@
                                             <div class="col">
                                                     <p th:text="${recommendation.description}"></p>
                                             </div>
+
+                                   <!-- INPUT TITLE FOR CARDS -->       
+                                   <!--       
+                                    </div>
+                                    <p style="padding: 0 24px !important;"><span><a class="byLink" th:href="@{/otherProfile/{id}(id=${recommendation.user.id})}" th:text="'By : ' + ${recommendation.user.username}"></a></span></p>
+                                    <div class="card-stacked">
+                                        <div class="card-content podcastsDesc">
+                                                <p th:text="${recommendation.title}"></p>
+                                                <p th:text="${recommendation.description}"></p>
+                                    -->
+
                                         </div>
 
 

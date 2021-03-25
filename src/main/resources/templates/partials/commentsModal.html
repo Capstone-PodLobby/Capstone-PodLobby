@@ -8,7 +8,7 @@
             <div class="commentArea" th:each="comment : ${userPodcasts.get(i).comments}">
                 <img style="max-width: 25%;" class="commentProImage circle responsive-image" th:src="${userController.getOne(comment.user.id).profileImage}"/>
                 <div class="widthText">
-                    <p class="fullWidthText">Posted at : <span th:text="${comment.createdAt.toString().substring(0, 16)}"></span></p>
+                    <p class="fullWidthText">Posted at : <span th:text="${session.method.timeFormat(comment.createdAt.toString().substring(0, 16))}"></span></p>
                     <p class="fullWidthText">Posted by : <span th:text="${userController.getOne(comment.user.id).username}"></span></p>
                 </div>
                 <p class="commentContent" th:text="${comment.comment}"></p>
