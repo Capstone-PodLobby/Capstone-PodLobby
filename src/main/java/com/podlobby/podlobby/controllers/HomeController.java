@@ -56,5 +56,26 @@ public class HomeController {
     }
 
 
+    @PostMapping("/errorSubmit")
+    public String errorSent(@RequestParam(name = "error-error") String error, @RequestParam(name = "error-timestamp") String time,
+                            @RequestParam(name = "error-path") String path, @RequestParam(name = "error-status") String status,
+                            @RequestParam(name = "error-message") String message, @RequestParam(name = "error-exception") String exception,
+                            @RequestParam(name = "userMsg") String userMsg) {
+        User user = null;
+        try {
+            user = userService.getLoggedInUser();
+        } catch (Exception ignored){}
+
+        String email = error + " at " + time + " path attempt: " + path + " status of : " + status + " message : " + message + " exception: " + exception + "/n" +
+                " user message : " + userMsg;
+
+        if(user != null) {
+            tlsEmail.sendEmail("podlobby@gmail.com", user.getUsername(), "Site Error", email);
+            return "redirect:/profile?errorSent";
+        }
+        tlsEmail.sendEmail("podlobby@gmail.com", "Visitor", "Site Error", email);
+        return "redirect:/login?errorSent";
+    }
+
 }
 

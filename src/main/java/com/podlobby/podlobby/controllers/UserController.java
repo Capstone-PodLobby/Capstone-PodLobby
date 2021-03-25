@@ -46,10 +46,8 @@ public class UserController {
     }
 
 
-//    @PathVariable long id,
     @GetMapping("/profile")
     public String profilePage(Model model, HttpSession session, HttpServletRequest request){
-//        get the current user
         User user = userService.getLoggedInUser();
         session.setAttribute("method", methods);
         // admin privileges from signing up with secret code
@@ -65,9 +63,6 @@ public class UserController {
         model.addAttribute("userController", userDao); // used in comment modal
 
         model.addAttribute("followsCount", numberOfFollowers); //will display the number of followers a user has
-
-
-//        model.addAttribute("podcast",podcastDao.getOne(id));
 
         model.addAttribute("followingCount", followingCount); // make this a session attribute ? will it update on each page ( needs to be tested )
         model.addAttribute("userPodcasts", createdPodcasts); // ^^ same
