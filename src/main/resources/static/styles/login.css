@@ -120,7 +120,7 @@ span {
 /*!*------------------------------*!*/
 
 textarea.materialize-textarea:focus:not([readonly]){
-    color:#f9ebd5 !important;
+    color: #f9ebd5 !important;
     border-bottom: 1px solid #f9ebd5 !important;
     /*box-shadow: 0 1px 0 0 white !important;*/
 }
@@ -131,7 +131,6 @@ textarea.materialize-textarea.valid{
     border-bottom: 1px solid #f9ebd5 !important;
     /*box-shadow: 0 1px 0 0 white !important;*/
 }
-
 
 
 

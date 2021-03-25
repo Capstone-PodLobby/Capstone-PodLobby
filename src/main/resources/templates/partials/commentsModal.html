@@ -1,7 +1,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <div th:fragment="commentModal" th:remove="tag">
-    <a class="waves-effect waves-light btn modal-trigger deleteButton buttonItem" th:href="@{#_modal{num}(num=${i})}">Comments</a>
+    <a class="full-width waves-effect waves-light btn modal-trigger deleteButton buttonItem" th:href="@{#_modal{num}(num=${i})}">Comments</a>
 
     <div th:id="'_modal' + ${i}" class="modal commentModalBox">
         <div class="modal-content" style="background-color: #f9ebd5 !important;">
@@ -28,7 +28,7 @@
                     <input name="comment" type="text" id="comment" class="validate"/>
                 </div>
                 <input type="hidden" name="currentUrl" id="currentUrl" th:value="${currentUrl}">
-                <button class="btn wave-effect">
+                <button class="btn wave-effect" id="cmt-btn">
                     <a>Add comment<i class="material-icons">chat</i></a>
                 </button>
             </form>
