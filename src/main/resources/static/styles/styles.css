@@ -3,12 +3,15 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    background: url(/static/images/podlobby-main-copy.png);
-
+    /*background: url(/static/images/podlobby-main-copy.png);*/
+    /*background-image: url("../images/logo_transparent_copy.png");*/
+    /*background-repeat: no-repeat;*/
+    background-color: #499E8D
 }
 
 h1, h2 {
     color: #faebd6 !important;
+    margin-top: 0px !important;
 }
 
 .dropdown-content li {
@@ -50,6 +53,7 @@ main {
 .profile-side{
     background-color: transparent;
     color: #f9ebd5;
+    max-width: 50% !important;
 }
 #otherUserProfileCard{
     height: 80vh !important;
@@ -59,9 +63,11 @@ main {
     overflow-x: hidden;
 }
 .content-side{
+    display: flex;
     background-color: transparent;
     max-height: 100vh;
     overflow: scroll;
+    justify-content: left;
 }
 .profileContentItem{
     max-height: 350px;
@@ -288,7 +294,8 @@ button.feedButton:hover {
 }
 
 .card-image{
-    height: 100%;
+    max-width:436px !important;
+    height: 100% !important;
 }
 /*Just wanted to include it so it can be easily changed*/
 .errorMsg{

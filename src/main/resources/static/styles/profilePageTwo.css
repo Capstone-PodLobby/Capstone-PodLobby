@@ -1,0 +1,26 @@
+.card-buttons{
+    display: flex !important;
+    justify-content: center !important;
+}
+
+#btn-hld-top{
+    display: flex !important;
+    justify-content: center !important;
+}
+
+#btn-hld-bottom{
+    display: flex !important;
+    justify-content: center !important;
+}
+
+.card-image{
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
+}
+
+.podImageProfiles{
+    object-fit: contain !important;
+}
+
+

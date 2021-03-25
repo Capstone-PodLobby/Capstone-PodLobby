@@ -5,6 +5,7 @@
 .profileContentItem{
     max-height: 380px !important;
     margin-bottom: 45px !important;
+    margin-top: 0px !important;
 }
 .profileCard-Card{
     height: 100%;
@@ -13,7 +14,8 @@
     max-width: 400px !important;
 }
 .card.horizontal .card-image {
-    max-width: 100% !important;
+    height:auto  !important;
+    max-width: 436px !important;
 }
 .podImageProfiles{
     max-height: 165px !important;
@@ -87,9 +89,9 @@
     .container {
         width: 85%;
     }
-    .profileCard-Card{
-        min-width: 500px !important;
-    }
+    /*.profileCard-Card{*/
+    /*    min-width: 500px !important;*/
+    /*}*/
     .profile-Image{
         width: 175px !important;
         height: 175px !important;

@@ -1,9 +1,9 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/profilePageStyle :: styleHead('Your Profile')"></head>
+<head th:replace="partials/materializeProfile :: styleHead('Your Profile')"></head>
 <body>
 <div>
-    <img id="animated-example heading" class="animated fadeInDown background-img background-img" th:style="'background:linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, .8)),url(' + ${session.user.backgroundImage} + '); background-repeat: no-repeat !important; background-size: cover !important;'">
+<!--    <img id="animated-example heading" class="animated fadeInDown background-img background-img" th:style="'background:linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, .8)),url(' + ${session.user.backgroundImage} + '); background-repeat: no-repeat !important; background-size: cover !important;'">-->
 </div>
     <nav th:replace="partials/navbar-profile :: profileNav"></nav>
 
@@ -50,11 +50,15 @@
         <p class="errorMsg" th:text="${message}"></p>
     </div>
 <div class="container" id="profileContentContainer">
-
     <main>
         <div class="row">
-            <div class="col m4 hide-on-small-only profile-side profile-style">
+            <div class="col m6 l6 xl6 hide-on-small-only">
                 <img class="circle profile-Image" th:src="${session.user.profileImage}">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col m6 hide-on-small-only profile-side profile-style">
                 <div class="collection list-style">
                     <p class="collection-item"><a th:text="${session.user.username}"></a></p>
                     <p class="collection-item"><a href="/following" style="width: 100%;">Following<span class="badge right" th:text="${followingCount}"></span> </a></p>
@@ -69,46 +73,78 @@
                 <p class="center-align" th:text="${session.user.aboutMe}"></p>
             </div>
 
-            <h2 class="profile-heading" th:text="'Welcome back ' + ${session.user.username}" ></h2>
-
-            <div class="col s12 m8 content-side">
-
-    <!--    In the content area can click on a specific podcast ( id ) and it will move to the nav bar to be played -->
-
+            <div class="col s12 m6 l6 xl6">
+                <div class="row">
                 <div th:if="${!param.isEmpty()}">
+
                     <div id="profileContentArea">
-
-
                         <div th:if="${userPodcasts.size() > 0}">
-                            <div class="col s12 l8 profileContentItem" th:each="i : ${#numbers.sequence(0, userPodcasts.size() - 1)}">
-                                <div class="card horizontal profileCard-Card" style="box-shadow: none !important; background: rgba(252, 232, 205, .8) !important; color: #433520 !important;">
+                            <div class="col s12 m12 l12 xl12" th:each="i : ${#numbers.sequence(0, userPodcasts.size() - 1)}">
+
+
+
+                                <div class="card" style="box-shadow: none !important; background: rgba(252, 232, 205, .8) !important; color: #433520 !important;">
                                     <div class="card-image">
+                                        <div class="container" id="img-cont">
                                         <img class="podImageProfiles" th:src="${userPodcasts.get(i).image}">
+                                        </div>
                                     </div>
                                     <div class="card-stacked">
-                                        <div class="card-content podcastsDesc">
+                                        <div class="row">
+                                            <div class="col">
                                             <p th:text="${userPodcasts.get(i).description}"></p>
+                                            </div>
                                         </div>
-                                        <div class="card-action">
 
+                                        <div class="row">
+
+
+                                            <div class="row" id="btn-hld-top">
+                                                <!--           LISTEN         -->
+                                                <div class="col 6" id="listen-btn">
                                             <form class="buttonItem" th:action="@{/listen/{id}(id=${userPodcasts.get(i).id})}" method="get">
                                                 <input type="hidden" name="currentUrl" id="currentUrl" th:value="${currentUrl} + '?myPodcasts'">
                                                 <a class="widthFull"><button class="widthFull btn waves-effect waves-light">Listen</button></a>
                                             </form>
-
-                                            <a th:href="@{/podcasts/{id}/edit(id=${userPodcasts.get(i).id})}" class="buttonItem btn waves-effect waves-light">Edit</a>
-                                            <div id="mobileSplitContainer">
-                                                <div th:replace="partials/deleteModal :: deleteModal"></div>
-                                                <div th:replace="partials/commentsModal :: commentModal"></div>
+                                                </div>
+                                                <div class="col 6" id="edit-btn">
+                                                    <!--           EDIT         -->
+                                                    <a th:href="@{/podcasts/{id}/edit(id=${userPodcasts.get(i).id})}" class="buttonItem btn waves-effect waves-light">Edit</a>
+                                                </div>
                                             </div>
 
+                                            <div class="row" id="btn-hld-bottom">
+                                                <div class="col 6" id="delete-btn">
+                                                <!--           DELETE         -->
+                                                    <div th:replace="partials/deleteModal :: deleteModal"></div>
+
+                                                </div>
+
+                                                <div class="col 6" id="comment-btn">
+                                                <!--           COMMENTS         -->
+                                                    <div th:replace="partials/commentsModal :: commentModal"></div>
+                                                </div>
+                                            </div>
+
+
+
                                         </div>
+
+
                                     </div>
                                 </div>
+
+
+
+
+
                             </div>
                         </div>
 
                     </div>
+
+
+
                 </div>
                 <div>
 
@@ -146,6 +182,7 @@
                     </div>
 
                 </div>
+            </div>
             </div>
         </div>
 
