@@ -44,6 +44,11 @@
                 You have successfully deleted the user
             </div>
         </div>
+        <div>
+            <div class="errorMsg" th:if="${param.errorSent}">
+                <i class="material-icons">error</i>Our team has been notified, thank you
+            </div>
+        </div>
     </div>
 
    <div th:if="${message != null}">

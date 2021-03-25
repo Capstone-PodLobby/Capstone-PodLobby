@@ -1,6 +1,8 @@
 # PodLobby
 A full Stack Application Built using Springboot<br>
-![podlobby](src/main/resources/static/images/logo_transparent_copy.png)
+
+---
+
 #### Links
 [About](#about) <br>
 [Technologies](#technologies)<br>
@@ -11,6 +13,7 @@ A full Stack Application Built using Springboot<br>
 [View and Listen](#viewing-and-listening-to-podcasts)<br>
 [Other Features](#other-features)
 ---
+![podlobby](src/main/resources/static/images/logo_transparent_copy.png)
 
 # About
 [PodLobby](https://podlobby.club/) is a social media application designed to be a central location 
@@ -38,23 +41,23 @@ This application was built using Java, Springboot, MySql, Materialize CSS, JavaS
 * Java Mail
 <br>[Top](#podlobby)
 ---
-### Uploading Podcasts
-*Using your preferred podcasting site, [Spotify](https://open.spotify.com/) or [Anchor.fm](https://anchor.fm/dashboard), upload your podcasts to the site by copying the Embed Link for the podcast*<br>
-
-![embedLink](src/main/resources/static/gif/spotifyHowTo.gif)<br>
-[Top](#podlobby)
----
-
 ## Home Page
 ![podlobby](src/main/resources/static/gif/homePage.gif)<br>
 [Top](#podlobby)
 ---
+
 ## Account
-Using Java Mail [Create an account](https://podlobby.club/register) with email validation and using reCAPTCHA to reduce spam abuse on the website<br>
+Using Java Mail [Create an account](https://podlobby.club/register) with email validation. Google reCAPTCHA is implemented to reduce spam abuse on the website for a better user experience<br>
+[Top](#podlobby)
+---
+### Uploading Podcasts
+Using your preferred podcasting site, [Spotify](https://open.spotify.com/) or [Anchor.fm](https://anchor.fm/dashboard), upload your podcasts to the site by copying the Embed Link for the podcast<br>
+
+![embedLink](src/main/resources/static/gif/spotifyHowTo.gif)<br>
 [Top](#podlobby)
 ---
 ## Recommendations
-Using our site, you can be given a tailored feed of podcasts based off of your category preferences using our Discover feature<br>
+Using our site, you can be given a tailored feed of podcasts based off of your category preferences through our *Discover* feature<br>
 ![podlobby](src/main/resources/static/gif/recommendations.gif)<br>
 [Top](#podlobby)
 

@@ -7,7 +7,9 @@
 /*--------------*/
 body {
     background-color: #499E8D;
-
+}
+h1{
+    font-size: 2.2rem;
 }
 
 #forgot-pass-div,
@@ -134,5 +136,65 @@ textarea.materialize-textarea.valid{
 
 
 
-
-
+/*Error page*/
+.errorPageMsg{
+    font-size: 1.5rem;
+    text-align: center;
+}
+.errorBox{
+    max-width: 80vw;
+    margin: 10vmin auto;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.pad{
+    padding: 2% 10%;
+}
+#userMsg{
+    border-bottom: 1px solid #f9ebd5;
+}
+#errorArea{
+    width: 80vw;
+    height: 35vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-bottom: 75px;
+}
+#errorImg{
+    max-width: 100%;
+    max-height: 100%;
+}
+#errorBtn{
+    max-width: 80%;
+    margin: auto;
+    font-size: 10px;
+}
+@media screen and (min-width: 768px){
+    .errorPageMsg{
+        font-size: 2.3rem;
+    }
+    #errorBtn{
+        font-size: 14px;
+    }
+    #errorArea{
+        height: 40vh;
+        margin-bottom: 100px;
+    }
+    h1{
+        font-size: 3.2rem;
+    }
+}
+@media screen and (min-width: 1400px){
+    #errorArea{
+        height: 45vh;
+        margin-bottom: 120px;
+    }
+    h1{
+        font-size: 4rem;
+    }
+}
