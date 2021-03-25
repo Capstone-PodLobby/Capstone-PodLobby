@@ -3,12 +3,10 @@
 <head th:replace="partials/materializeProfile :: styleHead('Your Profile')"></head>
 <body>
 <div>
-<!--    <img id="animated-example heading" class="animated fadeInDown background-img background-img" th:style="'background:linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, .8)),url(' + ${session.user.backgroundImage} + '); background-repeat: no-repeat !important; background-size: cover !important;'">-->
+    <img id="animated-example heading" class="animated fadeInDown background-img background-img" th:style="'background:linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, .8)),url(' + ${session.user.backgroundImage} + '); background-repeat: no-repeat !important; background-size: cover !important;'">
 </div>
-    <nav th:replace="partials/navbar-profile :: profileNav"></nav>
-
-
-    <div th:if="${!param.isEmpty()}">
+<nav th:replace="partials/navbar-profile :: profileNav"></nav>
+<div th:if="${!param.isEmpty()}">
         <div>
             <div class="errorMsg" th:if="${param.messageSent}">
                 Our team has been notified. We will get back to you soon
@@ -45,10 +43,9 @@
             </div>
         </div>
     </div>
-
-   <div th:if="${message != null}">
-        <p class="errorMsg" th:text="${message}"></p>
-    </div>
+<div th:if="${message != null}">
+    <p class="errorMsg" th:text="${message}"></p>
+</div>
 <div class="container" id="profileContentContainer">
     <main>
         <div class="row">
@@ -56,7 +53,6 @@
                 <img class="circle profile-Image" th:src="${session.user.profileImage}">
             </div>
         </div>
-
         <div class="row">
             <div class="col m6 hide-on-small-only profile-side profile-style">
                 <div class="collection list-style">
@@ -69,7 +65,6 @@
                     <p class="collection-item"><a href="/profile">Recommendations</a></p>
                     <p class="collection-item"><a href="?myPodcasts">My Podcasts</a></p>
                 </div>
-
                 <p class="center-align" th:text="${session.user.aboutMe}"></p>
             </div>
 
@@ -80,25 +75,15 @@
                     <div id="profileContentArea">
                         <div th:if="${userPodcasts.size() > 0}">
                             <div class="col s12 m12 l12 xl12" th:each="i : ${#numbers.sequence(0, userPodcasts.size() - 1)}">
-
-
-
                                 <div class="card" style="box-shadow: none !important; background: rgba(252, 232, 205, .8) !important; color: #433520 !important;">
-<!--                                    <div class="card-image">-->
-<!--                                        <div class="container" id="img-cont">-->
                                         <img class="podImageProfiles" th:src="${userPodcasts.get(i).image}">
-<!--                                        </div>-->
-<!--                                    </div>-->
                                     <div class="card-stacked">
                                         <div class="row">
                                             <div class="col">
                                             <p th:text="${userPodcasts.get(i).description}"></p>
                                             </div>
                                         </div>
-
                                         <div class="row">
-
-
                                             <div class="row" id="btn-hld-top">
                                                 <!--           LISTEN         -->
                                                 <div class="col 6" id="listen-btn">
@@ -125,70 +110,60 @@
                                                     <div th:replace="partials/commentsModal :: commentModal"></div>
                                                 </div>
                                             </div>
-
-
-
                                         </div>
-
-
                                     </div>
                                 </div>
-
-
-
-
-
                             </div>
                         </div>
-
                     </div>
-
-
-
                 </div>
                 <div>
-
                     <div>
                         <div id="profileContentAreaRecommendations" th:if="${param.isEmpty()}">
-
-
                             <h1 th:if="${session.recommendations == null}">Check out the discover option</h1>
+                            <div th:if="${session.recommendations != null}" class="col s12 m12 l12 xl12" th:each="recommendation : ${session.recommendations}">
 
-                            <div th:if="${session.recommendations != null}" class="col s12 profileContentItem" th:each="recommendation : ${session.recommendations}">
-                                <div class="card horizontal profileCard-Card" style="box-shadow: none !important; background: rgba(252, 232, 205, .8) !important; color: #433520 !important;">
-                                    <div class="card-image">
+                                <div class="card" style="box-shadow: none !important; background: rgba(252, 232, 205, .8) !important; color: #433520 !important;">
+<!--                                    <div class="card-image">-->
                                         <img class="podImageProfiles" th:src="${recommendation.image}">
-                                    </div>
+<!--                                    </div>-->
                                     <div class="card-stacked">
-                                        <div class="card-content podcastsDesc">
-                                                <p th:text="${recommendation.description}"></p>
+<!--                                        <div class="card-content podcastsDesc">-->
+                                        <div class="row">
+                                            <div class="col">
+                                                    <p th:text="${recommendation.description}"></p>
+                                            </div>
                                         </div>
-                                        <div class="card-action" id="recommendActionArea">
+
+
+
+
+<!--                                        CATEGORIES START-->
+                                        <div class="row" id="disc-cat">
                                             <div style="display: flex; justify-content: space-around; width: 90% !important;">
                                                 <span th:each="category : ${recommendation.categories}"  th:if="${session.categoriesChosen.contains(category.name)}" th:text="${category.name}"></span>
                                             </div>
+                                        </div>
 
+                                        <div class="row" id="dsc-lst-btn">
+<!--                                            LISTEN BUTTON START-->
                                             <form class="buttonItem2" th:action="@{/listen/{id}(id=${recommendation.id})}" method="get">
                                                 <input type="hidden" name="currentUrl" th:value="${currentUrl} + '?recommendations'">
                                                 <a class="widthFull"><button class="widthFull waves-effect waves-light btn">Listen</button></a>
                                             </form>
-                                         </div>
+                                        </div>
+<!--                                    </div>-->
                                     </div>
                                 </div>
                             </div>
 
                         </div>
-
                     </div>
-
                 </div>
             </div>
             </div>
         </div>
-
     </main>
-
-
 </div>
     <footer style="position: fixed; z-index: 3" th:replace="partials/footer :: footer"></footer>
     <div th:replace="partials/materializescripts :: scripts"></div>
