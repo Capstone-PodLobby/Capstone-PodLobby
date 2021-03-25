@@ -7,9 +7,9 @@
         <div class="modal-content">
             <h4>Are You Sure you want to delete this podcast?</h4>
         </div>
-        <form class="full-width" th:action="@{/podcast/delete/{id}(id=${userPodcasts.get(i).id})}" th:method="GET">
-            <input class="full-width" type="hidden" name="currentUrl" id="currentUrl" th:value="${currentUrl}">
-            <button class="full-width modal-close waves-effect waves-green btn-flat" ><a class="full-width">Delete</a></button>
+        <form th:action="@{/podcast/delete/{id}(id=${userPodcasts.get(i).id})}" th:method="GET">
+            <input type="hidden" name="currentUrl" id="currentUrl" th:value="${currentUrl}">
+            <button class="modal-close waves-effect waves-green btn-flat" ><a class="full-width">Delete</a></button>
         </form>
     </div>
 </div>

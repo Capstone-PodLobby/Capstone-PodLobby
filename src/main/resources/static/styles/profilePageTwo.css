@@ -1,32 +1,3 @@
-/*.card-buttons{*/
-/*    display: flex !important;*/
-/*    justify-content: space-around !important;*/
-/*}*/
-
-/*#btn-hld-top{*/
-/*    display: flex !important;*/
-/*    justify-content: space-around !important;*/
-/*    width: 100% !important;*/
-/*}*/
-
-/*#btn-hld-bottom{*/
-/*    display: flex !important;*/
-/*    justify-content: center !important;*/
-/*    width: 100% !important;*/
-/*}*/
-
-/*#pro-btn-row{*/
-/*    display: flex !important;*/
-/*    justify-content: center !important;*/
-/*}*/
-
-/*#pro-btn-col{*/
-/*    display: flex;*/
-/*    !*justify-content: space-between;*!*/
-/*    flex-direction: row;*/
-/*    !*flex-wrap: wrap;*!*/
-/*}*/
-
 .card-image{
     display: flex !important;
     justify-content: center !important;
@@ -47,11 +18,6 @@
     margin: 0 !important;
 }
 
-/*#edit-btn, #delete-btn, #comment-btn{*/
-/*    width: 100%;*/
-/*    !*margin: 0;*!*/
-/*}*/
-
 #tst-row{
     display: flex !important;
     flex-direction: row !important;
@@ -64,9 +30,8 @@
     justify-content: center;
 }
 
-
 .p{
-    /*background-color:white;*/
+
     display: flex;
     justify-content: center;
     width: 75% !important;
@@ -75,8 +40,6 @@
     padding-left: 0;
     padding-right: 0;
     padding-bottom: 1em;
-    /*margin-left: 10%;*/
-    /*margin-right: 10%;*/
 }
 
 .full-width{
@@ -85,6 +48,9 @@
     width: 100% !important;
 }
 
+.dsc{
+    text-align: center;
+}
 
 
 
