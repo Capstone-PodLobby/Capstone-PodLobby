@@ -83,19 +83,11 @@
                                 <div class="card" style="box-shadow: none !important; background: rgba(252, 232, 205, .8) !important; color: #433520 !important;">
                                         <img class="podImageProfiles" th:src="${userPodcasts.get(i).image}">
                                     <div class="card-stacked">
-
                                         <div class="row">
-<!--                                            <div class="col 12" id="pdc-dsc">-->
                                             <div class="container">
-                                            <p class="dsc" th:text="${userPodcasts.get(i).description}"></p>
+                                                <h5><p class="dsc" th:text="${userPodcasts.get(i).title}"></p></h5>
+                                                <p class="dsc" th:text="${userPodcasts.get(i).description}"></p>
                                             </div>
-<!--                                            </div>-->
-                                      
-                                      <!-- INPUT TITLE INTO CARDS -->
-                                       <!-- <div class="card-content podcastsDesc"> -->
-                                           <!-- <p th:text="${userPodcasts.get(i).title}"></p> -->
-                                            <!-- <p th:text="${userPodcasts.get(i).description}"></p> -->
-
                                         </div>
                                         <!--Start My-Podcast-Card Buttons-->
                                         <div class="row" id="tst-row">
@@ -138,51 +130,37 @@
                             <div th:if="${session.recommendations != null}" class="col s12 m12 l12 xl12" th:each="recommendation : ${session.recommendations}">
 
                                 <div class="card" style="box-shadow: none !important; background: rgba(252, 232, 205, .8) !important; color: #433520 !important;">
-<!--                                    <div class="card-image">-->
                                         <img class="podImageProfiles" th:src="${recommendation.image}">
-
-<!--                                    </div>-->
                                     <div class="card-stacked">
-<!--                                        <div class="card-content podcastsDesc">-->
                                         <div class="row">
-                                            <div class="col">
-                                                    <p th:text="${recommendation.description}"></p>
+                                            <div class="container">
+                                                <h5>  <p class="dsc" th:text="${recommendation.title}"></p></h5>
                                             </div>
+                                            <div class="row" id="disc-cat">
+                                                <div style="display: flex; justify-content: space-evenly; width: 90% !important;">
 
-                                   <!-- INPUT TITLE FOR CARDS -->       
-                                   <!--       
-                                    </div>
-                                    <p style="padding: 0 24px !important;"><span><a class="byLink" th:href="@{/otherProfile/{id}(id=${recommendation.user.id})}" th:text="'By : ' + ${recommendation.user.username}"></a></span></p>
-                                    <div class="card-stacked">
-                                        <div class="card-content podcastsDesc">
-                                                <p th:text="${recommendation.title}"></p>
-                                                <p th:text="${recommendation.description}"></p>
-                                    -->
-
-                                        </div>
-
-
-
-
-<!--                                        CATEGORIES START-->
-                                        <div class="row" id="disc-cat">
-                                            <div style="display: flex; justify-content: space-around; width: 90% !important;">
-                                                <span th:each="category : ${recommendation.categories}"  th:if="${session.categoriesChosen.contains(category.name)}" th:text="${category.name}"></span>
+                                                    <span class="col 4" id="dsc-cat" th:each="category : ${recommendation.categories}"  th:if="${session.categoriesChosen.contains(category.name)}" th:text="${category.name}"></span>
+                                                </div>
                                             </div>
                                         </div>
-
-                                        <div class="row" id="dsc-lst-btn">
-<!--                                            LISTEN BUTTON START-->
+                                        <div class="row">
+                                            <div class="container">
+                                                    <p class="dsc" th:text="${recommendation.description}"></p>
+                                            </div>
+                                        </div>
+                                        <div class="row" id="dsc-lst-btn-row">
+                                            <div class="col s12" id="dsc-lst-btn">
+                                                <div class="p">
                                             <form class="buttonItem2" th:action="@{/listen/{id}(id=${recommendation.id})}" method="get">
                                                 <input type="hidden" name="currentUrl" th:value="${currentUrl} + '?recommendations'">
-                                                <a class="widthFull"><button class="widthFull waves-effect waves-light btn">Listen</button></a>
+                                                <a class="full-width"><button class="widthFull waves-effect waves-light btn">Listen</button></a>
                                             </form>
+                                                </div>
+                                            </div>
                                         </div>
-<!--                                    </div>-->
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>

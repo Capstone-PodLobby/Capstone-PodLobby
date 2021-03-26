@@ -25,7 +25,12 @@
     justify-content: center !important;
 }
 
-#tst-bt-1, #tst-bt-2, #tst-bt-3, #tst-bt-4{
+#dsc-lst-btn-row{
+    display:flex !important;
+    justify-content: center !important;
+}
+
+#tst-bt-1, #tst-bt-2, #tst-bt-3, #tst-bt-4, #dsc-lst-btn{
     display: flex;
     justify-content: center;
 }
@@ -51,6 +56,13 @@
 .dsc{
     text-align: center;
 }
+
+#disc-cat{
+    display: flex;
+    justify-content: center;
+}
+
+
 
 
 
