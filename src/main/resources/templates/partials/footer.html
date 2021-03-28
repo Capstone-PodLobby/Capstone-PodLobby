@@ -3,10 +3,10 @@
 <footer th:fragment="footer" class="page-footer">
     <div class="container footerContainer">
         <div class="row">
-            <div class="col l7 s12">
+            <div class="col s12">
                 <div id="footerIconAndName">
-                    <i class="large material-icons">airplay</i>
-                    <h5 id="footerSiteName">PodLobby</h5>
+                    <img th:src="@{/images/PodlobbyTrans.png}" id="footerImageIcon"/>
+                    <a class="modal-trigger" href="#msgModal" style="align-self: center;">Contact Us</a>
                 </div>
                 <h5 class="centerText">About Us</h5>
                 <ul class="footerUl">
@@ -17,19 +17,20 @@
                 </ul>
             </div>
 
-            <div class="col l5 s12">
-                <form th:action="@{/sendMessage}" method="post">
-                    <h5>Contact Us</h5>
-                    <div class="input-field col s6">
+            <div class="modal" id="msgModal">
+                <form class="modal-content" th:action="@{/sendMessage}" method="post" style="display: flex !important;">
+                    <div class="input-field" style="width: 80% !important;">
                         <textarea class="materialize-textarea" id="messageUs" name="messageUs"></textarea>
                         <label for="messageUs" id="footerContactLabel">Message</label>
                     </div>
                     <input type="hidden" name="currentUrl" id="currentUrl" th:value="${currentUrl}">
-                    <a><button class="waves-effect waves-light" name="action" id="footerSubmitButton">
-                        <i class="material-icons right">send</i>
-                    </button></a>
+                    <a style="align-self: center;">
+                        <button class="waves-effect waves-light" name="action" id="footerSubmitButton">Send<i class="material-icons right">send</i>
+                        </button>
+                    </a>
                 </form>
             </div>
+
         </div>
     </div>
 </footer>

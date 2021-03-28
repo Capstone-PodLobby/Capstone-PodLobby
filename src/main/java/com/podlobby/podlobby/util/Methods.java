@@ -21,8 +21,35 @@ public class Methods {
         }
     }
 
+    public String timeFormat(String timeStamp){
+        String timeString = timeStamp.substring(0, 16);
+        String time = timeString.substring(11, 13);
+        int number = Integer.parseInt(time);
+        if(number == 12) {
+            return (timeString.substring(0, 11) + (number) + timeString.substring(13) + " pm");
+        }
+        if(number == 0) {
+            return (timeString.substring(0, 11) + "12" + timeString.substring(13, 16) + " am");
+        }
+        if(number > 12) {
+            return (timeString.substring(0, 11) + (number % 12) + timeString.substring(13, 16) + " pm");
+        }
+        return (timeString.substring(0, 11) + (number % 12) + timeString.substring(13, 16) + " am");
+    }
+
 
     public static void main(String[] args) {
+        Methods m = new Methods();
+        System.out.println(m.timeFormat((new Timestamp(new Date().getTime())).toString()));
+        System.out.println();
+        System.out.println(m.timeFormat((new Timestamp(new Date().getTime() + 10000000)).toString()));
+        System.out.println();
+        System.out.println(m.timeFormat((new Timestamp(new Date().getTime() + 300040404)).toString()));
+        System.out.println();
+        System.out.println(m.timeFormat((new Timestamp(new Date().getTime() + 200000000)).toString()));
+
+
+
 //        System.out.println(Methods.numberSuffix(22));
 //        System.out.println(Methods.numberSuffix(61));
 //        System.out.println(Methods.numberSuffix(7));
