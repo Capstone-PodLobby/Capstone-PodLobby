@@ -30,12 +30,12 @@
                         <h2 th:text="${response.request.title}"></h2>
                         <h3 th:text="${response.request.user.username}"></h3>
                         <p th:text="${response.content}"></p>
-                        <p th:text="${response.createdAt.toString().substring(0, 16)}"></p>
+                        <p th:text="${session.method.timeFormat(response.createdAt.toString().substring(0, 16))}"></p>
                         <p th:switch="${response.acceptedStatus == 1}">Status:
                             <span th:case="${true}">Accepted</span>
                             <span th:case="${false}">Pending</span>
                         </p>
-                        <button class="btn wave-effect waves-light" th:if="${response.acceptedStatus == 1}"><a th:href="@{/collaborate/{id}(id=${response.request.user.id})}" >Contact User</a></button>
+                        <button class="btn wave-effect waves-light" th:if="${response.acceptedStatus == 1}"><a id="contactUser" th:href="@{/collaborate/{id}(id=${response.request.user.id})}" >Contact User</a></button>
                     </div>
                 </div>
             </div>

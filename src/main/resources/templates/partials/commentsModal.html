@@ -1,14 +1,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <div th:fragment="commentModal" th:remove="tag">
-    <a class="waves-effect waves-light btn modal-trigger deleteButton buttonItem" th:href="@{#_modal{num}(num=${i})}">Comments</a>
+    <a class="full-width waves-effect waves-light btn modal-trigger deleteButton buttonItem" th:href="@{#_modal{num}(num=${i})}">Comments</a>
 
     <div th:id="'_modal' + ${i}" class="modal commentModalBox">
         <div class="modal-content" style="background-color: #f9ebd5 !important;">
             <div class="commentArea" th:each="comment : ${userPodcasts.get(i).comments}">
                 <img style="max-width: 25%;" class="commentProImage circle responsive-image" th:src="${userController.getOne(comment.user.id).profileImage}"/>
                 <div class="widthText">
-                    <p class="fullWidthText">Posted at : <span th:text="${comment.createdAt.toString().substring(0, 16)}"></span></p>
+                    <p class="fullWidthText">Posted at : <span th:text="${session.method.timeFormat(comment.createdAt.toString().substring(0, 16))}"></span></p>
                     <p class="fullWidthText">Posted by : <span th:text="${userController.getOne(comment.user.id).username}"></span></p>
                 </div>
                 <p class="commentContent" th:text="${comment.comment}"></p>
@@ -28,7 +28,7 @@
                     <input name="comment" type="text" id="comment" class="validate"/>
                 </div>
                 <input type="hidden" name="currentUrl" id="currentUrl" th:value="${currentUrl}">
-                <button class="btn wave-effect">
+                <button class="btn wave-effect" id="cmt-btn">
                     <a>Add comment<i class="material-icons">chat</i></a>
                 </button>
             </form>

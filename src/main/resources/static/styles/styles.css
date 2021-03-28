@@ -4,15 +4,49 @@ body {
     min-height: 110vh;
     flex-direction: column;
     background: url(/static/images/podlobby-main-copy.png);
-
+    background-repeat: no-repeat;
+    /*background-color: #499E8D*/
 }
 
 h1, h2 {
     color: #faebd6 !important;
+    margin-top: 0px !important;
+}
+h2{
+    font-size: 2.5rem;
 }
 
 .dropdown-content li {
     background: #faebd6;
+}
+
+
+
+/*contact user highlight*/
+#contactUser{
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    /*background: linear-gradient(to right, #a1a1c4 50%, #489e8d 50%);*/
+    background: linear-gradient(to right, #b8986b 50%, #433520 50%);
+
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 100%;
+    background-position: 100%;
+
+    transition: background-position 475ms ease;
+
+}
+#contactUser:hover{
+    background-position: 0 100%;
+}
+
+
+/*Pulse effect*/
+.cyan {
+    background-color: #d1c2b1 !important;
 }
 
 /*to get rid of the random padding*/
@@ -50,6 +84,7 @@ main {
 .profile-side{
     background-color: transparent;
     color: #f9ebd5;
+    max-width: 50% !important;
 }
 #otherUserProfileCard{
     height: 80vh !important;
@@ -59,9 +94,11 @@ main {
     overflow-x: hidden;
 }
 .content-side{
+    display: flex;
     background-color: transparent;
     max-height: 100vh;
     overflow: scroll;
+    justify-content: left;
 }
 .profileContentItem{
     max-height: 350px;
@@ -242,6 +279,25 @@ a:hover{
     background-position: 0 100%;
 }
 
+.byLink{
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    /*background: linear-gradient(to right, #a1a1c4 50%, #489e8d 50%);*/
+    background: linear-gradient(to right, #d6bb95 50%, #faebd6 50%);
+
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 100%;
+    background-position: 100%;
+
+    transition: background-position 475ms ease;
+
+}
+.byLink:hover{
+    background-position: 0 100%;
+}
 
 button.feedButton  {
     position: relative;
@@ -287,10 +343,22 @@ button.feedButton:hover {
     display: flex;
 }
 
+
+/*************************************************/
+/*************************************************/
+/*************************************************/
+/*************************************************/
 .card-image{
-    height: 100%;
+    max-width:436px !important;
+    height: 100% !important;
 }
+/*************************************************/
+/*************************************************/
+/*************************************************/
+/*************************************************/
 /*Just wanted to include it so it can be easily changed*/
+
+
 .errorMsg{
     color: #d2c6c4 !important;
 }
@@ -303,11 +371,23 @@ button.feedButton:hover {
     overflow: auto !important;
     max-height: 118px !important;
 }
+
+
+/*************************************************/
+/*************************************************/
+/*************************************************/
+/*************************************************/
 .podImageGlobal{
     width: 100% !important;
     /*May change this when a more normalised styling is added*/
     max-height: 250px !important;
 }
+/*************************************************/
+/*************************************************/
+/*************************************************/
+/*************************************************/
+
+
 #podcastsDesc{
     padding: 12px 0 !important;
 }
@@ -369,6 +449,14 @@ button.feedButton:hover {
     background-color: #faebd6;
 }
 
+/*footer image*/
+#footerImageIcon{
+    width: 50%;
+}
+#msgModal{
+    background-color: #025955;
+}
+
 /*object fit for images*/
 /*=============================================================================*/
 @media screen and (min-width: 600px) {
@@ -399,6 +487,9 @@ button.feedButton:hover {
     #errorMsgBox{
         margin-top: 45px;
     }
+    h2{
+        font-size: 3rem;
+    }
 }
 
 
@@ -420,7 +511,9 @@ button.feedButton:hover {
         height: 90vh !important;
         width: 99vw !important;
     }
-
+    #footerImageIcon{
+        width: 25%;
+    }
 }
 @media screen and (min-width: 1300px) {
     .tap-target{
@@ -429,5 +522,9 @@ button.feedButton:hover {
     }
     .registerErrors{
         font-size: 14px;
+    }
+
+    h2{
+        font-size: 3.5rem;
     }
 }

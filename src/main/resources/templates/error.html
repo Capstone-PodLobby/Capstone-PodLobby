@@ -1,23 +1,48 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/materializeHead :: styleHead(Error)"></head>
+<head th:replace="partials/materializeLogin :: styleHead(Error)"></head>
 <body style="background: #499E8D !important;">
 
     <nav sec:authorize="isAnonymous()" th:replace="partials/navbar :: navbar"></nav>
     <nav sec:authorize="isAuthenticated()" th:replace="partials/navbar-profile :: profileNav"></nav>
 <main>
-    <th:block th:switch="${error}">
-        <h1 th:text="${error}"></h1>
-        <div th:case="'Not Found'">
-            <h2>Page not found</h2>
+    <div id="errorArea">
+        <img id="errorImg" th:src="@{/images/isThisThingon.png}">
+        <h4 style="color: #f9ebd5">Is this thing on?</h4>
+    </div>
+    <h2 class="errorPageMsg" id="msg1">Sorry, there seems to be an error with your request..</h2>
+    <h2 class="errorPageMsg" id="msg2">Would you please submit this form to notify our developers</h2>
+    <form th:action="@{/errorSubmit}" th:method="POST" class="errorBox z-depth-3">
+        <input name="error-error" id="error-error" th:value="${error}" type="hidden"/>
+        <input name="error-timestamp" id="error-timestamp" th:value="${timestamp}" type="hidden"/>
+        <input name="error-path" id="error-path" th:value="${path}" type="hidden"/>
+        <input name="error-status" id="error-status" th:value="${status}" type="hidden"/>
+        <input name="error-message" id="error-message" th:value="${message}" type="hidden"/>
+        <input name="error-exception" id="error-exception" th:value="${exception}" type="hidden"/>
+        <div class="input-field pad">
+            <label class="pad" style="color: #f9ebd5 !important; text-align: center" for="userMsg">Anything to add?</label>
+            <textarea name="userMsg" id="userMsg" class="materialize-textarea"></textarea>
         </div>
-        <div th:case="'Forbidden'">
-            <h2>You don't have permission to view this page. If you feel as tho you should be able to view this page, feel free to contact us below</h2>
-        </div>
-    </th:block>
+        <button class="btn wave-effect waves-light" id="errorBtn">
+            <a>Send To Developers
+                <i class="material-icons right">send</i>
+            </a>
+        </button>
+    </form>
 </main>
     <footer th:replace="partials/footer :: footer"></footer>
     <div th:replace="partials/materializescripts :: scripts"></div>
+
+<script>
+    $("#msg1").hide();
+    $("#msg2").hide();
+    $(document).ready(function () {
+
+        $("#msg1").slideDown(900);
+        $("#msg2").slideDown(1900);
+
+    });
+</script>
 
 </body>
 </html>
