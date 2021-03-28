@@ -1,0 +1,42 @@
+.followUserImageContainer{
+    max-width: 100% !important;
+    height: 45% !important;
+    object-fit: contain !important;
+}
+
+.followUserImage{
+    height: 100% !important;
+    object-fit: cover;
+}
+.followInfo{
+    height: 45% !important;
+}
+.userCard{
+    margin-bottom: 50px !important;
+}
+.followAction{
+    background: none !important;
+}
+
+@media screen and (min-width: 600px){
+    .userCard{
+        height: 540px !important;
+        margin-bottom: 85px !important;
+    }
+    .followCard{
+        height: 100% !important;
+    }
+    .followInfo{
+        height: 38% !important;
+    }
+    .followUserImageContainer{
+        height: 50% !important;
+    }
+}
+
+@media screen and (min-width: 993px){
+    .userCard{
+        height: 550px !important;
+        margin-bottom: 50px !important;
+    }
+}

@@ -13,30 +13,26 @@
     <h1>Your Followers</h1>
 
     <div class="row">
-        <div class="col s10 m6 l4" th:each="follower : ${listOfFollowers}">
-            <div class="row">
-                <div class="col s12">
-                    <div class="card" style="box-shadow: none !important; background: rgba(252, 232, 205, .8) !important; color: #433520 !important;">
-                        <div class="card-image">
-                            <img th:src="${follower.profileImage}">
-                        </div>
-                        <div class="card-content">
-                            <h3 th:text="${follower.username}"></h3>
-                            <ul>
-                                <li># of posts: <span th:text="${follower.podcasts.size()}"></span> </li>
-                                <li class="divider"></li>
-                                <li th:switch="${follower.requests.size() > 0}">Looking for guest(s):
-                                    <span th:case="${true}">Yes</span>
-                                    <span th:case="${false}">No</span>
-                                </li>
-                                <li class="divider"></li>
-                                <li># of active requests: <span th:text="${follower.requests.size()}"></span> </li>
-                            </ul>
-                        </div>
-                        <div class="card-action">
-                            <a class="widthFull btn waves-effect waves-light" th:href="@{/following/{id}(id=${follower.id})}">View Profile</a>
-                        </div>
-                    </div>
+        <div class="col s12 m6 l4 userCard" th:each="follower : ${listOfFollowers}">
+            <div class="card followCard" style="box-shadow: none !important; background: rgba(252, 232, 205, .8) !important; color: #433520 !important;">
+                <div class="card-image followUserImageContainer">
+                    <img class="followUserImage" th:src="${follower.profileImage}">
+                </div>
+                <div class="card-content followInfo">
+                    <h3 th:text="${follower.username}"></h3>
+                    <ul>
+                        <li># of posts: <span th:text="${follower.podcasts.size()}"></span> </li>
+                        <li class="divider"></li>
+                        <li th:switch="${follower.requests.size() > 0}">Looking for guest(s):
+                            <span th:case="${true}">Yes</span>
+                            <span th:case="${false}">No</span>
+                        </li>
+                        <li class="divider"></li>
+                        <li># of active requests: <span th:text="${follower.requests.size()}"></span> </li>
+                    </ul>
+                </div>
+                <div class="card-action followAction">
+                    <a class="widthFull btn waves-effect waves-light" th:href="@{/following/{id}(id=${follower.id})}">View Profile</a>
                 </div>
             </div>
         </div>
