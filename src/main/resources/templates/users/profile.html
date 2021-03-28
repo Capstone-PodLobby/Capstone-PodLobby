@@ -129,8 +129,19 @@
                             <h1 th:if="${session.recommendations == null}">Check out the discover option</h1>
                             <div th:if="${session.recommendations != null}" class="col s12 m12 l12 xl12" th:each="recommendation : ${session.recommendations}">
 
+
+
+
+
+
                                 <div class="card" style="box-shadow: none !important; background: rgba(252, 232, 205, .8) !important; color: #433520 !important;">
+
+
+                                    <div class="card-image">
                                         <img class="podImageProfiles" th:src="${recommendation.image}">
+                                    </div>
+
+
                                     <div class="card-stacked">
                                         <div class="row">
                                             <div class="container">
