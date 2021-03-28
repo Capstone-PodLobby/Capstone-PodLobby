@@ -177,9 +177,11 @@ main {
 /*====== FOOTER PARTIAL ========*/
 .page-footer{
     padding-top: 50px !important;
-    background: rgb(255, 255, 255) !important;
-    background: linear-gradient(0deg, rgb(252, 232, 205) 8%, rgb(73, 158, 140) 93%) !important;
+    /*background: rgb(255, 255, 255) !important;*/
+    /*background: linear-gradient(0deg, rgb(252, 232, 205) 8%, rgb(73, 158, 140) 93%) !important;*/
     color: #433520 !important;
+    background: rgb(111 97 74);
+    /*background: linear-gradient(0deg, rgba(253,232,205,1) 8%, rgba(236,216,189,1) 16%, rgba(219,199,174,1) 24%, rgba(202,183,158,1) 32%, rgba(185,167,142,1) 40%, rgba(168,151,126,1) 48%, rgba(135,118,95,1) 56%, rgba(118,102,79,1) 65%, rgba(101,86,63,1) 74%, rgba(84,69,48,1) 83%, rgba(67,53,32,1) 92%);*/
 }
 .footerUl{
     display: flex !important;
