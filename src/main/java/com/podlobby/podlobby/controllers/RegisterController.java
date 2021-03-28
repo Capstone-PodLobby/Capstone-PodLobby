@@ -131,11 +131,10 @@ public class RegisterController {
             return "users/register";
         }
 
-        user.setIsAuthenticated(0); // they need to activate their account // NEEDS PRODUCTION TESTING
+        user.setIsAuthenticated(0); // they need to activate their account
         user.setIsAdmin(0);
         String accountAuthCode = Password.randomRegisterCode();
         user.setAuthCode(accountAuthCode);
-//        user.setIsAuthenticated(1); // for production for now
 
         user.setJoinedAt(new Timestamp(new Date().getTime()));
         user.setPassword(encoder.encode(user.getPassword()));

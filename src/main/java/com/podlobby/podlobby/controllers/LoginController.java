@@ -78,7 +78,7 @@ public class LoginController {
 
         String newPassword = Password.randomGen();
 
-        tlsEmail.sendEmail(email, username, "Forgot Password", "Hello " + username + " your temporary password is " + newPassword + " please go to https://podlobby.club/reset");
+        tlsEmail.sendEmail(email, username, "Forgot Password", "Hello " + username + " your temporary password is     " + newPassword + "     please go to https://podlobby.club/reset and login with your username, email and this password. You will then be asked to set a new password");
 
         user.setPassword(encoder.encode(newPassword)); // set the password to the one that is randomly generated;
         userDao.save(user);

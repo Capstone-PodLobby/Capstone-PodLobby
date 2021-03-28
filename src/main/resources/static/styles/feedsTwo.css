@@ -1,0 +1,54 @@
+iframe {
+    overflow: hidden;
+    border: none;
+}
+
+.card-image{
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
+    margin-right: 0 !important;
+}
+
+.podImageGlobal{
+    object-fit: contain !important;
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
+    margin-right: 0 !important;
+}
+
+#row-cont{
+    display: flex !important;
+    align-content: center !important;
+    flex-direction: column !important;
+}
+
+.dsc{
+    text-align: center;
+}
+
+
+
+
+@media only screen and (min-width: 426px){
+    #gbl-cont{
+        margin-left: 25% !important;
+    }
+
+    /*#row-cont{*/
+    /*    margin-left: 25% !important;*/
+    /*}*/
+}
+
+
+
+@media only screen and (min-width: 1400px){
+    .podImageGlobal {
+        object-fit: cover !important;
+    }
+
+    .card-image{
+        margin-right: 0 !important;
+    }
+}

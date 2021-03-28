@@ -1,55 +1,90 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head th:replace="partials/materializeRequest :: styleHead('Request')"></head>
-<body>
+<body style="overflow: scroll">
 
 <nav th:replace="partials/navbar-profile :: profileNav"></nav>
 <main>
     <div class="container">
-        <h1 class="text-center">Place Your Request</h1>
+        <h1 th:if="${newRequest}" class="text-center">Place Your Request</h1>
+        <h1 th:if="${editing}" class="text-center">Edit Your Request</h1>
+        <div class="errorMsg" th:if="${errorList.size() &gt; 0}" th:each="error : ${errorList}">
+            <small th:text="${error}"></small><br>
+        </div>
     <div th:if="${message != null}">
         <p class="errorMsg" th:text="${message}"></p>
     </div>
 
-    <form th:action="@{/request}" th:method="POST" th:object="${request}">
+        <form th:if="${newRequest}" th:action="@{/request}" th:method="POST" th:object="${request}">
 
-        <div class="input-field" style="display: flex">
-            <i class="material-icons">label_outline</i>
-            <label class="labelIcon" for="title">Title</label>
-            <input class="validate" id="title" name="title" type="text" th:value="*{title}"/>
-        </div>
-
-        <div class="input-field" style="display: flex">
-            <i class="material-icons">border_color</i>
-            <label class="labelIcon" for="description">Description</label>
-            <input class="validate"  id="description" name="description" type="text" th:value="*{description}"/>
-        </div>
-
-        <div class="input-field" id="quantity-needed" style="display: flex">
-            <i class="material-icons">contacts</i>
-            <label class="labelIcon" for="req-amount">Contributors</label>
-            <input class="validate"  id="req-amount" name="req-amount" type="number" th:value="*{guestCount}"/>
-        </div>
-
-        <input type="hidden" name="requestId" th:value="${request.id &gt; 0 ? request.id : 0}"/>
-
-        <div class="row" id="submit-btn-row">
-            <div class="col">
-                <button class="btn waves-effect" id="submitRequest"><a>Submit</a></button>
+            <div class="input-field" style="display: flex">
+                <i class="material-icons">label_outline</i>
+                <label class="labelIcon" for="title">Title</label>
+                <input class="validate" id="title" name="title" type="text" th:value="*{title}"/>
             </div>
-        </div>
 
-    </form>
+            <div class="input-field" style="display: flex">
+                <i class="material-icons">border_color</i>
+                <label class="labelIcon" for="description">Description</label>
+                <input class="validate"  id="description" name="description" type="text" th:value="*{description}"/>
+            </div>
+
+            <div class="input-field" id="quantity-needed" style="display: flex">
+                <i class="material-icons">contacts</i>
+                <label class="labelIcon" for="req-amount">Contributors</label>
+                <input class="validate"  id="req-amount" name="req-amount" type="number" th:value="*{guestCount}"/>
+            </div>
+
+            <input type="hidden" name="requestId" th:value="${request.id &gt; 0 ? request.id : 0}"/>
+
+            <div class="row" id="submit-btn-row">
+                <div class="col">
+                    <button class="btn waves-effect" id="submitRequest"><a>Submit</a></button>
+                </div>
+            </div>
+
+        </form>
+
+        <form th:if="${editing}" th:action="@{/request/edit}" th:method="POST" th:object="${request}">
+
+            <div class="input-field" style="display: flex">
+                <i class="material-icons">label_outline</i>
+                <label class="labelIcon" for="title">Title</label>
+                <input class="validate" id="title" name="title" type="text" th:value="*{title}"/>
+            </div>
+
+            <div class="input-field" style="display: flex">
+                <i class="material-icons">border_color</i>
+                <label class="labelIcon" for="description">Description</label>
+                <input class="validate"  id="description" name="description" type="text" th:value="*{description}"/>
+            </div>
+
+            <div class="input-field" id="quantity-needed" style="display: flex">
+                <i class="material-icons">contacts</i>
+                <label class="labelIcon" for="req-amount">Contributors</label>
+                <input class="validate"  id="req-amount" name="req-amount" type="number" th:value="*{guestCount}"/>
+            </div>
+
+            <input type="hidden" name="requestId" th:value="${request.id &gt; 0 ? request.id : 0}"/>
+
+            <div class="row" id="submit-btn-row">
+                <div class="col">
+                    <button class="btn waves-effect" id="submitRequest"><a>Submit</a></button>
+                </div>
+            </div>
+
+        </form>
+
     </div>
 </main>
-<footer th:replace="partials/footer.html :: footer"></footer>
+<!--<footer th:replace="partials/footer.html :: footer"></footer>-->
 <div th:replace="partials/materializescripts :: scripts"></div>
 
 <script>
     const submit = document.getElementById("submitRequest");
-    submit.disabled = true;
+    const guests = document.getElementById("req-amount");
+    submit.disabled = parseFloat(guests.value) <= 0;
     $(document).ready(function(){
-        const guests = document.getElementById("req-amount")
 
         guests.addEventListener("input", () => {
             let count = parseFloat(guests.value);

@@ -1,17 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/materializeRegister :: styleHead('Register')"></head>
+<head th:replace="partials/materializeRegister :: styleHead('Register')">
+
+</head>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 
-<body>
+<body class="register-body">
+<div>
+    <img class="login-background-img" th:src="@{images/white-podlobby-bg.jpg}">
+</div>
+
 
 
     <div th:replace="partials/navbar.html :: navbar"></div>
     <div class="container">
     <div class="row">
         <div class="col s-12">
-        <h1 th:text="${registerMessage}">Create an Account</h1>
+<!--        <h1 th:text="${registerMessage}">Create an Account</h1>-->
         <small class="registerErrors" id="passErrorCustom">Passwords do not match</small>
         <small class="registerErrors" id="passErrorCustom2">Passwords must have 1 number, 1 uppercase letter and be 8-20 characters long</small>
         <div id="errorMsgBox">
@@ -22,39 +28,44 @@
         </div>
     </div>
     <main>
+        <div class="mobile-logo">
+            <img class="img-styling register-img" th:src="@{images/logo_transparent_copy_crop.png}" width="250" height="80">
+        </div>
+
+        <div class="container register-container">
         <div class="row">
-            <form class="col s12" th:action="@{/register}" th:method="POST" th:object="${user}" onsubmit="return captcha()">
-                <div class="row">
-                    <div class="input-field col s12" style="display: flex;">
+            <form class="col s12 register-form" th:action="@{/register}" th:method="POST" th:object="${user}" onsubmit="return captcha()">
+                <div class="row input-styling ">
+                    <div class="input-field input-style col s12" style="display: flex;">
                         <i class="material-icons">account_circle</i>
                         <input id="username" type="text" class="validate" th:field="*{username}"/>
-                        <label class="labelIcon" for="username">Username</label>
+                        <label class="labelIcon " for="username">Username</label>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="input-field col s12" style="display: flex;">
+                <div class="row input-styling">
+                    <div class="input-field input-style  col s12" style="display: flex;">
                         <i class="material-icons">lock</i>
                         <input id="password" type="password" class="validate" th:field="*{password}">
                         <label class="labelIcon" for="password" id="passLabel">Password</label>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="input-field col s12" style="display: flex">
+                <div class="row input-styling">
+                    <div class="input-field input-style col s12" style="display: flex">
                         <i class="material-icons">lock</i>
                         <input id="confirmPass" type="password" class="validate" name="confirm-password">
                         <label class="labelIcon" for="confirmPass" id="confirmLabel">Confirm Password</label>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="input-field col s12" style="display:flex;">
+                <div class="row input-styling">
+                    <div class="input-field input-style col s12" style="display:flex;">
                         <i class="material-icons">email</i>
                         <input id="email" type="email" class="validate" th:field="*{email}">
                         <label class="labelIcon" for="email">Email</label>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="input-field col s12" style="display: flex">
-                        <i class="material-icons">edit</i>
+                <div class="row input-styling">
+                    <div class="input-field input-style col s12" id="about-me-style" style="display: flex">
+                        <i class="material-icons about-me-icon">edit</i>
                         <label class="labelIcon" for="body">About Me</label>
                         <textarea class="materialize-textarea" id="body" th:field="*{aboutMe}"></textarea>
                         <a class="waves-effect waves-light" onclick="$('.tap-target').tapTarget('open')"><i class="material-icons">live_help</i></a>
@@ -63,12 +74,12 @@
                 </div>
 
 
-                <div class="row" id="recaptcha-row">
+                <div class="row recaptcha" id="recaptcha-row">
                     <p class="errorMsg" id="robot">Please verify you are not a robot</p>
 <!--                    <div class="g-recaptcha" th:data-sitekey="${@environment.getProperty('recaptcha.testing.site.key')}"></div>-->
                     <div class="g-recaptcha" th:data-sitekey="${@environment.getProperty('recaptcha.checkbox.site.key')}"></div>
                 </div>
-                <div class="row" id="sign-up-btn-row">
+                <div class="row sign-up-button" id="sign-up-btn-row ">
                     <button class="btn waves-effect waves-light" type="submit" name="action" id="registerBtn"><a>Sign Up
                         <i class="material-icons right">send</i></a>
                     </button>
@@ -77,10 +88,11 @@
             </form>
             <div class="tap-target" data-target="menu">
                 <div class="tap-target-content" id="registerDiscovery">
-                    <h5>About Me</h5>
-                    <p>This will be for other users on the site to see when they visit your profile. Please add some information about you and your interests along with something that you are hoping to find here and collaborate on!</p>
+                    <h6>About Me</h6>
+                    <p id="tapPara">This will be for other users on the site to see when they visit your profile. Please add some information about you and your interests along with something that you are hoping to find here and collaborate on!</p>
                 </div>
             </div>
+        </div>
         </div>
         </main>
     </div>
@@ -88,7 +100,7 @@
     <a id="menu" class="waves-effect waves-light btn btn-floating" ><i class="material-icons">menu</i></a>
     </div>
 
-<div th:replace="partials/footer.html :: footer"></div>
+<!--<div th:replace="partials/footer.html :: footer"></div>-->
 <div th:replace="partials/materializescripts :: scripts"></div>
 
 
