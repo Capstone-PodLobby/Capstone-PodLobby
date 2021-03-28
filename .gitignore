@@ -5,7 +5,6 @@ target/
 !**/src/test/**/target/
 src/main/resources/application.properties
 src/main/resources/keys.js
-src/main/resources/static/js/keys.js
 ### STS ###
 .apt_generated
 .classpath
