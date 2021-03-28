@@ -37,7 +37,7 @@
                         <div class="col s8" id="aboutRequestContainer">
                             <p>Looking for : <span th:text="${requestList.get(i).guestCount}"></span> guest(s)</p>
                             <p>By: <span th:text="${requestList.get(i).user.username}"></span></p>
-                            <p><span th:text="${requestList.get(i).createdAt.toString().substring(0, 16)}"></span> </p>
+                            <p><span th:text="${session.method.timeFormat(requestList.get(i).createdAt.toString().substring(0, 16))}"></span> </p>
                         </div>
 
                         <div class="col s4" id="buttonsContainer">

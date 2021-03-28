@@ -73,10 +73,11 @@ public class FollowersController {
         for(User user : currentFollowList) {
             if(user.getId() == id) {
                 followingThisUser = true;
+                break;
             }
         }
 
-        model.addAttribute("isFollowing", followingThisUser); // viewing a followers page -> you are following them
+        model.addAttribute("isFollowing", followingThisUser);
 
         return "users/othersProfile";
     }
