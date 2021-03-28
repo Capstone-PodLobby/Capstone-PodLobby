@@ -18,10 +18,18 @@ iframe {
     margin-right: 0 !important;
 }
 
-#gbl-cont{
-    display: flex;
-    justify-content: center;
+#row-cont{
+    display: flex !important;
+    align-content: center !important;
+    flex-direction: column !important;
 }
+
+.dsc{
+    text-align: center;
+}
+
+
+
 
 
 

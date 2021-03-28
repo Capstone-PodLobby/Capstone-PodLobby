@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/materializeHead.html :: styleHead('Podcasts by your following')"></head>
+<head th:replace="partials/materializeFeed.html :: styleHead('Podcasts by your following')"></head>
 <body>
 <div>
     <img id="animated-example heading" class="animated fadeInDown background-img background-img" th:style="'background:linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, .8)),url(' + ${session.user.backgroundImage} + '); background-repeat: no-repeat !important; background-size: cover !important;'">
@@ -33,17 +33,17 @@
 </div>
 
 
-    <div class="row container">
-        <div class="col s12 m6 feedBox" th:each="podcast : ${filtered}">
-            <div class="card" style="box-shadow: none !important; background: rgba(252, 232, 205, .8) !important; color: #433520 !important;">>
-                <div class="card-image">
+    <div class="row container" id="row-cont">
+        <div class="col s12 m8 l8 xl8" id="gbl-cont" th:each="podcast : ${filtered}">
+            <div class="card" style="box-shadow: none !important; background: rgba(252, 232, 205, .8) !important; color: #433520 !important;">
                     <img class="podImageGlobal" th:src="${podcast.image}">
-                </div>
                 <div class="card-stacked">
-                    <p style="padding: 0 24px !important;"><span><a class="byLink" th:href="@{/otherProfile/{id}(id=${podcast.user.id})}" th:text="'By : ' + ${podcast.user.username}"></a></span></p>
-                    <div class="card-content globalDescription podcastsDesc">
-                        <p th:text="${podcast.title}"></p>
-                        <p th:text="${podcast.description}"></p>
+                    <div class="row">
+                        <div class="container">
+                            <h5> <p class="dsc" th:text="${podcast.title}"></p></h5>
+                            <p class="dsc" style="padding: 0 24px !important;"><span><a class="byLink" th:href="@{/otherProfile/{id}(id=${podcast.user.id})}" th:text="'By : ' + ${podcast.user.username}"></a></span></p>
+                            <p class="dsc" th:text="${podcast.description}"></p>
+                        </div>
                     </div>
                     <div class="card-action">
                         <form sec:authorize="isAuthenticated()" class="globalListenButton buttonItem" th:action="@{/listen/{id}(id=${podcast.id})}" method="get">
