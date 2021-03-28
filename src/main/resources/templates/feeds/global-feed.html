@@ -38,10 +38,12 @@
     </div>
 </div>
 
+
+
 <!-- Podcast Global Feed -->
  <div class="row container" id="row-cont">
 
-    <div class="col s12 m8 l8 xl8" id="gbl-cont" th:each="podcast : ${podcasts}">
+    <div class="col s12 m6 l6 xl6" id="gbl-cont" th:each="podcast : ${podcasts}">
 
         <div class="card" style="box-shadow: none !important; background: rgba(252, 232, 205, .8) !important; color: #433520 !important;">
                 <img class="podImageGlobal" th:src="${podcast.image}">
