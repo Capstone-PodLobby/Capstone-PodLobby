@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head th:replace="partials/materializeCreate :: styleHead('Create Podcast')"></head>
-<body>
+<body style="overflow: scroll">
 <nav th:replace="partials/navbar-profile :: profileNav"></nav>
 <main>
     <div class="container">
@@ -70,7 +70,7 @@
     </div>
 </main>
 
-<footer th:replace="partials/footer.html :: footer"></footer>
+<!--<footer th:replace="partials/footer.html :: footer"></footer>-->
 <div th:replace="partials/materializescripts :: scripts"></div>
 <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
 <script th:src="@{/js/keys.js}"></script>
