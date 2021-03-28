@@ -1,18 +1,52 @@
 /*Style to allow for sticky footer on pages*/
 body {
     display: flex;
-    min-height: 100vh;
+    min-height: 110vh;
     flex-direction: column;
     background: url(/static/images/podlobby-main-copy.png);
-
+    background-repeat: no-repeat;
+    /*background-color: #499E8D*/
 }
 
 h1, h2 {
     color: #faebd6 !important;
+    margin-top: 0px !important;
+}
+h2{
+    font-size: 2.5rem;
 }
 
 .dropdown-content li {
     background: #faebd6;
+}
+
+
+
+/*contact user highlight*/
+#contactUser{
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    /*background: linear-gradient(to right, #a1a1c4 50%, #489e8d 50%);*/
+    background: linear-gradient(to right, #b8986b 50%, #433520 50%);
+
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 100%;
+    background-position: 100%;
+
+    transition: background-position 475ms ease;
+
+}
+#contactUser:hover{
+    background-position: 0 100%;
+}
+
+
+/*Pulse effect*/
+.cyan {
+    background-color: #d1c2b1 !important;
 }
 
 /*to get rid of the random padding*/
@@ -23,13 +57,15 @@ h1, h2 {
 /*TO BE USED ON THE REGISTER / CREATE PAGES*/
 
 .tap-target{
-    height: 95vh !important;
-    width: 215vw !important;
+    height: 41vh !important;
+    width: 230vw !important;
 }
 .tap-target-content{
     width: 340px !important;
 }
-
+#tapPara{
+    font-size: 10px;
+}
 
 
 ::-webkit-scrollbar {
@@ -50,6 +86,7 @@ main {
 .profile-side{
     background-color: transparent;
     color: #f9ebd5;
+    max-width: 50% !important;
 }
 #otherUserProfileCard{
     height: 80vh !important;
@@ -59,9 +96,11 @@ main {
     overflow-x: hidden;
 }
 .content-side{
+    display: flex;
     background-color: transparent;
     max-height: 100vh;
     overflow: scroll;
+    justify-content: left;
 }
 .profileContentItem{
     max-height: 350px;
@@ -138,9 +177,11 @@ main {
 /*====== FOOTER PARTIAL ========*/
 .page-footer{
     padding-top: 50px !important;
-    background: rgb(255, 255, 255) !important;
-    background: linear-gradient(0deg, rgb(252, 232, 205) 8%, rgb(73, 158, 140) 93%) !important;
+    /*background: rgb(255, 255, 255) !important;*/
+    /*background: linear-gradient(0deg, rgb(252, 232, 205) 8%, rgb(73, 158, 140) 93%) !important;*/
     color: #433520 !important;
+    background: rgb(111 97 74);
+    /*background: linear-gradient(0deg, rgba(253,232,205,1) 8%, rgba(236,216,189,1) 16%, rgba(219,199,174,1) 24%, rgba(202,183,158,1) 32%, rgba(185,167,142,1) 40%, rgba(168,151,126,1) 48%, rgba(135,118,95,1) 56%, rgba(118,102,79,1) 65%, rgba(101,86,63,1) 74%, rgba(84,69,48,1) 83%, rgba(67,53,32,1) 92%);*/
 }
 .footerUl{
     display: flex !important;
@@ -189,7 +230,7 @@ main {
     background-color: #fce8cd !important;
 }
 .tap-target-content{
-    padding: 0 51px !important;
+    padding: 0 80px 0 10px !important;
 }
 .embedImg{
     border-radius: 3% !important;
@@ -242,6 +283,25 @@ a:hover{
     background-position: 0 100%;
 }
 
+.byLink{
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    /*background: linear-gradient(to right, #a1a1c4 50%, #489e8d 50%);*/
+    background: linear-gradient(to right, #d6bb95 50%, #faebd6 50%);
+
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 100%;
+    background-position: 100%;
+
+    transition: background-position 475ms ease;
+
+}
+.byLink:hover{
+    background-position: 0 100%;
+}
 
 button.feedButton  {
     position: relative;
@@ -287,10 +347,22 @@ button.feedButton:hover {
     display: flex;
 }
 
+
+/*************************************************/
+/*************************************************/
+/*************************************************/
+/*************************************************/
 .card-image{
-    height: 100%;
+    max-width:436px !important;
+    height: 100% !important;
 }
+/*************************************************/
+/*************************************************/
+/*************************************************/
+/*************************************************/
 /*Just wanted to include it so it can be easily changed*/
+
+
 .errorMsg{
     color: #d2c6c4 !important;
 }
@@ -303,11 +375,23 @@ button.feedButton:hover {
     overflow: auto !important;
     max-height: 118px !important;
 }
-.podImageGlobal{
-    width: 100% !important;
-    /*May change this when a more normalised styling is added*/
-    max-height: 250px !important;
-}
+
+
+/*************************************************/
+/*************************************************/
+/*************************************************/
+/*************************************************/
+/*.podImageGlobal{*/
+/*    width: 100% !important;*/
+/*    !*May change this when a more normalised styling is added*!*/
+/*    max-height: 250px !important;*/
+/*}*/
+/*************************************************/
+/*************************************************/
+/*************************************************/
+/*************************************************/
+
+
 #podcastsDesc{
     padding: 12px 0 !important;
 }
@@ -369,6 +453,14 @@ button.feedButton:hover {
     background-color: #faebd6;
 }
 
+/*footer image*/
+#footerImageIcon{
+    width: 50%;
+}
+#msgModal{
+    background-color: #025955;
+}
+
 /*object fit for images*/
 /*=============================================================================*/
 @media screen and (min-width: 600px) {
@@ -393,11 +485,13 @@ button.feedButton:hover {
 
 @media screen and (min-width: 768px) {
     .tap-target{
-        height: 95vh !important;
         width: 115vw !important;
     }
     #errorMsgBox{
         margin-top: 45px;
+    }
+    h2{
+        font-size: 3rem;
     }
 }
 
@@ -417,17 +511,21 @@ button.feedButton:hover {
         display: none;
     }
     .tap-target{
-        height: 90vh !important;
         width: 99vw !important;
     }
-
+    #footerImageIcon{
+        width: 25%;
+    }
 }
 @media screen and (min-width: 1300px) {
     .tap-target{
-        height: 100vh !important;
         width: 83vw !important;
     }
     .registerErrors{
         font-size: 14px;
+    }
+
+    h2{
+        font-size: 3.5rem;
     }
 }
