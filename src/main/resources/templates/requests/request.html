@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head th:replace="partials/materializeRequest :: styleHead('Request')"></head>
-<body>
+<body style="overflow: scroll">
 
 <nav th:replace="partials/navbar-profile :: profileNav"></nav>
 <main>
@@ -42,7 +42,7 @@
     </form>
     </div>
 </main>
-<footer th:replace="partials/footer.html :: footer"></footer>
+<!--<footer th:replace="partials/footer.html :: footer"></footer>-->
 <div th:replace="partials/materializescripts :: scripts"></div>
 
 <script>
