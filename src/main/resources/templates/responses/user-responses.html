@@ -35,7 +35,7 @@
                             <span th:case="${true}">Accepted</span>
                             <span th:case="${false}">Pending</span>
                         </p>
-                        <button class="btn wave-effect waves-light" th:if="${response.acceptedStatus == 1}"><a id="contactUser" th:href="@{/collaborate/{id}(id=${response.request.user.id})}" >Contact User</a></button>
+                        <button class="btn wave-effect waves-light" th:if="${response.acceptedStatus == 1}"><a class="contactUser" th:href="@{/collaborate/{id}(id=${response.request.user.id})}" >Contact User</a></button>
                     </div>
                 </div>
             </div>

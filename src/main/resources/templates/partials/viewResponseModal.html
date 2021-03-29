@@ -19,7 +19,7 @@
                                 <span th:case="${true}">Accepted</span>
                                 <span th:case="${false}">Pending</span>
                             </p>
-                            <a id="contactUser" th:href="@{/collaborate/{id}(id=${response.user.id})}" th:if="${response.acceptedStatus == 1}">Contact User</a>
+                            <a class="contactUser" th:href="@{/collaborate/{id}(id=${response.user.id})}" th:if="${response.acceptedStatus == 1}">Contact User</a>
                         </div>
 
                         <a class="btn waves-effect waves-light" th:if="${response.acceptedStatus == 0}" th:href="@{/accepted/{id}(id=${response.id})}">Accept</a>

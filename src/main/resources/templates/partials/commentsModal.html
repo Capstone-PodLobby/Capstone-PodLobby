@@ -15,7 +15,7 @@
                 <form th:action="@{/comment/delete/{id}(id=${comment.id})}" th:method="GET" th:if="${comment.user.id == session.user.id}">
                     <input type="hidden" name="currentUrl" id="URL" th:value="${currentUrl}">
                     <button class="btn wave-effect">
-                        <a>Delete Comment</a>
+                        <a class="contactUser">Delete Comment</a>
                     </button>
                 </form>
                 <div class="divider" id="commentDivide"></div>
@@ -29,7 +29,7 @@
                 </div>
                 <input type="hidden" name="currentUrl" id="currentUrl" th:value="${currentUrl}">
                 <button class="btn wave-effect" id="cmt-btn">
-                    <a>Add comment<i class="material-icons">chat</i></a>
+                    <a class="contactUser">Add comment<i class="material-icons">chat</i></a>
                 </button>
             </form>
         </div>

@@ -5,7 +5,7 @@
 
     <div id="modal" class="modal">
         <div class="modal-content">
-            <h4>Are You Sure you want to delete this user?</h4>
+            <h4 style="color: #433520 !important;">Are You Sure you want to delete this user?</h4>
         </div>
         <form th:action="@{/otherProfile/delete/{id}(id=${following.id})}" th:method="GET">
             <input type="hidden" name="currentUrl" id="currentUrl" th:value="${currentUrl}">
