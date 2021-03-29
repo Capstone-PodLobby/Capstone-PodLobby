@@ -18,12 +18,6 @@ iframe {
     margin-right: 0 !important;
 }
 
-#row-cont{
-    /*display: flex !important;*/
-    /*align-content: center !important;*/
-    /*flex-direction: column !important;*/
-}
-
 .dsc{
     text-align: center;
     margin-top: 0px;
@@ -42,28 +36,10 @@ iframe {
     overflow: scroll !important;
  }
 
-.feed-buttons{
-    /*display: flex !important;*/
-    /*justify-content: center !important;*/
-    /*align-content: center !important;*/
-}
-/*#filtered-btn{*/
-/*    margin-left: 0px;*/
-/*}*/
-
 .full-width{
     width: 100% !important;
 }
 
-/*#gbl-cont:nth-child(even){*/
-/*    margin-top: 0 !important;*/
-/*    margin-left: 0 !important;*/
-/*}*/
-
-/*#gbl-cont:nth-child(odd){*/
-/*    margin-top: 0 !important;*/
-/*    margin-left: 50% !important;*/
-/*}*/
 
 .globalListenButton, .card-stacked {
     position: relative;
