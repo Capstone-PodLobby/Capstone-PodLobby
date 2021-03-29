@@ -170,7 +170,9 @@ h1{
     #register-btn {
         padding: 0;
     }
-
+    .btn{
+        opacity: 100% !important;
+    }
     #forgot-btn {
         padding: 0;
     }
