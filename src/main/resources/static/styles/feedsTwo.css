@@ -18,27 +18,38 @@ iframe {
     margin-right: 0 !important;
 }
 
-#row-cont{
-    display: flex !important;
-    align-content: center !important;
-    flex-direction: column !important;
-}
-
 .dsc{
     text-align: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.card{
+    /*margin-bottom: ;*/
+    min-height: 475px;
+    max-height: 475px;
+    overflow: scroll;
+}
+
+#crd-cnt{
+    max-height: 132px !important;
+    overflow: scroll !important;
+}
+
+.full-width{
+    width: 100% !important;
 }
 
 
+.globalListenButton, .card-stacked {
+    position: relative;
+    bottom: 0;
+}
 
 
 @media only screen and (min-width: 426px){
     #gbl-cont{
-        margin-left: 25% !important;
     }
-
-    /*#row-cont{*/
-    /*    margin-left: 25% !important;*/
-    /*}*/
 }
 
 
