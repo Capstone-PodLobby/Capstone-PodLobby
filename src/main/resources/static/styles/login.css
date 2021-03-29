@@ -250,13 +250,14 @@ h1{
 
 }
 
-@media screen and (min-width: 593px){
+@media screen and (min-width: 593px) {
     .login-body {
         background-attachment: fixed !important;
         background-repeat: no-repeat;
         background-image: url("/static/images/white-podlobby-bg.jpg");
-        overflow:hidden;
+        overflow: hidden;
     }
+
     .login-container {
         /*background-color: rgba(31,31,31,0.5);*/
         padding-top: 35px;
@@ -264,11 +265,11 @@ h1{
         top: -20px;
 
 
-        background: rgb(54,90,83);
-        background: -moz-linear-gradient(49deg, rgba(54,90,83,.7) 0%, rgba(88,187,168,.7) 100%);
-        background: -webkit-linear-gradient(49deg, rgba(54,90,83,.7) 0%, rgba(88,187,168,.7) 100%);
-        background: linear-gradient(49deg, rgba(54,90,83,.7) 0%, rgba(88,187,168,.7) 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#365a53",endColorstr="#58bba8",GradientType=1);
+        background: rgb(54, 90, 83);
+        background: -moz-linear-gradient(49deg, rgba(54, 90, 83, .7) 0%, rgba(88, 187, 168, .7) 100%);
+        background: -webkit-linear-gradient(49deg, rgba(54, 90, 83, .7) 0%, rgba(88, 187, 168, .7) 100%);
+        background: linear-gradient(49deg, rgba(54, 90, 83, .7) 0%, rgba(88, 187, 168, .7) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#365a53", endColorstr="#58bba8", GradientType=1);
         /*width: 150px;*/
 
 
@@ -344,7 +345,7 @@ h1{
         width: 180px;
         height: 60px;
         position: relative;
-        left:15px;
+        left: 15px;
     }
 
     .login-form-btn {
@@ -367,87 +368,98 @@ h1{
     }
 
 
-
-textarea.materialize-textarea:focus:not([readonly]){
-    color: #f9ebd5 !important;
-    border-bottom: 1px solid #f9ebd5 !important;
-    /*box-shadow: 0 1px 0 0 white !important;*/
-}
-
-@media screen and (min-width: 993px) {
-    #login-btn-row {
-        left: -38px;
+    textarea.materialize-textarea:focus:not([readonly]) {
+        color: #f9ebd5 !important;
+        border-bottom: 1px solid #f9ebd5 !important;
+        /*box-shadow: 0 1px 0 0 white !important;*/
     }
 
-    #forgot-pass-button {
-        left: -7%;
+    @media screen and (min-width: 993px) {
+        #login-btn-row {
+            left: -38px;
+        }
+
+        #forgot-pass-button {
+            left: -7%;
+        }
+
     }
 
-}
 
 
 
+    /*Error page*/
+    .errorPageMsg {
+        font-size: 1.5rem;
+        text-align: center;
+    }
 
-/*Error page*/
-.errorPageMsg{
-    font-size: 1.5rem;
-    text-align: center;
-}
-.errorBox{
-    max-width: 80vw;
-    margin: 10vmin auto;
-    min-height: 200px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-}
-.pad{
-    padding: 2% 10%;
-}
-#userMsg{
-    border-bottom: 1px solid #f9ebd5;
-}
-#errorArea{
-    width: 80vw;
-    height: 35vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: auto;
-    margin-bottom: 75px;
-}
-#errorImg{
-    max-width: 100%;
-    max-height: 100%;
-}
-#errorBtn{
-    max-width: 80%;
-    margin: auto;
-    font-size: 10px;
-}
-@media screen and (min-width: 768px){
-    .errorPageMsg{
-        font-size: 2.3rem;
+    .errorBox {
+        max-width: 80vw;
+        margin: 10vmin auto;
+        min-height: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
     }
-    #errorBtn{
-        font-size: 14px;
+
+    .pad {
+        padding: 2% 10%;
     }
-    #errorArea{
-        height: 40vh;
-        margin-bottom: 100px;
+
+    #userMsg {
+        border-bottom: 1px solid #f9ebd5;
     }
-    h1{
-        font-size: 3.2rem;
+
+    #errorArea {
+        width: 80vw;
+        height: 35vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+        margin-bottom: 75px;
     }
-}
-@media screen and (min-width: 1400px){
-    #errorArea{
-        height: 45vh;
-        margin-bottom: 120px;
+
+    #errorImg {
+        max-width: 100%;
+        max-height: 100%;
     }
-    h1{
-        font-size: 4rem;
+
+    #errorBtn {
+        max-width: 80%;
+        margin: auto;
+        font-size: 10px;
+    }
+
+    @media screen and (min-width: 768px) {
+        .errorPageMsg {
+            font-size: 2.3rem;
+        }
+
+        #errorBtn {
+            font-size: 14px;
+        }
+
+        #errorArea {
+            height: 40vh;
+            margin-bottom: 100px;
+        }
+
+        h1 {
+            font-size: 3.2rem;
+        }
+    }
+    @media screen and (min-width: 1400px) {
+        #errorArea {
+            height: 45vh;
+            margin-bottom: 120px;
+        }
+
+        h1 {
+            font-size: 4rem;
+        }
     }
 }
 

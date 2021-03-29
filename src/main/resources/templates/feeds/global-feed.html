@@ -27,10 +27,10 @@
         <!--Feed Buttons-->
         <div class="feed-buttons">
 
-            <div class="col s12 m4 offset-m2">
+            <div class="col s12 m4 offset-m2" id="filtered-btn">
                 <a href="/feeds/filtered" class="customButton"><button class="waves-effect waves-light btn-large feedButton">FOLLOWERS</button></a>
             </div>
-            <div class="col s12 m4 offset-m2">
+            <div class="col s12 m4 offset-m2" id="request-btn">
                 <a href="/feeds/requests" class="customButton"><button class="waves-effect waves-light btn-large feedButton">REQUESTS</button></a>
             </div>
 
@@ -49,7 +49,7 @@
                 <img class="podImageGlobal" th:src="${podcast.image}">
             <div class="card-stacked">
                 <div class="row">
-                    <div class="container">
+                    <div class="container" id="crd-cnt">
                     <h5><p class="dsc" th:text="${podcast.title}"></p></h5>
                     <p class ="dsc" style="padding: 0 24px !important;"><span><a class="byLink" th:href="@{/otherProfile/{id}(id=${podcast.user.id})}" th:text="'By : ' + ${podcast.user.username}"></a></span></p>
                     <p class="dsc" th:text="${podcast.description}"></p>
@@ -62,6 +62,7 @@
                     </form>
                 </div>
             </div>
+
         </div>
     </div>
  </div>
