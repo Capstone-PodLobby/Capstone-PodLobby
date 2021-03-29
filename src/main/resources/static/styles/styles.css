@@ -20,7 +20,9 @@ h2{
     background: #faebd6;
 }
 
-
+.btn{
+    opacity: 100% !important;
+}
 
 /*contact user highlight*/
 .contactUser{
@@ -337,6 +339,24 @@ button.feedButton:hover {
     transition: background-position 475ms ease;
 }
 .navAnchor:hover{
+    background-position: 0 100%;
+}
+
+.navAnchor2 {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    background: linear-gradient(to right, #499e8b 50%, #d7a968 50%);
+    background-position: 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 100%;
+    background-position: 100%;
+
+    transition: background-position 475ms ease;
+}
+.navAnchor2:hover{
     background-position: 0 100%;
 }
 /*footer contact links*/
