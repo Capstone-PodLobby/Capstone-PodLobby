@@ -40,7 +40,7 @@
             <div class="input-field" style="display: flex">
                 <i class="material-icons">label_outline</i>
                 <label class="labelIcon" for="title">Title</label>
-                <input class="validate" type="text" id="title" th:field="*{title}"/>
+                <input class="validate" type="text" id="title" data-length="128" th:field="*{title}"/>
             </div>
             <div class="input-field" style="display: flex">
                 <i class="material-icons">border_color</i>
@@ -63,20 +63,20 @@
             </div>
 
             <input type="hidden" th:field="*{id}"/>
-            <button class="btn waves-effect"><a>Update Podcast</a></button>
+            <button class="btn waves-effect" id="editPod"><a>Update Podcast</a></button>
         </form>
 
         <div class="tap-target" data-target="menu">
-            <div class="tap-target-content">
+            <div class="tap-target-content" id="editTapTarget">
                 <h5>Embed URL Location</h5>
                 <p>This can be found under the share option while viewing your podcast on Spotify and Anchor fm -> copy embed link!</p>
-                <img class="embedImg responsive-img" th:src="@{/gif/embedLinkAnchor.gif}" alt="anchor gif">
-                <img class="embedImg responsive-img" th:src="@{/images/spotifyEmbedLink.png}" alt="spotify embed">
+<!--                <img class="embedImg responsive-img" th:src="@{/gif/embedLinkAnchor.gif}" alt="anchor gif">-->
+<!--                <img class="embedImg responsive-img" th:src="@{/images/spotifyEmbedLink.png}" alt="spotify embed">-->
 
             </div>
         </div>
 
-        <a id="menu" class="waves-effect waves-light btn btn-floating" ><i class="material-icons">menu</i></a>
+        <a id="menu" class="waves-effect waves-light btn btn-floating" style="display: none !important;"><i class="material-icons">menu</i></a>
 
     </div>
 </main>
@@ -104,6 +104,20 @@
         $("#podcastImageUrl").addClass("active");
         document.getElementById("imageURL").value = fileString;
     }
+
+    const titleInput = document.getElementById("title");
+    const edit = document.getElementById("editPod");
+
+    titleInput.addEventListener("input", function () {
+        if (titleInput.value.length > 128) {
+            edit.disabled = true;
+            $(".character-counter").attr("style", "color: #5a1666 !important");
+        } else {
+            edit.disabled = false;
+            $(".character-counter").removeAttr("style");
+        }
+    });
+
 </script>
 </body>
 </html>

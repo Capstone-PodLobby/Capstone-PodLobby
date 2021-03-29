@@ -41,7 +41,7 @@
                     <div class="row">
                         <div class="container">
                             <h5> <p class="dsc" th:text="${podcast.title}"></p></h5>
-                            <p class="dsc" style="padding: 0 24px !important;"><span><a class="byLink" th:href="@{/otherProfile/{id}(id=${podcast.user.id})}" th:text="'By : ' + ${podcast.user.username}"></a></span></p>
+                            <p class="dsc" style="padding: 0 24px !important;"><span><a th:href="@{/otherProfile/{id}(id=${podcast.user.id})}" th:text="'By : ' + ${podcast.user.username}"></a></span></p>
                             <p class="dsc" th:text="${podcast.description}"></p>
                         </div>
                     </div>

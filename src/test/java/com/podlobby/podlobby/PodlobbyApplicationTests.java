@@ -6,6 +6,7 @@ import com.podlobby.podlobby.repositories.UserRepository;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
+import static org.junit.Assert.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -43,9 +44,7 @@ class PodlobbyApplicationTests {
 
     @Before
     public void setUp() {
-
-
-
+        testUser = userDao.findByUsername("matt");
 //        httpSession = this.mvc.perform(
 //                post("/login").with(csrf())
 //                        .param("username", "testUser")
@@ -61,6 +60,10 @@ class PodlobbyApplicationTests {
 
     @Test
     void contextLoads() {
+    }
+
+    @Test
+    void userInfo(){
     }
 
 }

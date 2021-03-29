@@ -73,7 +73,7 @@
                 <p class="center-align" th:text="${session.user.aboutMe}"></p>
             </div>
 
-            <div class="col s12 m6 l6 xl6">
+            <div class="col s12 m6 l6 xl6" style="overflow: scroll; max-height: 100vh;">
                 <div class="row">
                 <div th:if="${!param.isEmpty()}">
 
