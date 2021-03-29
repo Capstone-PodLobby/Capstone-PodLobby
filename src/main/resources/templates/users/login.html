@@ -1,14 +1,15 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/materializeLogin :: styleHead('login')">
+
 </head>
 
 <body class="login-body">
 <div>
-    <img class="login-background-img" th:src="@{images/white-podlobby-bg.jpg}">
+    <img class="login-background-img" th:src="@{images/dark-brown-podloby-bg-copy.png}">
 </div>
 
-<nav th:replace="partials/navbar.html :: navbar"></nav>
+<nav class="nav-logiin-style" th:replace="partials/navbar.html :: navbar"></nav>
 <div class="mobile-logo">
     <img class="img-styling" th:src="@{images/logo_transparent_copy_crop.png}" width="250" height="80">
 </div>
@@ -54,7 +55,7 @@
                 <input class="validate" type="password" id="password" name="password"/>
                 <label class="labelIcon" for="password">Password</label>
             </div>
-            <div class="row" id="login-btn-row">
+            <div class="row  login-btn-animate" id="login-btn-row">
                 <div class="col s12 m6" id="login-btn">
                     <button class="btn waves-effect login-form-btn login-register " id="login-button"><a>Login</a></button>
                 </div>

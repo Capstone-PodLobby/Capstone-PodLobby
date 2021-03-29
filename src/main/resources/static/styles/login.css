@@ -16,6 +16,7 @@
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#365a53",endColorstr="#58bba8",GradientType=1);
     }
 
+
 h1{
     font-size: 2.2rem;
 }
@@ -259,10 +260,11 @@ h1{
 }
 
 @media screen and (min-width: 593px) {
+
     .login-body {
         background-attachment: fixed !important;
         background-repeat: no-repeat;
-        background-image: url("/static/images/white-podlobby-bg.jpg");
+        background-image: url("/static/images/dark-brown-podloby-bg-copy.png");
         overflow: hidden;
     }
 
@@ -292,7 +294,7 @@ h1{
 
     .login-form-btn, #forgot-pass-button, #register-button {
         /*background-color: #cbbba5 !important;*/
-        opacity: 70% !important;
+        opacity: 100% !important;
         background-color: transparent;
         /*background: #cbbba5 !important;*/
         /*background: rgb(54,90,83);*/
