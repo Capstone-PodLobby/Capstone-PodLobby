@@ -3,6 +3,7 @@
         height: 140px !important;
         width: 140px !important;
         border-radius: 50% !important;
+        object-fit: cover !important;
     }
 
     .content-align {
