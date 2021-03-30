@@ -16,7 +16,7 @@
 <main>
     <div class="row">
         <div class="col m4 profile-side" id="otherUserProfileCard">
-            <img class="circle profile-Image" th:src="${following.profileImage}">
+            <img class="circle profile-Image" style="object-fit: cover !important" th:src="${following.profileImage}">
             <div class="collection list-style" style="background-color: #cbbba5 !important;">
                 <a class="collection-item" th:text="${following.username}"></a>
                 <a th:if="${!isFollowing}" th:href="@{/followUser/{id}(id=${following.id})}" class="collection-item">Follow</a>
