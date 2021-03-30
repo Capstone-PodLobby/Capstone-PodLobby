@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head th:replace="partials/materializeRequest :: styleHead('Request')"></head>
-<body style="overflow: scroll">
+<body class="request-body">
+
+<div>
+    <img class="request-background-img" th:src="@{/images/dark-brown-podloby-bg-copy.png}" alt="pic" >
+</div>
 
 <nav th:replace="partials/navbar-profile :: profileNav"></nav>
 <main>
-    <div class="container">
+    <div class="container request-container">
         <h1 th:if="${newRequest}" class="text-center">Place Your Request</h1>
         <h1 th:if="${editing}" class="text-center">Edit Your Request</h1>
         <div class="errorMsg" th:if="${errorList.size() &gt; 0}" th:each="error : ${errorList}">
@@ -69,7 +73,7 @@
 
             <div class="row" id="submit-btn-row">
                 <div class="col">
-                    <button class="btn waves-effect" id="submitRequest"><a>Submit</a></button>
+                    <button class="btn waves-effect request-submit-button" id="submitRequest"><a>Submit</a></button>
                 </div>
             </div>
 

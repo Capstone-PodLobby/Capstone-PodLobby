@@ -263,7 +263,7 @@ h1{
 
 @media screen and (min-width: 593px) {
 
-    .login-body {
+    .login-body, .create-body {
         background-attachment: fixed !important;
         background-repeat: no-repeat;
         background-image: url("/static/images/dark-brown-podloby-bg-copy.png");
@@ -273,7 +273,7 @@ h1{
 
 
 
-    .login-container {
+    .login-container, .create-container, .settings-container, .request-container {
         /*background-color: rgba(31,31,31,0.5);*/
         padding-top: 35px;
         position: relative;
@@ -376,7 +376,7 @@ h1{
 
     }
 
-    .login-background-img {
+    .login-background-img, .create-background-img {
         min-width: 100%;
         min-height: 100%;
         position: absolute;

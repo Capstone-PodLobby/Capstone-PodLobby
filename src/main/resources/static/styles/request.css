@@ -1,0 +1,75 @@
+@media screen and (min-width: 320px){
+    body {
+        box-sizing: border-box;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+
+        background: rgb(54,90,83);
+        background: -moz-linear-gradient(49deg, rgba(54,90,83,1) 0%, rgba(88,187,168,1) 100%);
+        background: -webkit-linear-gradient(49deg, rgba(54,90,83,1) 0%, rgba(88,187,168,1) 100%);
+        background: linear-gradient(49deg, rgba(54,90,83,1) 0%, rgba(88,187,168,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#365a53",endColorstr="#58bba8",GradientType=1);
+    }
+
+    .request-container {
+        background-color: transparent;
+        padding: 20px;
+        width: 300px; /**/
+        border-radius: 20px;
+        box-shadow: 6px 6px 8px -6px rgba(25 114 117 0.76);
+        margin-bottom: 40px;
+        z-index: 9999 !important;
+        overflow: scroll;
+        position: relative;
+        top: -70px;
+    }
+
+    .request-container > h1 {
+        text-align: center !important;
+    }
+
+    #submitRequest {
+        border-radius: 20px !important;
+        border: 2.5px solid #cbbba5 !important;
+        background-color: #cbbba5 !important;
+        width: 200px;
+        line-height: 15px !important;
+    }
+
+    .request-background-img {
+        display: none;
+    }
+
+}
+
+@media screen and (min-width: 593px) {
+    .request-body {
+        background-attachment: fixed !important;
+        background-repeat: no-repeat !important;
+        background-image: url("/static/images/dark-brown-podloby-bg-copy.png")!important;
+        overflow: hidden !important;
+    }
+
+    .request-background-img {
+        min-width: 100% !important;
+        min-height: 100% !important;
+        position: absolute !important;
+        display: revert;
+        z-index: -9999 !important;
+    }
+
+    .request-container {
+        width: 500px !important;
+        height: 500px !important;
+
+    }
+
+    #submitRequest {
+        width: 350px;
+    }
+
+    #submit-btn-row {
+        position: relative;
+        left: 48px;
+    }
+}
