@@ -33,6 +33,7 @@
         border: 2.5px solid #cbbba5 !important;
         background-color: #cbbba5 !important;
         width: 200px;
+        line-height: 15px !important;
     }
 
     .request-background-img {

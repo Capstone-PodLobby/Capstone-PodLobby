@@ -17,7 +17,10 @@
         z-index: 9999 !important;
         overflow: scroll;
         position: relative;
-        top: -110px;
+        top: -50px;
+    }
+    .topMove {
+        top: -78px;
     }
 
     .input-styling {
@@ -61,7 +64,7 @@
         /*display: flex;*/
         /*justify-content: center;*/
         /*position: relative;*/
-        top: -105px;
+        top: -54px;
     }
 
     .recaptcha {
@@ -119,7 +122,7 @@
         width: 180px;
         height: 60px;
         position: relative;
-        left: -40px;
+        left: -4px;
     }
 
     .login-background-img {
@@ -130,18 +133,19 @@
         z-index: -9999;
         overflow: hidden;
     }
+
 }
 
 @media screen and (min-width: 993px){
     .register-img {
-        left: -185px;
+        left: -85px;
     }
 }
 
 
 @media screen and (min-width: 1024px){
     .register-img {
-        left: -140px;
+        left: -1px;
     }
 }
 

@@ -458,10 +458,10 @@ button.feedButton:hover {
 .registerErrors{
     position: absolute;
     font-size: 8px !important;
-    color: #5a1666;
+    color: #f8ead4;
 }
 #errorMsgBox{
-    margin-top: 35px;
+    /*margin-top: 35px;*/
 }
 
 /*MODAL*/
@@ -507,7 +507,7 @@ button.feedButton:hover {
         width: 115vw !important;
     }
     #errorMsgBox{
-        margin-top: 45px;
+        /*margin-top: 45px;*/
     }
     h2{
         font-size: 3rem;

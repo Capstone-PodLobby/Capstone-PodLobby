@@ -21,6 +21,7 @@
         border-radius: 20px;
         border: 2.5px solid #cbbba5 !important;
         width: 250px;
+        line-height: 15px !important;
     }
 
     .create-heading {
