@@ -1,0 +1,60 @@
+@media screen and (min-width: 320px) {
+    body {
+        box-sizing: border-box;
+    }
+
+    .create-container{
+        background-color: transparent;
+        padding: 20px;
+        width: 300px; /**/
+        border-radius: 20px;
+        box-shadow: 6px 6px 8px -6px rgba(25 114 117 0.76);
+        margin-bottom: 40px;
+        z-index: 9999 !important;
+        overflow: scroll;
+        position: relative;
+        top: -110px;
+    }
+
+
+    #createPodcast {
+        border-radius: 20px;
+        border: 2.5px solid #cbbba5 !important;
+        width: 250px;
+    }
+
+    .create-heading {
+        text-align: center;
+    }
+
+    .create-background-img {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 593px) {
+    .create-body {
+        background-attachment: fixed !important;
+        background-repeat: no-repeat !important;
+        background-image: url("/static/images/dark-brown-podloby-bg-copy.png")!important;
+        /*width: auto;*/
+        /*height: 100%;*/
+        overflow: hidden !important;
+    }
+
+    .create-background-img {
+        min-width: 100% !important;
+        min-height: 100% !important;
+        position: absolute !important;
+        display: revert;
+        z-index: -9999 !important;
+    }
+
+    .create-container {
+        width: 500px;
+        height:550px !important;
+    }
+
+
+
+}

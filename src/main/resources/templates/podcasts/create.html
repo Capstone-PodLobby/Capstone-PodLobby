@@ -1,11 +1,21 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head th:replace="partials/materializeCreate :: styleHead('Create Podcast')"></head>
-<body style="overflow: scroll">
+<body class="create-body">
+
+<div>
+    <img class="create-background-img" th:src="@{/images/dark-brown-podloby-bg-copy.png}" alt="pic" >
+
+</div>
+
+
+
 <nav th:replace="partials/navbar-profile :: profileNav"></nav>
 <main>
-    <div class="container">
-        <h1>Create Podcast</h1>
+
+
+    <div class="container create-container">
+        <h1 class="create-heading">Create Podcast</h1>
 
         <div class="errorMsg" th:if="${errorList.size() &gt; 0}" th:each="error : ${errorList}">
             <small th:text="${error}"></small><br>

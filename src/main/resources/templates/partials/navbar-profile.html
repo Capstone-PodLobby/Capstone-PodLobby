@@ -3,7 +3,7 @@
     <div class="transparent" th:fragment="profileNav" th:remove="tag">
         <ul id="dropdown1" class="dropdown-content hide-on-small-only ">
             <li><a class="navAnchor" href="/feeds/global">Home</a></li>
-            <li><a class="navAnchor" href="/">PodLobby</a></li>
+            <li><a class="navAnchor2" href="/">PodLobby</a></li>
             <li><a class="navAnchor" href="/podcasts/create">Create</a></li>
             <li class="divider"></li>
             <li><a class="navAnchor" href="/settings">Settings</a></li>
@@ -53,7 +53,7 @@
 
         <nav id="profileNav" class="transparent z-depth-0">
             <div class="nav-wrapper">
-                <a href="/" class="brand-logo">PodLobby</a>
+                <a href="/" class="brand-logo navAnchor2">PodLobby</a>
                 <ul>
                     <li th:if="${session.listeningTo != null}" class="profile-iframe hide-on-small-only">
                         <iframe id="profileIframe" th:src="${session.listeningTo}" allowtransparency="true" allow="encrypted-media"></iframe>
