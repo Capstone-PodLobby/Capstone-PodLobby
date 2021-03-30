@@ -1,13 +1,19 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/materializeSettings :: styleHead('Your Settings')"></head>
-<body style="overflow: scroll">
+<body class="settings-body" style="overflow: scroll">
+
+<div>
+    <img class="settings-background-img" th:src="@{/images/dark-brown-podloby-bg-copy.png}" alt="pic" >
+</div>
+
+
 <div th:replace="partials/navbar-profile :: profileNav"></div>
 
 <main>
 
-    <div class="container">
-        <h1>Edit Profile</h1>
+    <div class="container settings-container">
+        <h1 class="settings-heading">Edit Profile</h1>
 
         <div th:if="${!param.isEmpty()}">
             <div>
@@ -97,7 +103,7 @@
             </div>
 
             <div class="row" id="submit-btn-row">
-                <button class="btn waves-effect waves-light" type="submit" name="action"><a>Submit
+                <button class="btn waves-effect waves-light settings-submit-button" type="submit" name="action"><a>Submit
                     <i class="material-icons right">send</i></a>
                 </button>
             </div>
