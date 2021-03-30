@@ -1,0 +1,74 @@
+@media screen and (min-width: 320px){
+    body {
+        box-sizing: border-box;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+
+        background: rgb(54,90,83);
+        background: -moz-linear-gradient(49deg, rgba(54,90,83,1) 0%, rgba(88,187,168,1) 100%);
+        background: -webkit-linear-gradient(49deg, rgba(54,90,83,1) 0%, rgba(88,187,168,1) 100%);
+        background: linear-gradient(49deg, rgba(54,90,83,1) 0%, rgba(88,187,168,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#365a53",endColorstr="#58bba8",GradientType=1);
+    }
+
+    .settings-container {
+        background-color: transparent;
+        padding: 20px;
+        width: 300px; /**/
+        border-radius: 20px;
+        box-shadow: 6px 6px 8px -6px rgba(25 114 117 0.76);
+        margin-bottom: 40px;
+        z-index: 9999 !important;
+        overflow: scroll;
+        position: relative;
+        top: -70px;
+    }
+
+    .settings-container > h1 {
+        text-align: center !important;
+    }
+
+    .settings-submit-button {
+        border-radius: 20px;
+        border: 2.5px solid #cbbba5 !important;
+        background-color: #cbbba5 !important;
+    }
+
+    .settings-background-img {
+        display: none;
+    }
+
+}
+
+@media screen and (min-width: 593px) {
+    .settings-body {
+        background-attachment: fixed !important;
+        background-repeat: no-repeat !important;
+        background-image: url("/static/images/dark-brown-podloby-bg-copy.png")!important;
+        overflow: hidden !important;
+    }
+
+    .settings-background-img {
+        min-width: 100% !important;
+        min-height: 100% !important;
+        position: absolute !important;
+        display: revert;
+        z-index: -9999 !important;
+    }
+
+    .settings-container {
+        width: 500px !important;
+        height: 550px !important;
+
+    }
+
+    .settings-submit-button {
+        width: 400px;
+
+    }
+
+    #submit-btn-row {
+        position: relative;
+        left: 48px;
+    }
+}
