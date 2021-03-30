@@ -5,6 +5,10 @@
     margin-right: 0 !important;
 }
 
+.profile-Image{
+    object-fit: cover !important;
+}
+
 .podImageProfiles{
     object-fit: contain !important;
     display: flex !important;
